@@ -1,0 +1,204 @@
+@import './../../../styles.scss';
+@import './../../../app/modules/mixins/mixin.scss';
+
+.content-container {
+    @include dflex();
+    width: 100%;
+    margin-bottom: 100px;
+    z-index: 50;
+
+
+    >img {
+        height: 400px;
+        margin-left: 100px;
+        margin-right: 100px;
+        z-index: 60;
+    }
+
+    &.row-reverse {
+        flex-direction: row-reverse;
+    }
+
+}
+
+.align-right {
+    text-align: right;
+}
+
+.introduction-container {
+    width: 500px;
+    z-index: 50;
+}
+
+.introduction-headline {
+    font-size: 32px;
+    color: $purple;
+    font-weight: 700;
+}
+
+.tech-stack {
+    color: $green;
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.introduction {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.button-container {
+    @include dflex(row, space-between);
+}
+
+.test-button {
+    @include dflex();
+    background-color: $purple;
+    padding: 15px 30px 15px 30px;
+    border-radius: 10px;
+    width: 150px;
+
+    >a {
+        color: white;
+        font-size: 23px;
+    }
+
+    &:hover {
+        background-color: $green;
+        transition: all 0.3s ease;
+    }
+}
+
+.git-button {
+    @include dflex();
+    border: 1px solid $green;
+    padding: 15px 30px 15px 30px;
+    border-radius: 10px;
+    width: 150px;
+
+    >a {
+        color: white;
+        font-size: 23px;
+    }
+
+    &:hover {
+        background-color: $green;
+        transition: all 0.3s ease;
+    }
+}
+
+
+@media (max-width: 1290px) {
+    .content-container {
+        flex-direction: column !important;
+        z-index: 60;
+    }
+
+    .introduction-container {
+        text-align: center !important;
+        z-index: 60;
+
+    }
+
+    .introduction-headline {
+        position: relative;
+        text-align: center !important;
+        z-index: 60;
+
+    }
+
+    .tech-stack {
+        text-align: center !important;
+        z-index: 60;
+
+    }
+
+    .introduction {
+        text-align: center !important;
+        z-index: 60;
+
+    }
+
+}
+
+
+
+@media (max-width: 600px) {
+    .content-container {
+        >img {
+            max-width: 70vw;
+            width: auto;
+            height: auto;
+        }
+    }
+
+    .introduction-container {
+        max-width: 90vw;
+        width: auto;
+
+    }
+
+    .introduction-headline {
+        text-wrap: wrap;
+    }
+
+    .tech-stack {
+        text-wrap: wrap;
+    }
+
+    .introduction {
+        text-wrap: wrap;
+    }
+
+
+    .button-container {
+        width: auto;
+    }
+
+}
+
+
+@media (max-width: 515px) {
+
+    .test-button {
+        width: 120px;
+    }
+
+    .git-button {
+        width: 120px;
+    }
+}
+
+@media (max-width: 415px) {
+
+    .test-button {
+        width: 100px;
+        height:30px;
+    }
+
+    .git-button {
+        width: 100px;
+        height:30px;
+
+    }
+}
+
+@media (max-width: 368px) {
+
+    .test-button {
+        width: 80px;
+
+        >a {
+            font-size: 16px;
+        }
+    }
+
+    .git-button {
+        width: 80px;
+>a {
+    font-size: 16px;
+}
+
+    }
+}
