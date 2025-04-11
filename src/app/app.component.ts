@@ -7,17 +7,16 @@ import { PageFooterComponent } from './core/layout/page-footer/page-footer.compo
 import { CustomCursorComponent } from './shared/components/custom-cursor/custom-cursor.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    TranslateModule,
-    NavigationBarComponent,
-    PageFooterComponent,
-    CustomCursorComponent
-  ],
-  template: `
+    selector: 'app-root',
+    imports: [
+        CommonModule,
+        RouterOutlet,
+        TranslateModule,
+        NavigationBarComponent,
+        PageFooterComponent,
+        CustomCursorComponent
+    ],
+    template: `
     <div class="app-container">
       <app-navigation-bar></app-navigation-bar>
       <main class="main-content">
@@ -27,7 +26,7 @@ import { CustomCursorComponent } from './shared/components/custom-cursor/custom-
       <app-custom-cursor></app-custom-cursor>
     </div>
   `,
-  styles: [`
+    styles: [`
     .app-container {
       display: block;
       width: 100%;

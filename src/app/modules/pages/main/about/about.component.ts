@@ -5,16 +5,15 @@ import { ViewportService } from '../../../../shared/services/viewport/viewport-s
 import { slideInOutLeft, slideInOutRight, slideInFromBottom } from '../../../../shared/animations/animations';
 import { TranslateModule } from '@ngx-translate/core';
 @Component({
-  selector: 'app-about',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss'],
-  animations: [
-    slideInOutLeft,
-    slideInOutRight,
-    slideInFromBottom
-  ]
+    selector: 'app-about',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.scss'],
+    animations: [
+        slideInOutLeft,
+        slideInOutRight,
+        slideInFromBottom
+    ]
 })
 export class AboutComponent implements AfterViewInit, OnDestroy {
   slideIn = 'out';

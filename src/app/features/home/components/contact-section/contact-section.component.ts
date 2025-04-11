@@ -13,10 +13,9 @@ interface ContactFormData {
 }
 
 @Component({
-  selector: 'app-contact-section',
-  standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, TranslateModule],
-  template: `
+    selector: 'app-contact-section',
+    imports: [CommonModule, FormsModule, RouterModule, TranslateModule],
+    template: `
     <section class="contact" id="contact">
       <div class="contact__container">
         <header class="contact__header">
@@ -157,7 +156,7 @@ interface ContactFormData {
       </div>
     </section>
   `,
-  styles: [`
+    styles: [`
     .contact {
       position: relative;
       display: flex;
@@ -495,7 +494,7 @@ interface ContactFormData {
       }
     }
   `],
-  animations: [fadeInLeft, fadeInUp]
+    animations: [fadeInLeft, fadeInUp]
 })
 export class ContactSectionComponent {
   formData: ContactFormData = {

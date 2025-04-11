@@ -4,11 +4,10 @@ import { HeroComponent } from '../../../pages/main/hero/hero.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  imports: [CommonModule, HeroComponent, TranslateModule]
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    imports: [CommonModule, HeroComponent, TranslateModule]
 })
 export class HeaderComponent implements AfterViewInit {
   isGerman: boolean = true;

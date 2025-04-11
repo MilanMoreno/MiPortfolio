@@ -2,15 +2,14 @@ import { Component, HostListener, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-custom-cursor',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
+    selector: 'app-custom-cursor',
+    imports: [CommonModule],
+    template: `
     <div class="cursor" [ngStyle]="cursorStyles">
       <div class="cursor__pointer"></div>
     </div>
   `,
-  styles: [`
+    styles: [`
     .cursor {
       width: 0;
       height: 0;

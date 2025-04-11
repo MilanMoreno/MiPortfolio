@@ -7,17 +7,16 @@ import { PortfolioSectionComponent } from '../../components/portfolio-section/po
 import { ContactSectionComponent } from '../../components/contact-section/contact-section.component';
 
 @Component({
-  selector: 'app-home-page',
-  standalone: true,
-  imports: [
-    CommonModule,
-    HeroSectionComponent,
-    AboutSectionComponent,
-    SkillsSectionComponent,
-    PortfolioSectionComponent,
-    ContactSectionComponent
-  ],
-  template: `
+    selector: 'app-home-page',
+    imports: [
+        CommonModule,
+        HeroSectionComponent,
+        AboutSectionComponent,
+        SkillsSectionComponent,
+        PortfolioSectionComponent,
+        ContactSectionComponent
+    ],
+    template: `
     <div class="home">
       <app-hero-section></app-hero-section>
       <app-about-section></app-about-section>
@@ -26,7 +25,7 @@ import { ContactSectionComponent } from '../../components/contact-section/contac
       <app-contact-section></app-contact-section>
     </div>
   `,
-  styles: [`
+    styles: [`
     .home {
       display: flex;
       flex-direction: column;

@@ -7,16 +7,15 @@ import { Subscription } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-hero',
-  standalone: true,
-  templateUrl: './hero.component.html',
-  imports: [CommonModule, TranslateModule],
-  styleUrls: ['./hero.component.scss'],
-  animations: [
-    slideInOutLeft,
-    slideInOutRight,
-    slideInFromBottom
-  ]
+    selector: 'app-hero',
+    templateUrl: './hero.component.html',
+    imports: [CommonModule, TranslateModule],
+    styleUrls: ['./hero.component.scss'],
+    animations: [
+        slideInOutLeft,
+        slideInOutRight,
+        slideInFromBottom
+    ]
 })
 export class HeroComponent implements AfterViewInit, OnDestroy {
 

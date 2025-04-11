@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-privacy-page',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  template: `
+    selector: 'app-privacy-page',
+    imports: [CommonModule, TranslateModule],
+    template: `
     <div class="legal">
       <div class="legal__container">
         <h1 class="legal__title">{{ 'PRIVACY_POLICY.HEADLINE' | translate }}</h1>
@@ -83,7 +82,7 @@ import { TranslateModule } from '@ngx-translate/core';
       </div>
     </div>
   `,
-  styles: [`
+    styles: [`
     .legal {
       display: flex;
       justify-content: center;

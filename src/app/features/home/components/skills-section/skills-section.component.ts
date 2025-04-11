@@ -10,10 +10,9 @@ interface Skill {
 }
 
 @Component({
-  selector: 'app-skills-section',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  template: `
+    selector: 'app-skills-section',
+    imports: [CommonModule, TranslateModule],
+    template: `
     <section class="skills" id="skills">
       <div class="skills__container">
         <div class="skills__mobile-cta">
@@ -52,7 +51,7 @@ interface Skill {
       <img src="assets/img/green-shadow.png" alt="" class="skills__shadow">
     </section>
   `,
-  styles: [`
+    styles: [`
     .skills {
       position: relative;
       display: flex;
@@ -263,7 +262,7 @@ interface Skill {
       }
     }
   `],
-  animations: [fadeInLeft, fadeInUp]
+    animations: [fadeInLeft, fadeInUp]
 })
 export class SkillsSectionComponent implements OnInit {
   isVisible = false;

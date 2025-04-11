@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, NgZone } from '@angular/core';
 
 @Component({
-  selector: 'app-mouse-follower',
-  standalone: true,
-  imports: [ CommonModule ],
-  templateUrl: './mouse-follower.component.html',
-  styleUrl: './mouse-follower.component.scss'
+    selector: 'app-mouse-follower',
+    imports: [CommonModule],
+    templateUrl: './mouse-follower.component.html',
+    styleUrl: './mouse-follower.component.scss'
 })
 export class MouseFollowerComponent {
   circleStyle = {

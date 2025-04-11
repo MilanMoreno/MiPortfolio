@@ -5,10 +5,9 @@ import { ViewportObserverService } from '../../../../shared/services/viewport/vi
 import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animations';
 
 @Component({
-  selector: 'app-about-section',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  template: `
+    selector: 'app-about-section',
+    imports: [CommonModule, TranslateModule],
+    template: `
     <section class="about" id="about">
       <div class="about__container">
         <div class="about__content">
@@ -60,7 +59,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       <img src="assets/img/shadow-purple.png" alt="" class="about__shadow">
     </section>
   `,
-  styles: [`
+    styles: [`
     .about {
       position: relative;
       display: flex;
@@ -220,7 +219,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
     }
   `],
-  animations: [fadeInLeft, fadeInUp]
+    animations: [fadeInLeft, fadeInUp]
 })
 export class AboutSectionComponent implements OnInit {
   isVisible = false;

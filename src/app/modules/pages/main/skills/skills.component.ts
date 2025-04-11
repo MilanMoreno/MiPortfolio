@@ -6,16 +6,15 @@ import { slideInOutLeft, slideInOutRight, slideInFromBottom } from '../../../../
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-skills',
-  standalone: true,
-  imports: [ CommonModule, TranslateModule],
-  templateUrl: './skills.component.html',
-  styleUrl: './skills.component.scss',
-  animations: [
-    slideInOutLeft,
-    slideInOutRight,
-    slideInFromBottom
-  ]
+    selector: 'app-skills',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './skills.component.html',
+    styleUrl: './skills.component.scss',
+    animations: [
+        slideInOutLeft,
+        slideInOutRight,
+        slideInFromBottom
+    ]
 })
 export class SkillsComponent implements AfterViewInit, OnDestroy {
 

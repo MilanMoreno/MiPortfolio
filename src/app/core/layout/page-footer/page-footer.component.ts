@@ -5,10 +5,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ClipboardManagerService } from '../../../shared/services/clipboard/clipboard.service';
 
 @Component({
-  selector: 'app-page-footer',
-  standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule],
-  template: `
+    selector: 'app-page-footer',
+    imports: [CommonModule, RouterModule, TranslateModule],
+    template: `
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__brand">
@@ -60,7 +59,7 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
       </div>
     </footer>
   `,
-  styles: [`
+    styles: [`
     .footer {
       position: relative;
       height: var(--footer-height);

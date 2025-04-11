@@ -8,16 +8,15 @@ import { slideInOutLeft, slideInOutRight, slideInFromBottom } from '../../../../
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 @Component({
-  selector: 'app-contact',
-  standalone: true,
-  imports: [CommonModule, FormsModule, TranslateModule, RouterModule],
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
-  animations: [
-    slideInOutLeft,
-    slideInOutRight,
-    slideInFromBottom
-  ]
+    selector: 'app-contact',
+    imports: [CommonModule, FormsModule, TranslateModule, RouterModule],
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss'],
+    animations: [
+        slideInOutLeft,
+        slideInOutRight,
+        slideInFromBottom
+    ]
 })
 
 export class ContactComponent {

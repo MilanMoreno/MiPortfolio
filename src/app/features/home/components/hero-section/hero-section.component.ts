@@ -5,10 +5,9 @@ import { ClipboardManagerService } from '../../../../shared/services/clipboard/c
 import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animations';
 
 @Component({
-  selector: 'app-hero-section',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  template: `
+    selector: 'app-hero-section',
+    imports: [CommonModule, TranslateModule],
+    template: `
     <section class="hero" id="hero">
       <div class="hero__content">
         <div class="hero__text-container">
@@ -72,7 +71,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       </div>
     </section>
   `,
-  styles: [`
+    styles: [`
     .hero {
       position: relative;
       height: calc(100vh - var(--header-height));
@@ -288,7 +287,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
     }
   `],
-  animations: [fadeInLeft, fadeInUp]
+    animations: [fadeInLeft, fadeInUp]
 })
 export class HeroSectionComponent {
   constructor(public clipboardService: ClipboardManagerService) {}

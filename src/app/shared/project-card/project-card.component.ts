@@ -6,16 +6,15 @@ import { slideInOutLeft, slideInFromBottom, slideInOutRight } from '../animation
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-project-card',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  templateUrl: './project-card.component.html',
-  styleUrls: ['./project-card.component.scss'],
-  animations: [
-    slideInOutLeft,
-    slideInOutRight,
-    slideInFromBottom
-  ]
+    selector: 'app-project-card',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './project-card.component.html',
+    styleUrls: ['./project-card.component.scss'],
+    animations: [
+        slideInOutLeft,
+        slideInOutRight,
+        slideInFromBottom
+    ]
 })
 export class ProjectCardComponent implements AfterViewInit, OnDestroy {
   @Input() projectImage!: string;

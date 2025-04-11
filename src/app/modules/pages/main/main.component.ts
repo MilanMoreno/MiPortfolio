@@ -9,20 +9,19 @@ import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from '../../core/components/footer/footer.component';
 
 @Component({
-  selector: 'app-main',
-  standalone: true,
-  imports: [
-    CommonModule, 
-    MouseFollowerComponent, 
-    HeroComponent, 
-    AboutComponent, 
-    SkillsComponent, 
-    PortfolioComponent, 
-    ContactComponent, 
-    FooterComponent
-  ],
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+    selector: 'app-main',
+    imports: [
+        CommonModule,
+        MouseFollowerComponent,
+        HeroComponent,
+        AboutComponent,
+        SkillsComponent,
+        PortfolioComponent,
+        ContactComponent,
+        FooterComponent
+    ],
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
 }

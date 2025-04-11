@@ -5,11 +5,10 @@ import { PROJECTS } from '../../../data/project-data';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-portfolio',
-  standalone: true,
-  imports: [CommonModule, ProjectCardComponent, TranslateModule],
-  templateUrl: './portfolio.component.html',
-  styleUrls: ['./portfolio.component.scss']
+    selector: 'app-portfolio',
+    imports: [CommonModule, ProjectCardComponent, TranslateModule],
+    templateUrl: './portfolio.component.html',
+    styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent {
   projects = PROJECTS.map((project, index) => ({

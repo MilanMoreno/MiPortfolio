@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-project-card',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  template: `
+    selector: 'app-project-card',
+    imports: [CommonModule, TranslateModule],
+    template: `
     <article class="project">
       <img [src]="image" [alt]="titleKey | translate" class="project__image">
       
@@ -26,7 +25,7 @@ import { TranslateModule } from '@ngx-translate/core';
       </div>
     </article>
   `,
-  styles: [`
+    styles: [`
     .project {
       display: flex;
       width: 100%;

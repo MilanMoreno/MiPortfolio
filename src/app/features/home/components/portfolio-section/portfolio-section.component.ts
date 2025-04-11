@@ -13,10 +13,9 @@ interface ProjectData {
 }
 
 @Component({
-  selector: 'app-portfolio-section',
-  standalone: true,
-  imports: [CommonModule, TranslateModule, ProjectCardComponent],
-  template: `
+    selector: 'app-portfolio-section',
+    imports: [CommonModule, TranslateModule, ProjectCardComponent],
+    template: `
     <section class="portfolio" id="portfolio">
       <div class="portfolio__container">
         <header class="portfolio__header">
@@ -56,7 +55,7 @@ interface ProjectData {
         alt="">
     </section>
   `,
-  styles: [`
+    styles: [`
     .portfolio {
       position: relative;
       display: flex;

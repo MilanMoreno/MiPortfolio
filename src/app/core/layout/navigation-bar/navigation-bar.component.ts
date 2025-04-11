@@ -4,10 +4,9 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-navigation-bar',
-  standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule],
-  template: `
+    selector: 'app-navigation-bar',
+    imports: [CommonModule, RouterModule, TranslateModule],
+    template: `
     <nav class="nav">
       <div class="nav__container">
         <a class="nav__logo" href="#top">
@@ -44,7 +43,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
       </div>
     </nav>
   `,
-  styles: [`
+    styles: [`
     .nav {
       position: fixed;
       top: 0;
