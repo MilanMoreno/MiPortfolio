@@ -66,11 +66,10 @@ a {
 ::-webkit-scrollbar-thumb {
   background: var(--color-accent-secondary);
   border-radius: 10px;
-  
-  &:hover {
-    background: var(--color-accent-primary);
-  }
 }
+
+/* Note: :hover on pseudo-elements like ::-webkit-scrollbar-thumb is not standard and might not work consistently. 
+   Consider alternative approaches if hover styling is crucial. */
 
 .text-center { text-align: center; }
 .hidden { display: none !important; }
