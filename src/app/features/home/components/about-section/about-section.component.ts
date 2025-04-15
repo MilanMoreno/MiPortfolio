@@ -163,6 +163,16 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       top: 30%;
     }
 
+   .content-container {
+    margin-left: 15%;  // Increased from 10%
+    padding-right: 15%;  // Increased from 5%
+    }
+
+    .author-container {
+    margin-top: 200px;  // Increased from 100px to move down
+    margin-left: -100px;  // Added to move image left
+    }
+
     @media (max-width: 1305px) {
       .about__content {
         margin-left: 5%;

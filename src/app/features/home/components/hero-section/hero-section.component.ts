@@ -150,14 +150,19 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     .hero__image-container {
       position: relative;
       height: 100%;
+        width: 60%;  
+    padding-right: 0;  // Removed right padding
       display: flex;
       align-items: flex-end;
       z-index: 1;
       width: 50%;
     }
 
+   
     .hero__image {
-      height: 90vh;
+    height: 65vh;  // Reduced from 90vh to make image smaller
+    margin-right: 150px;  // Added margin to move image to the right
+    }
       object-fit: contain;
       animation: float 6s ease-in-out infinite;
     }
@@ -259,7 +264,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__text-container {
-        width: 60%;
+       width: 40%; 
       }
 
       .hero__name {
@@ -281,6 +286,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__footer {
         padding: 0 20px;
       }
+
+    .hero__image {
+      margin-right: 50px;  // Smaller margin on smaller screens
+    }
 
       .hero__email {
         display: none;
