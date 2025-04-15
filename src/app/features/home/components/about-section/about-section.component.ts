@@ -82,8 +82,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       min-height: 100vh;
       z-index: 4;
       width: 100%;
-      margin-left: 15%; // Increased from 10% (as requested for .content-container)
-      padding-right: 15%; // Increased from 5% (as requested for .content-container) - Note: Original had no padding-right here
+      margin-left: 15%;
+      padding-right: 15%;
     }
 
     .about__text {
@@ -140,8 +140,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 500px;
       height: 500px;
       z-index: 30;
-      margin-top: 200px; // Increased from 100px (as requested for .author-container) - Note: Original had no margin-top here
-      margin-left: -100px; // Added (as requested for .author-container) - Note: Original had no margin-left here
+      margin-top: 200px;
+      margin-left: -100px;
     }
 
     .about__image {
@@ -166,15 +166,14 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       top: 30%;
     }
 
-    /* Removed incorrectly placed .content-container and .author-container rules */
-
     @media (max-width: 1305px) {
       .about__content {
         margin-left: 5%;
+        padding-right: 5%;
       }
     }
 
-    @media (max-width: 1150px) {
+    @media (max-width: 900px) {
       .about__image-container {
         display: none;
       }
@@ -189,6 +188,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .about__content {
         margin-left: 0;
+        padding-right: 0;
         justify-content: center;
         width: 100%;
       }
@@ -196,31 +196,50 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .about__text {
         margin: 0 20px;
         width: 100%;
+        max-width: 600px;
       }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 600px) {
       .about__heading {
         font-size: 45px;
+        text-align: center;
       }
 
       .about__intro,
       .about__text-block {
-        max-width: 80vw;
+        max-width: 100%;
+        font-size: 15px;
       }
 
       .about__detail {
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
 
       .about__icon {
-        margin-top: 20px;
-        margin-right: 10px;
+        margin-bottom: 1rem;
       }
 
       .about__content {
-        height: auto;
-        padding: 100px 0;
+        padding: 50px 0;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .about__heading {
+        font-size: 36px;
+      }
+
+      .about__intro,
+      .about__text-block {
+        font-size: 14px;
+      }
+
+      .about__icon {
+        width: 80px;
       }
     }
   `],

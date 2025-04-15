@@ -26,11 +26,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
           </a>
         </div>
 
-        <div class="hero__image-container">
-          <img 
-            class="hero__image" 
-            src="assets/img/hero.png" 
-            alt="Hero image">
+        <div class="hero__right-container">
+          <div class="hero__image-wrapper">
+            <img 
+              class="hero__image" 
+              src="assets/img/hero.png" 
+              alt="Hero image">
+          </div>
           <div class="hero__image-shadow"></div>
         </div>
       </div>
@@ -94,8 +96,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       display: flex;
       flex-direction: column;
       justify-content: center;
+      width: 40%;
       z-index: 3;
-      width: 40%; // Reduced from 50%
     }
 
     .hero__intro {
@@ -147,19 +149,23 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
     }
 
-    .hero__image-container {
+    .hero__right-container {
       position: relative;
+      width: 60%;
       height: 100%;
-      width: 60%; // Increased from 50%
-      padding-right: 0; // Ensured right padding is removed
       display: flex;
-      align-items: flex-end;
-      z-index: 1;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .hero__image-wrapper {
+      position: relative;
+      z-index: 2;
+      margin-right: 50px;
     }
 
     .hero__image {
-      height: 65vh; // Reduced from 90vh
-      margin-right: 150px; // Added margin
+      height: 75vh;
       object-fit: contain;
       animation: float 6s ease-in-out infinite;
     }
@@ -171,7 +177,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 120%;
       height: 120%;
       background: url('/assets/img/hero-shadows.png') no-repeat center/cover;
-      z-index: -1;
+      z-index: 1;
       transform: rotate(-5deg);
       opacity: 0.8;
     }
@@ -255,15 +261,54 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1200px) {
       .hero__content {
+        padding: 0 50px;
+      }
+
+      .hero__text-container {
+        width: 45%;
+      }
+
+      .hero__image {
+        height: 65vh;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero__content {
+        flex-direction: column;
         padding: 0 20px;
       }
 
       .hero__text-container {
-       width: 40%; 
+        width: 100%;
+        align-items: center;
+        text-align: center;
       }
 
+      .hero__right-container {
+        display: none;
+      }
+
+      .hero__intro {
+        justify-content: center;
+      }
+
+      .hero__cta {
+        margin-left: 0;
+      }
+
+      .hero__footer {
+        padding: 0 20px;
+      }
+
+      .hero__email {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
       .hero__name {
         font-size: 48px;
       }
@@ -276,20 +321,38 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         font-size: 24px;
       }
 
-      .hero__image-container {
-        width: 60%; // Adjusted width for smaller screens too
+      .hero__cta {
+        width: 140px;
+        height: 50px;
+        font-size: 20px;
       }
 
-      .hero__image {
-        margin-right: 50px; // Smaller margin on smaller screens
+      .hero__social {
+        gap: 15px;
       }
 
-      .hero__footer {
-        padding: 0 20px;
+      .hero__scroll {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero__name {
+        font-size: 36px;
       }
 
-      .hero__email {
-        display: none;
+      .hero__title {
+        font-size: 24px;
+      }
+
+      .hero__intro-text {
+        font-size: 20px;
+      }
+
+      .hero__cta {
+        width: 120px;
+        height: 45px;
+        font-size: 18px;
       }
     }
   `],
