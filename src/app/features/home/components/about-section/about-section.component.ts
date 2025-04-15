@@ -82,7 +82,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       min-height: 100vh;
       z-index: 4;
       width: 100%;
-      margin-left: 15%;
+      margin-left: 15%; // Increased from 10% (as requested for .content-container)
+      padding-right: 15%; // Increased from 5% (as requested for .content-container) - Note: Original had no padding-right here
     }
 
     .about__text {
@@ -139,6 +140,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 500px;
       height: 500px;
       z-index: 30;
+      margin-top: 200px; // Increased from 100px (as requested for .author-container) - Note: Original had no margin-top here
+      margin-left: -100px; // Added (as requested for .author-container) - Note: Original had no margin-left here
     }
 
     .about__image {
@@ -163,15 +166,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       top: 30%;
     }
 
-   .content-container {
-    margin-left: 15%;  // Increased from 10%
-    padding-right: 15%;  // Increased from 5%
-    }
-
-    .author-container {
-    margin-top: 200px;  // Increased from 100px to move down
-    margin-left: -100px;  // Added to move image left
-    }
+    /* Removed incorrectly placed .content-container and .author-container rules */
 
     @media (max-width: 1305px) {
       .about__content {

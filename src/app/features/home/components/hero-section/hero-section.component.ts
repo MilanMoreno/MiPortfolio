@@ -95,7 +95,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       flex-direction: column;
       justify-content: center;
       z-index: 3;
-      width: 50%;
+      width: 40%; // Reduced from 50%
     }
 
     .hero__intro {
@@ -150,19 +150,16 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     .hero__image-container {
       position: relative;
       height: 100%;
-        width: 60%;  
-    padding-right: 0;  // Removed right padding
+      width: 60%; // Increased from 50%
+      padding-right: 0; // Ensured right padding is removed
       display: flex;
       align-items: flex-end;
       z-index: 1;
-      width: 50%;
     }
 
-   
     .hero__image {
-    height: 65vh;  // Reduced from 90vh to make image smaller
-    margin-right: 150px;  // Added margin to move image to the right
-    }
+      height: 65vh; // Reduced from 90vh
+      margin-right: 150px; // Added margin
       object-fit: contain;
       animation: float 6s ease-in-out infinite;
     }
@@ -280,16 +277,16 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__image-container {
-        width: 40%;
+        width: 60%; // Adjusted width for smaller screens too
+      }
+
+      .hero__image {
+        margin-right: 50px; // Smaller margin on smaller screens
       }
 
       .hero__footer {
         padding: 0 20px;
       }
-
-    .hero__image {
-      margin-right: 50px;  // Smaller margin on smaller screens
-    }
 
       .hero__email {
         display: none;
