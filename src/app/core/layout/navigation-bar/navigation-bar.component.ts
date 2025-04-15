@@ -149,13 +149,15 @@ export class NavigationBarComponent {
   ];
 
   languages = [
-    { code: 'en', name: 'English', flag: 'assets/img/en.png' },
+    { code: 'fr', name: 'Français', flag: 'assets/img/france.png' },
+    { code: 'tr', name: 'Türkçe', flag: 'assets/img/turkey.png' },
     { code: 'de', name: 'Deutsch', flag: 'assets/img/de.png' },
+    { code: 'en', name: 'English', flag: 'assets/img/en.png' },
     { code: 'es', name: 'Español', flag: 'assets/img/sp.png' }
   ];
 
   constructor(private translateService: TranslateService) {
-    translateService.addLangs(['en', 'de', 'es']);
+    translateService.addLangs(['fr', 'tr', 'en', 'es']);
     translateService.setDefaultLang('en');
   }
 
@@ -167,3 +169,7 @@ export class NavigationBarComponent {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 }
+
+
+
+
