@@ -277,7 +277,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     @media (max-width: 900px) {
       .hero__content {
-        flex-direction: column;
         padding: 0 20px;
       }
 
@@ -288,6 +287,14 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__right-container {
+        width: 60%;
+      }
+
+      .hero__image-wrapper {
+        display: none;
+      }
+
+      .hero__image-shadow {
         display: none;
       }
 
