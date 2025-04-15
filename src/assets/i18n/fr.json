@@ -1,0 +1,83 @@
+{ 
+    "HEADER": {
+        "ABOUT_ME": "À propos de moi",
+        "SKILLS": "Compétences",
+        "PORTFOLIO": "Portfolio"
+    },
+    "HERO": {
+        "JOBTITLE": "Développeur Frontend",
+        "LETSTALK": "Discutons !",
+        "IAM": "Je suis",
+        "NAME": "Milan Moreno",
+        "SCROLLDOWN": "Faites défiler ↓",
+        "EMAIL_COPIED": "E-mail copié !"
+    },
+    "ABOUT": {
+        "HEADLINE": "À propos de moi",
+        "INTRO": "Bonjour, je suis Milan Moreno, un développeur frontend basé à Fribourg, en Allemagne. Avec un fort accent sur la création d’expériences utilisateur exceptionnelles, je me spécialise dans le développement d’applications web modernes en utilisant des technologies de pointe et les meilleures pratiques du développement logiciel.",
+        "TEXT1": "Développeur passionné, je m'efforce de produire un code propre, maintenable et de mettre en œuvre des designs responsives qui fonctionnent parfaitement sur tous les appareils. Mon expertise en Angular et TypeScript me permet de créer des applications évolutives de niveau entreprise répondant aux plus hauts standards de performance et de fiabilité.",
+        "TEXT2": "J’évolue avec enthousiasme dans des environnements collaboratifs et j’ai fait mes preuves dans la livraison de projets complexes dans les délais. Mon engagement envers l'apprentissage continu me permet de rester à la pointe des tendances du développement web, garantissant des solutions innovantes aux défis techniques modernes."
+    },
+    "SKILLS": {
+        "GET_IN_TOUCH": "Me contacter",
+        "MY_SKILLS": "Mes compétences",
+        "DESCRIPTION": "Je suis spécialisé dans la création d’applications web dynamiques utilisant des technologies modernes. Mon expertise couvre le développement frontend avec une solide base en design responsive et interfaces utilisateur interactives."
+    },
+    "PORTFOLIO": {
+        "HEADLINE": "Portfolio",
+        "INTRODUCTION": "Bienvenue dans ma vitrine de projets – Chaque projet représente un défi unique relevé avec créativité et expertise technique. N’hésitez pas à les explorer et interagir avec eux.",
+        "PROJECTS": {
+            "0": {
+                "HEADLINE": "Join",
+                "TECH_STACK": "Angular, Typescript, HTML, CSS, Firebase",
+                "DESCRIPTION": "Une plateforme de gestion de tâches sophistiquée inspirée de la méthode Kanban. Les fonctionnalités incluent l'organisation des tâches par glisser-déposer, la collaboration en temps réel et un système intuitif d'attribution des utilisateurs."
+            },
+            "1": {
+                "HEADLINE": "El Pollo Loco",
+                "TECH_STACK": "JavaScript, HTML, CSS",
+                "DESCRIPTION": "Un jeu d’aventure simple créé avec HTML, CSS et JavaScript. Le jeu met en scène un personnage qui traverse un niveau, ramasse des bouteilles et des pièces tout en affrontant des ennemis."
+            },
+            "2": {
+                "HEADLINE": "Pokedex",
+                "TECH_STACK": "JavaScript, HTML, CSS, API",
+                "DESCRIPTION": "Une collection complète de tous les Pokémon existants, avec des descriptions détaillées de leurs caractéristiques, capacités et attributs uniques, accessible via une API."
+            },
+            "3": {
+                "HEADLINE": "QuizApp",
+                "TECH_STACK": "JavaScript, HTML, CSS",
+                "DESCRIPTION": "Une plateforme d'apprentissage interactive avec un système de quiz dynamique. Conçu avec des technologies web modernes, il propose une manière ludique de tester et renforcer ses connaissances grâce à des questions à choix multiples personnalisables et un retour immédiat."
+            }
+        },
+        "LIVE_TEST": "Test en ligne",
+        "GITHUB": "Github"
+    },
+    "CONTACT": {
+        "HEADLINE": "Contact",
+        "INTRODUCTION": "Collaborons ensemble",
+        "DESCRIPTION_1": "Contactez-moi via ce formulaire, je suis intéressé par vos idées et prêt à contribuer à vos projets grâce à mon travail.",
+        "DESCRIPTION_2": "Vous avez besoin d’un développeur frontend ?",
+        "DESCRIPTION_3": "Contactez-moi !",
+        "NAME_PLACEHOLDER": "Nom",
+        "EMAIL_PLACEHOLDER": "E-mail",
+        "MESSAGE_PLACEHOLDER": "Message",
+        "SEND_BUTTON": "Envoyer le message",
+        "NAME_ERROR": "Veuillez entrer un nom",
+        "EMAIL_ERROR": "Veuillez entrer un e-mail valide",
+        "MESSAGE_ERROR": "Veuillez entrer un message",
+        "PRIVACY_POLICY_TEXT1": "J’ai lu la ",
+        "PRIVACY_POLICY_TEXT2": "politique de confidentialité",
+        "PRIVACY_POLICY_TEXT3": " et j’accepte le traitement de mes données comme indiqué.",
+        "PRIVACY_POLICY_ERROR": "Vous devez accepter la politique de confidentialité",
+        "SUCCESS_MESSAGE": "Votre message a été envoyé avec succès"
+    },
+    "IMPRINT": {
+        "HEADLINE": "Mentions légales",
+        "CONTACT": "Contact",
+        "TELEPHONE": "Téléphone",
+        "EMAIL": "E-mail"
+    },
+    "FOOTER": {
+        "IMPRINT": "Mentions légales",
+        "EMAIL_COPIED": "E-mail copié !"
+    }
+}
