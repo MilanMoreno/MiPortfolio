@@ -13,6 +13,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
           <img src="assets/img/logo.png" alt="Logo" class="nav__logo-img">
         </a>
 
+        <!-- Desktop Menu -->
         <div class="nav__menu">
           <ul class="nav__list">
             <li *ngFor="let item of menuItems">
@@ -23,6 +24,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
           </ul>
         </div>
 
+        <!-- Desktop Language Selector -->
         <div class="nav__language">
           <button 
             class="nav__lang-btn" 
@@ -32,6 +34,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
           </button>
         </div>
 
+        <!-- Mobile Menu Toggle -->
         <button 
           class="nav__mobile-toggle" 
           [class.nav__mobile-toggle--active]="isMobileMenuOpen"
@@ -40,6 +43,30 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
           <span></span>
           <span></span>
         </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="nav__mobile-menu" [class.nav__mobile-menu--open]="isMobileMenuOpen">
+        <div class="nav__mobile-content">
+          <ul class="nav__mobile-list">
+            <li *ngFor="let item of menuItems">
+              <a [href]="item.href" class="nav__mobile-link" (click)="closeMobileMenu()">
+                {{ item.label | translate }}
+              </a>
+            </li>
+          </ul>
+          
+          <!-- Mobile Language Selector -->
+          <div class="nav__mobile-language">
+            <button 
+              class="nav__mobile-lang-btn" 
+              *ngFor="let lang of languages"
+              (click)="switchLanguage(lang.code)">
+              <img [src]="lang.flag" [alt]="lang.name">
+              <span>{{ lang.name }}</span>
+            </button>
+          </div>
+        </div>
       </div>
     </nav>
   `,
@@ -125,6 +152,119 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
     .nav__mobile-toggle {
       display: none;
+      width: 30px;
+      height: 24px;
+      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+
+      span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-text-primary);
+        position: absolute;
+        left: 0;
+        transition: all 0.3s ease;
+
+        &:first-child {
+          top: 0;
+        }
+
+        &:nth-child(2) {
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        &:last-child {
+          bottom: 0;
+        }
+      }
+
+      &--active {
+        span {
+          &:first-child {
+            transform: rotate(45deg);
+            top: 50%;
+          }
+
+          &:nth-child(2) {
+            opacity: 0;
+          }
+
+          &:last-child {
+            transform: rotate(-45deg);
+            bottom: 50%;
+          }
+        }
+      }
+    }
+
+    .nav__mobile-menu {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      width: 100%;
+      height: calc(100vh - var(--header-height));
+      background-color: var(--color-background-primary);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 99;
+
+      &--open {
+        transform: translateX(0);
+      }
+    }
+
+    .nav__mobile-content {
+      padding: 2rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .nav__mobile-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .nav__mobile-link {
+      color: var(--color-text-primary);
+      font-size: var(--font-size-heading-small);
+      text-transform: uppercase;
+    }
+
+    .nav__mobile-language {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .nav__mobile-lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: 1px solid var(--color-accent-primary);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: var(--color-text-primary);
+      cursor: pointer;
+
+      img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
+
+      &:hover {
+        background-color: var(--color-accent-primary);
+      }
     }
 
     @media (max-width: 768px) {
@@ -157,19 +297,20 @@ export class NavigationBarComponent {
   ];
 
   constructor(private translateService: TranslateService) {
-    translateService.addLangs(['fr', 'tr', 'en', 'es']);
+    translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
     translateService.setDefaultLang('en');
   }
 
   switchLanguage(lang: string): void {
     this.translateService.use(lang);
+    this.closeMobileMenu();
   }
 
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen = false;
+  }
 }
-
-
-
-
