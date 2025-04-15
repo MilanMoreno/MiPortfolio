@@ -369,6 +369,6 @@ export class HeroSectionComponent {
   constructor(public clipboardService: ClipboardManagerService) {}
 
   copyEmail(): void {
-    this.clipboardService.copyToClipboard('milan.moreno20@gmail.com');
+    this.clipboardService.copyToClipboard('milan.moreno.crea@gmail.com');
   }
 }

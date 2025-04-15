@@ -17,7 +17,7 @@ export class FooterComponent {
   constructor(private clipboardService: ClipboardService) {}
 
   copyText() {
-    const textToCopy = 'milan.moreno20@gmail.com';
+    const textToCopy = 'milan.moreno.crea@gmail.com';
     this.clipboardService.copyTextToClipboard(textToCopy, this.copyAlert);
   }
 }
