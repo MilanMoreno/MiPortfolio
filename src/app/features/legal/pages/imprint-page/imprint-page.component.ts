@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
           <p>
             <strong>{{ 'IMPRINT.TELEPHONE' | translate }}:</strong> 01638447612<br>
-            <strong>{{ 'IMPRINT.EMAIL' | translate }}:</strong> milan.moreno&#64;gmail.com
+            <strong>{{ 'IMPRINT.EMAIL' | translate }}:</strong> milan.moreno.crea&#64;gmail.com
           </p>
         </section>
       </div>
@@ -35,16 +35,24 @@ import { TranslateModule } from '@ngx-translate/core';
       background-color: var(--color-background-primary);
     }
 
-    .legal__container {
-      width: 100%;
-      max-width: 800px;
-      color: var(--color-text-primary);
-    }
+   .legal__container {
+  position: relative; /* oder ganz weglassen, falls nicht gebraucht */
+  display: flex;
+  flex-direction: column; /* wichtig! */
+  align-items: flex-start; /* oder center */
+  justify-content: flex-start;
+  padding: 2rem;
+  width: 100%;
+  max-width: 800px;
+  color: var(--color-text-primary);
+}
 
-    .legal__title {
-      font-size: var(--font-size-heading-large);
-      margin-bottom: 2rem;
-    }
+.legal__title {
+  font-size: var(--font-size-heading-large);
+  margin-bottom: 2rem;
+  margin-top: 40px; /* << füge das hier hinzu */
+}
+
 
     .legal__section {
       margin-bottom: 2rem;

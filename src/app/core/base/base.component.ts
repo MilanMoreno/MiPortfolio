@@ -22,7 +22,7 @@ import { TranslateModule } from '@ngx-translate/core';
             <img src="assets/img/github.png" alt="GitHub" />
           </a>
           <img (click)="copyEmail()" src="assets/img/email.png" alt="Email" />
-          <a target="_blank" href="https://www.linkedin.com/in/thomas-mustermann-a4072a25b/">
+          <a target="_blank" href="https://www.linkedin.com/in/milan-moreno-9a7482360">
             <img src="assets/img/linkedin.png" alt="LinkedIn" />
           </a>
         </div>
@@ -154,7 +154,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class BaseComponent {
   copyEmail() {
-    const email = 'milan.moreno20@gmail.com';
+    const email = 'milan.moreno.crea@gmail.com';
     navigator.clipboard.writeText(email).then(() => {
       const alert = document.querySelector('.email-alert') as HTMLElement;
       if (alert) {

@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ClipboardService } from '../../../../shared/services/clipboard/clipboard.service';
+import { ClipboardManagerService } from '../../../../shared/services/clipboard/clipboard.service';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
@@ -14,10 +14,10 @@ export class FooterComponent {
 
   @ViewChild('copyAlert', { static: false }) copyAlert!: ElementRef;
 
-  constructor(private clipboardService: ClipboardService) {}
+  constructor(private clipboardService: ClipboardManagerService) {}
 
   copyText() {
     const textToCopy = 'milan.moreno.crea@gmail.com';
-    this.clipboardService.copyTextToClipboard(textToCopy, this.copyAlert);
+    this.clipboardService.copyToClipboard(textToCopy); // Assuming the service method doesn't need the copyAlert elementRef anymore based on the service code read earlier. If it does, this might need adjustment.
   }
 }

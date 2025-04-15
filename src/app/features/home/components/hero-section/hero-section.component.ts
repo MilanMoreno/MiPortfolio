@@ -53,7 +53,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
             <img src="assets/img/email.png" alt="Email">
           </button>
           <a 
-            href="https://www.linkedin.com/in/thomas-mustermann-a4072a25b/"
+            href="https://www.linkedin.com/in/milan-moreno-9a7482360//"
             target="_blank" 
             class="hero__social-link">
             <img src="assets/img/linkedin.png" alt="LinkedIn">

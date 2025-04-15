@@ -38,7 +38,7 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
             <img src="assets/img/email.png" alt="Email">
           </button>
           <a 
-            href="https://www.linkedin.com/in/thomas-mustermann-a4072a25b/"
+            href="https://www.linkedin.com/in/milan-moreno-9a7482360/"
             target="_blank" 
             class="footer__social-link">
             <img src="assets/img/linkedin.png" alt="LinkedIn">
@@ -189,6 +189,6 @@ export class PageFooterComponent {
   constructor(public clipboardService: ClipboardManagerService) {}
 
   copyEmail(): void {
-    this.clipboardService.copyToClipboard('milan.moreno20@gmail.com');
+    this.clipboardService.copyToClipboard('milan.moreno.crea@gmail.com');
   }
 }

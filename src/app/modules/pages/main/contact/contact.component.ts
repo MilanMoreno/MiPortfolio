@@ -45,7 +45,7 @@ export class ContactComponent {
   mailTest = false;
 
   post = {
-    endPoint: 'https://thomas-mustermann.com/sendMail.php',
+    endPoint: 'https://www.linkedin.com/in/milan-moreno-9a7482360/',
     body: (payload: any) => JSON.stringify(payload),
     options: {
       headers: {
