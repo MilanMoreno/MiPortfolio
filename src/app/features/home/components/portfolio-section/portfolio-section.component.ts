@@ -199,8 +199,8 @@ export class PortfolioSectionComponent {
       titleKey: 'PORTFOLIO.PROJECTS.3.HEADLINE',
       stackKey: 'PORTFOLIO.PROJECTS.3.TECH_STACK',
       descriptionKey: 'PORTFOLIO.PROJECTS.3.DESCRIPTION',
-      demoUrl: 'https://milan-moreno.developerakademie.net/quizApp/index.html',
-      repoUrl: 'https://github.com/MilanMoreno/Quizapp'
+      demoUrl: 'https://milan-moreno.developerakademie.net/easyQuizzApp/index.html',
+      repoUrl: 'https://github.com/MilanMoreno/easyQuizzApp'
     }
   ];
 }
