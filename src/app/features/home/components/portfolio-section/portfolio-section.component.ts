@@ -175,8 +175,8 @@ export class PortfolioSectionComponent {
       titleKey: 'PORTFOLIO.PROJECTS.0.HEADLINE',
       stackKey: 'PORTFOLIO.PROJECTS.0.TECH_STACK',
       descriptionKey: 'PORTFOLIO.PROJECTS.0.DESCRIPTION',
-      demoUrl: 'https://milan-moreno.developerakademie.net/JOIN%20Projekt%20Okt-Nov%202024/index.html',
-      repoUrl: 'https://github.com/MilanMoreno/Portfolio'
+      demoUrl: 'https://milan-moreno.developerakademie.net/Join/index.html',
+      repoUrl: 'https://github.com/MilanMoreno/Join/'
     },
     {
       image: 'assets/img/Polloloco1.png',
@@ -184,7 +184,7 @@ export class PortfolioSectionComponent {
       stackKey: 'PORTFOLIO.PROJECTS.1.TECH_STACK',
       descriptionKey: 'PORTFOLIO.PROJECTS.1.DESCRIPTION',
       demoUrl: 'https://milan-moreno.developerakademie.net/PolloLoco_/index.html',
-      repoUrl: 'https://github.com/MilanMoreno/Portfolio'
+      repoUrl: 'https://github.com/MilanMoreno/PolloLoco'
     },
     {
       image: 'assets/img/pokedex-project.png',
