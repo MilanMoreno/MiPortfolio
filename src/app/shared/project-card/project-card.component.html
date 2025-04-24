@@ -11,12 +11,12 @@
       {{ descriptionKey | translate }}
     </p>
     <div class="button-container">
-      <div class="test-button">
-        <a [href]="liveTestLink" target="_blank">{{ 'PORTFOLIO.LIVE_TEST' | translate }}</a>
-      </div>
-      <div class="git-button">
-        <a [href]="gitLink" target="_blank">{{ 'PORTFOLIO.GITHUB' | translate }}</a>
-      </div>
+      <a [href]="liveTestLink" target="_blank" class="test-button">
+        {{ 'PORTFOLIO.LIVE_TEST' | translate }}
+      </a>
+      <a [href]="gitLink" target="_blank" class="git-button">
+        {{ 'PORTFOLIO.GITHUB' | translate }}
+      </a>
     </div>
   </div>
 </div>

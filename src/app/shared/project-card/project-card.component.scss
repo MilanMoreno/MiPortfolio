@@ -7,7 +7,6 @@
     margin-bottom: 100px;
     z-index: 50;
 
-
     >img {
         height: 400px;
         margin-left: 100px;
@@ -18,7 +17,6 @@
     &.row-reverse {
         flex-direction: row-reverse;
     }
-
 }
 
 .align-right {
@@ -50,79 +48,73 @@
 
 .button-container {
     @include dflex(row, space-between);
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.test-button, .git-button {
+    @include dflex();
+    width: 150px;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    z-index: 100;
 }
 
 .test-button {
-    @include dflex();
     background-color: $purple;
-    padding: 15px 30px 15px 30px;
-    border-radius: 10px;
-    width: 150px;
-
-    >a {
-        color: white;
-        font-size: 23px;
-    }
 
     &:hover {
         background-color: $green;
-        transition: all 0.3s ease;
     }
 }
 
 .git-button {
-    @include dflex();
     border: 1px solid $green;
-    padding: 15px 30px 15px 30px;
-    border-radius: 10px;
-    width: 150px;
-
-    >a {
-        color: white;
-        font-size: 23px;
-    }
 
     &:hover {
         background-color: $green;
-        transition: all 0.3s ease;
     }
 }
-
 
 @media (max-width: 1290px) {
     .content-container {
         flex-direction: column !important;
+        align-items: center;
         z-index: 60;
     }
 
     .introduction-container {
         text-align: center !important;
         z-index: 60;
-
     }
 
     .introduction-headline {
         position: relative;
         text-align: center !important;
         z-index: 60;
-
     }
 
     .tech-stack {
         text-align: center !important;
         z-index: 60;
-
     }
 
     .introduction {
         text-align: center !important;
         z-index: 60;
-
     }
 
+    .button-container {
+        justify-content: center;
+        gap: 2rem;
+    }
 }
-
-
 
 @media (max-width: 600px) {
     .content-container {
@@ -130,13 +122,13 @@
             max-width: 70vw;
             width: auto;
             height: auto;
+            margin: 0 0 2rem;
         }
     }
 
     .introduction-container {
         max-width: 90vw;
         width: auto;
-
     }
 
     .introduction-headline {
@@ -150,55 +142,26 @@
     .introduction {
         text-wrap: wrap;
     }
-
-
-    .button-container {
-        width: auto;
-    }
-
 }
 
-
 @media (max-width: 515px) {
-
-    .test-button {
-        width: 120px;
-    }
-
-    .git-button {
+    .test-button, .git-button {
         width: 120px;
     }
 }
 
 @media (max-width: 415px) {
-
-    .test-button {
+    .test-button, .git-button {
         width: 100px;
-        height:30px;
-    }
-
-    .git-button {
-        width: 100px;
-        height:30px;
-
+        height: 30px;
+        padding: 0 15px;
+        font-size: 16px;
     }
 }
 
 @media (max-width: 368px) {
-
-    .test-button {
+    .test-button, .git-button {
         width: 80px;
-
-        >a {
-            font-size: 16px;
-        }
-    }
-
-    .git-button {
-        width: 80px;
->a {
-    font-size: 16px;
-}
-
+        font-size: 14px;
     }
 }
