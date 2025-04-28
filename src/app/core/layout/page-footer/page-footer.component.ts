@@ -10,19 +10,19 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
     template: `
     <footer class="footer">
       <div class="footer__container">
-        <div class="footer__brand">
+        <div class="footer__left">
           <img 
             src="assets/img/logo.png" 
             alt="Logo" 
             class="footer__logo"
             routerLink="/">
-          <a routerLink="/legal/imprint" class="footer__legal-link">
-            {{ 'FOOTER.IMPRINT' | translate }}
+          <a routerLink="/legal/imprint" class="footer__imprint">
+            Imprint
           </a>
         </div>
 
-        <div class="footer__copyright">
-          &copy; Milan Moreno
+        <div class="footer__center">
+          © Milan Moreno 2024
         </div>
 
         <div class="footer__social">
@@ -32,11 +32,11 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
             class="footer__social-link">
             <img src="assets/img/github.png" alt="GitHub">
           </a>
-          <button 
-            class="footer__social-link"
-            (click)="copyEmail()">
+          <a 
+            href="mailto:milan.moreno.crea@gmail.com"
+            class="footer__social-link">
             <img src="assets/img/email.png" alt="Email">
-          </button>
+          </a>
           <a 
             href="https://www.linkedin.com/in/milan-moreno-9a7482360/"
             target="_blank" 
@@ -44,151 +44,101 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
             <img src="assets/img/linkedin.png" alt="LinkedIn">
           </a>
         </div>
-
-        <a 
-          routerLink="/legal/imprint" 
-          class="footer__mobile-legal">
-          {{ 'FOOTER.IMPRINT' | translate }}
-        </a>
-      </div>
-
-      <div 
-        class="footer__notification"
-        [class.footer__notification--visible]="(clipboardService.copyStatus$ | async)">
-        {{ 'FOOTER.EMAIL_COPIED' | translate }}
       </div>
     </footer>
   `,
     styles: [`
     .footer {
-      position: relative;
-      height: var(--footer-height);
+      width: 100%;
       background-color: var(--color-background-primary);
-      border-top: 2px solid var(--color-accent-primary);
-      z-index: 55;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .footer__container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 100%;
-      padding: 0 100px;
-      max-width: 1920px;
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 2rem;
     }
 
-    .footer__brand {
+    .footer__left {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
     }
 
     .footer__logo {
-      width: 420px;
-      margin: 0;
+      height: 80px;
       cursor: pointer;
-    }
-
-    .footer__legal-link {
-      width: 50%;
-      text-align: left;
-      color: var(--color-text-primary);
-      margin-top: -25px;
+      transition: transform 0.3s ease;
 
       &:hover {
-        color: var(--color-accent-primary);
+        transform: scale(1.02);
       }
     }
 
-    .footer__copyright {
+    .footer__imprint {
       color: var(--color-text-primary);
-      font-size: 23px;
+      text-decoration: none;
+      font-size: 1rem;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      margin-top: -1rem;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .footer__center {
+      color: var(--color-text-primary);
+      font-size: 1rem;
     }
 
     .footer__social {
       display: flex;
-      align-items: center;
-      gap: 13px;
-      z-index: 66;
+      gap: 1.5rem;
     }
 
     .footer__social-link {
-      background: none;
-      border: none;
-      padding: 0;
-      
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+
       img {
-        transition: filter 0.3s ease;
-
-        &:hover {
-          filter: brightness(0) saturate(100%) invert(76%) sepia(15%) 
-                 saturate(4614%) hue-rotate(71deg) brightness(102%) contrast(101%);
-        }
+        width: 24px;
+        height: 24px;
       }
-    }
-
-    .footer__mobile-legal {
-      display: none;
-      color: var(--color-text-primary);
-      margin-bottom: 5px;
 
       &:hover {
-        color: var(--color-accent-primary);
+        opacity: 1;
       }
     }
 
-    .footer__notification {
-      position: fixed;
-      bottom: -3000px;
-      left: 50%;
-      border-radius: 10px;
-      background-color: rgba(0, 0, 0, 0.3);
-      padding: 10px;
-      color: var(--color-text-primary);
-      transform: translateX(-50%);
-      transition: all 0.2s ease-in-out;
-      z-index: 999;
-
-      &--visible {
-        bottom: 50px;
-      }
-    }
-
-    @media (max-width: 875px) {
+    @media (max-width: 768px) {
       .footer__container {
         flex-direction: column;
-        padding: 20px;
+        gap: 2rem;
+        text-align: center;
       }
 
-      .footer__copyright {
-        text-align: center;
-        margin-bottom: 10px;
+      .footer__left {
+        align-items: center;
+      }
+
+      .footer__logo {
+        height: 60px;
       }
 
       .footer__social {
-        margin-bottom: 10px;
-      }
-
-      .footer__brand {
-        img {
-          max-width: 70vw;
-        }
-
-        .footer__legal-link {
-          display: none;
-        }
-      }
-
-      .footer__mobile-legal {
-        display: block;
+        gap: 2rem;
       }
     }
   `]
 })
 export class PageFooterComponent {
   constructor(public clipboardService: ClipboardManagerService) {}
-
-  copyEmail(): void {
-    this.clipboardService.copyToClipboard('milan.moreno.crea@gmail.com');
-  }
 }

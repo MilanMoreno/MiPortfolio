@@ -1,6 +1,12 @@
 @import './../../../styles.scss';
 @import './../../../app/modules/mixins/mixin.scss';
 
+:host {
+  display: block; // Ensure it behaves like a block element
+  position: relative; // Establish stacking context for the host
+  z-index: 52; // Position above the green shadow (z-index 51)
+}
+
 .content-container {
     @include dflex();
     width: 100%;
