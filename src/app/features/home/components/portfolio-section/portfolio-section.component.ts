@@ -187,14 +187,6 @@ export class PortfolioSectionComponent {
       repoUrl: 'https://github.com/MilanMoreno/PolloLoco'
     },
     {
-      image: 'assets/img/pokedex-project.png',
-      titleKey: 'PORTFOLIO.PROJECTS.2.HEADLINE',
-      stackKey: 'PORTFOLIO.PROJECTS.2.TECH_STACK',
-      descriptionKey: 'PORTFOLIO.PROJECTS.2.DESCRIPTION',
-      demoUrl: 'https://milan-moreno.developerakademie.net/pokedex/index.html',
-      repoUrl: 'https://github.com/MilanMoreno/Pokedex'
-    },
-    {
       image: 'assets/img/quiz-app-project.png',
       titleKey: 'PORTFOLIO.PROJECTS.3.HEADLINE',
       stackKey: 'PORTFOLIO.PROJECTS.3.TECH_STACK',

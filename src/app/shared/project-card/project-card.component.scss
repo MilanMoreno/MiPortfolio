@@ -5,7 +5,8 @@
     @include dflex();
     width: 100%;
     margin-bottom: 100px;
-    z-index: 50;
+    position: relative; // Establish stacking context
+    z-index: 55; // Higher than green shadow (51)
 
     >img {
         height: 400px;
@@ -25,7 +26,7 @@
 
 .introduction-container {
     width: 500px;
-    z-index: 50;
+    z-index: 70; // Higher than image (60)
 }
 
 .introduction-headline {
