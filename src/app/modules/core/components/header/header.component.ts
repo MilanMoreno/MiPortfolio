@@ -1,32 +1,64 @@
-import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef, OnInit } from '@angular/core'; // Added OnInit
 import { CommonModule } from '@angular/common';
 import { HeroComponent } from '../../../pages/main/hero/hero.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../../shared/services/language/language.service'; // Added LanguageService import
+import { Subscription } from 'rxjs'; // Added Subscription import
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    imports: [CommonModule, HeroComponent, TranslateModule]
+    imports: [CommonModule, HeroComponent, TranslateModule],
+    standalone: true // Added standalone flag as imports are used
 })
-export class HeaderComponent implements AfterViewInit {
-  isGerman: boolean = true;
+export class HeaderComponent implements OnInit, AfterViewInit { // Implemented OnInit
   logoUrl: string = 'assets/img/logo.png';
   linkUrl: string = '#hero';
   burgerMenuOpen: boolean = false;
+  currentLanguage: string = 'de'; // Added currentLanguage property
+  private langSubscription!: Subscription; // Added subscription property
 
   @ViewChild('burgerMenu') burgerMenu!: ElementRef;
   @ViewChild('burger') burger!: ElementRef;
   @ViewChild('checkbox4') checkbox!: ElementRef<HTMLInputElement>;
   @ViewChild('header') header!: ElementRef;
 
-  constructor(private translate: TranslateService) { }
+  constructor(
+    private languageService: LanguageService, // Injected LanguageService
+    private translate: TranslateService // Kept TranslateService for now
+  ) { }
 
-  switchLanguage(lang: string) {
-    this.translate.use(lang);
+  ngOnInit() {
+    // Aktuelle Sprache beim Initialisieren abonnieren
+    this.langSubscription = this.languageService.currentLanguage$.subscribe(lang => {
+      this.currentLanguage = lang;
+      // Hier kannst du weitere Logik für das Ändern der Sprache implementieren
+      this.updateContent();
+    });
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe to prevent memory leaks
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
+    }
+  }
+
+  changeLanguage(lang: string) {
+    this.languageService.setLanguage(lang);
+    // The subscription in ngOnInit will trigger updateContent
+  }
+
+  updateContent() {
+    // Hier die Logik für das Aktualisieren der Inhalte entsprechend der Sprache
+    // This might involve using TranslateService or other methods
+    this.translate.use(this.currentLanguage); // Example using TranslateService
+    console.log(`Language changed to: ${this.currentLanguage}, updating content...`);
   }
 
   ngAfterViewInit() {
+    // ngAfterViewInit logic remains here if needed
   }
 
   toggleBurgerMenu(): void {

@@ -184,3 +184,26 @@
 }
 
 @media (max-width: 400px) {}
+
+/* About-Sektion: Text zentrieren und Schriftgröße anpassen (Point 4) */
+.text-container {
+  text-align: center; /* Zentrieren des Textes */
+
+  p, .personal-start-text, .personal-text { /* Apply to p tags and existing text classes */
+    font-size: 0.9rem; /* Kleinere Schriftgröße */
+    max-width: 100%; /* Maximale Breite begrenzen */
+    margin-left: auto; /* Zentrieren block elements */
+    margin-right: auto; /* Zentrieren block elements */
+    overflow-wrap: break-word; /* Lange Wörter umbrechen */
+    word-wrap: break-word; /* Older browsers fallback */
+  }
+}
+
+/* Für sehr kleine Bildschirme noch kleinere Schrift */
+@media (max-width: 320px) {
+  .text-container {
+     p, .personal-start-text, .personal-text {
+       font-size: 0.8rem;
+     }
+  }
+}

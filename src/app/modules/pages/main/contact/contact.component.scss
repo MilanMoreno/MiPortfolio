@@ -71,18 +71,24 @@
 
 .form-container {
     width: 680px;
-    height: 500px;
+    height: 500px; /* Keep existing height? Or use min-height from suggestion? Let's try min-height */
+    min-height: 450px; /* Added min-height from suggestion */
     z-index: 60;
+    position: relative; /* Added position relative for absolute children */
 
     >form {
         width: 100%;
+        /* Add class="contact-form" in HTML */
     }
 }
 
 .form-group {
     @include dflex(column);
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Existing margin */
+    position: relative; /* Added position relative for absolute error message */
+    margin-bottom: 25px; /* Increased margin for error message space */
+
 
     >input {
         width: 100%;
@@ -92,6 +98,7 @@
         padding: 15px 25px 15px 25px;
         background-color: rgb(20, 29, 47, 0.1);
         color: white;
+        /* Add class="form-control" in HTML */
 
         &::placeholder {
             color: white;
@@ -117,6 +124,7 @@
         background-color: rgb(20, 29, 47, 0.1);
         color: white;
         font-size: 17px;
+        /* Add class="form-control" in HTML */
 
         &::placeholder {
             color: white;
@@ -131,6 +139,23 @@
             outline: none;
         }
     }
+}
+
+/* New styles for form controls */
+.form-control {
+  width: 100%;
+  padding: 10px; /* Adjust padding if needed */
+  border: 1px solid #ccc; /* Use existing border or adjust */
+  border-radius: 4px; /* Adjust border-radius if needed */
+}
+
+/* Fehlermeldungsstil */
+.error-message {
+  position: absolute;
+  bottom: -20px; /* Position unter dem Eingabefeld */
+  left: 0;
+  color: #ff0000;
+  font-size: 12px;
 }
 
 .policy-container {
@@ -226,24 +251,46 @@ input[type="checkbox"]:checked+.checkmark::after {
     background-origin: content-box;
 }
 
+/* Updated form button container */
 .form-button-container {
     @include dflex();
     z-index: 60;
-
+    position: relative; /* Added position relative */
+    height: 50px; /* Added fixed height */
+    margin-top: 20px; /* Added margin-top */
 }
 
-.form-button {
+/* Updated form button */
+.form-button, .submit-button { /* Apply to existing and new class */
     width: 250px;
     background-color: $green;
     border-radius: 10px;
     padding: 15px 30px 15px 30px;
     color: white;
     z-index: 60;
+    border: none; /* Added */
+    cursor: pointer; /* Added */
+    position: absolute; /* Added */
+    bottom: 0; /* Added */
+    left: 50%; /* Added */
+    transform: translateX(-50%); /* Added */
 
     &:disabled {
         opacity: 0.1;
     }
 }
+
+/* Erfolgs- oder Fehlermeldung nach dem Absenden */
+.form-feedback {
+  position: absolute;
+  bottom: -30px; /* Position below button container */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: $green; /* Or use a different color for feedback */
+  font-size: 14px;
+}
+
 
 .go-to-start-button {
     position: absolute;
@@ -487,7 +534,8 @@ $color-2: #fff;
 
 @media (max-width: 1315px) {
     .form-group {
-        margin-bottom: 10px;
+        margin-bottom: 10px; /* Reverted margin? Let's keep the increased one: 25px */
+        margin-bottom: 25px; /* Keep increased margin */
     }
 }
 

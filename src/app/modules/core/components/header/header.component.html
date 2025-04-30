@@ -58,36 +58,58 @@
         <a (click)="linkClicked()" href="#portfolio">{{
           "HEADER.PORTFOLIO" | translate
         }}</a>
-        <div class="mobile-language-buttons" #langButton>
+        <!-- Updated Mobile Language Selector -->
+        <div class="mobile-language-buttons language-selector" #langButton>
           <img
-            (click)="switchLanguage('en')"
-            class="mobile-language-button1"
-            src="assets/img/en.png"
-            alt=""
-          />
-          <img
-            (click)="switchLanguage('de')"
-            class="mobile-language-button2"
             src="assets/img/de.png"
-            alt=""
+            [class.active]="currentLanguage === 'de'"
+            (click)="changeLanguage('de')"
+            alt="Deutsch"
+            class="mobile-language-button"
           />
+          <img
+            src="assets/img/en.png"
+            [class.active]="currentLanguage === 'en'"
+            (click)="changeLanguage('en')"
+            alt="English"
+            class="mobile-language-button"
+          />
+          <img
+            src="assets/img/france.png"
+            [class.active]="currentLanguage === 'fr'"
+            (click)="changeLanguage('fr')"
+            alt="Français"
+            class="mobile-language-button"
+          />
+          <!-- Add other flags if needed -->
         </div>
       </div>
     </div>
   </div>
 
-  <div class="language-buttons">
-    <img
-      (click)="switchLanguage('en')"
-      class="language-button1"
-      src="assets/img/en.png"
-      alt=""
-    />
-    <img
-      (click)="switchLanguage('de')"
-      class="language-button2"
+  <!-- Updated Desktop Language Selector -->
+  <div class="language-buttons language-selector">
+     <img
       src="assets/img/de.png"
-      alt=""
+      [class.active]="currentLanguage === 'de'"
+      (click)="changeLanguage('de')"
+      alt="Deutsch"
+      class="language-button"
     />
+    <img
+      src="assets/img/en.png"
+      [class.active]="currentLanguage === 'en'"
+      (click)="changeLanguage('en')"
+      alt="English"
+      class="language-button"
+    />
+    <img
+      src="assets/img/france.png"
+      [class.active]="currentLanguage === 'fr'"
+      (click)="changeLanguage('fr')"
+      alt="Français"
+      class="language-button"
+    />
+     <!-- Add other flags if needed -->
   </div>
 </div>

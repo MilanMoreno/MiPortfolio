@@ -19,109 +19,82 @@
         </p>
       </div>
       <div class="form-container">
-        <form
-          [@slideInOutRight]="slideInRight"
-          (ngSubmit)="onSubmit(contactForm)"
-          #contactForm="ngForm"
-        >
+        <!-- Updated Reactive Form Structure -->
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
           <div class="form-group">
             <input
-              #name="ngModel"
-              [(ngModel)]="contactData.name"
               type="text"
-              id="contact-name"
+              formControlName="name"
               placeholder="{{ 'CONTACT.NAME_PLACEHOLDER' | translate }}"
-              name="name"
-              required
-              [ngClass]="{
-                'is-invalid': name.invalid && (name.dirty || name.touched)
-              }"
+              class="form-control"
+              [ngClass]="{'is-invalid': submitted && f['name'].errors}"
             />
-            @if (name.invalid && name.touched) {
-            <span class="form-alert">{{
-              "CONTACT.NAME_ERROR" | translate
-            }}</span>
-            }
+            <div class="error-message" *ngIf="submitted && f['name'].errors">
+              {{ "CONTACT.NAME_ERROR" | translate }}
+            </div>
           </div>
+
           <div class="form-group">
             <input
-              #email="ngModel"
-              [(ngModel)]="contactData.email"
               type="email"
-              id="contact-email"
+              formControlName="email"
               placeholder="{{ 'CONTACT.EMAIL_PLACEHOLDER' | translate }}"
-              name="email"
-              required
-              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-              [ngClass]="{
-                'is-invalid': email.invalid && (email.dirty || email.touched)
-              }"
+              class="form-control"
+              [ngClass]="{'is-invalid': submitted && f['email'].errors}"
             />
-            @if (email.invalid && email.touched) {
-            <span class="form-alert">{{
-              "CONTACT.EMAIL_ERROR" | translate
-            }}</span>
-            }
+            <div class="error-message" *ngIf="submitted && f['email'].errors">
+               {{ "CONTACT.EMAIL_ERROR" | translate }}
+            </div>
+             <!-- Add specific email format error if needed -->
+             <div class="error-message" *ngIf="submitted && f['email'].errors?.['email']">
+               {{ "CONTACT.EMAIL_FORMAT_ERROR" | translate }} <!-- Assuming you have this key -->
+            </div>
           </div>
+
           <div class="form-group">
             <textarea
-              #message="ngModel"
-              minlength="4"
-              [(ngModel)]="contactData.message"
-              id="contact-message"
+              formControlName="message"
               placeholder="{{ 'CONTACT.MESSAGE_PLACEHOLDER' | translate }}"
-              name="message"
-              rows="4"
-              required
-              [ngClass]="{
-                'is-invalid':
-                  message.invalid && (message.dirty || message.touched)
-              }"
+              class="form-control"
+              rows="4" <!-- Keep rows attribute if desired -->
+              [ngClass]="{'is-invalid': submitted && f['message'].errors}"
             ></textarea>
-            @if (!message.valid && message.touched && !message.disabled) {
-            <span class="form-alert">{{
-              "CONTACT.MESSAGE_ERROR" | translate
-            }}</span>
-            }
+            <div class="error-message" *ngIf="submitted && f['message'].errors">
+              {{ "CONTACT.MESSAGE_ERROR" | translate }}
+            </div>
           </div>
-          <div class="form-group policy-container">
-            <label class="container">
-              <input
-                #privacyPolicy="ngModel"
-                type="checkbox"
-                name="privacyPolicy"
-                [(ngModel)]="contactData.privacyPolicy"
-                required
-                [ngClass]="{
-                  'is-invalid':
-                    privacyPolicy.invalid &&
-                    (privacyPolicy.dirty || privacyPolicy.touched)
-                }"
-              />
-              <span class="checkmark"></span>
-              <p>
-                {{ "CONTACT.PRIVACY_POLICY_TEXT1" | translate }}
-                <a routerLink="/Privacy-Policy">{{
-                  "CONTACT.PRIVACY_POLICY_TEXT2" | translate
-                }}</a>
-                {{ "CONTACT.PRIVACY_POLICY_TEXT3" | translate }}
-              </p>
-            </label>
-            @if (privacyPolicy.invalid && (privacyPolicy.dirty ||
-            privacyPolicy.touched)) {
-            <span class="form-alert">{{
-              "CONTACT.PRIVACY_POLICY_ERROR" | translate
-            }}</span>
-            }
-          </div>
-          <div class="form-group form-button-container">
-            <button
-              class="form-button"
-              type="submit"
-              [disabled]="contactForm.invalid"
-            >
+
+          <!-- Keep existing policy container structure but adapt if needed for reactive forms -->
+           <div class="form-group policy-container">
+             <label class="container">
+               <input
+                 type="checkbox"
+                 formControlName="privacyPolicy" <!-- Use formControlName if you add it to the FormGroup -->
+                 required <!-- Keep required if needed -->
+                 [ngClass]="{'is-invalid': submitted && f['privacyPolicy']?.errors}"
+               />
+               <span class="checkmark"></span>
+               <p>
+                 {{ "CONTACT.PRIVACY_POLICY_TEXT1" | translate }}
+                 <a routerLink="/Privacy-Policy">{{
+                   "CONTACT.PRIVACY_POLICY_TEXT2" | translate
+                 }}</a>
+                 {{ "CONTACT.PRIVACY_POLICY_TEXT3" | translate }}
+               </p>
+             </label>
+             <div class="error-message" *ngIf="submitted && f['privacyPolicy']?.errors">
+                {{ "CONTACT.PRIVACY_POLICY_ERROR" | translate }}
+             </div>
+           </div>
+
+          <div class="form-button-container">
+            <button type="submit" class="submit-button">
               {{ "CONTACT.SEND_BUTTON" | translate }}
             </button>
+          </div>
+
+          <div class="form-feedback" *ngIf="formSubmitted">
+             {{ "CONTACT.SUCCESS_MESSAGE" | translate }} <!-- Use existing success message key -->
           </div>
         </form>
       </div>
