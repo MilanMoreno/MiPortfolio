@@ -119,6 +119,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       line-height: 1;
       font-size: 64px;
       color: var(--color-text-primary);
+        
     }
 
     .hero__title {
@@ -128,26 +129,36 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       line-height: 1;
     }
 
-    .hero__cta {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 165px;
-      height: 58px;
-      border-radius: 10px;
-      background-color: var(--color-accent-primary);
-      color: var(--color-text-primary);
-      font-size: 23px;
-      margin-top: 30px;
-      margin-left: 70px;
-      transition: all 0.3s ease;
+   
+.hero__cta {
+  display: inline-block;
+  align-items: center;
+  width: 160px; 
+  height: 50px;
+  border-radius: 8px;
+  background-color:var(--color-accent-primary);
+  font-family: var(--font-family);
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 10px 24px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative; /* Add this */
+  transform-origin: center; /* Add this */
 
-      &:hover {
-        width: 170px;
-        height: 62px;
-        background-color: var(--color-accent-secondary);
-      }
-    }
+}
+
+.hero__cta:hover {
+  transform: scale(1.1); /* Use transform instead of changing dimensions */
+  /* Remove any width/height changes if they exist */
+}
+
+
+
+
+
+
 
     .hero__right-container {
       position: relative;
