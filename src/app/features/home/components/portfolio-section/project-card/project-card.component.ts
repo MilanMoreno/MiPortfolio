@@ -132,17 +132,22 @@ import { TranslateModule } from '@ngx-translate/core';
       }
     }
 
-    @media (max-width: 415px) {
+    @media (max-width: 417px) {
       .project__button {
-        width: 100px;
-        height: 30px;
+        width: 140px;
+        height: 45px;
+        padding: 0 15px;
         font-size: 16px;
+        min-height: 44px;
       }
     }
 
     @media (max-width: 368px) {
       .project__button {
-        width: 80px;
+        width: 120px;
+        height: 40px;
+        font-size: 14px;
+        min-height: 44px;
       }
     }
   `]
