@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../shared/services/language/language.service';
 
 @Component({
     selector: 'app-navigation-bar',
@@ -18,7 +19,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
           <ul class="nav__list">
             <li *ngFor="let item of menuItems">
               <a [href]="item.href" class="nav__link">
-                {{ item.label | translate }}
+                {{ item.label | translate }} 
               </a>
             </li>
           </ul>
@@ -296,13 +297,17 @@ export class NavigationBarComponent {
     { code: 'es', name: 'Español', flag: 'assets/img/sp.png' }
   ];
 
-  constructor(private translateService: TranslateService) {
+  constructor(
+    private translateService: TranslateService,
+    private languageService: LanguageService // Inject LanguageService
+  ) {
+    // Add languages - this is okay here or could be moved to app init
     translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
-    translateService.setDefaultLang('en');
+    // Removed setDefaultLang - AppComponent handles initialization
   }
 
   switchLanguage(lang: string): void {
-    this.translateService.use(lang);
+    this.languageService.setLanguage(lang); // Use LanguageService to set and save
     this.closeMobileMenu();
   }
 

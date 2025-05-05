@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { LanguageService } from './shared/services/language/language.service';
 import { NavigationBarComponent } from './core/layout/navigation-bar/navigation-bar.component';
 import { PageFooterComponent } from './core/layout/page-footer/page-footer.component';
 import { CustomCursorComponent } from './shared/components/custom-cursor/custom-cursor.component';
@@ -40,13 +42,33 @@ import { CustomCursorComponent } from './shared/components/custom-cursor/custom-
     }
   `]
 })
-export class AppComponent {
-  constructor(private translateService: TranslateService) {
+export class AppComponent implements OnInit, OnDestroy {
+  private langChangeSubscription: Subscription | undefined;
+
+  constructor(
+    private translateService: TranslateService,
+    private languageService: LanguageService
+  ) {
     this.initializeLanguage();
   }
 
+  ngOnInit(): void {
+    // Subscribe to language changes
+    this.langChangeSubscription = this.languageService.currentLanguage$.subscribe(lang => {
+      this.translateService.use(lang);
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe to prevent memory leaks
+    if (this.langChangeSubscription) {
+      this.langChangeSubscription.unsubscribe();
+    }
+  }
+
   private initializeLanguage(): void {
-    this.translateService.setDefaultLang('en');
-    this.translateService.use('en');
+    const initialLang = this.languageService.getCurrentLanguage();
+    this.translateService.setDefaultLang(initialLang); // Use initialLang as default
+    this.translateService.use(initialLang); // Use initialLang initially
   }
 }
