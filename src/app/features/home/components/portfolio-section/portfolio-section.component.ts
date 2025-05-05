@@ -1,16 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { ProjectCardComponent } from './project-card/project-card.component';
-
-interface ProjectData {
-  image: string;
-  titleKey: string;
-  stackKey: string;
-  descriptionKey: string;
-  demoUrl: string;
-  repoUrl: string;
-}
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-portfolio-section',
@@ -48,11 +39,13 @@ interface ProjectData {
       <img 
         class="portfolio__shadow portfolio__shadow--purple" 
         src="assets/img/shadow-purple-big.png" 
-        alt="">
+        alt=""
+        style="z-index: 1;">
       <img 
         class="portfolio__shadow portfolio__shadow--green" 
         src="assets/img/shadow-green-big.png" 
-        alt="">
+        alt=""
+        style="z-index: 1;">
     </section>
   `,
     styles: [`
@@ -68,6 +61,8 @@ interface ProjectData {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
+      position: relative;
+      z-index: 2;
     }
 
     .portfolio__title-wrapper {
@@ -101,11 +96,13 @@ interface ProjectData {
       display: flex;
       flex-direction: column;
       gap: 6rem;
+      position: relative;
+      z-index: 3;
     }
 
     .portfolio__shadow {
       position: absolute;
-      z-index: 40;
+      z-index: 1;
 
       &--purple {
         left: 0;
@@ -115,7 +112,6 @@ interface ProjectData {
       &--green {
         right: 0;
         top: 50%;
-        z-index: 51;
       }
     }
 
@@ -169,7 +165,7 @@ interface ProjectData {
   `]
 })
 export class PortfolioSectionComponent {
-  projects: ProjectData[] = [
+  projects = [
     {
       image: 'assets/img/join-project.png',
       titleKey: 'PORTFOLIO.PROJECTS.0.HEADLINE',
