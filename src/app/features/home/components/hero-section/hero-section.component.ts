@@ -21,9 +21,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
             </div>
           </div>
           
-          <a href="#contact" class="hero__cta">
-            {{ 'HERO.LETSTALK' | translate }}
-          </a>
+          <div class="hero__cta-wrapper">
+            <a href="#contact" class="hero__cta">
+              {{ 'HERO.LETSTALK' | translate }}
+            </a>
+          </div>
         </div>
 
         <div class="hero__right-container">
@@ -98,6 +100,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       justify-content: center;
       width: 40%;
       z-index: 3;
+      gap: 80px;
     }
 
     .hero__intro {
@@ -119,9 +122,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       line-height: 1;
       font-size: 64px;
       color: var(--color-text-primary);
-        
     }
 
+    .hero__text-container {
+      width: 45%;
+      padding-top:100px;
+    }
     .hero__title {
       color: var(--color-accent-secondary);
       font-size: 32px;
@@ -129,36 +135,29 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       line-height: 1;
     }
 
-   
-.hero__cta {
-  display: inline-block;
-  align-items: center;
-  width: 160px; 
-  height: 50px;
-  border-radius: 8px;
-  background-color:var(--color-accent-primary);
-  font-family: var(--font-family);
-  color: white;
-  font-size: 20px;
-  font-weight: 700;
-  padding: 10px 24px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  position: relative; /* Add this */
-  transform-origin: center; /* Add this */
+    .hero__cta-wrapper {
+      margin-left: 70px;
+    }
 
-}
+    .hero__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 165px;
+      height: 58px;
+      border-radius: 10px;
+      background-color: var(--color-accent-primary);
+      color: white;
+      font-size: 23px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
 
-.hero__cta:hover {
-  transform: scale(1.1); /* Use transform instead of changing dimensions */
-  /* Remove any width/height changes if they exist */
-}
-
-
-
-
-
-
+    .hero__cta:hover {
+      transform: scale(1.05);
+      background-color: var(--color-accent-secondary);
+    }
 
     .hero__right-container {
       position: relative;
@@ -279,6 +278,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .hero__text-container {
         width: 45%;
+        padding-top:100px;
       }
 
       .hero__image {
@@ -295,25 +295,25 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         width: 100%;
         align-items: center;
         text-align: center;
+        gap: 40px;
+      }
+
+      .hero__cta-wrapper {
+        margin-left: 0;
       }
 
       .hero__right-container {
-        width: 60%;
-      }
-
-      .hero__image-wrapper {
-        display: none;
-      }
-
-      .hero__image-shadow {
         display: none;
       }
 
       .hero__intro {
+        flex-direction: column;
         justify-content: center;
+        gap: 1rem;
       }
 
-      .hero__cta {
+      .hero__intro-text {
+        transform: none;
         margin-left: 0;
       }
 
