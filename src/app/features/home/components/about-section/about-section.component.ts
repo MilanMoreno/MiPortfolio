@@ -173,7 +173,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .about__image-container {
     display: none;
   }
