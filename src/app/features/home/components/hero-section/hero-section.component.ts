@@ -138,7 +138,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .hero__cta-wrapper {
-      margin-left: 70px;
+     
     }
 
     .hero__cta {
