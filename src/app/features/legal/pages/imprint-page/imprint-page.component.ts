@@ -41,7 +41,8 @@ import { TranslateModule } from '@ngx-translate/core';
   flex-direction: column; /* wichtig! */
   align-items: flex-start; /* oder center */
   justify-content: flex-start;
-  padding: 2rem;
+  padding: 1rem;
+  padding-top:100px;
   width: 100%;
   max-width: 800px;
   color: var(--color-text-primary);

@@ -140,6 +140,11 @@ import { TranslateModule } from '@ngx-translate/core';
       }
     }
 
+    h1{padding-top:100px;
+    
+    }
+
+
     @media (max-width: 768px) {
       .legal {
         padding: 1rem;
