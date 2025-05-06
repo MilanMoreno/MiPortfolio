@@ -15,7 +15,9 @@ import { TranslateModule } from '@ngx-translate/core';
             <h2 class="portfolio__title">
               {{ "PORTFOLIO.HEADLINE" | translate }}
             </h2>
-            <div class="portfolio__line portfolio__line--right"></div>
+            <div class="portfolio__line-container">
+              <div class="portfolio__line portfolio__line--right"></div>
+            </div>
           </div>
           
           <p class="portfolio__intro">
@@ -76,8 +78,21 @@ import { TranslateModule } from '@ngx-translate/core';
     .portfolio__line {
       height: 2px;
       background-color: var(--color-accent-secondary);
-      flex: 1;
-      max-width: 200px;
+    }
+
+    .portfolio__line--left {
+      width: 200px;
+    }
+
+    .portfolio__line-container {
+      position: relative;
+      width: 200px;
+    }
+
+    .portfolio__line--right {
+      position: absolute;
+      left: 0;
+      width: 99999px;
     }
 
     .portfolio__title {

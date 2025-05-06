@@ -40,7 +40,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       </div>
 
       <div class="hero__footer">
-        <div class="hero__line"></div>
+        <div class="hero__line-container">
+          <div class="hero__line"></div>
+        </div>
         
         <div class="hero__social">
           <a 
@@ -204,8 +206,15 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       z-index: 10;
     }
 
-    .hero__line {
+    .hero__line-container {
+      position: relative;
       width: 100px;
+    }
+
+    .hero__line {
+      position: absolute;
+      right: 0;
+      width: 99999px;
       height: 4px;
       background-color: var(--color-accent-secondary);
     }
