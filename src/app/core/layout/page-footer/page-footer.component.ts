@@ -52,7 +52,7 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
       width: 100%;
       background-color: var(--color-background-primary);
       padding: 2rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid #70E61C;
     }
 
     .footer__container {
