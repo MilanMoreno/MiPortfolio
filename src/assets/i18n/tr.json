@@ -70,6 +70,79 @@
         "PRIVACY_POLICY_ERROR": "Gizlilik politikasını kabul etmelisiniz",
         "SUCCESS_MESSAGE": "Mesajınız başarıyla gönderildi"
     },
+    "PRIVACY_POLICY": {
+        "HEADLINE": "Gizlilik Politikası",
+        "INTRO": "Bu gizlilik politikası ile, kişisel verilerinizin (bundan sonra \"veriler\" olarak da anılacaktır) hangi türlerini, hangi amaçlarla ve ne ölçüde işlediğimiz hakkında sizi bilgilendirmek istiyoruz. Gizlilik politikası, hizmetlerimizin sağlanması kapsamında ve özellikle web sitelerimizde, mobil uygulamalarımızda ve sosyal medya profillerimiz gibi harici çevrimiçi varlıklarımızda gerçekleştirdiğimiz tüm kişisel veri işleme faaliyetleri için geçerlidir.",
+        "RESPONSIBLE": {
+            "TITLE": "Sorumlu",
+            "DESCRIPTION": "Milan Moreno\nUntere Waldstr. 4\n79194 Gundelfingen\n\nE-posta adresi: milan.moreno.crea@gmail.com"
+        },
+        "DATA_COLLECTION": {
+            "TITLE": "İşleme Genel Bakış",
+            "VISIT": {
+                "TITLE": "İşlenen Veri Türleri",
+                "DESCRIPTION": "Çevrimiçi hizmetlerimizi kullanırken aşağıdaki verileri işliyoruz:",
+                "ITEMS": {
+                    "0": "Envanter verileri (örn. isimler, adresler)",
+                    "1": "İletişim verileri (örn. e-posta, telefon numaraları)",
+                    "2": "İçerik verileri (örn. metin girişleri, fotoğraflar, videolar)",
+                    "3": "Kullanım verileri (örn. ziyaret edilen web siteleri, içeriğe ilgi)",
+                    "4": "Meta/iletişim verileri (örn. cihaz bilgileri, IP adresleri)"
+                },
+                "PURPOSE": "Veriler aşağıdaki amaçlarla işlenir:",
+                "PURPOSE_ITEMS": {
+                    "0": "Çevrimiçi hizmetlerin sağlanması ve kullanıcı dostu olması",
+                    "1": "Güvenlik önlemleri",
+                    "2": "Erişim ölçümü",
+                    "3": "İdari görevler"
+                },
+                "LEGAL_BASIS": "İşleme, GDPR Madde 6(1)(f) (meşru menfaatler) temelinde gerçekleştirilir."
+            },
+            "CONTACT_FORM": {
+                "TITLE": "İletişim Formu",
+                "DESCRIPTION": "İletişim formu aracılığıyla bize sorgu gönderdiğinizde, sorguyu işlemek ve takip soruları olması durumunda kullanmak üzere, sağladığınız iletişim bilgileri de dahil olmak üzere sorgu formundaki bilgilerinizi saklarız.",
+                "LEGAL_BASIS": "İşleme, GDPR Madde 6(1)(b) (sözleşmenin ifası veya sözleşme öncesi tedbirler) temelinde gerçekleştirilir.",
+                "DATA_DELETION": "Veriler, toplanma amacına ulaşmak için artık gerekli olmadığında silinir. Bu genellikle ilgili kullanıcı ile görüşmenin sona erdiği zamandır."
+            }
+        },
+        "DATA_TRANSFER": {
+            "TITLE": "Veri Aktarımı",
+            "DESCRIPTION": "Kişisel verileriniz, aşağıda listelenenler dışındaki amaçlar için üçüncü taraflara aktarılmayacaktır:",
+            "ITEMS": {
+                "0": "Yasal yükümlülüklerin yerine getirilmesi",
+                "1": "Tehditlerin önlenmesi",
+                "2": "Yasal takip amaçları",
+                "3": "Barındırma ve e-posta gönderimi"
+            }
+        },
+        "RIGHTS": {
+            "TITLE": "Haklarınız",
+            "DESCRIPTION": "Kişisel verilerinizle ilgili olarak aşağıdaki haklara sahipsiniz:",
+            "ITEMS": {
+                "0": "Bilgi alma hakkı",
+                "1": "Düzeltme veya silme hakkı",
+                "2": "İşlemenin kısıtlanması hakkı",
+                "3": "İşlemeye itiraz hakkı",
+                "4": "Veri taşınabilirliği hakkı",
+                "5": "Onayı geri çekme hakkı",
+                "6": "Denetim makamına şikayette bulunma hakkı"
+            }
+        },
+        "OBJECTION": {
+            "TITLE": "İtiraz Hakkı",
+            "DESCRIPTION": "Kişisel verilerinizi meşru menfaatler temelinde işliyorsak, bu işlemeye itiraz etme hakkına sahipsiniz.",
+            "CONTACT": "İtiraz hakkınızı kullanmak istiyorsanız, bize bir e-posta göndermeniz yeterlidir."
+        },
+        "SECURITY": {
+            "TITLE": "Veri Güvenliği",
+            "DESCRIPTION": "Teknolojinin durumu, uygulama maliyetleri ve işlemenin niteliği, kapsamı, bağlamı ve amaçları ile gerçek kişilerin hakları ve özgürlükleri için riskin değişken olasılığı ve ciddiyeti dikkate alınarak, riske uygun bir koruma düzeyi sağlamak için uygun teknik ve organizasyonel önlemler alıyoruz.",
+            "TECH_MEASURES": "Önlemler özellikle, verilere fiziksel erişimin yanı sıra bunların erişimi, girişi, açıklanması, kullanılabilirliği ve ayrılması kontrolü yoluyla verilerin gizliliğini, bütünlüğünü ve kullanılabilirliğini sağlamayı içerir."
+        },
+        "CHANGES": {
+            "TITLE": "Gizlilik Politikasında Değişiklikler",
+            "DESCRIPTION": "Bu gizlilik politikasını, her zaman güncel yasal gerekliliklere uygun olmasını sağlamak veya yeni hizmetlerin tanıtılması gibi durumlarda hizmetlerimizdeki değişiklikleri gizlilik politikasında uygulamak için değiştirme hakkını saklı tutarız. Bir sonraki ziyaretinizde yeni gizlilik politikası geçerli olacaktır."
+        }
+    },
     "IMPRINT": {
         "HEADLINE": "Künye",
         "CONTACT": "İletişim",
