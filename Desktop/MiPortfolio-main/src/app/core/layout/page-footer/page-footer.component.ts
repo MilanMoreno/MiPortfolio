@@ -22,7 +22,7 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
         </div>
 
         <div class="footer__center">
-          © Milan Moreno 2024
+          © Milan Moreno 2025
         </div>
 
         <div class="footer__social">

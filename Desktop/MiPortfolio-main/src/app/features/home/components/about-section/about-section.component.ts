@@ -66,7 +66,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       display: flex;
       justify-content: center;
       width: 100%;
-      background-color: rgb(25, 35, 55);
+      background-color: #141D2F;
     }
 
     .about__container {
