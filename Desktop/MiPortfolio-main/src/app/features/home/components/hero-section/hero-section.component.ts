@@ -80,13 +80,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     styles: [`
     .hero {
       position: relative;
-      height: 100vh; /* Changed from calc to full viewport height */
+      height: 100vh;
       background-color: var(--color-background-primary);
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      padding-top: var(--header-height); /* Add padding to account for fixed header */
-      box-sizing: border-box; /* Include padding in height calculation */
+      padding-top: var(--header-height);
+      box-sizing: border-box;
     }
 
     .hero__content {
@@ -96,7 +96,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       flex: 1;
       width: 100%;
       padding: 0 100px;
-      margin-top: -var(--header-height); /* Offset the padding-top */
+      margin-top: -var(--header-height);
     }
 
     .hero__text-container {
@@ -197,7 +197,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       height: 100px;
       padding: 0 100px;
       z-index: 10;
-      margin-top: auto; /* Push footer to bottom */
+      margin-top: auto;
     }
 
     .hero__line-container {
@@ -285,8 +285,15 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     @media (max-width: 900px) {
+      .hero {
+        height: auto;
+        min-height: 100vh;
+      }
+
       .hero__content {
-        padding: 0 20px;
+        flex-direction: column-reverse;
+        padding: 20px;
+        gap: 2rem;
       }
 
       .hero__text-container {
@@ -297,7 +304,19 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__right-container {
-        display: none;
+        width: 100%;
+        height: auto;
+        justify-content: center;
+      }
+
+      .hero__image-wrapper {
+        margin-right: 0;
+      }
+
+      .hero__image {
+        height: 40vh;
+        width: auto;
+        max-width: 100%;
       }
 
       .hero__intro {
@@ -317,6 +336,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .hero__email {
         display: none;
+      }
+
+      .hero__image-shadow {
+        right: 0;
+        bottom: -50px;
+        width: 100%;
+        height: 100%;
       }
     }
 
@@ -365,6 +391,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         width: 120px;
         height: 45px;
         font-size: 18px;
+      }
+
+      .hero__image {
+        height: 35vh;
       }
     }
   `],
