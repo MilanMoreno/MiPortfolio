@@ -80,20 +80,23 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     styles: [`
     .hero {
       position: relative;
-      height: calc(100vh - var(--header-height));
+      height: 100vh; /* Changed from calc to full viewport height */
       background-color: var(--color-background-primary);
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      padding-top: var(--header-height); /* Add padding to account for fixed header */
+      box-sizing: border-box; /* Include padding in height calculation */
     }
 
     .hero__content {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: calc(100vh - var(--header-height) - 100px);
+      flex: 1;
       width: 100%;
       padding: 0 100px;
+      margin-top: -var(--header-height); /* Offset the padding-top */
     }
 
     .hero__text-container {
@@ -126,19 +129,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       color: var(--color-text-primary);
     }
 
-    .hero__text-container {
-      width: 45%;
-      padding-top:100px;
-    }
     .hero__title {
       color: var(--color-accent-secondary);
       font-size: 32px;
       margin: 0;
       line-height: 1;
-    }
-
-    .hero__cta-wrapper {
-     
     }
 
     .hero__cta {
@@ -198,12 +193,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: absolute;
-      bottom: 0;
       width: 100%;
       height: 100px;
       padding: 0 100px;
       z-index: 10;
+      margin-top: auto; /* Push footer to bottom */
     }
 
     .hero__line-container {
@@ -285,11 +279,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         padding: 0 50px;
       }
 
-      .hero__text-container {
-        width: 45%;
-        padding-top:100px;
-      }
-
       .hero__image {
         height: 65vh;
       }
@@ -305,10 +294,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         align-items: center;
         text-align: center;
         gap: 40px;
-      }
-
-      .hero__cta-wrapper {
-        margin-left: 0;
       }
 
       .hero__right-container {
