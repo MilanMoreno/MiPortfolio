@@ -66,35 +66,34 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       display: flex;
       justify-content: center;
       width: 100%;
-      background-color: #141D2F;
+      background-color: var(--color-background-primary);
+      min-height: 100vh;
+      padding: 2rem 0;
     }
 
     .about__container {
       display: flex;
       justify-content: center;
       width: 100%;
-      max-width: 1920px;
+      max-width: 1200px;
+      padding: 0 2rem;
     }
 
     .about__content {
       display: flex;
       justify-content: space-between;
-      position: relative;
-      min-height: 100vh;
-      z-index: 4;
+      align-items: center;
+      gap: 4rem;
       width: 100%;
-      margin-left: 15%;
-      padding-right: 15%;
     }
 
     .about__text {
-      width: 471px;
-      margin-right: 10%;
-      z-index: 90;
+      flex: 1;
+      max-width: 600px;
     }
 
     .about__heading {
-      font-size: var(--font-size-heading-large);
+      font-size: 48px;
       color: var(--color-text-primary);
       margin-bottom: 2rem;
     }
@@ -106,8 +105,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .about__intro {
-      font-size: var(--font-size-base);
+      font-size: 16px;
       color: var(--color-text-primary);
+      line-height: 1.6;
     }
 
     .about__detail {
@@ -117,38 +117,28 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .about__icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100px;
+      flex-shrink: 0;
+      width: 50px;
     }
 
     .about__text-block {
-      width: 359px;
-      font-size: var(--font-size-base);
+      font-size: 16px;
       color: var(--color-text-primary);
-      z-index: 50;
+      line-height: 1.6;
     }
 
     .about__image-wrapper {
+      flex-shrink: 0;
       position: relative;
-      display: flex;
-      align-items: center;
-      margin-top: 200px;
-      margin-left: -100px;
+      width: 300px;
     }
 
     .about__image-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       border-radius: 50%;
-      border: 5px solid var(--color-accent-primary);
+      border: 4px solid var(--color-accent-primary);
       overflow: hidden;
-      min-width: 500px;
-      width: 500px;
-      height: 500px;
-      z-index: 30;
+      width: 300px;
+      height: 300px;
     }
 
     .about__image {
@@ -156,137 +146,81 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       height: 100%;
       object-fit: cover;
     }
- 
+
     .about__image-line {
       position: absolute;
-      right: -9999px;
-      width: 9999px;
+      right: -100%;
+      width: 100%;
       height: 4px;
       background-color: var(--color-accent-primary);
-      z-index: 30;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     .about__shadow {
       position: absolute;
-      z-index: 3;
+      z-index: 0;
       right: 0;
-      top: 30%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.5;
+      max-width: 50%;
+      height: auto;
     }
 
-    @media (max-width: 1305px) {
-      .about__content {
-        margin-left: 5%;
-        padding-right: 5%;
-      }
-    }
-
-    @media (max-width: 1100px) {
-      .about__image-wrapper {
-        display: none;
-      }
-
+    @media (max-width: 1024px) {
       .about__container {
-        width: auto;
+        padding: 0 1rem;
       }
 
-      .about__content {
-        margin-left: 0;
-        padding-right: 0;
-        justify-content: center;
-        width: 100%;
-      }
-
-      .about__text {
-        margin: 0 20px;
-        width: 100%;
-        max-width: 600px;
+      .about__heading {
+        font-size: 40px;
       }
     }
 
-    @media (max-width: 600px) {
-      .about__heading {
-        font-size: 45px;
+    @media (max-width: 768px) {
+      .about__content {
+        flex-direction: column;
         text-align: center;
-      }
-
-      .about__intro,
-      .about__text-block {
-        max-width: 100%;
-        font-size: 15px;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
+        gap: 2rem;
       }
 
       .about__detail {
         flex-direction: column;
         align-items: center;
-        text-align: center;
       }
 
-      .about__icon {
-        margin-bottom: 1rem;
+      .about__image-wrapper {
+        width: 250px;
       }
 
-      .about__content {
-        padding: 50px 20px;
-        min-height: auto;
+      .about__image-container {
+        width: 250px;
+        height: 250px;
+      }
+
+      .about__image-line {
+        display: none;
       }
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 480px) {
       .about__heading {
-        font-size: 36px;
+        font-size: 32px;
       }
 
       .about__intro,
       .about__text-block {
         font-size: 14px;
-        padding: 0 10px;
       }
 
-      .about__icon {
-        width: 80px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .about__intro,
-      .about__text-block {
-        font-size: 13.5px;
-        padding: 0 8px;
-        width: 100%;
-        max-width: 100%;
+      .about__image-wrapper {
+        width: 200px;
       }
 
-      .about__text {
-        margin: 0 12px;
-        width: calc(100% - 24px);
-      }
-
-      .about__detail {
-        gap: 0.75rem;
-      }
-
-      .about__icon {
-        width: 70px;
-      }
-    }
-
-    @media (max-width: 320px) {
-      .about__intro,
-      .about__text-block {
-        font-size: 13px;
-        padding: 0 5px;
-        width: 100%;
-      }
-
-      .about__text {
-        margin: 0 10px;
-      }
-
-      .about__detail {
-        gap: 0.5rem;
+      .about__image-container {
+        width: 200px;
+        height: 200px;
       }
     }
   `],
