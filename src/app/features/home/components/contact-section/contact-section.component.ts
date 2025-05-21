@@ -54,9 +54,11 @@ interface ContactFormData {
                 [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate"
                 [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
               
-              <span class="contact__error" *ngIf="name.invalid && name.touched">
-                {{ 'CONTACT.NAME_ERROR' | translate }}
-              </span>
+              <div class="contact__error-container">
+                <span class="contact__error" *ngIf="name.invalid && name.touched">
+                  {{ 'CONTACT.NAME_ERROR' | translate }}
+                </span>
+              </div>
             </div>
 
             <div class="contact__form-group">
@@ -71,9 +73,11 @@ interface ContactFormData {
                 [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate"
                 [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
               
-              <span class="contact__error" *ngIf="email.invalid && email.touched">
-                {{ 'CONTACT.EMAIL_ERROR' | translate }}
-              </span>
+              <div class="contact__error-container">
+                <span class="contact__error" *ngIf="email.invalid && email.touched">
+                  {{ 'CONTACT.EMAIL_ERROR' | translate }}
+                </span>
+              </div>
             </div>
 
             <div class="contact__form-group">
@@ -89,9 +93,11 @@ interface ContactFormData {
                 [class.is-invalid]="message.invalid && (message.dirty || message.touched)">
               </textarea>
               
-              <span class="contact__error" *ngIf="message.invalid && message.touched">
-                {{ 'CONTACT.MESSAGE_ERROR' | translate }}
-              </span>
+              <div class="contact__error-container">
+                <span class="contact__error" *ngIf="message.invalid && message.touched">
+                  {{ 'CONTACT.MESSAGE_ERROR' | translate }}
+                </span>
+              </div>
             </div>
 
             <div class="contact__form-group">
@@ -112,9 +118,11 @@ interface ContactFormData {
                 </span>
               </label>
               
-              <span class="contact__error" *ngIf="privacyPolicy.invalid && privacyPolicy.touched">
-                {{ 'CONTACT.PRIVACY_POLICY_ERROR' | translate }}
-              </span>
+              <div class="contact__error-container">
+                <span class="contact__error" *ngIf="privacyPolicy.invalid && privacyPolicy.touched">
+                  {{ 'CONTACT.PRIVACY_POLICY_ERROR' | translate }}
+                </span>
+              </div>
             </div>
 
             <div class="contact__form-actions">
@@ -133,22 +141,6 @@ interface ContactFormData {
             <path d="M16 0c8.837 0 16 7.163 16 16s-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0zm0 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2zm1.879 7.121l5.707 5.707a1 1 0 01-1.414 1.414L17 11.071V24a1 1 0 01-2 0V11.07l-5.172 5.173a1 1 0 01-1.414-1.414l5.707-5.707a1 1 0 011.414 0 1 1 0 011.344 0z"/>
           </svg>
         </a>
-      </div>
-
-     
-      <div 
-        class="contact__notification"
-        [class.contact__notification--visible]="showNotification">
-        <div class="contact__notification-content">
-          <div class="contact__notification-animation">
-            <div class="contact__notification-icon">
-              <div class="contact__notification-check"></div>
-            </div>
-          </div>
-          <p class="contact__notification-message">
-            {{ 'CONTACT.SUCCESS_MESSAGE' | translate }}
-          </p>
-        </div>
       </div>
     </section>
   `,
@@ -232,7 +224,14 @@ interface ContactFormData {
     }
 
     .contact__form-group {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .contact__error-container {
+      position: relative;
+      min-height: 20px;
+      margin-top: 8px;
     }
 
     .contact__input,
@@ -327,7 +326,8 @@ interface ContactFormData {
       display: block;
       color: red;
       font-size: 14px;
-      margin-top: 0.5rem;
+      position: absolute;
+      left: 0;
     }
 
     .contact__form-actions {
@@ -369,82 +369,6 @@ interface ContactFormData {
       &:hover {
         color: var(--color-accent-primary);
       }
-    }
-
-    .contact__shadow {
-      position: absolute;
-      z-index: 40;
-
-      &--purple {
-        left: 0;
-        bottom: 0;
-      }
-    }
-
-    .contact__notification {
-      position: fixed;
-      bottom: -100%;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 10px;
-      padding: 2rem;
-      transition: bottom 0.3s ease;
-      z-index: 100;
-
-      &--visible {
-        bottom: 2rem;
-      }
-    }
-
-    .contact__notification-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .contact__notification-animation {
-      position: relative;
-      width: 60px;
-      height: 60px;
-    }
-
-    .contact__notification-icon {
-      width: 100%;
-      height: 100%;
-      border: 2px solid var(--color-accent-primary);
-      border-radius: 50%;
-      animation: iconScale 0.3s ease-in-out;
-    }
-
-    .contact__notification-check {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 30px;
-      height: 15px;
-      border-left: 2px solid var(--color-accent-primary);
-      border-bottom: 2px solid var(--color-accent-primary);
-      transform: translate(-50%, -75%) rotate(-45deg);
-      animation: checkmark 0.3s ease-in-out 0.3s forwards;
-      opacity: 0;
-    }
-
-    .contact__notification-message {
-      color: var(--color-text-primary);
-      margin: 0;
-      text-align: center;
-    }
-
-    @keyframes iconScale {
-      0% { transform: scale(0); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes checkmark {
-      0% { opacity: 0; transform: translate(-50%, -75%) rotate(-45deg) scale(0); }
-      100% { opacity: 1; transform: translate(-50%, -75%) rotate(-45deg) scale(1); }
     }
 
     @media (max-width: 1395px) {
@@ -501,7 +425,6 @@ export class ContactSectionComponent {
   };
 
   isSubmitting = false;
-  showNotification = false;
 
   async onSubmit(form: NgForm): Promise<void> {
     if (form.invalid || this.isSubmitting) {
@@ -512,11 +435,7 @@ export class ContactSectionComponent {
 
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
-      this.showNotification = true;
       form.resetForm();
-      setTimeout(() => {
-        this.showNotification = false;
-      }, 3000);
     } catch (error) {
       console.error('Failed to submit form:', error);
     } finally {
