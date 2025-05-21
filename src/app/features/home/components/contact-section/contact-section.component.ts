@@ -142,6 +142,12 @@ interface ContactFormData {
           </svg>
         </a>
       </div>
+
+      <img 
+        class="contact__shadow" 
+        src="assets/img/shadow-purple-big.png" 
+        alt=""
+      />
     </section>
   `,
     styles: [`
@@ -371,6 +377,15 @@ interface ContactFormData {
       }
     }
 
+    .contact__shadow {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+      max-width: 50%;
+      height: auto;
+    }
+
     @media (max-width: 1395px) {
       .contact__content {
         flex-direction: column;
@@ -401,6 +416,10 @@ interface ContactFormData {
 
       .contact__subtitle {
         font-size: 24px;
+      }
+
+      .contact__shadow {
+        display: none;
       }
     }
 
