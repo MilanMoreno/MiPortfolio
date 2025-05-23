@@ -21,6 +21,9 @@ export class SupabaseService {
     message: string;
   }) {
     try {
+      // Log the attempt to submit the form
+      console.log('Attempting to submit contact form:', formData);
+      
       const { data, error } = await this.supabase
         .from('contact_requests')
         .insert([
@@ -28,13 +31,19 @@ export class SupabaseService {
             name: formData.name,
             email: formData.email,
             message: formData.message,
+            subject: 'Contact Form Submission',
             processed: false,
             email_sent: false
           }
         ])
         .select();
 
-      if (error) throw error;
+      if (error) {
+        console.error('Error inserting into contact_requests:', error);
+        throw error;
+      }
+
+      console.log('Successfully inserted contact request:', data);
 
       // Call the edge function to send email
       const { data: emailData, error: emailError } = await this.supabase.functions.invoke(
@@ -45,13 +54,18 @@ export class SupabaseService {
             subject: `New Contact Form Submission from ${formData.name}`,
             name: formData.name,
             email: formData.email,
-            message: formData.message
+            message: formData.message,
+            contactRequestId: data[0].id
           }
         }
       );
 
-      if (emailError) throw emailError;
+      if (emailError) {
+        console.error('Error invoking send-email function:', emailError);
+        throw emailError;
+      }
 
+      console.log('Email function response:', emailData);
       return { success: true, data };
     } catch (error) {
       console.error('Error submitting form:', error);
