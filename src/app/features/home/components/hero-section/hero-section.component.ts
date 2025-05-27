@@ -89,6 +89,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       box-sizing: border-box;
     }
 
+
     .hero__content {
       display: flex;
       justify-content: space-between;

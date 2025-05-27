@@ -23,14 +23,16 @@
     width: 100%;
     overflow: hidden;
 }
-
 .hero-img {
     position: absolute;
     z-index: 1;
     right: 0px;
     bottom: 50px;
-    height: 90vh;
+    width: 646px;     /* Feste Breite */
+    height: 705px;    /* Feste Höhe */
+    object-fit: contain;  /* Behält das Seitenverhältnis bei */
 }
+
 
 .hero-img-shadow {
     position: absolute;
@@ -285,12 +287,12 @@
         margin-left: 0;
     }
 
-    .hero-img {
+    /* .hero-img {
         height: 60vh;
         bottom: 200px;
         left: 50%;
         transform: translateX(-50%);
-    }
+    } */
 
     .hero-img-shadow {
         height: 70vh;
