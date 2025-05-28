@@ -10,6 +10,16 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     template: `
     <section class="hero" id="hero">
       <div class="hero__content">
+        <div class="hero__left-container">
+          <div class="hero__image-wrapper">
+            <img 
+              class="hero__image" 
+              src="assets/img/hero.png" 
+              alt="Hero image">
+          </div>
+          <div class="hero__image-shadow"></div>
+        </div>
+        
         <div class="hero__text-container">
           <div class="hero__intro">
             <div class="hero__intro-text" [@fadeInLeft]>
@@ -26,16 +36,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
               {{ 'HERO.LETSTALK' | translate }}
             </a>
           </div>
-        </div>
-
-        <div class="hero__right-container">
-          <div class="hero__image-wrapper">
-            <img 
-              class="hero__image" 
-              src="assets/img/hero.png" 
-              alt="Hero image">
-          </div>
-          <div class="hero__image-shadow"></div>
         </div>
       </div>
 
@@ -80,7 +80,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     styles: [`
     .hero {
       position: relative;
-      height: 100vh;
+      min-height: 100vh;
       background-color: var(--color-background-primary);
       display: flex;
       flex-direction: column;
@@ -88,6 +88,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       padding-top: var(--header-height);
       box-sizing: border-box;
     }
+
 
     .hero__content {
       display: flex;
@@ -99,11 +100,44 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       margin-top: -var(--header-height);
     }
 
+    .hero__left-container {
+      position: relative;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .hero__image-wrapper {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero__image {
+      height: 75vh;
+      object-fit: contain;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero__image-shadow {
+      position: absolute;
+      left: -100px;
+      bottom: -100px;
+      width: 120%;
+      height: 120%;
+      background: url('/assets/img/hero-shadows.png') no-repeat center/cover;
+      z-index: 1;
+      transform: rotate(-5deg);
+      opacity: 0.8;
+    }
+
     .hero__text-container {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 40%;
+      width: 50%;
       z-index: 3;
       gap: 80px;
     }
@@ -154,39 +188,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     .hero__cta:hover {
       transform: scale(1.05);
       background-color: var(--color-accent-secondary);
-    }
-
-    .hero__right-container {
-      position: relative;
-      width: 60%;
-      height: 100%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-
-    .hero__image-wrapper {
-      position: relative;
-      z-index: 2;
-      margin-right: 50px;
-    }
-
-    .hero__image {
-      height: 75vh;
-      object-fit: contain;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .hero__image-shadow {
-      position: absolute;
-      right: -150px;
-      bottom: -100px;
-      width: 120%;
-      height: 120%;
-      background: url('/assets/img/hero-shadows.png') no-repeat center/cover;
-      z-index: 1;
-      transform: rotate(-5deg);
-      opacity: 0.8;
     }
 
     .hero__footer {
@@ -291,9 +292,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__content {
-        flex-direction: column-reverse;
+        flex-direction: column;
         padding: 20px;
-        gap: 2rem;
+        gap: 3rem;
       }
 
       .hero__text-container {
@@ -303,14 +304,14 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         gap: 40px;
       }
 
-      .hero__right-container {
+      .hero__left-container {
         width: 100%;
         height: auto;
         justify-content: center;
       }
 
       .hero__image-wrapper {
-        margin-right: 0;
+        margin: 0;
       }
 
       .hero__image {
@@ -339,10 +340,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__image-shadow {
-        right: 0;
-        bottom: -50px;
+        left: 0;
+        bottom: 0;
         width: 100%;
         height: 100%;
+        transform: none;
       }
     }
 

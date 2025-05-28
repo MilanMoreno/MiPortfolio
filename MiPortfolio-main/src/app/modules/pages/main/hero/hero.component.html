@@ -1,8 +1,13 @@
 <div class="flex-wrapper">
   <div class="content-wrapper" id="hero-section" #hero>
     <div class="content-container" id="hero-content">
-      <img class="hero-img" src="assets/img/hero-img.png" alt="" />
-
+      <div class="left-section">
+        <img class="hero-img" src="assets/img/hero.png" alt="" />
+        <div class="hero-img-shadow-container">
+          <div class="hero-img-shadow"></div>
+        </div>
+      </div>
+      
       <div class="text-container-wrapper">
         <div class="text-container">
           <div class="introduce-text">
@@ -53,7 +58,6 @@
       </div>
     </div>
     <img class="vector-shape" src="assets/img/Vector shape hero.png" alt="" />
-    <img class="hero-img-shadow" src="assets/img/hero-shadows.png" alt="" />
 
     <div #copyAlert class="copy-alert d-none">
       {{ "HERO.EMAIL_COPIED" | translate }}
