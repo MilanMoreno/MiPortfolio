@@ -29,7 +29,11 @@
 .content-container {
     @include dflex(row, space-between, center);
     height: calc(100vh - 200px);
+<<<<<<< HEAD
     width: 100%; 
+=======
+    width: 100%;
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
     position: relative;
 }
 
@@ -52,8 +56,10 @@
     animation: float 6s ease-in-out infinite;
 }
 
+
 .hero-img-shadow {
     position: absolute;
+<<<<<<< HEAD
     left: -50px;
     top: -50px;
     width: 120%;
@@ -73,6 +79,15 @@
     background: url('/assets/img/Vector shape hero.png') no-repeat;
     background-size: cover;
     z-index: 3;
+=======
+    width: 100%;
+    height: 100%;
+    background: url('/assets/img/hero-shadows.png') no-repeat center/cover;
+    z-index: 1;
+    opacity: 0.8;
+    left: -20%;
+    top: 0;
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
 }
 
 .text-container-wrapper {
@@ -262,11 +277,16 @@
 
 @media (max-width: 2000px) {
 
+<<<<<<< HEAD
 } 
+=======
+}
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
 
 @media (max-width: 1100px) {
     .content-container {
         flex-direction: column;
+<<<<<<< HEAD
         align-items: flex-start;
         justify-content: flex-start;
         gap: 2rem;
@@ -277,10 +297,22 @@
         height: auto;
         order: 0;
         margin-top: 2rem;
+=======
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .left-section {
+        width: 100%;
+        height: auto;
+        order: 1;
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
     }
 
     .text-container-wrapper {
         width: 100%;
+<<<<<<< HEAD
         order: 1;
         padding-left: 0;
         align-items: flex-start;
@@ -298,16 +330,37 @@
 
     .hero-img {
         height: 45vh;
+=======
+        order: 2;
+        padding-left: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .introduce-text {
+        justify-content: center;
+    }
+
+    .button-wrapper {
+        justify-content: center;
+    }
+
+    .hero-img {
+        height: 50vh;
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
     }
 
     .hero-img-shadow {
         left: 0;
         width: 100%;
+<<<<<<< HEAD
         top: 0;
     }
     
     .vector-shape-overlay {
         display: none;
+=======
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
     }
 }
 
@@ -336,6 +389,7 @@
 }
 
 @media (max-width: 600px) {
+<<<<<<< HEAD
     .content-container {
         align-items: center;
     }
@@ -353,6 +407,8 @@
         justify-content: center;
     }
     
+=======
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
     .hero-img {
         height: 35vh;
     }

@@ -10,7 +10,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     template: `
     <section class="hero" id="hero">
       <div class="hero__content">
+<<<<<<< HEAD
         <div class="hero__left-section">
+=======
+        <div class="hero__left-container">
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
           <div class="hero__image-wrapper">
             <img 
               class="hero__image" 
@@ -18,7 +22,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
               alt="Hero image">
           </div>
           <div class="hero__image-shadow"></div>
+<<<<<<< HEAD
           <div class="hero__vector-overlay"></div>
+=======
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
         </div>
         
         <div class="hero__text-container">
@@ -89,7 +96,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       padding-top: var(--header-height);
       box-sizing: border-box;
     }
+<<<<<<< HEAD
     
+=======
+
+
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
     .hero__content {
       display: flex;
       justify-content: space-between;
@@ -305,12 +317,27 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .hero__content {
         flex-direction: column;
+<<<<<<< HEAD
         align-items: flex-start;
         padding: 2rem;
         gap: 2rem;
       }
 
       .hero__left-section {
+=======
+        padding: 20px;
+        gap: 3rem;
+      }
+
+      .hero__text-container {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+        gap: 40px;
+      }
+
+      .hero__left-container {
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
         width: 100%;
         height: auto;
         margin-top: 2rem;
@@ -356,6 +383,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__image-shadow {
         left: 0;
         bottom: 0;
+<<<<<<< HEAD
         top: 0;
         width: 100%;
         height: 100%;
@@ -364,6 +392,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       
       .hero__vector-overlay {
         display: none;
+=======
+        width: 100%;
+        height: 100%;
+        transform: none;
+>>>>>>> 3fa35e6 (HeroBild jetzt links)
       }
     }
 
