@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animations';
+import { SupabaseService } from '../../../../shared/services/supabase/supabase.service';
 
 interface ContactFormData {
   name: string;
@@ -133,6 +134,14 @@ interface ContactFormData {
                 {{ 'CONTACT.SEND_BUTTON' | translate }}
               </button>
             </div>
+
+            <div *ngIf="submitSuccess" class="contact__success-message">
+              {{ 'CONTACT.SUCCESS_MESSAGE' | translate }}
+            </div>
+
+            <div *ngIf="submitError" class="contact__error-message">
+              {{ errorMessage }}
+            </div>
           </form>
         </div>
 
@@ -227,6 +236,7 @@ interface ContactFormData {
     .contact__form {
       width: 680px;
       z-index: 60;
+      position: relative;
     }
 
     .contact__form-group {
@@ -363,6 +373,26 @@ interface ContactFormData {
       }
     }
 
+    .contact__success-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: rgba(112, 230, 28, 0.2);
+      border: 1px solid var(--color-accent-primary);
+      border-radius: 10px;
+      color: var(--color-text-primary);
+      text-align: center;
+    }
+
+    .contact__error-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: rgba(255, 0, 0, 0.2);
+      border: 1px solid red;
+      border-radius: 10px;
+      color: var(--color-text-primary);
+      text-align: center;
+    }
+
     .contact__scroll-top {
       position: absolute;
       right: 100px;
@@ -444,6 +474,11 @@ export class ContactSectionComponent {
   };
 
   isSubmitting = false;
+  submitSuccess = false;
+  submitError = false;
+  errorMessage = '';
+
+  constructor(private supabaseService: SupabaseService) {}
 
   async onSubmit(form: NgForm): Promise<void> {
     if (form.invalid || this.isSubmitting) {
@@ -451,12 +486,39 @@ export class ContactSectionComponent {
     }
 
     this.isSubmitting = true;
+    this.submitSuccess = false;
+    this.submitError = false;
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      form.resetForm();
+      console.log('Submitting form data:', this.formData);
+      
+      const result = await this.supabaseService.submitContactForm({
+        name: this.formData.name,
+        email: this.formData.email,
+        message: this.formData.message
+      });
+
+      if (result.success) {
+        console.log('Form submitted successfully:', result);
+        this.submitSuccess = true;
+        form.resetForm();
+        
+        // Reset form data
+        this.formData = {
+          name: '',
+          email: '',
+          message: '',
+          privacyPolicy: false
+        };
+      } else {
+        console.error('Form submission failed:', result.error);
+        this.submitError = true;
+        this.errorMessage = 'There was an error sending your message. Please try again later.';
+      }
     } catch (error) {
-      console.error('Failed to submit form:', error);
+      console.error('Error submitting form:', error);
+      this.submitError = true;
+      this.errorMessage = 'There was an error sending your message. Please try again later.';
     } finally {
       this.isSubmitting = false;
     }
