@@ -43,23 +43,22 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         </div>
         
         <div class="hero__social">
-          <a 
-            href="https://github.com/MilanMoreno" 
-            target="_blank" 
-            class="hero__social-link">
-            <img src="assets/img/github.png" alt="GitHub">
-          </a>
-          <button 
-            class="hero__social-link"
-            (click)="copyEmail()">
-            <img src="assets/img/email.png" alt="Email">
-          </button>
-          <a 
-            href="https://www.linkedin.com/in/milan-moreno-9a7482360//"
-            target="_blank" 
-            class="hero__social-link">
-            <img src="assets/img/linkedin.png" alt="LinkedIn">
-          </a>
+         <a 
+  href="https://github.com/MilanMoreno" 
+  target="_blank" 
+  class="hero__social-link">
+  <img src="assets/img/github.png" alt="GitHub"> <!-- ← KEINE class hier -->
+</a><a 
+  class="hero__social-link"
+  (click)="copyEmail()">
+  <img src="assets/img/email.png" alt="Email">
+</a>
+<a 
+  href="https://www.linkedin.com/in/milan-moreno-9a7482360//"
+  target="_blank" 
+  class="hero__social-link">
+  <img src="assets/img/linkedin.png" alt="LinkedIn">
+</a>
           <span class="hero__email">milan.moreno&#64;gmail.com</span>
         </div>
 
@@ -247,16 +246,18 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       background: none;
       border: none;
       padding: 0;
-      transition: transform 0.3s ease;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
     }
 
     .hero__social-link:hover {
-      transform: scale(1.1);
+      opacity: 0.8;
     }
 
     .hero__social-link:hover img {
-      filter: brightness(0) saturate(100%) invert(76%) sepia(15%) 
-             saturate(4614%) hue-rotate(71deg) brightness(102%) contrast(101%);
+      opacity: 0.8;
+      filter: none !important; /* Verhindert andere Filter-Effekte */
+      transform: none !important; /* Verhindert Skalierung */
     }
 
     .hero__email {
@@ -319,35 +320,45 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     @media (max-width: 900px) {
       .hero {
-        height: auto;
-        min-height: calc(100vh - 100px);
-        padding-bottom: 120px;
+        height: 100vh;
+        min-height: 100vh;
+        padding-bottom: 0;
         position: relative;
+        display: flex;
+        flex-direction: column;
       }
- .hero__cta-wrapper {
-margin-top: 0px;}
+
+      .hero__cta-wrapper {
+        margin-top: 0px;
+      }
+
       .hero__content {
         flex-direction: column;
         padding: 20px;
-        gap: 0rem;
+        gap: 2rem;
         margin-top: 0px;
+        flex: 1;
+        justify-content: center;
+        align-items: center;
       }
 
       .hero__left-container {
         width: 100%;
         order: 1;
+        flex-shrink: 0;
       }
 
       .hero__text-container {
         width: 100%;
         align-items: center;
         text-align: center;
-        gap: 40px;
+        gap: 20px;
         order: 2;
+        flex-shrink: 0;
       }
 
       .hero__image {
-        height: 35vh;
+        height: 30vh;
         width: auto;
         max-width: 100%;
       }
@@ -364,14 +375,17 @@ margin-top: 0px;}
       }
 
       .hero__footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        position: relative;
+        bottom: auto;      
+        left: auto;
+        right: auto;
         padding: 0 20px;
         height: 80px;
-        background-color: rgba(20, 29, 47, 0.9);
-        backdrop-filter: blur(5px);
+        background-color: transparent;
+        backdrop-filter: none;
+        z-index: 10;
+        margin-top: auto;
+        flex-shrink: 0;
       }
 
       .hero__email {
@@ -405,8 +419,9 @@ margin-top: 0px;}
         font-size: 20px;
       }
 
-      .hero__social {
-        gap: 15px;
+      .hero__social-link img {
+        width: 35px; /* Etwas größere Icons auf Mobile */
+        height: 35px;
       }
 
       .hero__scroll {
