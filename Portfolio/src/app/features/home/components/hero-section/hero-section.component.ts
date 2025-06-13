@@ -108,7 +108,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       justify-content: center;
       width: 40%;
       z-index: 3;
-      gap: 40px;
+      gap: 80px;
     }
 
     .hero__left-container {
@@ -121,8 +121,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .hero__image {
-      height: 60vh;
-      max-height: 500px;
+      height: 75vh;
       object-fit: contain;
       position: relative;
       z-index: 3;
@@ -143,44 +142,34 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     .hero__intro {
       display: flex;
       align-items: center;
-      gap: 15px;
-      height: auto;
+      gap: 0px; 
     }
 
     .hero__intro-text {
       transform: rotate(-90deg);
-      font-size: 28px;
+      font-size: 32px;
+      padding-left: 0;        
+      margin-right: 15px;     
       color: var(--color-text-primary);
       white-space: nowrap;
-      align-self: center;
-      transform-origin: center;
-      line-height: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-left: 76px;
     }
 
     .hero__name-container {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      min-width: 400px;
-      padding: 0px;
-      justify-content: center;
+      gap: 10px;
     }
 
     .hero__name {
       margin: 0;
       line-height: 1.2;
-      font-size: 48px;
+      font-size: 64px;
       color: var(--color-text-primary);
-      white-space: nowrap;
     }
 
     .hero__title {
       color: var(--color-accent-secondary);
-      font-size: 36px;
+      font-size: 32px;
       margin: 0;
       line-height: 1.2;
     }
@@ -309,12 +298,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       bottom: 2rem;
     }
 
-    @media (min-width: 1921px) {
-      .hero__intro-text {
-        padding-left: 120px;
-      }
-    }
-
     @media (max-width: 1200px) {
       .hero__content {
         padding: 0 50px;
@@ -330,8 +313,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__image {
-        height: 55vh;
-        max-height: 450px;
+        height: 65vh;
       }
     }
 
@@ -342,29 +324,25 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         padding-bottom: 120px;
         position: relative;
       }
-
-      .hero__cta-wrapper {
-        margin-top: 0px;
-      }
-
+ .hero__cta-wrapper {
+margin-top: 0px;}
       .hero__content {
         flex-direction: column;
         padding: 20px;
         gap: 0rem;
-        margin-top: 40px;
+        margin-top: 0px;
       }
 
       .hero__left-container {
         width: 100%;
         order: 1;
-        position: relative;
       }
 
       .hero__text-container {
         width: 100%;
         align-items: center;
         text-align: center;
-        gap: 20px;
+        gap: 40px;
         order: 2;
       }
 
@@ -383,21 +361,17 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__intro-text {
         transform: none;
         margin-left: 0;
-        font-size: 22px;
-        padding-left: 0px;
-        display: block;
       }
 
       .hero__footer {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        right: auto;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
         padding: 0 20px;
         height: 80px;
-        background-color: transparent;
-        backdrop-filter: none;
-        margin-top: auto;
+        background-color: rgba(20, 29, 47, 0.9);
+        backdrop-filter: blur(5px);
       }
 
       .hero__email {
@@ -405,26 +379,16 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__image-shadow {
-        position: absolute;
-        left: 0;
-        top: 0;
+        right: 0;
+        bottom: -50px;
         width: 100%;
         height: 100%;
-        background: url('/assets/img/hero-shadows.png') no-repeat;
-        background-size: contain;
-        background-position: center;
-        z-index: 2;
-        opacity: 0.8;
-      }
-
-      .hero__vector-shape {
-        display: none;
       }
     }
 
     @media (max-width: 600px) {
       .hero__name {
-        font-size: 28px;
+        font-size: 40px;
       }
 
       .hero__title {
@@ -432,12 +396,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__intro-text {
-        font-size: 20px;
+        font-size: 22px;
       }
 
       .hero__cta {
-        width: 165px;
-        height: 58px;
+        width: 130px;
+        height: 50px;
         font-size: 20px;
       }
 
@@ -448,15 +412,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__scroll {
         font-size: 16px;
       }
-
-      .hero__name-container {
-        gap: 5px;
-      }
     }
 
     @media (max-width: 400px) {
       .hero__name {
-        font-size: 28px;
+        font-size: 36px;
       }
 
       .hero__title {
@@ -464,12 +424,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__intro-text {
-        font-size: 18px;
+        font-size: 20px;
       }
 
       .hero__cta {
-        width: 165px;
-        height: 58px;
+        width: 120px;
+        height: 45px;
         font-size: 18px;
       }
 
