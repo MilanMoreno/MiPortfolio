@@ -68,6 +68,55 @@ a {
   border-radius: 10px;
 }
 
+/* GLOBAL STYLES FOR ABOUT SHADOW - FIXED VERSION */
+
+/* Make sure the about section containers are positioned relative */
+.about {
+  position: relative !important;
+}
+
+.about__container {
+  position: relative !important;
+}
+
+.about__content {
+  position: relative !important;
+}
+
+/* About Shadow Positioning - Fixed for all screen sizes */
+.about__shadow {
+  position: absolute !important;
+  z-index: 0 !important;
+  right: 0 !important;
+  top: 11% !important;
+  transform: translateY(-50%) !important;
+  opacity: 0.5 !important;
+  max-width: 54% !important;
+  height: auto !important;
+}
+
+/* Responsive positioning for about shadow */
+@media (max-width: 1290px) {
+  .about__shadow {
+    top: 11% !important;
+    max-width: 50% !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .about__shadow {
+    top: 11% !important;
+    max-width: 45% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .about__shadow {
+    top: 11% !important;
+    max-width: 40% !important;
+  }
+}
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-accent-secondary);
   border-radius: 10px;
@@ -94,7 +143,6 @@ a {
   from { transform: translateX(-100%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }
 }
-
 
 /* Stil für die Trennlinien */
 .section-divider {

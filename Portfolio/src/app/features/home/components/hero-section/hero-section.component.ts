@@ -108,7 +108,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       justify-content: center;
       width: 40%;
       z-index: 3;
-      gap: 80px;
+      gap: 40px;
     }
 
     .hero__left-container {
@@ -121,11 +121,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .hero__image {
-      height: 75vh;
+      height: 60vh;
+      max-height: 500px;
       object-fit: contain;
       position: relative;
       z-index: 3;
-      animation: float 6s ease-in-out infinite;
     }
 
     .hero__image-shadow {
@@ -143,34 +143,44 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     .hero__intro {
       display: flex;
       align-items: center;
-      gap: 0px; 
+      gap: 15px;
+      height: auto;
     }
 
     .hero__intro-text {
       transform: rotate(-90deg);
-      font-size: 32px;
-      padding-left: 0;        
-      margin-right: 15px;     
+      font-size: 28px;
       color: var(--color-text-primary);
       white-space: nowrap;
+      align-self: center;
+      transform-origin: center;
+      line-height: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 76px;
     }
 
     .hero__name-container {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
+      min-width: 400px;
+      padding: 0px;
+      justify-content: center;
     }
 
     .hero__name {
       margin: 0;
       line-height: 1.2;
-      font-size: 64px;
+      font-size: 48px;
       color: var(--color-text-primary);
+      white-space: nowrap;
     }
 
     .hero__title {
       color: var(--color-accent-secondary);
-      font-size: 32px;
+      font-size: 36px;
       margin: 0;
       line-height: 1.2;
     }
@@ -249,15 +259,15 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       border: none;
       padding: 0;
       transition: transform 0.3s ease;
-      
-      &:hover {
-        transform: scale(1.1);
-        
-        img {
-          filter: brightness(0) saturate(100%) invert(76%) sepia(15%) 
-                 saturate(4614%) hue-rotate(71deg) brightness(102%) contrast(101%);
-        }
-      }
+    }
+
+    .hero__social-link:hover {
+      transform: scale(1.1);
+    }
+
+    .hero__social-link:hover img {
+      filter: brightness(0) saturate(100%) invert(76%) sepia(15%) 
+             saturate(4614%) hue-rotate(71deg) brightness(102%) contrast(101%);
     }
 
     .hero__email {
@@ -265,10 +275,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       font-size: 23px;
       color: var(--color-text-primary);
       cursor: pointer;
+    }
 
-      &:hover {
-        color: var(--color-accent-primary);
-      }
+    .hero__email:hover {
+      color: var(--color-accent-primary);
     }
 
     .hero__scroll {
@@ -276,10 +286,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       color: var(--color-text-primary);
       font-size: 20px;
       transition: color 0.3s ease;
+    }
 
-      &:hover {
-        color: var(--color-accent-primary);
-      }
+    .hero__scroll:hover {
+      color: var(--color-accent-primary);
     }
 
     .hero__notification {
@@ -293,9 +303,15 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       color: var(--color-text-primary);
       transition: bottom 0.3s ease;
       z-index: 100;
+    }
 
-      &--visible {
-        bottom: 2rem;
+    .hero__notification--visible {
+      bottom: 2rem;
+    }
+
+    @media (min-width: 1921px) {
+      .hero__intro-text {
+        padding-left: 120px;
       }
     }
 
@@ -314,7 +330,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__image {
-        height: 65vh;
+        height: 55vh;
+        max-height: 450px;
       }
     }
 
@@ -326,31 +343,33 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         position: relative;
       }
 
+      .hero__cta-wrapper {
+        margin-top: 0px;
+      }
+
       .hero__content {
-        flex-direction: column-reverse;
+        flex-direction: column;
         padding: 20px;
-        gap: 2rem;
+        gap: 0rem;
+        margin-top: 40px;
+      }
+
+      .hero__left-container {
+        width: 100%;
+        order: 1;
+        position: relative;
       }
 
       .hero__text-container {
         width: 100%;
         align-items: center;
         text-align: center;
-        gap: 40px;
-      }
-
-      .hero__right-container {
-        width: 100%;
-        height: auto;
-        justify-content: center;
-      }
-
-      .hero__image-wrapper {
-        margin-right: 0;
+        gap: 20px;
+        order: 2;
       }
 
       .hero__image {
-        height: 40vh;
+        height: 35vh;
         width: auto;
         max-width: 100%;
       }
@@ -364,17 +383,21 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__intro-text {
         transform: none;
         margin-left: 0;
+        font-size: 22px;
+        padding-left: 0px;
+        display: block;
       }
 
       .hero__footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
         padding: 0 20px;
         height: 80px;
-        background-color: rgba(20, 29, 47, 0.9);
-        backdrop-filter: blur(5px);
+        background-color: transparent;
+        backdrop-filter: none;
+        margin-top: auto;
       }
 
       .hero__email {
@@ -382,29 +405,39 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__image-shadow {
-        right: 0;
-        bottom: -50px;
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%;
+        background: url('/assets/img/hero-shadows.png') no-repeat;
+        background-size: contain;
+        background-position: center;
+        z-index: 2;
+        opacity: 0.8;
+      }
+
+      .hero__vector-shape {
+        display: none;
       }
     }
 
     @media (max-width: 600px) {
       .hero__name {
-        font-size: 48px;
-      }
-
-      .hero__title {
         font-size: 28px;
       }
 
+      .hero__title {
+        font-size: 26px;
+      }
+
       .hero__intro-text {
-        font-size: 24px;
+        font-size: 20px;
       }
 
       .hero__cta {
-        width: 140px;
-        height: 50px;
+        width: 165px;
+        height: 58px;
         font-size: 20px;
       }
 
@@ -415,11 +448,15 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__scroll {
         font-size: 16px;
       }
+
+      .hero__name-container {
+        gap: 5px;
+      }
     }
 
     @media (max-width: 400px) {
       .hero__name {
-        font-size: 36px;
+        font-size: 28px;
       }
 
       .hero__title {
@@ -427,12 +464,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__intro-text {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .hero__cta {
-        width: 120px;
-        height: 45px;
+        width: 165px;
+        height: 58px;
         font-size: 18px;
       }
 
