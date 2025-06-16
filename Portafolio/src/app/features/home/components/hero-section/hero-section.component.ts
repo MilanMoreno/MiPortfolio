@@ -10,25 +10,27 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     template: `
     <section class="hero" id="hero">
       <div class="hero__content">
-        <div class="hero__left-container">
-          <img 
-            class="hero__image" 
-            src="assets/img/hero.png" 
-            alt="Hero image">
-          <div class="hero__image-shadow"></div>
-        </div>
-        
-        <div class="hero__text-container">
-          <div class="hero__intro">
-            <div class="hero__intro-text" [@fadeInLeft]>
-              {{ 'HERO.IAM' | translate }}
+        <div class="hero__profile-section">
+          <div class="hero__profile-image-container">
+            <img 
+              class="hero__profile-image" 
+              src="assets/img/me.jpeg" 
+              alt="Milan Moreno">
+            <div class="hero__glow-effect"></div>
+            <div class="hero__wave-shape"></div>
+          </div>
+          
+          <div class="hero__text-container">
+            <div class="hero__vertical-text">
+              <span>{{ 'HERO.IAM' | translate }}</span>
             </div>
-            <div class="hero__name-container" [@fadeInUp]>
-              <h1 class="hero__name">{{ 'HERO.NAME' | translate }}</h1>
-              <p class="hero__title">{{ 'HERO.JOBTITLE' | translate }}</p>
+            
+            <div class="hero__main-content">
+              <h1 class="hero__name" [@fadeInUp]>{{ 'HERO.NAME' | translate }}</h1>
+              <p class="hero__title" [@fadeInUp]>{{ 'HERO.JOBTITLE' | translate }}</p>
               
-              <div class="hero__cta-wrapper">
-                <a href="#contact" class="hero__cta">
+              <div class="hero__cta-container">
+                <a href="#contact" class="hero__cta-button">
                   {{ 'HERO.LETSTALK' | translate }}
                 </a>
               </div>
@@ -72,142 +74,139 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         [class.hero__notification--visible]="(clipboardService.copyStatus$ | async)">
         {{ 'HERO.EMAIL_COPIED' | translate }}
       </div>
-      
-      <div class="hero__vector-shape"></div>
     </section>
   `,
     styles: [`
     .hero {
       position: relative;
-      height: 100vh;
-      min-height: 700px;
+      width: 100%;
+      height: 100vh; 
       background-color: var(--color-background-primary);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      padding-top: var(--header-height);
-      box-sizing: border-box;
+      justify-content: space-between;
+      padding-top: var(--header-height); 
+      overflow-x: hidden;
     }
 
     .hero__content {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       flex: 1;
+      padding: 0 5%;
+      margin-top: -var(--header-height);
+    }
+
+    .hero__profile-section {
+      display: flex;
       width: 100%;
-      padding: 0 100px;
-      margin-top: calc(-1 * var(--header-height));
+      max-width: 1200px;
+      justify-content: space-between;
+      align-items: center;
       position: relative;
-      z-index: 3;
+      z-index: 5;
+    }
+
+    .hero__profile-image-container {
+      position: relative;
+      width: 45%;
+      max-width: 500px;
+      z-index: 10;
+    }
+
+    .hero__profile-image {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero__glow-effect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 150%;
+      height: 150%;
+      background: 
+        radial-gradient(circle at 30% 50%, rgba(151, 71, 255, 0.6) 0%, rgba(151, 71, 255, 0) 35%),
+        radial-gradient(circle at 70% 50%, rgba(112, 230, 28, 0.6) 0%, rgba(112, 230, 28, 0) 35%);
+      z-index: 5;
+      transform: translate(-20%, -20%);
+      filter: blur(30px);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero__wave-shape {
+      position: absolute;
+      bottom: -20%;
+      right: -20%;
+      width: 140%;
+      height: 140%;
+      background-color: var(--color-background-primary);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      transform: rotate(-10deg);
+      z-index: 1;
     }
 
     .hero__text-container {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 40%;
-      z-index: 3;
-      gap: 80px;
-    }
-
-    .hero__left-container {
-      position: relative;
       width: 50%;
-      display: flex;
-      justify-content: center;
       align-items: center;
-      z-index: 2;
+      z-index: 10;
     }
 
-    .hero__image {
-      height: 75vh;
-      object-fit: contain;
-      position: relative;
-      z-index: 3;
-    }
-
-    .hero__image-shadow {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: url('/assets/img/hero-shadows.png') no-repeat;
-      background-size: contain;
-      z-index: 2;
-      opacity: 0.8;
-    }
-
-    .hero__intro {
-      display: flex;
-      align-items: center;
-      gap: 0px; 
-    }
-
-    .hero__intro-text {
-      transform: rotate(-90deg);
-      font-size: 32px;
-      padding-left: 0;        
-      margin-right: 15px;     
+    .hero__vertical-text {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 1.5rem;
+      margin-right: 1.5rem;
       color: var(--color-text-primary);
-      white-space: nowrap;
     }
 
-    .hero__name-container {
+    .hero__main-content {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0.5rem;
     }
 
     .hero__name {
+      font-size: 4rem;
+      font-weight: 700;
       margin: 0;
-      line-height: 1.2;
-      font-size: 64px;
       color: var(--color-text-primary);
+      line-height: 1.1;
     }
 
     .hero__title {
+      font-size: 2rem;
       color: var(--color-accent-secondary);
-      font-size: 32px;
       margin: 0;
-      line-height: 1.2;
+      margin-bottom: 1.5rem;
     }
 
-    .hero__cta-wrapper {
-      margin-top: 20px;
+    .hero__cta-container {
+      margin-top: 1rem;
     }
 
-    .hero__cta {
+    .hero__cta-button {
       display: inline-flex;
-      align-items: center;
       justify-content: center;
-      width: 165px;
-      height: 58px;
-      border-radius: 10px;
+      align-items: center;
       background-color: var(--color-accent-primary);
       color: white;
-      font-size: 23px;
-      font-weight: 700;
-      text-decoration: none;
+      padding: 0.75rem 2rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      border-radius: 10px;
       transition: all 0.3s ease;
     }
 
-    .hero__cta:hover {
+    .hero__cta-button:hover {
       transform: scale(1.05);
       background-color: var(--color-accent-secondary);
-    }
-
-    .hero__vector-shape {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('/assets/img/Vector shape hero.png') no-repeat;
-      background-size: cover;
-      background-position: bottom center;
-      z-index: 1;
-      opacity: 0.8;
     }
 
     .hero__footer {
@@ -215,12 +214,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      height: 100px;
+      height: 80px;
       padding: 0 100px;
-      z-index: 20;
-      margin-top: auto;
-      position: relative;
-      flex-shrink: 0;
+      z-index: 10;
     }
 
     .hero__line-container {
@@ -293,176 +289,78 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       bottom: 2rem;
     }
 
-    @media (max-width: 1200px) {
-      .hero__content {
-        padding: 0 50px;
-        flex: 1 0 auto;
-      }
-
-      .hero__footer {
-        padding: 0 50px;
-        position: relative;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
-
-      .hero__image {
-        height: 65vh;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        height: 100vh;
-        min-height: 100vh;
-        padding-bottom: 0;
-        position: relative;
-        display: flex;
+    @media (max-width: 1024px) {
+      .hero__profile-section {
         flex-direction: column;
-      }
-
-      .hero__cta-wrapper {
-        margin-top: 0px;
-      }
-
-      .hero__content {
-        flex-direction: column;
-        padding: 20px;
         gap: 2rem;
-        margin-top: 0px;
-        flex: 1;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .hero__left-container {
-        width: 100%;
-        order: 1;
-        flex-shrink: 0;
+        text-align: center;
       }
 
       .hero__text-container {
         width: 100%;
-        align-items: center;
-        text-align: center;
-        gap: 20px;
-        order: 2;
-        flex-shrink: 0;
-      }
-
-      .hero__image {
-        height: 30vh;
-        width: auto;
-        max-width: 100%;
-      }
-
-      .hero__intro {
         flex-direction: column;
-        justify-content: center;
-        gap: 1rem;
+        margin-top: 1rem;
       }
 
-      .hero__intro-text {
+      .hero__vertical-text {
+        writing-mode: horizontal-tb;
         transform: none;
-        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .hero__profile-image-container {
+        width: 70%;
+        max-width: 350px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero__footer {
+        padding: 0 2rem;
+      }
+
+      .hero__name {
+        font-size: 3rem;
+      }
+
+      .hero__title {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero__profile-image-container {
+        width: 90%;
+      }
+
+      .hero__name {
+        font-size: 2.5rem;
+      }
+
+      .hero__title {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero__cta-button {
+        padding: 0.6rem 1.5rem;
+        font-size: 1rem;
       }
 
       .hero__footer {
-        position: relative;
-        bottom: auto;      
-        left: auto;
-        right: auto;
-        padding: 0 20px;
-        height: 80px;
-        background-color: transparent;
-        backdrop-filter: none;
-        z-index: 10;
-        margin-top: auto;
-        flex-shrink: 0;
+        height: 60px;
+        padding: 0 1rem;
       }
 
       .hero__email {
         display: none;
       }
 
-      .hero__image-shadow {
-        right: 0;
-        bottom: -50px;
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero__name {
-        font-size: 40px;
-      }
-
-      .hero__title {
-        font-size: 26px;
-      }
-
-      .hero__intro-text {
-        font-size: 22px;
-      }
-
-      .hero__cta {
-        width: 130px;
-        height: 50px;
-        font-size: 20px;
-      }
-
-      .hero__social-link img {
-        width: 35px; /* Etwas größere Icons auf Mobile */
-        height: 35px;
-      }
-
       .hero__scroll {
-        font-size: 16px;
+        font-size: 0.875rem;
       }
     }
-
-
-   @media (max-width: 400px) {
-      .hero__name {
-        font-size: 36px;
-      }
-       .hero__footer {
-      display: flex;
-      
-      padding: 0 0;}}
-
-    @media (max-width: 400px) {
-      .hero__name {
-        font-size: 36px;
-      }
-
-      .hero__title {
-        font-size: 24px;
-      }
-
-      .hero__intro-text {
-        font-size: 20px;
-      }
-
-      .hero__cta {
-        width: 120px;
-        height: 45px;
-        font-size: 18px;
-      }
-
-  .hero__footer {
-      display: flex;
-      
-      padding: 0 0px;
-    }
-      .hero__image {
-        height: 35vh;
-      }
-       
-    }
-    
   `],
     animations: [fadeInLeft, fadeInUp]
 })
