@@ -113,15 +113,16 @@ import { TranslateModule } from '@ngx-translate/core';
       }
 
       .project__image {
-        max-width: 70vw;
+        max-width: 620px;
         width: auto;
-        height: auto;
+        height: 339px;
         margin: 0 0 2rem;
       }
 
       .project__content {
-        max-width: 90vw;
+        max-width: 800px;
         width: auto;
+        height: 339px;
       }
     }
 
@@ -161,6 +162,6 @@ export class ProjectCardComponent {
   @Input() demoUrl!: string;
   @Input() repoUrl!: string;
 
-  /*  <<< HIER NEU >>>  */
+
   @Input() isReversed = false;
 }
