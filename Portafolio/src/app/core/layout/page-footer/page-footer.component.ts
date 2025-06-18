@@ -17,7 +17,7 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
             class="footer__logo"
             routerLink="/">
           <a routerLink="/legal/imprint" class="footer__imprint">
-            Imprint
+            {{ 'FOOTER.IMPRINT' | translate }}
           </a>
         </div>
 

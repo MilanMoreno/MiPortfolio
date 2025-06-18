@@ -18,7 +18,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
         <div class="nav__menu">
           <ul class="nav__list">
             <li *ngFor="let item of menuItems">
-              <a [href]="item.href" class="nav__link">
+              <a [routerLink]="['/']" [fragment]="item.fragment" class="nav__link">
                 {{ item.label | translate }} 
               </a>
             </li>
@@ -51,7 +51,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
         <div class="nav__mobile-content">
           <ul class="nav__mobile-list">
             <li *ngFor="let item of menuItems">
-              <a [href]="item.href" class="nav__mobile-link" (click)="closeMobileMenu()">
+              <a [routerLink]="['/']" [fragment]="item.fragment" class="nav__mobile-link" (click)="closeMobileMenu()">
                 {{ item.label | translate }}
               </a>
             </li>
@@ -284,9 +284,9 @@ export class NavigationBarComponent {
   isMobileMenuOpen = false;
 
   menuItems = [
-    { href: '#about', label: 'HEADER.ABOUT_ME' },
-    { href: '#skills', label: 'HEADER.SKILLS' },
-    { href: '#portfolio', label: 'HEADER.PORTFOLIO' }
+    { fragment: 'about', label: 'HEADER.ABOUT_ME' },
+    { fragment: 'skills', label: 'HEADER.SKILLS' },
+    { fragment: 'portfolio', label: 'HEADER.PORTFOLIO' }
   ];
 
   languages = [

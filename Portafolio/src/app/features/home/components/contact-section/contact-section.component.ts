@@ -434,6 +434,13 @@ interface ContactFormData {
       }
     }
 
+    /* Hide shadow at medium screen sizes where it would overlap the form */
+    @media (max-width: 1200px) and (min-width: 768px) {
+      .contact__shadow {
+        display: none;
+      }
+    }
+
     @media (max-width: 768px) {
       .contact__scroll-top {
         right: 1rem;
@@ -449,7 +456,8 @@ interface ContactFormData {
       }
 
       .contact__shadow {
-        display: none;
+        max-width: 40%;
+        opacity: 0.5;
       }
     }
 
@@ -461,6 +469,20 @@ interface ContactFormData {
       .contact__submit {
         width: 100%;
       }
+
+      .contact__scroll-top {
+        right: 1rem;
+        bottom: 1rem;
+      }
+
+      .contact__shadow {
+        max-width: 30%;
+        opacity: 0.3;
+      }
+    }
+    
+    @media (max-width: 350px) {
+      /* Additional styles for very small screens if needed */
     }
   `],
     animations: [fadeInLeft, fadeInUp]
