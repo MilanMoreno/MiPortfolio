@@ -13,13 +13,14 @@
   position: relative;
   z-index: 2;
 }
-
+//com//
 .portfolio__title-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
+  margin-left:0px;
 }
 
 .portfolio__line {
@@ -35,6 +36,7 @@
   position: relative;
   width: 200px;
 }
+
 
 .portfolio__line--right {
   position: absolute;
