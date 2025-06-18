@@ -85,8 +85,8 @@ interface Skill {
       gap: 1rem;
 
       img {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         transition: transform 0.3s ease;
 
         &:hover {
@@ -128,7 +128,7 @@ interface Skill {
     }
 
     .skills__title {
-      font-size: 90px;
+      font-size: 60px;
       color: var(--color-text-primary);
       margin: 0;
     }
@@ -156,12 +156,12 @@ interface Skill {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      width: 200px;
-      height: 58px;
+      width: 150px;
+      height: 45px;
       background-color: var(--color-accent-primary);
       color: var(--color-text-primary);
       border-radius: 10px;
-      font-size: 23px;
+      font-size: 18px;
       transition: all 0.3s ease;
 
       &:hover {
@@ -179,6 +179,8 @@ interface Skill {
       left: 0;
       top: 30%;
       z-index: 50;
+      opacity: 0.3;
+      max-width: 30%;
     }
 
     @media (max-width: 1200px) {
@@ -188,6 +190,24 @@ interface Skill {
 
       .skills__grid {
         grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 1200px) and (min-width: 600px) {
+      .skills__shadow {
+        opacity: 0.2;
+        max-width: 20%;
+        left: 0;
+        bottom: 10%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .skills__shadow {
+        opacity: 0.1;
+        max-width: 15%;
+        left: 0;
+        bottom: 5%;
       }
     }
 
@@ -223,7 +243,7 @@ interface Skill {
 
     @media (max-width: 580px) {
       .skills__title {
-        font-size: 45px;
+        font-size: 32px;
       }
 
       .skills__grid {
@@ -247,18 +267,68 @@ interface Skill {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 150px;
-        height: 48px;
+        width: 120px;
+        height: 40px;
         background-color: var(--color-accent-primary);
         color: var(--color-text-primary);
         border-radius: 10px;
-        font-size: 18px;
+        font-size: 14px;
         transition: all 0.3s ease;
 
         &:hover {
           background-color: var(--color-accent-secondary);
           transform: scale(1.05);
         }
+      }
+    }
+
+    @media (max-width: 480px) {
+      .skills__title {
+        font-size: 28px;
+      }
+      
+      .skills__item {
+        padding: 15px;
+        
+        img {
+          width: 40px;
+          height: 40px;
+        }
+        
+        span {
+          font-size: 12px;
+        }
+      }
+      
+      .skills__mobile-button {
+        width: 100px;
+        height: 35px;
+        font-size: 12px;
+      }
+    }
+    
+    @media (max-width: 350px) {
+      .skills__title {
+        font-size: 24px;
+      }
+      
+      .skills__item {
+        padding: 10px;
+        
+        img {
+          width: 30px;
+          height: 30px;
+        }
+        
+        span {
+          font-size: 10px;
+        }
+      }
+      
+      .skills__mobile-button {
+        width: 90px;
+        height: 30px;
+        font-size: 11px;
       }
     }
   `],

@@ -93,7 +93,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .about__heading {
-      font-size: 48px;
+      font-size: 36px;
       color: var(--color-text-primary);
       margin-bottom: 2rem;
     }
@@ -137,8 +137,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       border-radius: 50%;
       border: 4px solid var(--color-accent-primary);
       overflow: hidden;
-      width: 300px;
-      height: 300px;
+      width: 250px;
+      height: 250px;
     }
 
     .about__image {
@@ -191,12 +191,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .about__image-wrapper {
-        width: 250px;
+        width: 200px;
       }
 
       .about__image-container {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
       }
 
       .about__image-line {
@@ -206,21 +206,59 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     @media (max-width: 480px) {
       .about__heading {
-        font-size: 32px;
+        font-size: 28px;
       }
 
       .about__intro,
       .about__text-block {
-        font-size: 14px;
+        font-size: 13px;
       }
 
       .about__image-wrapper {
-        width: 200px;
+        width: 150px;
       }
 
       .about__image-container {
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
+      }
+      
+      .about__icon {
+        width: 40px;
+      }
+      
+      .about__icon svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    
+    @media (max-width: 350px) {
+      .about__heading {
+        font-size: 24px;
+      }
+      
+      .about__intro,
+      .about__text-block {
+        font-size: 12px;
+      }
+      
+      .about__image-wrapper {
+        width: 120px;
+      }
+      
+      .about__image-container {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .about__icon {
+        width: 30px;
+      }
+      
+      .about__icon svg {
+        width: 30px;
+        height: 30px;
       }
     }
   `],

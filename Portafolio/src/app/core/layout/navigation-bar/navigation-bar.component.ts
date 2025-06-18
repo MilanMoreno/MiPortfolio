@@ -10,7 +10,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
     template: `
     <nav class="nav">
       <div class="nav__container">
-        <a class="nav__logo" href="#top">
+        <a class="nav__logo" [routerLink]="['/']">
           <img src="assets/img/logo.png" alt="Logo" class="nav__logo-img">
         </a>
 
@@ -77,7 +77,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       top: 0;
       left: 0;
       width: 100%;
-      height: var(--header-height);
+     height: 90px;
       background-color: var(--color-background-primary);
       z-index: 100;
     }
@@ -87,15 +87,16 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       align-items: center;
       justify-content: space-between;
       height: 100%;
-      padding: 0 2rem;
+     padding: 0 1rem;
       max-width: 1920px;
       margin: 0 auto;
     }
 
     .nav__logo {
-      height: 80px;
+     height: 60px;
       display: flex;
       align-items: center;
+      text-decoration: none;
     }
 
     .nav__logo-img {
@@ -111,9 +112,10 @@ import { LanguageService } from '../../../shared/services/language/language.serv
 
     .nav__link {
       color: var(--color-text-primary);
-      font-size: var(--font-size-heading-small);
+     font-size: 18px;
       text-transform: uppercase;
       position: relative;
+      text-decoration: none;
 
       &::after {
         content: '';
@@ -238,6 +240,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       color: var(--color-text-primary);
       font-size: var(--font-size-heading-small);
       text-transform: uppercase;
+      text-decoration: none;
     }
 
     .nav__mobile-language {
@@ -269,6 +272,14 @@ import { LanguageService } from '../../../shared/services/language/language.serv
     }
 
     @media (max-width: 768px) {
+     .nav {
+       height: 70px;
+     }
+     
+     .nav__logo {
+       height: 50px;
+     }
+     
       .nav__menu,
       .nav__language {
         display: none;
@@ -277,6 +288,57 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       .nav__mobile-toggle {
         display: block;
       }
+     
+     .nav__mobile-link {
+       font-size: 20px;
+     }
+     
+     .nav__mobile-lang-btn {
+       padding: 0.4rem 0.8rem;
+       
+       img {
+         width: 20px;
+         height: 20px;
+       }
+     }
+   }
+   
+   @media (max-width: 480px) {
+     .nav {
+       height: 60px;
+     }
+     
+     .nav__logo {
+       height: 40px;
+     }
+     
+     .nav__mobile-link {
+       font-size: 18px;
+     }
+     
+     .nav__mobile-lang-btn {
+       padding: 0.3rem 0.6rem;
+       font-size: 12px;
+       
+       img {
+         width: 16px;
+         height: 16px;
+       }
+     }
+   }
+   
+   @media (max-width: 350px) {
+     .nav {
+       height: 50px;
+     }
+     
+     .nav__logo {
+       height: 35px;
+     }
+     
+     .nav__mobile-link {
+       font-size: 16px;
+     }
     }
   `]
 })
@@ -299,15 +361,13 @@ export class NavigationBarComponent {
 
   constructor(
     private translateService: TranslateService,
-    private languageService: LanguageService // Inject LanguageService
+    private languageService: LanguageService
   ) {
-    // Add languages - this is okay here or could be moved to app init
     translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
-    // Removed setDefaultLang - AppComponent handles initialization
   }
 
   switchLanguage(lang: string): void {
-    this.languageService.setLanguage(lang); // Use LanguageService to set and save
+    this.languageService.setLanguage(lang);
     this.closeMobileMenu();
   }
 

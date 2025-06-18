@@ -73,7 +73,7 @@ import { TranslateModule } from '@ngx-translate/core';
     }
 
     .project__title {
-      font-size: var(--font-size-heading-medium);
+      font-size: 24px;
       color: var(--color-accent-secondary);
       font-weight: 700;
       margin-bottom: 1rem;
@@ -83,7 +83,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
     .project__stack {
       color: var(--color-accent-primary);
-      font-size: 23px;
+      font-size: 18px;
       margin-bottom: 1rem;
       position: relative;
       z-index: 15;
@@ -91,7 +91,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
     .project__description {
       color: var(--color-text-primary);
-      font-size: var(--font-size-base);
+      font-size: 14px;
       margin-bottom: 2rem;
       line-height: 1.6;
       position: relative;
@@ -109,14 +109,14 @@ import { TranslateModule } from '@ngx-translate/core';
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 15px 30px;
+      padding: 10px 20px;
       border-radius: 10px;
-      font-size: 23px;
+      font-size: 16px;
       transition: all 0.3s ease;
       text-decoration: none;
 
       &--primary {
-        width: 150px;
+        width: 120px;
         background-color: var(--color-accent-secondary);
         color: var(--color-text-primary);
 
@@ -126,8 +126,8 @@ import { TranslateModule } from '@ngx-translate/core';
       }
 
       &--secondary {
-        width: 150px;
-        border: 1px solid var(--color-accent-primary);
+        width: 120px;
+       border: 2px solid var(--color-accent-primary);
         color: var(--color-text-primary);
         background-color: transparent;
 
@@ -159,20 +159,20 @@ import { TranslateModule } from '@ngx-translate/core';
 
     @media (max-width: 1000px) {
       .project__title {
-        font-size: 28px;
+        font-size: 22px;
       }
       
       .project__stack {
-        font-size: 20px;
-      }
-      
-      .project__description {
         font-size: 16px;
       }
       
+      .project__description {
+        font-size: 14px;
+      }
+      
       .project__button {
-        font-size: 18px;
-        padding: 12px 24px;
+        font-size: 14px;
+        padding: 8px 16px;
       }
     }
     
@@ -184,21 +184,22 @@ import { TranslateModule } from '@ngx-translate/core';
     
     @media (max-width: 700px) {
       .project__title {
-        font-size: 24px;
+        font-size: 20px;
       }
       
       .project__stack {
-        font-size: 18px;
+        font-size: 14px;
       }
       
       .project__description {
-        font-size: 14px;
+        font-size: 12px;
         margin-bottom: 1.5rem;
       }
       
       .project__button {
-        font-size: 16px;
-        padding: 10px 20px;
+        font-size: 12px;
+        padding: 8px 16px;
+        width: 100px;
       }
     }
 
@@ -242,31 +243,52 @@ import { TranslateModule } from '@ngx-translate/core';
       }
       
       .project__button {
-        padding: 10px 15px;
-        font-size: 16px;
+        padding: 6px 12px;
+        font-size: 11px;
+       width: 70px;
       }
     }
     
     @media (max-width: 350px) {
       .project__title {
-        font-size: 20px;
+        font-size: 18px;
       }
       
       .project__stack {
-        font-size: 16px;
+        font-size: 12px;
       }
       
       .project__description {
-        font-size: 14px;
+        font-size: 11px;
         line-height: 1.4;
       }
       
       .project__button {
-        width: 120px;
-        padding: 8px 12px;
-        font-size: 14px;
+       width: 60px;
+        padding: 5px 8px;
+        font-size: 10px;
       }
     }
+   
+   @media (max-width: 320px) {
+     .project__button {
+       width: 55px;
+       padding: 4px 6px;
+       font-size: 9px;
+     }
+     
+     .project__title {
+       font-size: 16px;
+     }
+     
+     .project__stack {
+       font-size: 11px;
+     }
+     
+     .project__description {
+       font-size: 10px;
+     }
+   }
   `]
 })
 export class ProjectCardComponent {

@@ -117,6 +117,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       justify-content: center;
       align-items: center;
       z-index: 2;
+      margin-top: 80px;
     }
 
     .hero__image {
@@ -162,7 +163,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     .hero__name {
       margin: 0;
       line-height: 1.2;
-      font-size: 64px;
+      font-size: 48px;
       color: var(--color-text-primary);
     }
 
@@ -181,12 +182,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 165px;
-      height: 58px;
+      width: 120px;
+      height: 40px;
       border-radius: 10px;
       background-color: var(--color-accent-primary);
       color: white;
-      font-size: 23px;
+      font-size: 16px;
       font-weight: 700;
       text-decoration: none;
       transition: all 0.3s ease;
@@ -256,7 +257,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .hero__email {
       margin-left: 15px;
-      font-size: 23px;
+      font-size: 16px;
       color: var(--color-text-primary);
       cursor: pointer;
     }
@@ -323,7 +324,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__cta-wrapper {
-        margin-top: 0px;
+        margin-top: 10px;
       }
 
       .hero__content {
@@ -396,56 +397,89 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     @media (max-width: 600px) {
       .hero__name {
-        font-size: 40px;
+        font-size: 24px;
       }
 
       .hero__title {
-        font-size: 26px;
+        font-size: 18px;
       }
 
       .hero__intro-text {
-        font-size: 22px;
+        font-size: 14px;
       }
 
       .hero__cta {
-        width: 130px;
-        height: 50px;
-        font-size: 20px;
+        width: 100px;
+        height: 35px;
+        font-size: 14px;
       }
 
       .hero__social-link img {
-        width: 35px; /* Etwas größere Icons auf Mobile */
-        height: 35px;
+        width: 25px;
+        height: 25px;
       }
 
       .hero__scroll {
-        font-size: 16px;
+        font-size: 14px;
       }
     }
 
     @media (max-width: 400px) {
       .hero__name {
-        font-size: 36px;
-      }
-
-      .hero__title {
-        font-size: 24px;
-      }
-
-      .hero__intro-text {
         font-size: 20px;
       }
 
+      .hero__title {
+        font-size: 16px;
+      }
+
+      .hero__intro-text {
+        font-size: 12px;
+      }
+
       .hero__cta {
-        width: 120px;
-        height: 45px;
-        font-size: 18px;
+        width: 80px;
+        height: 28px;
+        font-size: 11px;
       }
 
       .hero__image {
-        height: 35vh;
+        height: 20vh;
       }
     }
+   
+   @media (max-width: 320px) {
+     .hero__name {
+       font-size: 18px;
+     }
+
+     .hero__title {
+       font-size: 14px;
+     }
+
+     .hero__intro-text {
+       font-size: 11px;
+     }
+
+     .hero__cta {
+       width: 70px;
+       height: 25px;
+       font-size: 10px;
+     }
+
+     .hero__image {
+       height: 18vh;
+     }
+     
+     .hero__social-link img {
+       width: 20px;
+       height: 20px;
+     }
+     
+     .hero__scroll {
+       font-size: 12px;
+     }
+   }
   `],
     animations: [fadeInLeft, fadeInUp]
 })

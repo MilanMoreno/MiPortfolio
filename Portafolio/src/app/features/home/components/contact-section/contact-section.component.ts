@@ -353,13 +353,13 @@ interface ContactFormData {
     }
 
     .contact__submit {
-      width: 250px;
+      width: 180px;
       background-color: var(--color-accent-primary);
       border: none;
       border-radius: 10px;
-      padding: 15px 30px;
+      padding: 10px 20px;
       color: var(--color-text-primary);
-      font-size: var(--font-size-base);
+      font-size: 14px;
       cursor: pointer;
       transition: all 0.3s ease;
 
@@ -395,10 +395,10 @@ interface ContactFormData {
 
     .contact__scroll-top {
       position: absolute;
-      right: 100px;
-      bottom: 50px;
-      height: 40px;
-      width: 40px;
+      right: 20px;
+      bottom: 20px;
+      height: 30px;
+      width: 30px;
       color: var(--color-text-primary);
       transition: color 0.3s ease;
 
@@ -443,47 +443,124 @@ interface ContactFormData {
 
     @media (max-width: 768px) {
       .contact__scroll-top {
-        right: 1rem;
-        bottom: 1rem;
+        right: 10px;
+        bottom: 10px;
+        height: 25px;
+        width: 25px;
       }
 
       .contact__title {
-        font-size: 45px;
+        font-size: 32px;
       }
 
       .contact__subtitle {
-        font-size: 24px;
+        font-size: 20px;
       }
 
       .contact__shadow {
-        max-width: 40%;
+        max-width: 30%;
         opacity: 0.5;
       }
     }
 
     @media (max-width: 480px) {
       .contact__checkbox-text {
-        font-size: 12px;
+        font-size: 9px;
       }
 
       .contact__submit {
-        width: 100%;
+        width: 120px;
+        padding: 8px 12px;
+        font-size: 11px;
       }
 
       .contact__scroll-top {
-        right: 1rem;
-        bottom: 1rem;
+        right: 10px;
+        bottom: 10px;
+        height: 20px;
+        width: 20px;
       }
 
       .contact__shadow {
-        max-width: 30%;
+        max-width: 25%;
         opacity: 0.3;
+      }
+      
+      .contact__title {
+        font-size: 26px;
+      }
+      
+      .contact__subtitle {
+        font-size: 16px;
+      }
+      
+      input, textarea {
+        font-size: 14px;
+        padding: 10px 15px;
       }
     }
     
     @media (max-width: 350px) {
-      /* Additional styles for very small screens if needed */
+      .contact__title {
+        font-size: 22px;
+      }
+      
+      .contact__subtitle {
+        font-size: 14px;
+      }
+      
+      .contact__submit {
+        width: 100px;
+        padding: 6px 10px;
+        font-size: 10px;
+      }
+      
+      .contact__checkbox-text {
+        font-size: 8px;
+      }
+      
+      input, textarea {
+        font-size: 11px;
+        padding: 8px 10px;
+      }
+      
+      .contact__scroll-top {
+        height: 16px;
+        width: 16px;
+      }
     }
+   
+   @media (max-width: 320px) {
+     .contact__title {
+       font-size: 20px;
+     }
+     
+     .contact__subtitle {
+       font-size: 13px;
+     }
+     
+     .contact__submit {
+       width: 90px;
+       padding: 5px 8px;
+       font-size: 9px;
+     }
+     
+     .contact__checkbox-text {
+       font-size: 7px;
+     }
+     
+     input, textarea {
+       font-size: 10px;
+       padding: 6px 8px;
+     }
+     
+     .contact__scroll-top {
+       height: 14px;
+       width: 14px;
+       bottom: 8px;
+       right: 8px;
+     }
+   }
   `],
     animations: [fadeInLeft, fadeInUp]
 })

@@ -71,14 +71,14 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
     }
 
     .footer__logo {
-      height: 80px;
+      height: 60px;
       cursor: pointer;
       margin-bottom: 0;
     }
 
     .footer__imprint {
       color: var(--color-text-primary);
-      font-size: 1rem;
+      font-size: 0.9rem;
       margin-top: -10px;
       text-align: left;
       margin-left: 30px;
@@ -90,7 +90,7 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
 
     .footer__center {
       color: var(--color-text-primary);
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .footer__social {
@@ -103,8 +103,8 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
       display: inline-block;
 
       img {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
       }
 
       &:hover {
@@ -116,9 +116,13 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
     }
 
     @media (max-width: 768px) {
+      .footer {
+        padding: 1.5rem 0;
+      }
+      
       .footer__container {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
         text-align: center;
       }
 
@@ -129,10 +133,66 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
       .footer__imprint {
         text-align: center;
         margin-top: 0.5rem;
+        margin-left: 0;
+        font-size: 0.8rem;
       }
 
       .footer__social {
-        gap: 1.5rem;
+        gap: 1.2rem;
+      }
+      
+      .footer__logo {
+        height: 50px;
+      }
+      
+      .footer__center {
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .footer {
+        padding: 1rem 0;
+      }
+      
+      .footer__container {
+        gap: 0.8rem;
+      }
+      
+      .footer__logo {
+        height: 40px;
+      }
+      
+      .footer__social-link img {
+        width: 18px;
+        height: 18px;
+      }
+      
+      .footer__social {
+        gap: 1rem;
+      }
+      
+      .footer__center {
+        font-size: 0.7rem;
+      }
+      
+      .footer__imprint {
+        font-size: 0.7rem;
+      }
+    }
+    
+    @media (max-width: 350px) {
+      .footer__logo {
+        height: 35px;
+      }
+      
+      .footer__social-link img {
+        width: 16px;
+        height: 16px;
+      }
+      
+      .footer__social {
+        gap: 0.8rem;
       }
     }
   `]
