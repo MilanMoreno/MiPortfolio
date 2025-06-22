@@ -18,7 +18,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
         <div class="nav__menu">
           <ul class="nav__list">
             <li *ngFor="let item of menuItems">
-              <a [routerLink]="['/']" [fragment]="item.fragment" class="nav__link">
+              <a class="nav__link" (click)="scrollToSection(item.fragment, $event)">
                 {{ item.label | translate }} 
               </a>
             </li>
@@ -51,7 +51,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
         <div class="nav__mobile-content">
           <ul class="nav__mobile-list">
             <li *ngFor="let item of menuItems">
-              <a [routerLink]="['/']" [fragment]="item.fragment" class="nav__mobile-link" (click)="closeMobileMenu()">
+              <a class="nav__mobile-link" (click)="scrollToSection(item.fragment, $event); closeMobileMenu()">
                 {{ item.label | translate }}
               </a>
             </li>
@@ -77,7 +77,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       top: 0;
       left: 0;
       width: 100%;
-     height: 90px;
+      height: 90px;
       background-color: var(--color-background-primary);
       z-index: 100;
     }
@@ -87,13 +87,13 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       align-items: center;
       justify-content: space-between;
       height: 100%;
-     padding: 0 1rem;
+      padding: 0 1rem;
       max-width: 1920px;
       margin: 0 auto;
     }
 
     .nav__logo {
-     height: 60px;
+      height: 60px;
       display: flex;
       align-items: center;
       text-decoration: none;
@@ -112,10 +112,11 @@ import { LanguageService } from '../../../shared/services/language/language.serv
 
     .nav__link {
       color: var(--color-text-primary);
-     font-size: 18px;
+      font-size: 18px;
       text-transform: uppercase;
       position: relative;
       text-decoration: none;
+      cursor: pointer;
 
       &::after {
         content: '';
@@ -241,6 +242,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       font-size: var(--font-size-heading-small);
       text-transform: uppercase;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .nav__mobile-language {
@@ -272,14 +274,14 @@ import { LanguageService } from '../../../shared/services/language/language.serv
     }
 
     @media (max-width: 768px) {
-     .nav {
-       height: 70px;
-     }
-     
-     .nav__logo {
-       height: 50px;
-     }
-     
+      .nav {
+        height: 70px;
+      }
+      
+      .nav__logo {
+        height: 50px;
+      }
+      
       .nav__menu,
       .nav__language {
         display: none;
@@ -288,57 +290,57 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       .nav__mobile-toggle {
         display: block;
       }
-     
-     .nav__mobile-link {
-       font-size: 20px;
-     }
-     
-     .nav__mobile-lang-btn {
-       padding: 0.4rem 0.8rem;
-       
-       img {
-         width: 20px;
-         height: 20px;
-       }
-     }
-   }
-   
-   @media (max-width: 480px) {
-     .nav {
-       height: 60px;
-     }
-     
-     .nav__logo {
-       height: 40px;
-     }
-     
-     .nav__mobile-link {
-       font-size: 18px;
-     }
-     
-     .nav__mobile-lang-btn {
-       padding: 0.3rem 0.6rem;
-       font-size: 12px;
-       
-       img {
-         width: 16px;
-         height: 16px;
-       }
-     }
-   }
-   
-   @media (max-width: 350px) {
-     .nav {
-       height: 50px;
-     }
-     
-     .nav__logo {
-       height: 35px;
-     }
-     
-     .nav__mobile-link {
-       font-size: 16px;
-     }
+      
+      .nav__mobile-link {
+        font-size: 20px;
+      }
+      
+      .nav__mobile-lang-btn {
+        padding: 0.4rem 0.8rem;
+        
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .nav {
+        height: 60px;
+      }
+      
+      .nav__logo {
+        height: 40px;
+      }
+      
+      .nav__mobile-link {
+        font-size: 18px;
+      }
+      
+      .nav__mobile-lang-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 12px;
+        
+        img {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+    
+    @media (max-width: 350px) {
+      .nav {
+        height: 50px;
+      }
+      
+      .nav__logo {
+        height: 35px;
+      }
+      
+      .nav__mobile-link {
+        font-size: 16px;
+      }
     }
   `]
 })
@@ -364,6 +366,39 @@ export class NavigationBarComponent {
     private languageService: LanguageService
   ) {
     translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
+  }
+
+  /**
+   * Smoothly scrolls to a section by ID
+   * @param sectionId - The ID of the target section
+   * @param event - The click event
+   */
+  scrollToSection(sectionId: string, event: Event): void {
+    event.preventDefault(); // Prevent default behavior
+    
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // Calculate offset for fixed header
+      const headerHeight = this.getHeaderHeight();
+      const elementPosition = element.offsetTop;
+      const offsetPosition = elementPosition - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  /**
+   * Get current header height based on screen size
+   */
+  private getHeaderHeight(): number {
+    const width = window.innerWidth;
+    if (width <= 350) return 50;
+    if (width <= 480) return 60;
+    if (width <= 768) return 70;
+    return 90;
   }
 
   switchLanguage(lang: string): void {

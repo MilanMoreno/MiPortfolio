@@ -29,33 +29,7 @@
   -webkit-user-drag: none;
 }
 
-/* Remove all button-like properties from GitHub links */
-a[href*="github.com"] {
-  display: inline-block !important;
-  background: none !important;
-  border: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  text-decoration: none !important;
-  transition: none !important;
-  transform: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-}
-
-a[href*="github.com"]:hover {
-  transform: none !important;
-  background: none !important;
-  box-shadow: none !important;
-}
-
-a[href*="github.com"] img {
-  transition: filter 0.3s ease !important;
-}
-
-a[href*="github.com"]:hover img {
-  filter: brightness(0) saturate(100%) invert(76%) sepia(15%) saturate(4614%) hue-rotate(71deg) brightness(102%) contrast(101%) !important;
-}
+/* REMOVED THE PROBLEMATIC GITHUB LINK RULES THAT WERE OVERRIDING YOUR BUTTON STYLES */
 
 html {
   scroll-behavior: smooth;
@@ -150,9 +124,6 @@ a {
   border-radius: 10px;
 }
 
-/* Note: :hover on pseudo-elements like ::-webkit-scrollbar-thumb is not standard and might not work consistently.
-   Consider alternative approaches if hover styling is crucial. */
-
 .text-center { text-align: center; }
 .hidden { display: none !important; }
 
@@ -175,58 +146,53 @@ a {
 /* Stil für die Trennlinien */
 .section-divider {
   width: 100%;
-  height: 2px; /* oder die von dir verwendete Höhe */
-  background-color: var(--color-accent-secondary); /* Using existing accent color */
-  margin: 50px 0; /* Abstand oben und unten, ändere diesen nach Bedarf */
+  height: 2px;
+  background-color: var(--color-accent-secondary);
+  margin: 50px 0;
   position: relative;
   left: 0;
   right: 0;
 }
 
-/* Wenn du ein Container-Element mit max-width verwendest, stelle sicher, dass die Linie darüber hinausgeht */
 .section-container {
   position: relative;
-  overflow: visible; /* Wichtig, damit die Linie nicht abgeschnitten wird */
+  overflow: visible;
 }
 
 .section-container .section-divider {
-  width: 100vw; /* Volle Breite des Viewports */
+  width: 100vw;
   position: relative;
   left: 50%;
-  transform: translateX(-50%); /* Zentrieren */
+  transform: translateX(-50%);
 }
 
 /* Responsive Regeln für kleine Bildschirme bis 300px */
 @media (max-width: 320px) {
-  /* Allgemeine Anpassungen */
   body {
-   font-size: 12px; /* Kleinere Schriftgröße für mobile Geräte */
+    font-size: 12px;
   }
 
   h1 {
-   font-size: 20px;
+    font-size: 20px;
   }
 
   h2 {
-   font-size: 18px;
+    font-size: 18px;
   }
 
-  /* Buttons richtig anzeigen */
   .btn, button {
-    width: auto; /* Anstatt fester Breite */
-   min-width: 80px; /* Mindestbreite für die Lesbarkeit */
-   padding: 6px 10px;
-   font-size: 12px;
-    white-space: nowrap; /* Verhindert Umbrechen des Textes */
+    width: auto;
+    min-width: 80px;
+    padding: 6px 10px;
+    font-size: 12px;
+    white-space: nowrap;
     display: inline-block;
   }
 
-  /* Spezielle Anpassungen für den Header */
   header {
     padding: 10px;
   }
 
-  /* Navigation vertikal ausrichten, wenn nötig */
   nav ul {
     display: flex;
     flex-direction: column;
@@ -237,7 +203,6 @@ a {
     margin: 5px 0;
   }
 
-  /* Container-Padding reduzieren */
   .container, section {
     padding-left: 10px;
     padding-right: 10px;

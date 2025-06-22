@@ -112,27 +112,33 @@ import { TranslateModule } from '@ngx-translate/core';
       padding: 10px 20px;
       border-radius: 10px;
       font-size: 16px;
+      font-weight: 400;
       transition: all 0.3s ease;
       text-decoration: none;
+      cursor: pointer;
 
       &--primary {
         width: 120px;
         background-color: var(--color-accent-secondary);
-        color: var(--color-text-primary);
+        color: white;
+        border: none;
 
         &:hover {
           background-color: var(--color-accent-primary);
+          transform: scale(1.1);
         }
       }
 
       &--secondary {
         width: 120px;
-       border: 2px solid var(--color-accent-primary);
-        color: var(--color-text-primary);
+        border: 1px solid var(--color-accent-secondary);
+        color: white;
         background-color: transparent;
 
         &:hover {
           background-color: var(--color-accent-primary);
+          transform: scale(1.1);
+          border-color: var(--color-accent-primary);
         }
       }
     }
@@ -245,7 +251,7 @@ import { TranslateModule } from '@ngx-translate/core';
       .project__button {
         padding: 6px 12px;
         font-size: 11px;
-       width: 70px;
+        width: 70px;
       }
     }
     
@@ -264,31 +270,31 @@ import { TranslateModule } from '@ngx-translate/core';
       }
       
       .project__button {
-       width: 60px;
+        width: 60px;
         padding: 5px 8px;
         font-size: 10px;
       }
     }
    
-   @media (max-width: 320px) {
-     .project__button {
-       width: 55px;
-       padding: 4px 6px;
-       font-size: 9px;
-     }
-     
-     .project__title {
-       font-size: 16px;
-     }
-     
-     .project__stack {
-       font-size: 11px;
-     }
-     
-     .project__description {
-       font-size: 10px;
-     }
-   }
+    @media (max-width: 320px) {
+      .project__button {
+        width: 55px;
+        padding: 4px 6px;
+        font-size: 9px;
+      }
+      
+      .project__title {
+        font-size: 16px;
+      }
+      
+      .project__stack {
+        font-size: 11px;
+      }
+      
+      .project__description {
+        font-size: 10px;
+      }
+    }
   `]
 })
 export class ProjectCardComponent {

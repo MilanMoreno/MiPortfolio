@@ -47,7 +47,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
   href="https://github.com/MilanMoreno" 
   target="_blank" 
   class="hero__social-link">
-  <img src="assets/img/github.png" alt="GitHub"> <!-- ← KEINE class hier -->
+  <img src="assets/img/github.png" alt="GitHub">
 </a><a 
   class="hero__social-link"
   (click)="copyEmail()">
@@ -129,14 +129,16 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .hero__image-shadow {
       position: absolute;
-      left: 0;
-      top: 0;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
-      background: url('/assets/img/hero-shadows.png') no-repeat;
+      background: url('/assets/img/hero-shadows.png') no-repeat center center;
       background-size: contain;
       z-index: 2;
       opacity: 0.8;
+      pointer-events: none;
     }
 
     .hero__intro {
@@ -341,6 +343,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         width: 100%;
         order: 1;
         flex-shrink: 0;
+        margin-top: 0;
       }
 
       .hero__text-container {
@@ -356,6 +359,14 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         height: 30vh;
         width: auto;
         max-width: 100%;
+      }
+
+      .hero__image-shadow {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
       }
 
       .hero__intro {
@@ -386,13 +397,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__email {
         display: none;
       }
-
-      .hero__image-shadow {
-        right: 0;
-        bottom: -50px;
-        width: 100%;
-        height: 100%;
-      }
     }
 
     @media (max-width: 600px) {
@@ -422,6 +426,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__scroll {
         font-size: 14px;
       }
+
+      .hero__image {
+        height: 25vh;
+      }
     }
 
     @media (max-width: 400px) {
@@ -444,7 +452,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__image {
-        height: 20vh;
+        height: 22vh;
       }
     }
    
@@ -468,7 +476,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
      }
 
      .hero__image {
-       height: 18vh;
+       height: 20vh;
      }
      
      .hero__social-link img {
