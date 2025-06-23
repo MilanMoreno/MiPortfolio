@@ -18,6 +18,29 @@
   --font-size-heading-small: 20px;
 }
 
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+html {
+  cursor: none !important;
+}
+
+body {
+  cursor: none !important;
+}
+
+
+button, a, input, select, textarea, 
+[role="button"], [type="button"], [type="submit"],
+.btn, .button, .link {
+  cursor: none !important;
+}
+
+
+*:hover {
+  cursor: none !important;
+}
 * {
   margin: 0;
   padding: 0;
@@ -28,8 +51,6 @@
   -webkit-user-select: none;
   -webkit-user-drag: none;
 }
-
-/* REMOVED THE PROBLEMATIC GITHUB LINK RULES THAT WERE OVERRIDING YOUR BUTTON STYLES */
 
 html {
   scroll-behavior: smooth;
@@ -47,6 +68,23 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+/* NAVIGATION BACKGROUND FIX - SAME AS HERO BACKGROUND */
+.nav {
+  background-color: var(--color-background-primary) !important;
+}
+
+.nav__container {
+  background-color: var(--color-background-primary) !important;
+}
+
+.nav__mobile-menu {
+  background-color: var(--color-background-primary) !important;
+}
+
+.nav__mobile-content {
+  background-color: var(--color-background-primary) !important;
 }
 
 .visually-hidden {
@@ -202,7 +240,22 @@ a {
   nav ul li {
     margin: 5px 0;
   }
+/* CURSOR FIX - Ganz unten in styles.scss einfügen */
+* {
+  cursor: none !important;
+}
 
+button {
+  cursor: none !important;
+}
+
+a {
+  cursor: none !important;
+}
+
+.send-message-button {
+  cursor: none !important;
+}
   .container, section {
     padding-left: 10px;
     padding-right: 10px;

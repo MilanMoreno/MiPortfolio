@@ -78,7 +78,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       left: 0;
       width: 100%;
       height: 90px;
-      background-color: var(--color-background-primary);
+      background-color: #141D2F !important;
       z-index: 100;
     }
 
@@ -90,6 +90,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       padding: 0 1rem;
       max-width: 1920px;
       margin: 0 auto;
+      background-color: #141D2F !important;
     }
 
     .nav__logo {
@@ -212,7 +213,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       left: 0;
       width: 100%;
       height: calc(100vh - var(--header-height));
-      background-color: var(--color-background-primary);
+      background-color: #141D2F !important;
       transform: translateX(100%);
       transition: transform 0.3s ease;
       z-index: 99;
@@ -228,6 +229,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      background-color: #141D2F !important;
     }
 
     .nav__mobile-list {
@@ -276,6 +278,11 @@ import { LanguageService } from '../../../shared/services/language/language.serv
     @media (max-width: 768px) {
       .nav {
         height: 70px;
+        background-color: #141D2F !important;
+      }
+      
+      .nav__container {
+        background-color: #141D2F !important;
       }
       
       .nav__logo {
@@ -303,11 +310,24 @@ import { LanguageService } from '../../../shared/services/language/language.serv
           height: 20px;
         }
       }
+
+      .nav__mobile-menu {
+        background-color: #141D2F !important;
+      }
+
+      .nav__mobile-content {
+        background-color: #141D2F !important;
+      }
     }
     
     @media (max-width: 480px) {
       .nav {
         height: 60px;
+        background-color: #141D2F !important;
+      }
+      
+      .nav__container {
+        background-color: #141D2F !important;
       }
       
       .nav__logo {
@@ -327,11 +347,24 @@ import { LanguageService } from '../../../shared/services/language/language.serv
           height: 16px;
         }
       }
+
+      .nav__mobile-menu {
+        background-color: #141D2F !important;
+      }
+
+      .nav__mobile-content {
+        background-color: #141D2F !important;
+      }
     }
     
     @media (max-width: 350px) {
       .nav {
         height: 50px;
+        background-color: #141D2F !important;
+      }
+      
+      .nav__container {
+        background-color: #141D2F !important;
       }
       
       .nav__logo {
@@ -340,6 +373,37 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       
       .nav__mobile-link {
         font-size: 16px;
+      }
+
+      .nav__mobile-menu {
+        background-color: #141D2F !important;
+      }
+
+      .nav__mobile-content {
+        background-color: #141D2F !important;
+      }
+    }
+
+    /* Mobile Toggle bei kleinen Bildschirmen anpassen */
+    @media (max-width: 350px) {
+      .nav__mobile-toggle {
+        width: 26px !important;  /* Etwas kleiner */
+        height: 22px !important;  /* Etwas kleiner */
+        
+        span {
+          height: 1.8px !important;  /* Dünnere Linien */
+        }
+      }
+    }
+
+    @media (max-width: 320px) {
+      .nav__mobile-toggle {
+        width: 22px !important;  /* Noch kleiner */
+        height: 18px !important;  /* Noch kleiner */
+        
+        span {
+          height: 1.5px !important;  /* Noch dünnere Linien */
+        }
       }
     }
   `]
@@ -378,13 +442,23 @@ export class NavigationBarComponent {
     
     const element = document.getElementById(sectionId);
     if (element) {
-      // Calculate offset for fixed header
-      const headerHeight = this.getHeaderHeight();
+      // Get element position
       const elementPosition = element.offsetTop;
-      const offsetPosition = elementPosition - headerHeight;
+      
+      // Ensure we scroll at least 150px down from current position
+      const currentPosition = window.pageYOffset;
+      const minScrollDistance = 150;
+      
+      // Calculate target position
+      let targetPosition = elementPosition;
+      
+      // If the element is less than 150px away, scroll to 150px from current position
+      if (elementPosition - currentPosition < minScrollDistance) {
+        targetPosition = currentPosition + minScrollDistance;
+      }
 
       window.scrollTo({
-        top: offsetPosition,
+        top: targetPosition,
         behavior: 'smooth'
       });
     }

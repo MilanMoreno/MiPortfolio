@@ -73,7 +73,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         {{ 'HERO.EMAIL_COPIED' | translate }}
       </div>
       
-      <div class="hero__vector-shape"></div>
+
     </section>
   `,
     styles: [`
@@ -81,7 +81,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       position: relative;
       height: 100vh;
       min-height: 700px;
-      background-color: var(--color-background-primary);
+      background-color: #141D2F;
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -200,18 +200,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       background-color: var(--color-accent-secondary);
     }
 
-    .hero__vector-shape {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('/assets/img/Vector shape hero.png') no-repeat;
-      background-size: cover;
-      background-position: bottom center;
-      z-index: 1;
-      opacity: 0.8;
-    }
+
 
     .hero__footer {
       display: flex;
@@ -313,6 +302,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__image {
         height: 65vh;
       }
+
+
     }
 
     @media (max-width: 900px) {
@@ -397,6 +388,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__email {
         display: none;
       }
+
+
     }
 
     @media (max-width: 600px) {
@@ -430,6 +423,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__image {
         height: 25vh;
       }
+
+
     }
 
     @media (max-width: 400px) {
@@ -454,40 +449,62 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__image {
         height: 22vh;
       }
+
+
+    }
+
+    /* WICHTIG: Diese Media Query muss AUSSERHALB der anderen stehen! */
+    @media (max-width: 350px) {
+      .hero__line {
+        width: 50px !important; /* Halb so lang */
+      }
+      
+      .hero__line-container {
+        width: 50px !important; /* Container auch anpassen */
+      }
     }
    
-   @media (max-width: 320px) {
-     .hero__name {
-       font-size: 18px;
-     }
+    @media (max-width: 320px) {
+      .hero__name {
+        font-size: 18px;
+      }
 
-     .hero__title {
-       font-size: 14px;
-     }
+      .hero__title {
+        font-size: 14px;
+      }
 
-     .hero__intro-text {
-       font-size: 11px;
-     }
+      .hero__intro-text {
+        font-size: 11px;
+      }
 
-     .hero__cta {
-       width: 70px;
-       height: 25px;
-       font-size: 10px;
-     }
+      .hero__cta {
+        width: 70px;
+        height: 25px;
+        font-size: 10px;
+      }
 
-     .hero__image {
-       height: 20vh;
-     }
-     
-     .hero__social-link img {
-       width: 20px;
-       height: 20px;
-     }
-     
-     .hero__scroll {
-       font-size: 12px;
-     }
-   }
+      .hero__image {
+        height: 20vh;
+      }
+      
+      .hero__social-link img {
+        width: 20px;
+        height: 20px;
+      }
+      
+      .hero__scroll {
+        font-size: 12px;
+      }
+
+      /* Noch kürzer bei 320px */
+      .hero__line {
+        width: 40px !important;
+      }
+      
+      .hero__line-container {
+        width: 40px !important;
+      }
+    }
   `],
     animations: [fadeInLeft, fadeInUp]
 })
