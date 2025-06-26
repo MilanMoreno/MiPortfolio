@@ -65,11 +65,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     {{ 'HERO.EMAIL_COPIED' | translate }}
   </div>
 </section>
-
-
-
-
-
   `,
     styles: [`
     .hero {
@@ -334,16 +329,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         font-size: 36px;
       }
 
-
-     
-  .hero__vector-shape {
-    width: 120%;
-    height: 157vh;
-    bottom: -40%;
-    left: 0%;
-    transform: translateY(200px);
-  
-  }
+      .hero__vector-shape {
+        width: 120%;
+        height: 157vh;
+        bottom: -40%;
+        left: 0%;
+        transform: translateY(200px);
+      }
     }
 
     @media (max-width: 1200px) {
@@ -356,17 +348,15 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         font-size: 32px;
       }
 
-      /* Vector für kleinere Bildschirme anpassen */  .hero__vector-shape {
-    width: 120%;
-    height: 157vh;
-    bottom: -40%;
-    left: 0%;
-    transform: translateY(200px);
-  }
-}
-
-
-    
+      /* Vector für kleinere Bildschirme anpassen */  
+      .hero__vector-shape {
+        width: 120%;
+        height: 157vh;
+        bottom: -40%;
+        left: 0%;
+        transform: translateY(200px);
+      }
+    }
 
     @media (max-width: 1000px) {
       /* Letzte Anpassungen bevor Vector verschwindet */
@@ -377,7 +367,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__title {
         font-size: 30px;
       }
-  .hero__vector-shape {
+
+      .hero__vector-shape {
         width: 115%;
         height: 120vh;
         bottom: -30%;
@@ -387,22 +378,28 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     @media (max-width: 900px) {
-.hero__vector-shape {
-  width: 115%;
-  height: 100px;
-  bottom: auto;
-  top: auto;
-  left: 0;
-  transform: translateY(0);
-  position: relative; /* Wichtig: im Inhaltsfluss */
-  margin-top: 20px; /* Abstand zum Bild */
-  z-index: 1; /* Hinter dem Text, aber vor dem Hintergrund */
-  //background-color: ; /* Testfarbe zum Sichtbarmachen */
-  opacity: 0.5; /* Halbtransparent, damit du den Effekt siehst */
-}
+      /* NUR MOBILE ÄNDERUNGEN: Vector Shape direkt unter dem Bild positionieren */
+      .hero__vector-shape {
+        position: absolute;
+        width: 100%;
+        height: 120px; /* Höher damit sie die Ellenbogen verdeckt */
+        bottom: auto;
+        top: 50%; /* In der Mitte positioniert */
+        left: 0;
+        transform: translateY(-20%); /* Leicht nach oben versetzt um Ellenbogen zu verdecken */
+        z-index: 4; /* Über dem Bild damit es die Ellenbogen verdeckt */
+        opacity: 1;
+        pointer-events: none;
+        background-color: transparent; /* Transparent damit PNG sichtbar ist */
+      }
 
+      /* Vector Image mit der richtigen Farbe #192336 */
+      .hero__vector-image {
+        display: block; /* Bild wieder anzeigen */
+        /* Filter für Farbe #192336 (gleiche wie Desktop) */
+        filter: brightness(0) saturate(100%) invert(15%) sepia(12%) saturate(1150%) hue-rotate(192deg) brightness(95%) contrast(88%);
+      }
 
-  
       .hero {
         height: 100vh;
         min-height: 100vh;
@@ -433,11 +430,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__content {
         flex-direction: column;
         padding: 20px;
-        gap: 2rem;
+        gap: 0; /* Kein Gap - Vector Shape sitzt zwischen Bild und Text */
         margin-top: 0px;
         flex: 1;
         justify-content: center;
         align-items: center;
+        position: relative;
+        z-index: 5; /* Über der Vector Shape */
       }
 
       .hero__left-container {
@@ -446,17 +445,21 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         flex-shrink: 0;
         margin-top: 0;
         position: relative;
+        margin-bottom: 0; /* Kein Abstand nach unten */
       }
 
       .hero__text-wrapper {
         width: 100%;
-        order: 2;
+        order: 3; /* Nach Vector Shape */
         flex-shrink: 0;
         margin-left: 0; /* Margin-left auf Mobile zurücksetzen */
         flex-direction: column; /* Vertikal auf Mobile */
         align-items: center;
         text-align: center;
         gap: 1rem;
+        position: relative;
+        z-index: 6; /* Text soll über der Vector Shape stehen */
+        margin-top: 20px; /* Abstand zur Vector Shape */
       }
 
       .hero__name-container {
@@ -505,16 +508,19 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     @media (max-width: 600px) {
-    .hero__vector-shape {
-    position: relative;
-    width: 115%;
-    height: 100px;
-    bottom: auto;
-    top: auto;
-    left: 0;
-    transform: translateY(0);
-    margin-top: 20px;
-  }
+      /* Vector Shape kleiner für kleinere Bildschirme */
+      .hero__vector-shape {
+        height: 100px; /* Kleinere Höhe aber immer noch genug um Ellenbogen zu verdecken */
+        background-color: transparent; /* Transparent für PNG */
+        transform: translateY(-20%); /* Position beibehalten */
+      }
+
+      /* Vector Image behalten mit ursprünglicher Farbe */
+      .hero__vector-image {
+        display: block; /* Bild anzeigen */
+        /* Kein Filter - ursprüngliche PNG-Farbe verwenden */
+      }
+
       .hero__name {
         font-size: 45px;
       }
@@ -548,8 +554,17 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     @media (max-width: 400px) {
-      /* Vector bleibt ausgeblendet */
+      /* Vector Shape noch kleiner */
       .hero__vector-shape {
+        height: 80px; /* Noch kleinere Höhe aber ausreichend */
+        background-color: transparent; /* Transparent für PNG */
+        transform: translateY(-20%); /* Position beibehalten */
+      }
+
+      /* Vector Image behalten mit ursprünglicher Farbe */
+      .hero__vector-image {
+        display: block; /* Bild anzeigen */
+        /* Kein Filter - ursprüngliche PNG-Farbe verwenden */
       }
 
       .hero__name {
@@ -577,9 +592,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     /* WICHTIG: Diese Media Query muss AUSSERHALB der anderen stehen! */
     @media (max-width: 350px) {
-  
-    
-
       .hero__line {
         width: 50px !important; /* Halb so lang */
       }
@@ -590,9 +602,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
    
     @media (max-width: 320px) {
-     
-    
-
       .hero__name {
         font-size: 18px;
       }
@@ -634,14 +643,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
     }
 
-
-
-
-
-
-
-
-
+    /* NEU: Vector Shape unter 280px verstecken */
+    @media (max-width: 280px) {
+      .hero__vector-shape {
+        display: none;
+      }
+    }
   `],
     animations: [fadeInLeft, fadeInUp]
 })
