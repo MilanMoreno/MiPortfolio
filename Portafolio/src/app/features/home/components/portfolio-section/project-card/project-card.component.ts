@@ -73,7 +73,7 @@ import { TranslateModule } from '@ngx-translate/core';
     }
 
     .project__title {
-      font-size: 24px;
+      font-size: 32px;
       color: var(--color-accent-secondary);
       font-weight: 700;
       margin-bottom: 1rem;
@@ -83,7 +83,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
     .project__stack {
       color: var(--color-accent-primary);
-      font-size: 18px;
+      font-size: 23px;
       margin-bottom: 1rem;
       position: relative;
       z-index: 15;

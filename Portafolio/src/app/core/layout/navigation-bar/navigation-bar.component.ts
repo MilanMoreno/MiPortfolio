@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language/language.service';
 
@@ -427,7 +427,8 @@ export class NavigationBarComponent {
 
   constructor(
     private translateService: TranslateService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private router: Router
   ) {
     translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
   }
@@ -440,28 +441,70 @@ export class NavigationBarComponent {
   scrollToSection(sectionId: string, event: Event): void {
     event.preventDefault(); // Prevent default behavior
     
-    const element = document.getElementById(sectionId);
-    if (element) {
-      // Get element position
-      const elementPosition = element.offsetTop;
-      
-      // Ensure we scroll at least 150px down from current position
-      const currentPosition = window.pageYOffset;
-      const minScrollDistance = 150;
-      
-      // Calculate target position
-      let targetPosition = elementPosition;
-      
-      // If the element is less than 150px away, scroll to 150px from current position
-      if (elementPosition - currentPosition < minScrollDistance) {
-        targetPosition = currentPosition + minScrollDistance;
-      }
-
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
+    // Check if we're on the main page by checking the current route
+    const currentUrl = this.router.url;
+    const isOnMainPage = currentUrl === '/' || currentUrl === '';
+    
+    if (isOnMainPage) {
+      // We're on the main page, scroll to the section
+      this.scrollToElementById(sectionId);
+    } else {
+      // We're not on the main page, navigate to the main page first
+      this.router.navigate(['/']).then(() => {
+        // Use a more reliable method to wait for the page to load
+        this.waitForElementAndScroll(sectionId);
       });
     }
+  }
+  
+  /**
+   * Scrolls to an element by its ID
+   * @param sectionId - The ID of the target section
+   */
+  private scrollToElementById(sectionId: string): void {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      this.scrollToElement(element);
+    }
+  }
+  
+  /**
+   * Waits for an element to be available and then scrolls to it
+   * @param sectionId - The ID of the target section
+   */
+  private waitForElementAndScroll(sectionId: string, maxAttempts: number = 10): void {
+    let attempts = 0;
+    
+    const checkElement = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        // Element found, scroll to it
+        setTimeout(() => this.scrollToElement(element), 50);
+      } else if (attempts < maxAttempts) {
+        // Element not found yet, try again
+        attempts++;
+        setTimeout(checkElement, 100);
+      }
+    };
+    
+    checkElement();
+  }
+  
+  /**
+   * Helper method to scroll to an element
+   * @param element - The element to scroll to
+   */
+  private scrollToElement(element: HTMLElement): void {
+    // Calculate the header height to offset the scroll position
+    const headerHeight = this.getHeaderHeight();
+    
+    // Get element position and subtract header height for proper positioning
+    const elementPosition = element.offsetTop - headerHeight - 20; // 20px additional padding
+    
+    window.scrollTo({
+      top: Math.max(0, elementPosition), // Ensure we don't scroll to negative position
+      behavior: 'smooth'
+    });
   }
 
   /**

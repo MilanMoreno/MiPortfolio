@@ -69,6 +69,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       background-color: var(--color-background-primary);
       min-height: 100vh;
       padding: 2rem 0;
+      z-index: 10; /* Wichtig: About Section über dem Vector */
     }
 
     .about__container {
@@ -77,6 +78,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 100%;
       max-width: 1200px;
       padding: 0 2rem;
+      position: relative;
+      z-index: 10; /* Wichtig: Container über dem Vector */
     }
 
     .about__content {
@@ -85,6 +88,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       align-items: center;
       gap: 4rem;
       width: 100%;
+      position: relative;
+      z-index: 10; /* Wichtig: Content über dem Vector */
     }
 
     .about__text {
@@ -93,7 +98,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .about__heading {
-      font-size: 36px;
+      font-size: 90px;
       color: var(--color-text-primary);
       margin-bottom: 2rem;
     }

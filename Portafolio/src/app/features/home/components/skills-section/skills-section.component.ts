@@ -128,7 +128,7 @@ interface Skill {
     }
 
     .skills__title {
-      font-size: 60px;
+      font-size: 90px;
       color: var(--color-text-primary);
       margin: 0;
     }

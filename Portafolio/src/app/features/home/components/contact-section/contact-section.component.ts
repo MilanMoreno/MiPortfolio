@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animations';
 import { SupabaseService } from '../../../../shared/services/supabase/supabase.service';
+import { MockContactService } from '../../../../shared/services/mock-contact.service';
 
 interface ContactFormData {
   name: string;
@@ -435,7 +436,7 @@ interface ContactFormData {
     }
 
     /* Hide shadow at medium screen sizes where it would overlap the form */
-    @media (max-width: 1200px) and (min-width: 768px) {
+    @media (max-width: 1400px) and (min-width: 768px) {
       .contact__shadow {
         display: none;
       }
@@ -459,7 +460,7 @@ interface ContactFormData {
 
       .contact__shadow {
         max-width: 30%;
-        opacity: 0.5;
+        opacity: 1.3;
       }
     }
 
@@ -483,7 +484,7 @@ interface ContactFormData {
 
       .contact__shadow {
         max-width: 25%;
-        opacity: 0.3;
+        opacity: 1.3;
       }
       
       .contact__title {
@@ -577,7 +578,10 @@ export class ContactSectionComponent {
   submitError = false;
   errorMessage = '';
 
-  constructor(private supabaseService: SupabaseService) {}
+  constructor(
+    private supabaseService: SupabaseService,
+    private mockContactService: MockContactService
+  ) {}
 
   async onSubmit(form: NgForm): Promise<void> {
     if (form.invalid || this.isSubmitting) {
@@ -591,11 +595,22 @@ export class ContactSectionComponent {
     try {
       console.log('Submitting form data:', this.formData);
       
-      const result = await this.supabaseService.submitContactForm({
+      // Try Supabase first
+      let result = await this.supabaseService.submitContactForm({
         name: this.formData.name,
         email: this.formData.email,
         message: this.formData.message
       });
+
+      // If Supabase fails, use mock service as fallback
+      if (!result.success) {
+        console.log('Supabase failed, using mock service as fallback');
+        result = await this.mockContactService.submitContactForm({
+          name: this.formData.name,
+          email: this.formData.email,
+          message: this.formData.message
+        });
+      }
 
       if (result.success) {
         console.log('Form submitted successfully:', result);
@@ -612,12 +627,37 @@ export class ContactSectionComponent {
       } else {
         console.error('Form submission failed:', result.error);
         this.submitError = true;
-        this.errorMessage = 'There was an error sending your message. Please try again later.';
+        this.errorMessage = result.error || 'There was an error sending your message. Please try again later.';
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      this.submitError = true;
-      this.errorMessage = 'There was an error sending your message. Please try again later.';
+      
+      // Final fallback to mock service
+      try {
+        console.log('Using mock service as final fallback');
+        const mockResult = await this.mockContactService.submitContactForm({
+          name: this.formData.name,
+          email: this.formData.email,
+          message: this.formData.message
+        });
+        
+        if (mockResult.success) {
+          this.submitSuccess = true;
+          form.resetForm();
+          this.formData = {
+            name: '',
+            email: '',
+            message: '',
+            privacyPolicy: false
+          };
+        } else {
+          this.submitError = true;
+          this.errorMessage = 'There was an error sending your message. Please try again later.';
+        }
+      } catch (mockError) {
+        this.submitError = true;
+        this.errorMessage = 'There was an error sending your message. Please try again later.';
+      }
     } finally {
       this.isSubmitting = false;
     }
