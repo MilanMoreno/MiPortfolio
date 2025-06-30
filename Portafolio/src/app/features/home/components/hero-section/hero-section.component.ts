@@ -13,6 +13,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     <div class="hero__left-container">
       <img class="hero__image" src="assets/img/hero.png" alt="Hero image">
       <div class="hero__image-shadow"></div>
+      
+      <!-- Mobile Vector Shape - only visible under 900px -->
+      <div class="hero__mobile-vector">
+        <img src="assets/img/Vector shape hero.png" alt="Vector Shape" class="hero__mobile-vector-image">
+      </div>
     </div>
 
     <div class="hero__text-wrapper">
@@ -33,7 +38,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     </div>
   </div>
 
-  <!-- Desktop Vector Shape bleibt hier -->
+  <!-- Desktop Vector Shape - stays above 900px -->
   <div class="hero__vector-shape">
     <img src="assets/img/Vector shape hero.png" alt="Vector Shape" class="hero__vector-image">
   </div>
@@ -74,33 +79,33 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       background-color: #141D2F;
       display: flex;
       flex-direction: column;
-      overflow: visible; /* Wichtig: overflow ändern damit Vector sichtbar ist */
+      overflow: visible;
       padding-top: var(--header-height);
       box-sizing: border-box;
     }
 
     .hero__content {
       display: flex;
-      justify-content: flex-start; /* Links ausrichten statt space-between */
+      justify-content: flex-start;
       align-items: center;
       flex: 1;
       width: 100%;
-      padding: 0 50px; /* Weniger Padding für mehr Platz */
+      padding: 0 50px;
       margin-top: calc(-1 * var(--header-height));
       position: relative;
       z-index: 3;
-      gap: 2rem; /* Gap zwischen Bild und Text */
+      gap: 2rem;
     }
 
     .hero__left-container {
       position: relative;
-      width: auto; /* Automatische Breite */
+      width: auto;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 2;
       margin-top: 80px;
-      flex-shrink: 0; /* Container soll nicht schrumpfen */
+      flex-shrink: 0;
     }
 
     .hero__image {
@@ -124,76 +129,95 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       pointer-events: none;
     }
 
-    /* Vector Shape - strategisch positioniert um Arme/Ellenbogen zu verdecken */
+    /* Mobile Vector Shape - full-width curtain that covers everything */
+    .hero__mobile-vector {
+      display: none;
+      position: absolute;
+      bottom: -40px; /* Position it to extend below the image */
+      left: -50%; /* Start much further to the left */
+      right: -50%; /* Extend much further to the right */
+      transform: translateX(10%) rotate(2deg); /* Slight rotation for curve effect */
+      width: 200%; /* Much wider - like a full curtain */
+      max-width: none; /* Remove max-width limitation */
+      height: 100px; /* Taller for better coverage */
+      z-index: 4; /* Above the hero image */
+      pointer-events: none;
+    }
+
+    .hero__mobile-vector-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Fill the container while maintaining aspect ratio */
+      object-position: center;
+    }
+
+    /* Desktop Vector Shape - keeps existing behavior above 900px */
     .hero__vector-shape {
       position: absolute;
-      bottom: -60%; /* Höher positioniert damit Vector die Arme schneidet */
-      left: -10%; /* Leicht nach links verschoben */
-      width: 120%; /* Breiter für bessere Abdeckung */
-      height: 180vh; /* Angepasste Höhe */
-      z-index: 4; /* Höher als das Bild (z-index: 3) damit es vor dem Bild liegt */
+      bottom: -60%;
+      left: -10%;
+      width: 120%;
+      height: 180vh;
+      z-index: 4;
       pointer-events: none;
       overflow: visible;
-      transform: translateY(250px); /* 250px weiter nach unten verschieben */
+      transform: translateY(250px);
     }
 
     .hero__vector-image {
       position: absolute;
       top: 0;
-      padding-bottom:20px;
+      padding-bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
       height: 100%;
       object-fit: contain;
-      opacity: 1; /* 100% undurchsichtig - vollständige Verdeckung */
+      opacity: 1;
     }
 
-    /* Neuer Wrapper für "I am" + Name/Titel */
     .hero__text-wrapper {
       display: flex;
       align-items: center;
-      gap: 20px; /* Abstand zwischen "I am" und Name/Titel */
-      margin-left: -50px; /* Ganzer Text-Block nach links */
+      gap: 20px;
+      margin-left: -50px;
       z-index: 3;
     }
 
-    /* "I am" Text direkt vor Name+Titel */
     .hero__intro-text {
       transform: rotate(-90deg);
       font-size: 32px;
       color: var(--color-text-primary);
       white-space: nowrap;
-      flex-shrink: 0; /* Soll nicht schrumpfen */
+      flex-shrink: 0;
     }
 
-    /* WICHTIG: Name+Titel Container mit fester Größe wie bei Dominik */
     .hero__name-container {
       display: flex;
       flex-direction: column;
-      gap: 5px; /* Reduzierter Gap zwischen Name und Titel */
-      max-width: 718px; /* Maximale Breite wie bei Dominik */
-      max-height: 172px; /* Maximale Höhe wie bei Dominik */
-      overflow: visible; /* Sichtbar lassen statt hidden */
+      gap: 5px;
+      max-width: 718px;
+      max-height: 172px;
+      overflow: visible;
     }
 
     .hero__name {
       margin: 0;
-      line-height: 1.1; /* Reduzierte line-height für kompakteren Look */
-      font-size: 72px; /* Reduzierte Schriftgröße damit es in 172px passt */
+      line-height: 1.1;
+      font-size: 72px;
       color: var(--color-text-primary);
-      font-weight: 700; /* Bold wie bei Dominik */
-      white-space: nowrap; /* Text bleibt in einer Zeile */
+      font-weight: 700;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
     .hero__title {
       color: var(--color-accent-secondary);
-      font-size: 42px; /* Reduzierte Schriftgröße für bessere Proportionen */
+      font-size: 42px;
       margin: 0;
-      line-height: 1.1; /* Kompakte line-height */
-      font-weight: 400; /* Normal weight wie bei Dominik */
+      line-height: 1.1;
+      font-weight: 400;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -216,6 +240,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       font-weight: 700;
       text-decoration: none;
       transition: all 0.3s ease;
+      position: relative;
+      z-index: 35;
     }
 
     .hero__cta:hover {
@@ -257,10 +283,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .hero__social-link {
       display: inline-block;
-    }
-
-    .hero__social-link:hover {
-      /* No transform or button-like behavior */
     }
 
     .hero__social-link:hover img {
@@ -307,7 +329,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     @media (max-width: 1300px) {
-      /* Vector bleibt bis 900px sichtbar - nur andere Anpassungen */
       .hero__content {
         padding: 0 50px;
       }
@@ -317,10 +338,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__image {
-        height: 65vh;
+        height: 46vh;
       }
 
-      /* Name+Titel für kleinere Screens anpassen */
       .hero__name {
         font-size: 60px;
       }
@@ -331,7 +351,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .hero__vector-shape {
         width: 120%;
-        height: 157vh;
+        height: 160vh;
         bottom: -40%;
         left: 0%;
         transform: translateY(200px);
@@ -339,7 +359,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     @media (max-width: 1200px) {
-      /* Weitere Anpassungen für 1200px und kleiner */
       .hero__name {
         font-size: 55px;
       }
@@ -348,10 +367,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         font-size: 32px;
       }
 
-      /* Vector für kleinere Bildschirme anpassen */  
       .hero__vector-shape {
         width: 120%;
-        height: 157vh;
+        height: 170vh;
         bottom: -40%;
         left: 0%;
         transform: translateY(200px);
@@ -359,7 +377,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     @media (max-width: 1000px) {
-      /* Letzte Anpassungen bevor Vector verschwindet */
       .hero__name {
         font-size: 50px;
       }
@@ -369,37 +386,26 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__vector-shape {
-        width: 115%;
-        height: 120vh;
-        bottom: -30%;
-        left: 0.0%;
-        transform: translateY(161px);
+        width: 127%;
+        height: 168vh;
+        bottom: -40%;
+        left: 0%;
+        transform: translateY(200px);
       }
     }
 
+    /* Mobile layout - show mobile vector, hide desktop vector */
     @media (max-width: 900px) {
-      /* NUR MOBILE ÄNDERUNGEN: Vector Shape direkt unter dem Bild positionieren */
+      /* Hide desktop vector shape */
       .hero__vector-shape {
-        position: absolute;
-        width: 100%;
-        height: 120px; /* Höher damit sie die Ellenbogen verdeckt */
-        bottom: auto;
-        top: 50%; /* In der Mitte positioniert */
-        left: 0;
-        transform: translateY(-20%); /* Leicht nach oben versetzt um Ellenbogen zu verdecken */
-        z-index: 4; /* Über dem Bild damit es die Ellenbogen verdeckt */
-        opacity: 1;
-        pointer-events: none;
-        background-color: transparent; /* Transparent damit PNG sichtbar ist */
+        display: none;
       }
 
-      /* Vector Image mit der richtigen Farbe #192336 */
-      .hero__vector-image {
-        display: block; /* Bild wieder anzeigen */
-        /* Filter für Farbe #192336 (gleiche wie Desktop) */
-        filter: brightness(0) saturate(100%) invert(15%) sepia(12%) saturate(1150%) hue-rotate(192deg) brightness(95%) contrast(88%);
+      /* Show mobile vector shape */
+      .hero__mobile-vector {
+        display: flex;
       }
-
+      
       .hero {
         height: 100vh;
         min-height: 100vh;
@@ -411,11 +417,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .hero__name { 
         font-size: 45px;
-        white-space: normal; /* Text kann umbrechen auf Mobile */
+        white-space: normal;
       }
 
       .hero__title {
-        font-size: 29px;
+        font-size: 26px;
         white-space: normal;
       }
 
@@ -430,13 +436,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__content {
         flex-direction: column;
         padding: 20px;
-        gap: 0; /* Kein Gap - Vector Shape sitzt zwischen Bild und Text */
+        gap: 1rem; 
         margin-top: 0px;
         flex: 1;
         justify-content: center;
         align-items: center;
         position: relative;
-        z-index: 5; /* Über der Vector Shape */
+        z-index: 50;
       }
 
       .hero__left-container {
@@ -445,38 +451,41 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         flex-shrink: 0;
         margin-top: 0;
         position: relative;
-        margin-bottom: 0; /* Kein Abstand nach unten */
+        z-index: 2;
       }
 
       .hero__text-wrapper {
         width: 100%;
-        order: 3; /* Nach Vector Shape */
+        order: 2; 
         flex-shrink: 0;
-        margin-left: 0; /* Margin-left auf Mobile zurücksetzen */
-        flex-direction: column; /* Vertikal auf Mobile */
+        margin-left: 0; 
+        flex-direction: column; 
         align-items: center;
         text-align: center;
-        gap: 1rem;
+        gap: 0rem;
         position: relative;
-        z-index: 6; /* Text soll über der Vector Shape stehen */
-        margin-top: 20px; /* Abstand zur Vector Shape */
+        z-index: 100; 
+        margin-top: 0px; 
       }
 
       .hero__name-container {
-        max-width: 100%; /* Volle Breite auf Mobile */
-        max-height: none; /* Keine Höhenbegrenzung auf Mobile */
+        max-width: 100%; 
+        max-height: none; 
         align-items: center;
+        position: relative;
+        z-index: 30;
       }
 
-      /* "I am" Text für Mobile anpassen */
       .hero__intro-text {
-        transform: none; /* Keine Rotation auf Mobile */
+        transform: none; 
         font-size: 24px;
+        position: relative;
+        z-index: 30;
       }
 
       .hero__image {
-        height: 30vh;
-        width: auto;
+        height: 44vh;
+        width: 55vh;
         max-width: 100%;
       }
 
@@ -485,7 +494,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         top: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
-        height: 100%;
+        height: 150%;
       }
 
       .hero__footer {
@@ -493,8 +502,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         bottom: auto;      
         left: auto;
         right: auto;
-        padding: 0 20px;
-        height: 80px;
+        padding: 0 0px;
+        height: 92px;
         background-color: transparent;
         backdrop-filter: none;
         z-index: 10;
@@ -508,145 +517,119 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     @media (max-width: 600px) {
-      /* Vector Shape kleiner für kleinere Bildschirme */
-      .hero__vector-shape {
-        height: 100px; /* Kleinere Höhe aber immer noch genug um Ellenbogen zu verdecken */
-        background-color: transparent; /* Transparent für PNG */
-        transform: translateY(-20%); /* Position beibehalten */
-      }
-
-      /* Vector Image behalten mit ursprünglicher Farbe */
-      .hero__vector-image {
-        display: block; /* Bild anzeigen */
-        /* Kein Filter - ursprüngliche PNG-Farbe verwenden */
-      }
-
       .hero__name {
-        font-size: 45px;
+        font-size: 40px;
       }
 
       .hero__title {
-        font-size: 23px;
+        font-size: 24px;
       }
 
       .hero__intro-text {
-        font-size: 14px;
-      }
-
-      .hero__cta {
-        width: 100px;
-        height: 35px;
-        font-size: 16px;
-      }
-
-      .hero__social-link img {
-        width: 25px;
-        height: 25px;
-      }
-
-      .hero__scroll {
-        font-size: 14px;
+        font-size: 24px;
       }
 
       .hero__image {
-        height: 25vh;
+        height: 40vh;
+      }
+
+      .hero__mobile-vector {
+        width: 220%; /* Even wider for smaller screens */
+        max-width: none;
+        height: 90px;
+        bottom: -60px;
+        left: -60%;
+        transform: translateX(15%) rotate(3deg);
       }
     }
 
-    @media (max-width: 400px) {
-      /* Vector Shape noch kleiner */
-      .hero__vector-shape {
-        height: 80px; /* Noch kleinere Höhe aber ausreichend */
-        background-color: transparent; /* Transparent für PNG */
-        transform: translateY(-20%); /* Position beibehalten */
-      }
-
-      /* Vector Image behalten mit ursprünglicher Farbe */
-      .hero__vector-image {
-        display: block; /* Bild anzeigen */
-        /* Kein Filter - ursprüngliche PNG-Farbe verwenden */
-      }
-
+    @media (max-width: 450px) {
       .hero__name {
-        font-size: 45px;
+        font-size: 32px;
       }
 
       .hero__title {
-        font-size: 29px;
-      }
-
-      .hero__intro-text {
-        font-size: 12px;
-      }
-
-      .hero__cta {
-        width: 80px;
-        height: 28px;
-        font-size: 14px;
-      }
-
-      .hero__image {
-        height: 22vh;
-      }
-    }
-
-    /* WICHTIG: Diese Media Query muss AUSSERHALB der anderen stehen! */
-    @media (max-width: 350px) {
-      .hero__line {
-        width: 50px !important; /* Halb so lang */
-      }
-      
-      .hero__line-container {
-        width: 50px !important; /* Container auch anpassen */
-      }
-    }
-   
-    @media (max-width: 320px) {
-      .hero__name {
         font-size: 18px;
       }
 
-      .hero__title {
-        font-size: 14px;
-      }
-
       .hero__intro-text {
-        font-size: 11px;
-      }
-
-      .hero__cta {
-        width: 70px;
-        height: 25px;
-        font-size: 12px;
+        font-size: 24px;
       }
 
       .hero__image {
-        height: 20vh;
-      }
-      
-      .hero__social-link img {
-        width: 20px;
-        height: 20px;
-      }
-      
-      .hero__scroll {
-        font-size: 12px;
+        height: 36vh;
       }
 
-      /* Noch kürzer bei 320px */
-      .hero__line {
-        width: 40px !important;
-      }
-      
-      .hero__line-container {
-        width: 40px !important;
+      .hero__mobile-vector {
+        width: 250%; /* Maximum width coverage */
+        max-width: none;
+        height: 85px;
+        bottom: -30px;
+        left: -75%;
+        transform: translateX(20%) rotate(4deg);
       }
     }
 
-    /* NEU: Vector Shape unter 280px verstecken */
-    @media (max-width: 280px) {
-      .hero__vector-shape {
-        display: none;
+    @media (max-width: 350px) {
+      .hero__name {
+        font-size: 28px;
+      }
+
+      .hero__title {
+        font-size: 20px;
+      }
+
+      .hero__intro-text {
+        font-size: 20px;
+      }
+
+      .hero__image {
+        height: 33vh;
+      }
+
+      .hero__line {
+        width: 50px !important;
+      }
+      
+      .hero__line-container {
+        width: 50px !important;
+      }
+    }
+
+    @media (max-width: 300px) {
+      .hero__name {
+        font-size: 24px;
+      }
+
+      .hero__title {
+        font-size: 16px;
+      }
+
+      .hero__intro-text {
+        font-size: 16px;
+      }
+
+      .hero__image {
+        height: 28vh;
+      }
+      
+      .hero__cta {
+        width: 90px;
+        height: 32px;
+        font-size: 12px;
+      }
+
+      .hero__content {
+        padding: 10px;
+      }
+
+      .hero__mobile-vector {
+        width: 280%; /* Ultra-wide for complete coverage */
+        max-width: none;
+        height: 80px;
+        bottom: -25px;
+        left: -90%;
+        transform: translateX(25%) rotate(5deg);
       }
     }
   `],
