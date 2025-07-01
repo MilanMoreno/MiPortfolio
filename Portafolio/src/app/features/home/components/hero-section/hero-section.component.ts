@@ -559,15 +559,27 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__image {
         height: 36vh;
       }
-
+  .hero__content {
+      flex-direction: column;
+    padding: 0px;
+    gap: 0rem;
+    margin-top: 0px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 50;
+    }
       .hero__mobile-vector {
-        width: 250%; /* Maximum width coverage */
-        max-width: none;
-        height: 85px;
-        bottom: -30px;
-        left: -75%;
-        transform: translateX(20%) rotate(4deg);
-      }
+    width: 171%;
+    max-width: none;
+    height: 37px;
+    bottom: -20px;
+    left: -69%;
+    transform: translate(20%) rotate(4deg);
+  }
+
+
     }
 
     @media (max-width: 350px) {
@@ -627,7 +639,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         width: 280%; /* Ultra-wide for complete coverage */
         max-width: none;
         height: 80px;
-        bottom: -25px;
+        bottom: -76px;
         left: -90%;
         transform: translateX(25%) rotate(5deg);
       }
