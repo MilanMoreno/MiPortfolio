@@ -8,154 +8,187 @@ import { LanguageService } from '../../../shared/services/language/language.serv
     selector: 'app-navigation-bar',
     imports: [CommonModule, RouterModule, TranslateModule],
     template: `
-    <nav class="nav">
-      <div class="nav__container">
-        <a class="nav__logo" [routerLink]="['/']">
-          <img src="assets/img/logo.png" alt="Logo" class="nav__logo-img">
+    <header class="header">
+      <div class="header__container">
+        <a class="header__logo" [routerLink]="['/']">
+          <img src="assets/img/logo.png" alt="Logo" class="header__logo-img">
         </a>
-
-        <!-- Desktop Menu -->
-        <div class="nav__menu">
-          <ul class="nav__list">
-            <li *ngFor="let item of menuItems">
-              <a class="nav__link" (click)="scrollToSection(item.fragment, $event)">
-                {{ item.label | translate }} 
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Desktop Language Selector -->
-        <div class="nav__language">
-          <button 
-            class="nav__lang-btn" 
-            *ngFor="let lang of languages"
-            (click)="switchLanguage(lang.code)">
-            <img [src]="lang.flag" [alt]="lang.name">
-          </button>
-        </div>
-
-        <!-- Mobile Menu Toggle -->
-        <button 
-          class="nav__mobile-toggle" 
-          [class.nav__mobile-toggle--active]="isMobileMenuOpen"
-          (click)="toggleMobileMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-
-      <!-- Mobile Menu -->
-      <div class="nav__mobile-menu" [class.nav__mobile-menu--open]="isMobileMenuOpen">
-        <div class="nav__mobile-content">
-          <ul class="nav__mobile-list">
-            <li *ngFor="let item of menuItems">
-              <a class="nav__mobile-link" (click)="scrollToSection(item.fragment, $event); closeMobileMenu()">
+        
+        <nav class="header__nav">
+          <ul class="header__menu">
+            <li *ngFor="let item of menuItems" class="header__menu-item">
+              <a 
+                class="header__menu-link" 
+                (click)="scrollToSection(item.fragment, $event)">
                 {{ item.label | translate }}
               </a>
             </li>
           </ul>
-          
-          <!-- Mobile Language Selector -->
-          <div class="nav__mobile-language">
+        </nav>
+        
+        <div class="header__actions">
+          <div class="header__languages">
             <button 
-              class="nav__mobile-lang-btn" 
-              *ngFor="let lang of languages"
+              *ngFor="let lang of languages" 
+              class="header__lang-btn"
+              [class.header__lang-btn--active]="currentLanguage === lang.code"
               (click)="switchLanguage(lang.code)">
-              <img [src]="lang.flag" [alt]="lang.name">
-              <span>{{ lang.name }}</span>
+              <img [src]="lang.flag" [alt]="lang.name" class="header__lang-img">
             </button>
           </div>
+          
+          <button 
+            class="header__mobile-toggle" 
+            [class.header__mobile-toggle--active]="isMobileMenuOpen"
+            (click)="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </div>
-    </nav>
+      
+      <div class="header__mobile-menu" [class.header__mobile-menu--open]="isMobileMenuOpen">
+        <nav class="header__mobile-nav">
+          <ul class="header__mobile-list">
+            <li *ngFor="let item of menuItems" class="header__mobile-item">
+              <a 
+                class="header__mobile-link" 
+                (click)="scrollToSection(item.fragment, $event); closeMobileMenu()">
+                {{ item.label | translate }}
+              </a>
+            </li>
+          </ul>
+        </nav>
+        
+        <div class="header__mobile-languages">
+          <button 
+            *ngFor="let lang of languages" 
+            class="header__mobile-lang-btn"
+            [class.header__mobile-lang-btn--active]="currentLanguage === lang.code"
+            (click)="switchLanguage(lang.code)">
+            <img [src]="lang.flag" [alt]="lang.name" class="header__mobile-lang-img">
+            <span class="header__mobile-lang-name">{{ lang.name }}</span>
+          </button>
+        </div>
+      </div>
+    </header>
   `,
     styles: [`
-    .nav {
+    .header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 90px;
-      background-color: #141D2F !important;
+      height: var(--header-height);
+      background-color: var(--color-background-primary);
       z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-
-    .nav__container {
+    
+    .header__container {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 100%;
-      padding: 0 1rem;
-      max-width: 1920px;
+      max-width: 1440px;
       margin: 0 auto;
-      background-color: #141D2F !important;
+      padding: 0 2rem;
     }
-
-    .nav__logo {
-      height: 60px;
+    
+    .header__logo {
       display: flex;
       align-items: center;
-      text-decoration: none;
+      height: 60px;
     }
-
-    .nav__logo-img {
+    
+    .header__logo-img {
       height: 100%;
       width: auto;
     }
-
-    .nav__list {
+    
+    .header__nav {
+      flex: 1;
       display: flex;
-      gap: 2rem;
-      list-style: none;
+      justify-content: center;
     }
-
-    .nav__link {
+    
+    .header__menu {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 3rem;
+    }
+    
+    .header__menu-item {
+      position: relative;
+    }
+    
+    .header__menu-link {
       color: var(--color-text-primary);
-      font-size: 18px;
+      font-size: 1.125rem;
+      font-weight: 500;
+      text-decoration: none;
       text-transform: uppercase;
       position: relative;
-      text-decoration: none;
+      padding: 0.5rem 0;
       cursor: pointer;
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: var(--color-accent-primary);
-        transition: width 0.3s ease;
-      }
-
-      &:hover::after {
-        width: 100%;
-      }
     }
-
-    .nav__language {
+    
+    .header__menu-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-accent-primary);
+      transition: width 0.3s ease;
+    }
+    
+    .header__menu-link:hover::after {
+      width: 100%;
+    }
+    
+    .header__actions {
       display: flex;
-      gap: 0.5rem;
+      align-items: center;
+      gap: 2rem;
     }
-
-    .nav__lang-btn {
-      width: 20px;
-      height: 20px;
+    
+    .header__languages {
+      display: flex;
+      gap: 0.75rem;
+    }
+    
+    .header__lang-btn {
+      width: 24px;
+      height: 24px;
       padding: 0;
       border: none;
       background: none;
+      border-radius: 50%;
+      overflow: hidden;
       cursor: pointer;
-
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-      }
+      transition: transform 0.3s ease;
     }
-
-    .nav__mobile-toggle {
+    
+    .header__lang-btn:hover {
+      transform: scale(1.2);
+    }
+    
+    .header__lang-btn--active {
+      box-shadow: 0 0 0 2px var(--color-accent-primary);
+    }
+    
+    .header__lang-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .header__mobile-toggle {
       display: none;
       width: 30px;
       height: 24px;
@@ -164,252 +197,181 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       border: none;
       cursor: pointer;
       padding: 0;
-
-      span {
-        display: block;
-        width: 100%;
-        height: 2px;
-        background-color: var(--color-text-primary);
-        position: absolute;
-        left: 0;
-        transition: all 0.3s ease;
-
-        &:first-child {
-          top: 0;
-        }
-
-        &:nth-child(2) {
-          top: 50%;
-          transform: translateY(-50%);
-        }
-
-        &:last-child {
-          bottom: 0;
-        }
-      }
-
-      &--active {
-        span {
-          &:first-child {
-            transform: rotate(45deg);
-            top: 50%;
-          }
-
-          &:nth-child(2) {
-            opacity: 0;
-          }
-
-          &:last-child {
-            transform: rotate(-45deg);
-            bottom: 50%;
-          }
-        }
-      }
     }
-
-    .nav__mobile-menu {
+    
+    .header__mobile-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: var(--color-text-primary);
+      position: absolute;
+      left: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .header__mobile-toggle span:first-child {
+      top: 0;
+    }
+    
+    .header__mobile-toggle span:nth-child(2) {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .header__mobile-toggle span:last-child {
+      bottom: 0;
+    }
+    
+    .header__mobile-toggle--active span:first-child {
+      transform: rotate(45deg);
+      top: 50%;
+    }
+    
+    .header__mobile-toggle--active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .header__mobile-toggle--active span:last-child {
+      transform: rotate(-45deg);
+      bottom: 50%;
+    }
+    
+    .header__mobile-menu {
       position: fixed;
       top: var(--header-height);
       left: 0;
       width: 100%;
       height: calc(100vh - var(--header-height));
-      background-color: #141D2F !important;
-      transform: translateX(100%);
+      background-color: var(--color-background-primary);
+      transform: translateX(-100%);
       transition: transform 0.3s ease;
       z-index: 99;
-
-      &--open {
-        transform: translateX(0);
-      }
-    }
-
-    .nav__mobile-content {
+      display: flex;
+      flex-direction: column;
       padding: 2rem;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      background-color: #141D2F !important;
     }
-
-    .nav__mobile-list {
+    
+    .header__mobile-menu--open {
+      transform: translateX(0);
+    }
+    
+    .header__mobile-nav {
+      margin-bottom: 2rem;
+    }
+    
+    .header__mobile-list {
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
     }
-
-    .nav__mobile-link {
+    
+    .header__mobile-item {
+      margin-bottom: 1.5rem;
+    }
+    
+    .header__mobile-link {
       color: var(--color-text-primary);
-      font-size: var(--font-size-heading-small);
-      text-transform: uppercase;
+      font-size: 1.5rem;
       text-decoration: none;
+      text-transform: uppercase;
       cursor: pointer;
     }
-
-    .nav__mobile-language {
+    
+    .header__mobile-languages {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
     }
-
-    .nav__mobile-lang-btn {
+    
+    .header__mobile-lang-btn {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
       background: none;
       border: 1px solid var(--color-accent-primary);
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
       color: var(--color-text-primary);
       cursor: pointer;
-
-      img {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-      }
-
-      &:hover {
-        background-color: var(--color-accent-primary);
-      }
     }
-
-    @media (max-width: 768px) {
-      .nav {
-        height: 70px;
-        background-color: #141D2F !important;
-      }
-      
-      .nav__container {
-        background-color: #141D2F !important;
-      }
-      
-      .nav__logo {
-        height: 50px;
-      }
-      
-      .nav__menu,
-      .nav__language {
+    
+    .header__mobile-lang-btn--active {
+      background-color: rgba(112, 230, 28, 0.1);
+    }
+    
+    .header__mobile-lang-img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+    
+    .header__mobile-lang-name {
+      font-size: 1rem;
+    }
+    
+    @media (max-width: 992px) {
+      .header__nav {
         display: none;
       }
-
-      .nav__mobile-toggle {
+      
+      .header__mobile-toggle {
         display: block;
-      }
-      
-      .nav__mobile-link {
-        font-size: 20px;
-      }
-      
-      .nav__mobile-lang-btn {
-        padding: 0.4rem 0.8rem;
-        
-        img {
-          width: 20px;
-          height: 20px;
-        }
-      }
-
-      .nav__mobile-menu {
-        background-color: #141D2F !important;
-      }
-
-      .nav__mobile-content {
-        background-color: #141D2F !important;
       }
     }
     
-    @media (max-width: 480px) {
-      .nav {
+    @media (max-width: 768px) {
+      .header {
+        height: 70px;
+      }
+      
+      .header__container {
+        padding: 0 1.5rem;
+      }
+      
+      .header__logo {
+        height: 50px;
+      }
+      
+      .header__languages {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .header {
         height: 60px;
-        background-color: #141D2F !important;
       }
       
-      .nav__container {
-        background-color: #141D2F !important;
+      .header__container {
+        padding: 0 1rem;
       }
       
-      .nav__logo {
+      .header__logo {
         height: 40px;
       }
       
-      .nav__mobile-link {
-        font-size: 18px;
+      .header__mobile-link {
+        font-size: 1.25rem;
       }
       
-      .nav__mobile-lang-btn {
-        padding: 0.3rem 0.6rem;
-        font-size: 12px;
-        
-        img {
-          width: 16px;
-          height: 16px;
-        }
-      }
-
-      .nav__mobile-menu {
-        background-color: #141D2F !important;
-      }
-
-      .nav__mobile-content {
-        background-color: #141D2F !important;
-      }
-    }
-    
-    @media (max-width: 350px) {
-      .nav {
-        height: 50px;
-        background-color: #141D2F !important;
+      .header__mobile-lang-btn {
+        padding: 0.5rem 0.75rem;
       }
       
-      .nav__container {
-        background-color: #141D2F !important;
+      .header__mobile-lang-img {
+        width: 20px;
+        height: 20px;
       }
       
-      .nav__logo {
-        height: 35px;
-      }
-      
-      .nav__mobile-link {
-        font-size: 16px;
-      }
-
-      .nav__mobile-menu {
-        background-color: #141D2F !important;
-      }
-
-      .nav__mobile-content {
-        background-color: #141D2F !important;
-      }
-    }
-
-    /* Mobile Toggle bei kleinen Bildschirmen anpassen */
-    @media (max-width: 350px) {
-      .nav__mobile-toggle {
-        width: 26px !important;  /* Etwas kleiner */
-        height: 22px !important;  /* Etwas kleiner */
-        
-        span {
-          height: 1.8px !important;  /* Dünnere Linien */
-        }
-      }
-    }
-
-    @media (max-width: 320px) {
-      .nav__mobile-toggle {
-        width: 22px !important;  /* Noch kleiner */
-        height: 18px !important;  /* Noch kleiner */
-        
-        span {
-          height: 1.5px !important;  /* Noch dünnere Linien */
-        }
+      .header__mobile-lang-name {
+        font-size: 0.875rem;
       }
     }
   `]
 })
 export class NavigationBarComponent {
   isMobileMenuOpen = false;
+   currentLanguage = 'en';
 
   menuItems = [
     { fragment: 'about', label: 'HEADER.ABOUT_ME' },
@@ -431,6 +393,9 @@ export class NavigationBarComponent {
     private router: Router
   ) {
     translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
+       this.languageService.currentLanguage$.subscribe(lang => {
+           this.currentLanguage = lang;
+       });
   }
 
   /**

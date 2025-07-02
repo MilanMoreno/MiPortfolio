@@ -69,7 +69,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       background-color: var(--color-background-primary);
       min-height: 100vh;
       padding: 2rem 0;
-      z-index: 10; /* Wichtig: About Section über dem Vector */
+      overflow: visible;
     }
 
     .about__container {
@@ -78,8 +78,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 100%;
       max-width: 1200px;
       padding: 0 2rem;
-      position: relative;
-      z-index: 10; /* Wichtig: Container über dem Vector */
+      overflow: visible;
     }
 
     .about__content {
@@ -88,8 +87,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       align-items: center;
       gap: 4rem;
       width: 100%;
-      position: relative;
-      z-index: 10; /* Wichtig: Content über dem Vector */
+      overflow: visible;
     }
 
     .about__text {
@@ -142,8 +140,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       border-radius: 50%;
       border: 4px solid var(--color-accent-primary);
       overflow: hidden;
-      width: 250px;
-      height: 250px;
+      width: 300px;
+      height: 300px;
     }
 
     .about__image {
@@ -154,8 +152,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .about__image-line {
       position: absolute;
-      right: -100%;
-      width: 100%;
+      right: -9999px;
+      width: 9999px;
       height: 4px;
       background-color: var(--color-accent-primary);
       top: 50%;
@@ -166,9 +164,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       position: absolute;
       z-index: 0;
       right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.5;
+      top: 20%;
+      opacity: 0.7;
       max-width: 50%;
       height: auto;
     }
@@ -196,12 +193,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .about__image-wrapper {
-        width: 200px;
+        width: 250px;
+        display: none;
       }
 
       .about__image-container {
-        width: 200px;
-        height: 200px;
+        width: 250px;
+        height: 250px;
       }
 
       .about__image-line {
@@ -211,59 +209,21 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     @media (max-width: 480px) {
       .about__heading {
-        font-size: 28px;
+        font-size: 32px;
       }
 
       .about__intro,
       .about__text-block {
-        font-size: 13px;
+        font-size: 14px;
       }
 
       .about__image-wrapper {
-        width: 150px;
+        width: 200px;
       }
 
       .about__image-container {
-        width: 150px;
-        height: 150px;
-      }
-      
-      .about__icon {
-        width: 40px;
-      }
-      
-      .about__icon svg {
-        width: 40px;
-        height: 40px;
-      }
-    }
-    
-    @media (max-width: 350px) {
-      .about__heading {
-        font-size: 24px;
-      }
-      
-      .about__intro,
-      .about__text-block {
-        font-size: 12px;
-      }
-      
-      .about__image-wrapper {
-        width: 120px;
-      }
-      
-      .about__image-container {
-        width: 120px;
-        height: 120px;
-      }
-      
-      .about__icon {
-        width: 30px;
-      }
-      
-      .about__icon svg {
-        width: 30px;
-        height: 30px;
+        width: 200px;
+        height: 200px;
       }
     }
   `],

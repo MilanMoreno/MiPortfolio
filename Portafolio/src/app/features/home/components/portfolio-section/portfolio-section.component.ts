@@ -9,21 +9,19 @@ import { TranslateModule } from '@ngx-translate/core';
     template: `
     <section class="portfolio" id="portfolio">
       <div class="portfolio__container">
-        <header class="portfolio__header">
-          <div class="portfolio__title-wrapper">
-            <div class="portfolio__line portfolio__line--left"></div>
-            <h2 class="portfolio__title">
-              {{ "PORTFOLIO.HEADLINE" | translate }}
-            </h2>
-            <div class="portfolio__line-container">
-              <div class="portfolio__line portfolio__line--right"></div>
+        <div class="portfolio__header">
+          <div class="portfolio__title-container">
+            <div class="portfolio__line-left"></div>
+            <h2 class="portfolio__title">{{ "PORTFOLIO.HEADLINE" | translate }}</h2>
+            <div class="portfolio__line-right-container">
+              <div class="portfolio__line-right"></div>
             </div>
           </div>
           
-          <p class="portfolio__intro">
+          <p class="portfolio__introduction">
             {{ "PORTFOLIO.INTRODUCTION" | translate }}
           </p>
-        </header>
+        </div>
 
         <div class="portfolio__projects">
           <app-project-card
@@ -40,19 +38,163 @@ import { TranslateModule } from '@ngx-translate/core';
       </div>
 
       <img 
-        class="portfolio__shadow portfolio__shadow--purple" 
+        class="portfolio__shadow-purple" 
         src="assets/img/shadow-purple-big.png" 
-        alt=""
-        style="z-index: 1;">
+        alt="">
       <img 
-        class="portfolio__shadow portfolio__shadow--green" 
+        class="portfolio__shadow-green" 
         src="assets/img/shadow-green-big.png" 
-        alt=""
-        style="z-index: 1;">
+        alt="">
     </section>
   `,
-    styleUrls: ['./portfolio-section.component.scss'],
-    standalone: true
+    styles: [`
+    .portfolio {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 4rem 0;
+      background-color: var(--color-background-primary);
+      min-height: 100vh;
+    }
+    
+    .portfolio__container {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .portfolio__header {
+      margin-bottom: 4rem;
+    }
+    
+    .portfolio__title-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    
+    .portfolio__line-left {
+      width: 100px;
+      height: 4px;
+      background-color: var(--color-accent-secondary);
+      margin-right: 2rem;
+    }
+    
+    .portfolio__title {
+      font-size: 90px;
+      color: var(--color-text-primary);
+      margin: 0;
+      white-space: nowrap;
+    }
+    
+    .portfolio__line-right-container {
+      position: relative;
+      width: 100%;
+      margin-left: 2rem;
+    }
+    
+    .portfolio__line-right {
+      position: absolute;
+      left: 0;
+      width: 9999px;
+      height: 4px;
+      background-color: var(--color-accent-secondary);
+    }
+    
+    .portfolio__introduction {
+      text-align: center;
+      color: var(--color-text-primary);
+      font-size: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .portfolio__projects {
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+      position: relative;
+      z-index: 3;
+    }
+    
+    .portfolio__shadow-purple {
+      position: absolute;
+      left: 0;
+      top: 20%;
+      z-index: 1;
+      opacity: 0.5;
+      max-width: 40%;
+    }
+    
+    .portfolio__shadow-green {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      z-index: 1;
+      opacity: 0.5;
+      max-width: 40%;
+    }
+    
+    @media (max-width: 1200px) {
+      .portfolio__title {
+        font-size: 70px;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .portfolio__title {
+        font-size: 60px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .portfolio__title-container {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .portfolio__title {
+        font-size: 45px;
+        order: 1;
+        margin: 1rem 0;
+      }
+      
+      .portfolio__line-left {
+        width: 30%;
+        order: 0;
+        margin-right: 0;
+      }
+      
+      .portfolio__line-right-container {
+        width: 30%;
+        order: 2;
+        margin-left: 0;
+      }
+      
+      .portfolio__introduction {
+        max-width: 80vw;
+      }
+      
+      .portfolio__shadow-purple,
+      .portfolio__shadow-green {
+        max-width: 30%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .portfolio__title {
+        font-size: 36px;
+      }
+      
+      .portfolio__shadow-purple,
+      .portfolio__shadow-green {
+        max-width: 25%;
+      }
+    }
+    `]
 })
 export class PortfolioSectionComponent {
   projects = [

@@ -8,14 +8,14 @@
   --color-accent-primary: #70E61C;
   --color-accent-secondary: #9747FF;
   --color-text-primary: #FFFFFF;
-  --header-height: 90px;
-  --footer-height: 180px;
+  --header-height: 109px;
+  --footer-height: 200px;
 
   --font-family-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
   --font-size-base: 14px;
-  --font-size-heading-large: 60px;
-  --font-size-heading-medium: 28px;
-  --font-size-heading-small: 20px;
+  --font-size-heading-large: 90px;
+  --font-size-heading-medium: 32px;
+  --font-size-heading-small: 24px;
 }
 
 *, *::before, *::after {
@@ -63,28 +63,12 @@ body {
   color: var(--color-text-primary);
   font-size: var(--font-size-base);
   line-height: 1.5;
+  font-family: var(--font-family-primary);
 }
 
 a {
   text-decoration: none;
   color: inherit;
-}
-
-/* NAVIGATION BACKGROUND FIX - SAME AS HERO BACKGROUND */
-.nav {
-  background-color: var(--color-background-primary) !important;
-}
-
-.nav__container {
-  background-color: var(--color-background-primary) !important;
-}
-
-.nav__mobile-menu {
-  background-color: var(--color-background-primary) !important;
-}
-
-.nav__mobile-content {
-  background-color: var(--color-background-primary) !important;
 }
 
 .visually-hidden {
@@ -112,48 +96,50 @@ a {
 
 /* Make sure the about section containers are positioned relative */
 .about {
-  position: relative !important;
+  position: relative;
+  overflow: visible;
 }
 
 .about__container {
-  position: relative !important;
+  position: relative;
+  overflow: visible;
 }
 
 .about__content {
-  position: relative !important;
+  position: relative;
+  overflow: visible;
 }
 
 /* About Shadow Positioning - Fixed for all screen sizes */
 .about__shadow {
-  position: absolute !important;
-  z-index: 0 !important;
-  right: 0 !important;
-  top: 11% !important;
-  transform: translateY(-50%) !important;
-  opacity: 0.5 !important;
-  max-width: 54% !important;
-  height: auto !important;
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  top: 20%;
+  opacity: 0.7;
+  max-width: 50%;
+  height: auto;
 }
 
 /* Responsive positioning for about shadow */
 @media (max-width: 1290px) {
   .about__shadow {
-    top: 11% !important;
-    max-width: 50% !important;
+    top: 25%;
+    max-width: 45%;
   }
 }
 
 @media (max-width: 800px) {
   .about__shadow {
-    top: 11% !important;
-    max-width: 45% !important;
+    top: 30%;
+    max-width: 40%;
   }
 }
 
 @media (max-width: 600px) {
   .about__shadow {
-    top: 11% !important;
-    max-width: 40% !important;
+    top: 35%;
+    max-width: 35%;
   }
 }
 
@@ -162,8 +148,13 @@ a {
   border-radius: 10px;
 }
 
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+}
+
 .text-center { text-align: center; }
 .hidden { display: none !important; }
+.d-none { display: none !important; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -181,83 +172,77 @@ a {
   to { transform: translateX(0); opacity: 1; }
 }
 
-/* Stil für die Trennlinien */
-.section-divider {
-  width: 100%;
-  height: 2px;
+/* Global section styles */
+section {
+  padding: 5rem 0;
+}
+
+/* Global button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-accent-primary);
+  color: var(--color-text-primary);
+}
+
+.btn-primary:hover {
   background-color: var(--color-accent-secondary);
-  margin: 50px 0;
-  position: relative;
-  left: 0;
-  right: 0;
+  transform: scale(1.05);
 }
 
-.section-container {
-  position: relative;
-  overflow: visible;
+.btn-secondary {
+  border: 2px solid var(--color-accent-primary);
+  color: var(--color-text-primary);
+  background-color: transparent;
 }
 
-.section-container .section-divider {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+.btn-secondary:hover {
+  background-color: var(--color-accent-primary);
+  transform: scale(1.05);
 }
 
-/* Responsive Regeln für kleine Bildschirme bis 300px */
-@media (max-width: 320px) {
-  body {
-    font-size: 12px;
+/* Responsive typography */
+@media (max-width: 1200px) {
+  :root {
+    --font-size-heading-large: 48px;
+    --font-size-heading-medium: 24px;
+    --font-size-heading-small: 18px;
   }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  h2 {
-    font-size: 18px;
-  }
-
-  .btn, button {
-    width: auto;
-    min-width: 80px;
-    padding: 6px 10px;
-    font-size: 12px;
-    white-space: nowrap;
-    display: inline-block;
-  }
-
-  header {
-    padding: 10px;
-  }
-
-  nav ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav ul li {
-    margin: 5px 0;
-  }
-/* CURSOR FIX - Ganz unten in styles.scss einfügen */
-* {
-  cursor: none !important;
 }
 
-button {
-  cursor: none !important;
+@media (max-width: 768px) {
+  :root {
+    --font-size-heading-large: 36px;
+    --font-size-heading-medium: 20px;
+    --font-size-heading-small: 16px;
+    --font-size-base: 13px;
+  }
+  
+  section {
+    padding: 3rem 0;
+  }
 }
 
-a {
-  cursor: none !important;
-}
-
-.send-message-button {
-  cursor: none !important;
-}
-  .container, section {
-    padding-left: 10px;
-    padding-right: 10px;
+@media (max-width: 480px) {
+  :root {
+    --font-size-heading-large: 28px;
+    --font-size-heading-medium: 18px;
+    --font-size-heading-small: 14px;
+    --font-size-base: 12px;
+  }
+  
+  section {
+    padding: 2rem 0;
   }
 }
