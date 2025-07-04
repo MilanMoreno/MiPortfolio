@@ -195,9 +195,20 @@ interface ContactFormData {
 
     .contact__line {
       background-color: var(--color-accent-secondary);
-      width: 20vw;
+      width: 0;
       height: 4px;
       margin-right: 2rem;
+      position: relative;
+    }
+    
+    .contact__line::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 99999px;
+      height: 100%;
+      background-color: var(--color-accent-secondary);
     }
 
     .contact__title {
@@ -377,21 +388,45 @@ interface ContactFormData {
     .contact__success-message {
       margin-top: 1rem;
       padding: 1rem;
-      background-color: rgba(112, 230, 28, 0.2);
-      border: 1px solid var(--color-accent-primary);
+      background-color: rgba(112, 230, 28, 0.1);
+      border: 1px solid rgba(112, 230, 28, 0.3);
       border-radius: 10px;
       color: var(--color-text-primary);
       text-align: center;
+      position: absolute;
+      bottom: -80px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      animation: fadeOut 5s forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeOut {
+      0%, 80% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
     }
 
     .contact__error-message {
       margin-top: 1rem;
       padding: 1rem;
-      background-color: rgba(255, 0, 0, 0.2);
-      border: 1px solid red;
+      background-color: rgba(112, 230, 28, 0.1);
+      border: 1px solid rgba(112, 230, 28, 0.3);
       border-radius: 10px;
       color: var(--color-text-primary);
       text-align: center;
+      position: absolute;
+      bottom: -80px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      animation: fadeOut 5s forwards;
+      z-index: 10;
+    }
+
+    @keyframes fadeOut {
+      0%, 80% { opacity: 1; }
+      100% { opacity: 0; visibility: hidden; }
     }
 
     .contact__scroll-top {
@@ -411,10 +446,12 @@ interface ContactFormData {
     .contact__shadow {
       position: absolute;
       left: 0;
-      bottom: 0;
-      z-index: 1;
+      bottom: -100px;
+      z-index: 0;
       max-width: 50%;
       height: auto;
+      opacity: 0.5;
+      pointer-events: none;
     }
 
     @media (max-width: 1395px) {
@@ -450,11 +487,21 @@ interface ContactFormData {
       }
 
       .contact__shadow {
-        display: none;
+        max-width: 30%;
+        opacity: 0.3;
+        bottom: -50px;
+        left: -50px;
       }
     }
 
     @media (max-width: 480px) {
+      .contact__shadow {
+        max-width: 25%;
+        opacity: 0.2;
+        bottom: -30px;
+        left: -30px;
+      }
+      
       .contact__checkbox-text {
         font-size: 12px;
       }
@@ -516,6 +563,12 @@ export class ContactSectionComponent {
       if (result.success) {
         console.log('Form submitted successfully:', result);
         this.submitSuccess = true;
+        
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => {
+          this.submitSuccess = false;
+        }, 5000);
+        
         form.resetForm();
         
         // Reset form data

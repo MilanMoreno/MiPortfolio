@@ -152,8 +152,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .about__image-line {
       position: absolute;
-      right: -9999px;
-      width: 9999px;
+      right: -99999px;
+      width: 99999px;
       height: 4px;
       background-color: var(--color-accent-primary);
       top: 50%;
@@ -163,7 +163,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     .about__shadow {
       position: absolute;
       z-index: 0;
-      right: 0;
+      right: -50px;
       top: 20%;
       opacity: 0.7;
       max-width: 50%;
@@ -194,7 +194,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .about__image-wrapper {
         width: 250px;
-        display: none;
+        display: none !important;
       }
 
       .about__image-container {

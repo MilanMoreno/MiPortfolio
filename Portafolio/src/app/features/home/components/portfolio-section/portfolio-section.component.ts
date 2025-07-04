@@ -73,7 +73,7 @@ import { TranslateModule } from '@ngx-translate/core';
     .portfolio__title-container {
       display: flex;
       align-items: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
     
     .portfolio__line-left {
@@ -99,7 +99,7 @@ import { TranslateModule } from '@ngx-translate/core';
     .portfolio__line-right {
       position: absolute;
       left: 0;
-      width: 9999px;
+      width: 99999px;
       height: 4px;
       background-color: var(--color-accent-secondary);
     }
@@ -115,7 +115,7 @@ import { TranslateModule } from '@ngx-translate/core';
     .portfolio__projects {
       display: flex;
       flex-direction: column;
-      gap: 6rem;
+      gap: 3rem;
       position: relative;
       z-index: 3;
     }
