@@ -36,11 +36,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Desktop Vector Shape - stays above 900px -->
-  <div class="hero__vector-shape">
-    <img src="assets/img/Vector shape hero.png" alt="Vector Shape" class="hero__vector-image">
+    <!-- Desktop Vector Shape - now inside hero__content -->
+    <div class="hero__vector-shape">
+      <img src="assets/img/Vector shape hero.png" alt="Vector Shape" class="hero__vector-image">
+    </div>
   </div>
 
   <div class="hero__footer">
@@ -86,7 +86,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .hero__content {
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       flex: 1;
       width: 100%;
@@ -109,12 +109,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .hero__image {
-  height: 700px;
-  object-fit: contain;
-  position: relative;
-  z-index: 3;
-  width: 700px;}
-
+      height: 700px;
+      object-fit: contain;
+      position: relative;
+      z-index: 3;
+      width: 400px;
+    }
 
     .hero__image-shadow {
       position: absolute;
@@ -134,37 +134,35 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     .hero__mobile-vector {
       display: none;
       position: absolute;
-      bottom: -40px; /* Position it to extend below the image */
-      left: -50%; /* Start much further to the left */
-      right: -50%; /* Extend much further to the right */
-      transform: translateX(10%) rotate(2deg); /* Slight rotation for curve effect */
-      width: 200%; /* Much wider - like a full curtain */
-      max-width: none; /* Remove max-width limitation */
-      height: 100px; /* Taller for better coverage */
-      z-index: 4; /* Above the hero image */
+      bottom: -40px;
+      left: -50%;
+      right: -50%;
+      transform: translateX(10%) rotate(2deg);
+      width: 200%;
+      max-width: none;
+      height: 100px;
+      z-index: 4;
       pointer-events: none;
     }
 
     .hero__mobile-vector-image {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Fill the container while maintaining aspect ratio */
+      object-fit: cover;
       object-position: center;
     }
 
-    /* Desktop Vector Shape - keeps existing behavior above 900px */
-    .hero__vector-shape {
+   }
+.hero__vector-shape{
   position: absolute;
   bottom: 0%;
-  left: 0%;
-  width: 100%;
-  height: 423px;
+  left: 0px;
+  right: 0px;
+  width: calc(102% + 278px);
+  height: 0%;
   z-index: 4;
   pointer-events: none;
-  overflow: visible;
-  transform: translateY(315px);
-  top: 1000px;
-    }
+  overflow: visible;}
 
     .hero__vector-image {
       position: absolute;
@@ -352,11 +350,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__vector-shape {
-        width: 120%;
-        height: 160vh;
-        bottom: -40%;
-        left: 0%;
-        transform: translateY(200px);
+        width: calc(100% + 100px);
+        height: 120vh;
+        bottom: -30%;
+        left: -50px;
       }
     }
 
@@ -369,13 +366,14 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         font-size: 32px;
       }
 
-      .hero__vector-shape {
-        width: 120%;
-        height: 170vh;
-        bottom: -40%;
-        left: 0%;
-        transform: translateY(200px);
-      }
+     @media (max-width: 1200px) {
+  .hero__vector-shape {
+    width: 830px;
+    height: 520px;
+    bottom: -40%;
+    left: 23px;
+    right: 151px;
+
     }
 
     @media (max-width: 1000px) {
@@ -388,11 +386,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__vector-shape {
-        width: 127%;
-        height: 168vh;
-        bottom: -40%;
-        left: 0%;
-        transform: translateY(200px);
+        width: calc(100% + 120px);
+        height: 128vh;
+        bottom: -35%;
+        left: -60px;
       }
     }
 
@@ -536,7 +533,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__mobile-vector {
-        width: 220%; /* Even wider for smaller screens */
+        width: 220%;
         max-width: none;
         height: 90px;
         bottom: -60px;
@@ -561,27 +558,15 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__image {
         height: 36vh;
       }
-  .hero__content {
-      flex-direction: column;
-    padding: 0px;
-    gap: 0rem;
-    margin-top: 0px;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 50;
-    }
+
       .hero__mobile-vector {
-    width: 171%;
-    max-width: none;
-    height: 37px;
-    bottom: -20px;
-    left: -69%;
-    transform: translate(20%) rotate(4deg);
-  }
-
-
+        width: 250%;
+        max-width: none;
+        height: 85px;
+        bottom: -30px;
+        left: -75%;
+        transform: translateX(20%) rotate(4deg);
+      }
     }
 
     @media (max-width: 350px) {
@@ -638,10 +623,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__mobile-vector {
-        width: 280%; /* Ultra-wide for complete coverage */
+        width: 280%;
         max-width: none;
         height: 80px;
-        bottom: -76px;
+        bottom: -25px;
         left: -90%;
         transform: translateX(25%) rotate(5deg);
       }
