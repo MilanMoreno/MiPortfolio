@@ -11,7 +11,7 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__content">
-          <div class="footer__brand">
+          <div class="footer__brand-section">
             <img 
               src="assets/img/logo.png" 
               alt="Logo" 
@@ -74,7 +74,7 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
       align-items: center;
     }
     
-    .footer__brand {
+    .footer__brand-section {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -95,7 +95,11 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
       color: var(--color-text-primary);
       text-decoration: none;
       font-size: 1rem;
+      margin-top: -25px;
+      width: 50%;
+      text-align: left;
       transition: color 0.3s ease;
+      padding-left: 22px;
     }
     
     .footer__legal-link:hover {
@@ -104,7 +108,8 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
     
     .footer__copyright {
       color: var(--color-text-primary);
-      font-size: 1rem;
+      font-size: 23px;
+      width: 300px;
     }
     
     .footer__social {
@@ -159,8 +164,12 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
         gap: 2rem;
         text-align: center;
       }
-      
-      .footer__brand {
+       .footer__legal-link {
+     
+      padding-left: 1px;
+    }
+    
+      .footer__brand-section {
         align-items: center;
       }
     }
@@ -170,8 +179,31 @@ import { ClipboardManagerService } from '../../../shared/services/clipboard/clip
         padding: 2rem 0;
       }
       
+      .footer__container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .footer__brand-section {
+        align-items: center;
+      }
+
       .footer__logo {
-        height: 50px;
+        max-width: 70vw;
+      }
+      
+      .footer__legal-link {
+        display: none;
+      }
+
+      .footer__social {
+        margin-bottom: 10px;
+      }
+      
+      .footer__copyright {
+        text-align: center;
+        margin-bottom: 10px;
       }
     }
     

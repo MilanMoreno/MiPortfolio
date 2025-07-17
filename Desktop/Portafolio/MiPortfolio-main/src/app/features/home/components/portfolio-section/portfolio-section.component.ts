@@ -10,174 +10,190 @@ import { TranslateModule } from '@ngx-translate/core';
     <section class="portfolio" id="portfolio">
       <div class="portfolio__container">
         <header class="portfolio__header">
-          <div class="portfolio__title-wrapper">
-            <div class="portfolio__line portfolio__line--left"></div>
-            <h2 class="portfolio__title">
+          <div class="portfolio_title-container" style="display: flex; align-items: center; justify-content: center;">
+            <div class="portfolio_line-left" _ngcontent-ng-c4129672226=""></div>
+            <h2 class="portfolio_title" _ngcontent-ng-c4129672226="">
               {{ "PORTFOLIO.HEADLINE" | translate }}
             </h2>
-            <div class="portfolio__line-container">
-              <div class="portfolio__line portfolio__line--right"></div>
+            <div class="portfolio_line-right-container" _ngcontent-ng-c4129672226="">
+              <div class="portfolio_line-right" _ngcontent-ng-c4129672226=""></div>
             </div>
           </div>
           
-          <p class="portfolio__intro">
+          <p class="portfolio__introduction">
             {{ "PORTFOLIO.INTRODUCTION" | translate }}
           </p>
-        </header>
+        </div>
 
         <div class="portfolio__projects">
           <app-project-card
-            *ngFor="let project of projects"
+            *ngFor="let project of projects; let i = index"
             [image]="project.image"
             [titleKey]="project.titleKey"
             [stackKey]="project.stackKey"
             [descriptionKey]="project.descriptionKey"
             [demoUrl]="project.demoUrl"
-            [repoUrl]="project.repoUrl">
+            [repoUrl]="project.repoUrl"
+            [isReversed]="i % 2 === 1">
           </app-project-card>
         </div>
       </div>
 
       <img 
-        class="portfolio__shadow portfolio__shadow--purple" 
+        class="portfolio__shadow-purple" 
         src="assets/img/shadow-purple-big.png" 
-        alt=""
-        style="z-index: 1;">
+        alt="">
       <img 
-        class="portfolio__shadow portfolio__shadow--green" 
+        class="portfolio__shadow-green" 
         src="assets/img/shadow-green-big.png" 
-        alt=""
-        style="z-index: 1;">
+        alt="">
     </section>
   `,
     styles: [`
     .portfolio {
       position: relative;
-      display: flex;
-      justify-content: center;
+      width: 100%;
+    }
+    
+    .portfolio__container {
       padding: 4rem 0;
     }
-
-    .portfolio__container {
+    
+    .portfolio_title-container {
       width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .portfolio__title-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
       margin-bottom: 2rem;
     }
-
-    .portfolio__line {
-      height: 2px;
+    
+    .portfolio_line-left {
+      width: 2% !important;
+      order: 0 !important;
+      margin-right: 0 !important;
+      height: 4px;
+      background-color: var(--color-accent-secondary);
+    }
+    
+    .portfolio_title {
+      font-size: 45px !important;
+      order: 1 !important;
+      color: var(--color-text-primary);
+      margin: 0 1rem;
+    }
+    
+    .portfolio_line-right-container {
+      width: 15% !important;
+      order: 2 !important;
+      margin-left: 0 !important;
+      position: relative;
+    }
+    
+    .portfolio_line-right {
+      position: absolute;
+      left: 0;
+      width: 9999px;
+      height: 4px;
       background-color: var(--color-accent-secondary);
     }
 
-    .portfolio__line--left {
-      width: 200px;
+    .portfolio__introduction {
+      font-size: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1rem;
     }
-
-    .portfolio__line-container {
-      position: relative;
-      width: 200px;
-    }
-
-    .portfolio__line--right {
-      position: absolute;
-      left: 0;
-      width: 99999px;
-    }
-
-    .portfolio__title {
-      font-size: var(--font-size-heading-large);
-      color: var(--color-text-primary);
-      margin: 0;
-    }
-
-    .portfolio__intro {
-      text-align: center;
-      color: var(--color-text-primary);
-      margin-bottom: 4rem;
-    }
-
+    
     .portfolio__projects {
       display: flex;
       flex-direction: column;
-      gap: 6rem;
+      gap: 2rem;
       position: relative;
       z-index: 3;
     }
-
-    .portfolio__shadow {
+    
+    .portfolio__shadow-purple {
       position: absolute;
+      left: 0;
+      top: 20%;
       z-index: 1;
-
-      &--purple {
-        left: 0;
-        top: 20%;
-      }
-
-      &--green {
-        right: 0;
-        top: 50%;
-      }
+      opacity: 0.5;
+      max-width: 40%;
     }
-
-    @media (max-width: 1275px) {
-      .portfolio__shadow--purple {
-        left: 0;
-        top: 25%;
-        height: 750px;
-        width: 400px;
-      }
+    
+    .portfolio__shadow-green {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      z-index: 1;
+      opacity: 0.5;
+      max-width: 40%;
     }
-
-    @media (max-width: 790px) {
-      .portfolio__shadow--purple {
-        top: 30%;
-        height: 650px;
-      }
-    }
-
-    @media (max-width: 580px) {
+    
+    @media (max-width: 1200px) {
       .portfolio__title {
-        font-size: 45px;
-        margin: 0 10px;
-      }
-
-      .portfolio__intro {
-        max-width: 80vw;
-      }
-
-      .portfolio__shadow--purple {
-        top: 25%;
+        font-size: 70px;
       }
     }
-
-    @media (max-width: 340px) {
-      .portfolio__shadow {
-        &--purple {
-          top: 30%;
-          height: 350px;
-          width: 300px;
-        }
-
-        &--green {
-          right: 0;
-          top: auto;
-          bottom: -200px;
-          height: 500px;
-        }
+    
+    @media (max-width: 992px) {
+      .portfolio__title {
+        font-size: 60px;
       }
     }
-  `]
+    
+    @media (max-width: 768px) {
+      .portfolio_title {
+        font-size: 32px !important;
+      }
+        .portfolio_line-right-container:2% !important;
+    }
+    @media (max-width: 768px) {
+  .portfolio__line-left {
+    width: 2%;
+    order: 0;
+    margin-right: 0;}
+    @media (max-width: 480px) {
+      .portfolio_title {
+        font-size: 28px !important;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .portfolio_line-left {
+        width: 2% !important;
+      }
+      
+      .portfolio_line-right-container {
+        width: 2% !important;
+      }
+      .portfolio__shadow-purple,
+      .portfolio__shadow-green {
+        max-width: 10%;
+      }
+      
+      .portfolio__projects {
+        gap: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .portfolio__title {
+        font-size: 28px;
+      }
+    }
+      .portfolio__title {
+        font-size: 36px;
+      }
+      
+      .portfolio__shadow-purple,
+      .portfolio__shadow-green {
+        max-width: 25%;
+      }
+      
+      .portfolio__projects {
+        gap: 1rem;
+      }
+    }
+    
+    `]
 })
 export class PortfolioSectionComponent {
   projects = [

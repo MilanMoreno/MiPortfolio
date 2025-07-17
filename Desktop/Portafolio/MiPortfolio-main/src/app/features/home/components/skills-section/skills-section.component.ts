@@ -33,7 +33,6 @@ interface Skill {
             <h2 class="skills__title" [@fadeInUp]="isVisible ? 'visible' : 'void'">
               {{ "SKILLS.MY_SKILLS" | translate }}
             </h2>
-            <div class="skills__line"></div>
           </div>
 
           <p class="skills__description">
@@ -74,8 +73,9 @@ interface Skill {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
-      max-width: 600px;
+      max-width: 500px; /* Reduziert von 600px */
       z-index: 51;
+      flex-shrink: 0; /* Verhindert das Schrumpfen */
     }
 
     .skills__item {
@@ -121,9 +121,6 @@ interface Skill {
     }
 
     .skills__header {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
       margin-bottom: 2rem;
     }
 
@@ -131,13 +128,27 @@ interface Skill {
       font-size: 90px;
       color: var(--color-text-primary);
       margin: 0;
+      position: relative;
     }
+
+    .skills__title::after {
+      content: "";
+      position: absolute;
+      bottom: 50%;
+      left: 100%;
+      transform: translateY(50%);
+      width: 80px;
+      height: 4px;
+  background-color: var(--color-accent-secondary) !important;
+      margin-left: 2rem;
+    }    
 
     .skills__line {
       display: none;
       height: 4px;
       width: 10vw;
-      background-color: var(--color-accent-secondary);
+      
+  background-color: var(--color-accent-secondary);
     }
 
     .skills__description {
@@ -158,16 +169,16 @@ interface Skill {
       align-items: center;
       width: 200px;
       height: 58px;
-      background-color: var(--color-accent-primary);
+      background-color: var(--color-accent-secondary);
       color: var(--color-text-primary);
       border-radius: 10px;
       font-size: 23px;
       transition: all 0.3s ease;
+    }
 
-      &:hover {
-        background-color: var(--color-accent-secondary);
-        transform: scale(1.05);
-      }
+    .skills__button:hover {
+      background-color: var(--color-accent-primary);
+      transform: scale(1.05);
     }
 
     .skills__mobile-cta {
@@ -204,7 +215,12 @@ interface Skill {
       }
 
       .skills__header {
+        display: flex;
         justify-content: center;
+      }
+
+      .skills__title::after {
+        display: none; /* Linie auf Tablet verstecken */
       }
 
       .skills__description {
@@ -226,12 +242,12 @@ interface Skill {
         font-size: 45px;
       }
 
-      .skills__grid {
-        grid-template-columns: repeat(2, 1fr);
+      .skills__title::after {
+        display: block;
       }
 
-      .skills__line {
-        display: block;
+      .skills__grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .skills__cta {
@@ -249,16 +265,16 @@ interface Skill {
         align-items: center;
         width: 150px;
         height: 48px;
-        background-color: var(--color-accent-primary);
+        background-color: var(--color-accent-secondary);
         color: var(--color-text-primary);
         border-radius: 10px;
         font-size: 18px;
         transition: all 0.3s ease;
+      }
 
-        &:hover {
-          background-color: var(--color-accent-secondary);
-          transform: scale(1.05);
-        }
+      .skills__mobile-button:hover {
+        background-color: var(--color-accent-primary);
+        transform: scale(1.05);
       }
     }
   `],
