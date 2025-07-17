@@ -180,7 +180,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       align-items: center;
       gap: 20px;
       column-gap: 35px; 
-      margin-left: -50px;
+      margin-left: -90px;
       z-index: 3;
     }
 
@@ -597,7 +597,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__image {
-        height: 448px;
+        height: 300px;
       }
       
       .hero__content {
