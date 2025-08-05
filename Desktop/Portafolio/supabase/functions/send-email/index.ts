@@ -56,17 +56,3 @@ serve(async (req) => {
     )
   }
 })
-
-// Helper function to create Supabase client
-function createClient(supabaseUrl, supabaseKey) {
-  return {
-    from: (table) => ({
-      update: (data) => ({
-        eq: (column, value) => ({
-          then: (callback) => callback({ data: null, error: null }),
-          error: null
-        })
-      })
-    })
-  }
-}

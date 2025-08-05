@@ -28,9 +28,10 @@ interface Skill {
           
           <!-- Text SECOND (RIGHT SIDE) -->
           <div class="skills__text">
-            <h2 class="skills__title" [@fadeInUp]="isVisible ? 'visible' : 'void'">
-              {{ "SKILLS.MY_SKILLS" | translate }}
-            </h2>
+            <div class="skills__title-container" [@fadeInUp]="isVisible ? 'visible' : 'void'">
+              <h2 class="skills__title">{{ "SKILLS.MY_SKILLS" | translate }}</h2>
+              <div class="skills__title-line"></div>
+            </div>
             
             <p class="skills__description">
               {{ "SKILLS.DESCRIPTION" | translate }}
@@ -38,7 +39,7 @@ interface Skill {
             
             <!-- Desktop Button -->
             <div class="skills__cta skills__cta--desktop">
-              <a href="#portfolio" class="skills__button">
+              <a href="#contact" class="skills__button">
                 {{ "SKILLS.GET_IN_TOUCH" | translate }}
               </a>
             </div>
@@ -47,7 +48,7 @@ interface Skill {
         
         <!-- Mobile Button - ganz unten -->
         <div class="skills__cta skills__cta--mobile">
-          <a href="#portfolio" class="skills__button">
+          <a href="#contact" class="skills__button">
             {{ "SKILLS.GET_IN_TOUCH" | translate }}
           </a>
         </div>
@@ -62,9 +63,10 @@ interface Skill {
     .skills {
       position: relative;
       width: 100%;
-      min-height: 100vh;
+      min-height: 1000px;
+      height: auto;
       background-color: var(--color-background-primary);
-      padding: 6rem 0;
+     padding: 4rem 0;
       overflow: hidden;
     }
     
@@ -140,23 +142,36 @@ interface Skill {
     }
     
     .skills__title {
-      font-size: 3.5rem;
+      font-size: 89px;
       color: var(--color-text-primary);
       margin: 0 0 2rem 0;
-      position: relative;
       display: inline-block;
     }
     
-    .skills__title::after {
+    .skills__title-container {
+      display: flex;
+      align-items: center;
+        text-align: center;
+        justify-content: flex-end;
+      margin-bottom: 2rem;
+    }
+    
+    .skills__title-line {
+      width: 2px;
+      height: 4px;
+      position: relative;
+      margin-left: 1rem;
+      display: inline-block;
+    }
+    
+    .skills__title-line::after {
       content: '';
       position: absolute;
-      bottom: 50%;
-      left: 100%;
-      transform: translateY(50%);
-      width: 80px;
+      top: 0;
+      left: 0;
+      width: 9999px;
       height: 4px;
-      background-color: var(--color-accent-primary);
-      margin-left: 1rem;
+      background-color: var(--color-accent-secondary);
     }
     
     .skills__description {
@@ -224,7 +239,7 @@ interface Skill {
     
     @media (max-width: 1200px) {
       .skills__title {
-        font-size: 3rem;
+        font-size: 60px;
       }
       
       .skills__grid {
@@ -235,7 +250,7 @@ interface Skill {
     @media (max-width: 1000px) {
       .skills__content {
         flex-direction: column;
-        text-align: center;
+        align-items: center;
       }
       
       .skills__text {
@@ -250,16 +265,15 @@ interface Skill {
         margin-bottom: 3rem;
       }
       
-      .skills__title {
+      .skills__title-container {
         text-align: center;
-        margin-bottom: 3rem;
+        justify-content: flex-end;
+    
       }
       
-      .skills__title::after {
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-left: 0;
+      .skills__title {
+        text-align: center;
+        margin-bottom: 0;
       }
       
       .skills__description {
@@ -284,7 +298,7 @@ interface Skill {
       }
       
       .skills__title {
-        font-size: 2.5rem;
+        font-size: 45px;
       }
       
       .skills__description {
@@ -305,7 +319,7 @@ interface Skill {
       }
       
       .skills__title {
-        font-size: 2rem;
+        font-size: 45px;
       }
       
       .skills__icon {
@@ -316,7 +330,7 @@ interface Skill {
     
     @media (max-width: 480px) {
       .skills__title {
-        font-size: 1.75rem;
+        font-size:26px;
       }
       
       .skills__description {

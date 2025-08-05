@@ -1,11 +1,8 @@
 <div class="flex-wrapper">
   <div class="content-wrapper" id="hero-section" #hero>
     <div class="content-container" id="hero-content">
-      <div class="hero-left-section">
-        <img class="hero-img" src="assets/img/me.jpeg" alt="Milan Moreno" />
-        <div class="hero-img-shadow"></div>
-      </div>
-      
+      <img class="hero-img" src="assets/img/hero-img.png" alt="" />
+
       <div class="text-container-wrapper">
         <div class="text-container">
           <div class="introduce-text">
@@ -33,13 +30,13 @@
       </div>
       <div class="socials">
         <a target="_blank" href="https://github.com/MilanMoreno"
-          ><img src="assets/img/github.png" alt="GitHub"
+          ><img src="assets/img/github.png" alt=""
         /></a>
-        <img (click)="copyText()" src="assets/img/email.png" alt="Email" />
+        <img (click)="copyText()" src="assets/img/email.png" alt="" />
         <a
           target="_blank"
-          href="https://www.linkedin.com/in/milan-moreno-9a7482360/"
-          ><img src="assets/img/linkedin.png" alt="LinkedIn"
+          href="https://www.linkedin.com/milan-moreno-a232432/"
+          ><img src="assets/img/linkedin.png" alt=""
         /></a>
         <p
           (click)="copyText()"
@@ -55,8 +52,8 @@
         }}</a>
       </div>
     </div>
-
     <img class="vector-shape" src="assets/img/Vector shape hero.png" alt="" />
+    <img class="hero-img-shadow" src="assets/img/hero-shadows.png" alt="" />
 
     <div #copyAlert class="copy-alert d-none">
       {{ "HERO.EMAIL_COPIED" | translate }}

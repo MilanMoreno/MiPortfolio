@@ -1,7 +1,5 @@
-/* Import Tailwind CSS */
-@use 'tailwindcss/base' as *;
-@use 'tailwindcss/components' as *;
-@use 'tailwindcss/utilities' as *;
+/* Tailwind CSS imports removed to fix build issues */
+/* Using custom CSS styles instead */
 
 :root {
   --color-background-primary: #141D2F;
@@ -114,6 +112,10 @@ button, a, input, select, textarea,
   overflow: visible !important;
   overflow: visible;
 }
+/* 10 px früher stoppen, wenn zu #portfolio gescrollt wird */
+#portfolio {
+  scroll-margin-top: 10px;   /* = 10 px weniger nach unten */
+}
 
 .about__container {
   position: relative;
@@ -143,7 +145,7 @@ button, a, input, select, textarea,
   z-index: 0 !important;
   left: 0 !important;
   bottom: 0 !important;
-  opacity: 0.5 !important;
+  opacity: 1 !important;
   max-width: 40% !important;
   pointer-events: none !important;
 }
@@ -159,7 +161,7 @@ button, a, input, select, textarea,
 @media (max-width: 768px) {
   .contact__shadow {
     max-width: 25% !important;
-    opacity: 0.2 !important;
+    opacity: 1 !important;
     bottom: -30px !important;
   }
 }
@@ -313,7 +315,7 @@ section {
   bottom: -100px !important;
   left: 0 !important;
   width: 100% !important;
-  height: 400px !important;
+  height: 300px !important;
   z-index: 4 !important;
   pointer-events: none !important;
 }

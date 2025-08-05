@@ -68,8 +68,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 100%;
       background-color: var(--color-background-primary);
       min-height: 100vh;
-      padding: 0rem ;
-      overflow: visible;
+      padding: 2rem 0;
     }
 
     .about__container {
@@ -78,7 +77,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 100%;
       max-width: 1200px;
       padding: 0 2rem;
-      overflow: visible;
     }
 
     .about__content {
@@ -87,8 +85,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       align-items: center;
       gap: 4rem;
       width: 100%;
-     
-      overflow: visible;
     }
 
     .about__text {
@@ -97,8 +93,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .about__heading {
-      font-size: 89px;
-       padding-top: 100px !important;
+      font-size: 48px;
       color: var(--color-text-primary);
       margin-bottom: 2rem;
     }
@@ -154,20 +149,21 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .about__image-line {
       position: absolute;
-      right: -99999px;
-      width: 99999px;
+      right: -100%;
+      width: 100%;
       height: 4px;
       background-color: var(--color-accent-primary);
       top: 50%;
       transform: translateY(-50%);
     }
-      
+
     .about__shadow {
       position: absolute;
       z-index: 0;
-      right: -50px;
-      top: 20%;
-      opacity: 0.7;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.5;
       max-width: 50%;
       height: auto;
     }
@@ -177,11 +173,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         padding: 0 1rem;
       }
 
-      
-        
-    .about__heading {
-      font-size: 49px;
-       padding-top: 100px !important;
+      .about__heading {
+        font-size: 40px;
       }
     }
 
@@ -199,7 +192,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .about__image-wrapper {
         width: 250px;
-        display: none !important;
       }
 
       .about__image-container {
@@ -215,7 +207,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     @media (max-width: 480px) {
       .about__heading {
         font-size: 32px;
-        
       }
 
       .about__intro,

@@ -4,8 +4,6 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animations';
-import { SupabaseService } from '../../../../shared/services/supabase/supabase.service';
-import { MockContactService } from '../../../../shared/services/mock-contact.service';
 
 interface ContactFormData {
   name: string;
@@ -89,7 +87,7 @@ interface ContactFormData {
                 [(ngModel)]="formData.message"
                 #message="ngModel"
                 required
-                minlength="1"
+                minlength="10"
                 rows="4"
                 [placeholder]="'CONTACT.MESSAGE_PLACEHOLDER' | translate"
                 [class.is-invalid]="message.invalid && (message.dirty || message.touched)">
@@ -134,14 +132,6 @@ interface ContactFormData {
                 [disabled]="contactForm.invalid || isSubmitting">
                 {{ 'CONTACT.SEND_BUTTON' | translate }}
               </button>
-            </div>
-
-            <div *ngIf="submitSuccess" class="contact__success-message">
-              {{ 'CONTACT.SUCCESS_MESSAGE' | translate }}
-            </div>
-
-            <div *ngIf="submitError" class="contact__error-message">
-              {{ errorMessage }}
             </div>
           </form>
         </div>
@@ -194,11 +184,11 @@ interface ContactFormData {
     }
 
     .contact__line {
-      background-color: var(--color-accent-secondary);
-      width: 20vw;
-      height: 4px;
-      margin-right: 2rem;
-    }
+  background-color: var(--color-accent-secondary);background-color: var(--color-accent-secondary);
+  width: 50px;
+  height: 4px;
+  margin-right: 2rem;
+}
 
     .contact__title {
       font-size: var(--font-size-heading-large);
@@ -237,7 +227,6 @@ interface ContactFormData {
     .contact__form {
       width: 680px;
       z-index: 60;
-      position: relative;
     }
 
     .contact__form-group {
@@ -354,13 +343,13 @@ interface ContactFormData {
     }
 
     .contact__submit {
-      width: 180px;
+      width: 250px;
       background-color: var(--color-accent-primary);
       border: none;
       border-radius: 10px;
-      padding: 10px 20px;
+      padding: 15px 30px;
       color: var(--color-text-primary);
-      font-size: 14px;
+      font-size: var(--font-size-base);
       cursor: pointer;
       transition: all 0.3s ease;
 
@@ -374,32 +363,12 @@ interface ContactFormData {
       }
     }
 
-    .contact__success-message {
-      margin-top: 1rem;
-      padding: 1rem;
-      background-color: rgba(112, 230, 28, 0.2);
-      border: 1px solid var(--color-accent-primary);
-      border-radius: 10px;
-      color: var(--color-text-primary);
-      text-align: center;
-    }
-
-    .contact__error-message {
-      margin-top: 1rem;
-      padding: 1rem;
-      background-color: rgba(255, 0, 0, 0.2);
-      border: 1px solid red;
-      border-radius: 10px;
-      color: var(--color-text-primary);
-      text-align: center;
-    }
-
     .contact__scroll-top {
       position: absolute;
-      right: 20px;
-      bottom: 20px;
-      height: 30px;
-      width: 30px;
+      right: 100px;
+      bottom: 50px;
+      height: 40px;
+      width: 40px;
       color: var(--color-text-primary);
       transition: color 0.3s ease;
 
@@ -435,133 +404,34 @@ interface ContactFormData {
       }
     }
 
-    /* Hide shadow at medium screen sizes where it would overlap the form */
-    @media (max-width: 1400px) and (min-width: 768px) {
+    @media (max-width: 768px) {
+      .contact__scroll-top {
+        right: 1rem;
+        bottom: 1rem;
+      }
+
+      .contact__title {
+        font-size: 45px;
+      }
+
+      .contact__subtitle {
+        font-size: 24px;
+      }
+
       .contact__shadow {
         display: none;
       }
     }
 
-    @media (max-width: 768px) {
-      .contact__scroll-top {
-        right: 10px;
-        bottom: 10px;
-        height: 25px;
-        width: 25px;
-      }
-
-      .contact__title {
-        font-size: 32px;
-      }
-
-      .contact__subtitle {
-        font-size: 20px;
-      }
-
-      .contact__shadow {
-        max-width: 30%;
-        opacity: 1.3;
-      }
-    }
-
     @media (max-width: 480px) {
       .contact__checkbox-text {
-        font-size: 9px;
+        font-size: 12px;
       }
 
       .contact__submit {
-        width: 120px;
-        padding: 8px 12px;
-        font-size: 11px;
-      }
-
-      .contact__scroll-top {
-        right: 10px;
-        bottom: 10px;
-        height: 20px;
-        width: 20px;
-      }
-
-      .contact__shadow {
-        max-width: 25%;
-        opacity: 1.3;
-      }
-      
-      .contact__title {
-        font-size: 26px;
-      }
-      
-      .contact__subtitle {
-        font-size: 16px;
-      }
-      
-      input, textarea {
-        font-size: 14px;
-        padding: 10px 15px;
+        width: 100%;
       }
     }
-    
-    @media (max-width: 350px) {
-      .contact__title {
-        font-size: 22px;
-      }
-      
-      .contact__subtitle {
-        font-size: 14px;
-      }
-      
-      .contact__submit {
-        width: 100px;
-        padding: 6px 10px;
-        font-size: 10px;
-      }
-      
-      .contact__checkbox-text {
-        font-size: 8px;
-      }
-      
-      input, textarea {
-        font-size: 11px;
-        padding: 8px 10px;
-      }
-      
-      .contact__scroll-top {
-        height: 16px;
-        width: 16px;
-      }
-    }
-   
-   @media (max-width: 320px) {
-     .contact__title {
-       font-size: 20px;
-     }
-     
-     .contact__subtitle {
-       font-size: 13px;
-     }
-     
-     .contact__submit {
-       width: 90px;
-       padding: 5px 8px;
-       font-size: 9px;
-     }
-     
-     .contact__checkbox-text {
-       font-size: 7px;
-     }
-     
-     input, textarea {
-       font-size: 10px;
-       padding: 6px 8px;
-     }
-     
-     .contact__scroll-top {
-       height: 14px;
-       width: 14px;
-       bottom: 8px;
-       right: 8px;
-     }
-   }
   `],
     animations: [fadeInLeft, fadeInUp]
 })
@@ -574,14 +444,6 @@ export class ContactSectionComponent {
   };
 
   isSubmitting = false;
-  submitSuccess = false;
-  submitError = false;
-  errorMessage = '';
-
-  constructor(
-    private supabaseService: SupabaseService,
-    private mockContactService: MockContactService
-  ) {}
 
   async onSubmit(form: NgForm): Promise<void> {
     if (form.invalid || this.isSubmitting) {
@@ -589,75 +451,12 @@ export class ContactSectionComponent {
     }
 
     this.isSubmitting = true;
-    this.submitSuccess = false;
-    this.submitError = false;
 
     try {
-      console.log('Submitting form data:', this.formData);
-      
-      // Try Supabase first
-      let result = await this.supabaseService.submitContactForm({
-        name: this.formData.name,
-        email: this.formData.email,
-        message: this.formData.message
-      });
-
-      // If Supabase fails, use mock service as fallback
-      if (!result.success) {
-        console.log('Supabase failed, using mock service as fallback');
-        result = await this.mockContactService.submitContactForm({
-          name: this.formData.name,
-          email: this.formData.email,
-          message: this.formData.message
-        });
-      }
-
-      if (result.success) {
-        console.log('Form submitted successfully:', result);
-        this.submitSuccess = true;
-        form.resetForm();
-        
-        // Reset form data
-        this.formData = {
-          name: '',
-          email: '',
-          message: '',
-          privacyPolicy: false
-        };
-      } else {
-        console.error('Form submission failed:', result.error);
-        this.submitError = true;
-        this.errorMessage = result.error || 'There was an error sending your message. Please try again later.';
-      }
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      form.resetForm();
     } catch (error) {
-      console.error('Error submitting form:', error);
-      
-      // Final fallback to mock service
-      try {
-        console.log('Using mock service as final fallback');
-        const mockResult = await this.mockContactService.submitContactForm({
-          name: this.formData.name,
-          email: this.formData.email,
-          message: this.formData.message
-        });
-        
-        if (mockResult.success) {
-          this.submitSuccess = true;
-          form.resetForm();
-          this.formData = {
-            name: '',
-            email: '',
-            message: '',
-            privacyPolicy: false
-          };
-        } else {
-          this.submitError = true;
-          this.errorMessage = 'There was an error sending your message. Please try again later.';
-        }
-      } catch (mockError) {
-        this.submitError = true;
-        this.errorMessage = 'There was an error sending your message. Please try again later.';
-      }
+      console.error('Failed to submit form:', error);
     } finally {
       this.isSubmitting = false;
     }

@@ -4,30 +4,14 @@ import { Component, HostListener, NgZone } from '@angular/core';
 @Component({
     selector: 'app-mouse-follower',
     imports: [CommonModule],
-    template: `
-      <div class="mouse-pointer" [ngStyle]="circleStyle">
-        <div class="pointer-tip"></div>
-      </div>
-    `,
-    styles: [`
-      .mouse-pointer {
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 20px solid white;
-        position: fixed;
-        transform: translate(-50%, -50%) rotate(-30deg);
-        z-index: 999;
-        pointer-events: none;
-      }
-    `]
+    templateUrl: './mouse-follower.component.html',
+    styleUrl: './mouse-follower.component.scss'
 })
 export class MouseFollowerComponent {
   circleStyle = {
     top: '0px',
     left: '0px',
-    display: 'block' // Changed to initially visible
+    display: 'none' // Initial hidden state
   };
   private mouseX: number = 0;
   private mouseY: number = 0;
@@ -37,32 +21,50 @@ export class MouseFollowerComponent {
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
     this.ngZone.run(() => {
-      // Always update position regardless of screen size
-      this.mouseX = event.clientX;
-      this.mouseY = event.clientY;
-      this.updatePointerPosition();
-      this.circleStyle.display = 'block'; // Always show the follower
+      if (window.innerWidth > 1000) {
+        this.mouseX = event.clientX;
+        this.mouseY = event.clientY;
+        this.updatePointerPosition();
+        this.circleStyle.display = 'block'; // Show the follower
+      } else {
+        this.circleStyle.display = 'none'; // Hide the follower
+      }
     });
   }
 
   @HostListener('document:mouseleave')
   onMouseLeave() {
     this.ngZone.run(() => {
-      this.circleStyle.display = 'none'; // Hide the follower when mouse leaves the window
+      if (window.innerWidth > 1000) {
+        this.circleStyle.display = 'none'; // Hide the follower when mouse leaves the window
+      }
     });
   }
 
   @HostListener('document:mouseenter')
   onMouseEnter() {
     this.ngZone.run(() => {
-      this.circleStyle.display = 'block'; // Show the follower when mouse re-enters the window
+      if (window.innerWidth > 1000) {
+        this.circleStyle.display = 'block'; // Show the follower when mouse re-enters the window
+      }
+    });
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.ngZone.run(() => {
+      if (window.innerWidth <= 1000) {
+        this.circleStyle.display = 'none'; // Hide the follower on small screens
+      }
     });
   }
 
   @HostListener('window:scroll')
   onScroll() {
     this.ngZone.run(() => {
-      this.updatePointerPosition();
+      if (window.innerWidth > 1000) {
+        this.updatePointerPosition();
+      }
     });
   }
 

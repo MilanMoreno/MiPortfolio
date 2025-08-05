@@ -33,7 +33,7 @@ export class CustomCursorComponent {
   cursorStyles = {
     top: '0px',
     left: '0px',
-    display: 'block'
+    display: 'none'
   };
 
   constructor(private ngZone: NgZone) {}
@@ -41,8 +41,10 @@ export class CustomCursorComponent {
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
     this.ngZone.run(() => {
-      this.updateCursorPosition(event.clientX, event.clientY);
-      this.cursorStyles.display = 'block';
+      if (window.innerWidth > 1000) {
+        this.updateCursorPosition(event.clientX, event.clientY);
+        this.cursorStyles.display = 'block';
+      }
     });
   }
 
@@ -50,6 +52,15 @@ export class CustomCursorComponent {
   onMouseLeave(): void {
     this.ngZone.run(() => {
       this.cursorStyles.display = 'none';
+    });
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    this.ngZone.run(() => {
+      if (window.innerWidth <= 1000) {
+        this.cursorStyles.display = 'none';
+      }
     });
   }
 

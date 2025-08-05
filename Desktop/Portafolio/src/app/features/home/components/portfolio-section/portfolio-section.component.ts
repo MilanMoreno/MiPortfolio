@@ -10,11 +10,13 @@ import { TranslateModule } from '@ngx-translate/core';
     <section class="portfolio" id="portfolio">
       <div class="portfolio__container">
         <div class="portfolio__header">
-          <div class="portfolio__title-container">
-            <div class="portfolio__line-left"></div>
-            <h2 class="portfolio__title">{{ "PORTFOLIO.HEADLINE" | translate }}</h2>
-            <div class="portfolio__line-right-container">
-              <div class="portfolio__line-right"></div>
+          <div class="portfolio_title-container" style="display: flex; align-items: center; justify-content: center;">
+            <div class="portfolio_line-left"></div>
+            <h2 class="portfolio_title">
+              {{ "PORTFOLIO.HEADLINE" | translate }}
+            </h2>
+            <div class="portfolio_line-right-container">
+              <div class="portfolio_line-right"></div>
             </div>
           </div>
           
@@ -31,8 +33,7 @@ import { TranslateModule } from '@ngx-translate/core';
             [stackKey]="project.stackKey"
             [descriptionKey]="project.descriptionKey"
             [demoUrl]="project.demoUrl"
-            [repoUrl]="project.repoUrl"
-            [isReversed]="i % 2 === 1">
+            [repoUrl]="project.repoUrl">
           </app-project-card>
         </div>
       </div>
@@ -50,63 +51,49 @@ import { TranslateModule } from '@ngx-translate/core';
     styles: [`
     .portfolio {
       position: relative;
-      display: flex;
-      justify-content: center;
-      padding: 4rem 0;
-      background-color: var(--color-background-primary);
-      min-height: auto;
+      width: 100%;
     }
     
     .portfolio__container {
+      padding: 4rem 0;
+    }
+    
+    .portfolio_title-container {
       width: 100%;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 0 3rem;
-      position: relative;
-      z-index: 2;
+      margin-bottom: 2rem;
     }
     
-    .portfolio__header {
-      margin-bottom: 3rem;
-    }
-    
-    .portfolio__title-container {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    
-    .portfolio__line-left {
-      width: 100px;
+    .portfolio_line-left {
+      width: 2% !important;
+      order: 0 !important;
+      margin-right: 0 !important;
       height: 4px;
       background-color: var(--color-accent-secondary);
-      margin-right: 2rem;
     }
     
-    .portfolio__title {
-      font-size: 90px;
+    .portfolio_title {
+      font-size: 45px !important;
+      order: 1 !important;
       color: var(--color-text-primary);
-      margin: 0;
-      white-space: nowrap;
+      margin: 0 1rem;
     }
     
-    .portfolio__line-right-container {
+    .portfolio_line-right-container {
+      width: 15% !important;
+      order: 2 !important;
+      margin-left: 0 !important;
       position: relative;
-      width: 100%;
-      margin-left: 2rem;
     }
     
-    .portfolio__line-right {
+    .portfolio_line-right {
       position: absolute;
       left: 0;
-      width: 99999px;
+      width: 9999px;
       height: 4px;
       background-color: var(--color-accent-secondary);
     }
-    
+
     .portfolio__introduction {
-      text-align: center;
-      color: var(--color-text-primary);
       font-size: 16px;
       max-width: 800px;
       margin: 0 auto;
@@ -152,48 +139,18 @@ import { TranslateModule } from '@ngx-translate/core';
     }
     
     @media (max-width: 768px) {
-      .portfolio__title-container {
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 0 1rem;
-       padding: 0 1.5rem;
+      .portfolio_title {
+        font-size: 32px !important;
       }
       
-      .portfolio__title {
-        font-size: 45px;
-        order: 1;
-        margin: 1rem 0;
-      }
-      
-      .portfolio__line-left {
-        width: 30%;
-        order: 0;
-        margin-right: 0;
-      }
-      
-      .portfolio__line-right-container {
-        width: 30%;
-        order: 2;
-        margin-left: 0;
-      }
-      
-      .portfolio__introduction {
-        max-width: 80vw;
-      }
-      
-      .portfolio__shadow-purple,
-      .portfolio__shadow-green {
-        max-width: 30%;
-      }
-      
-      .portfolio__projects {
-        gap: 1.5rem;
+      .portfolio_line-right-container {
+        width: 2% !important;
       }
     }
     
     @media (max-width: 480px) {
-      .portfolio__title {
-        font-size: 36px;
+      .portfolio_title {
+        font-size: 28px !important;
       }
       
       .portfolio__shadow-purple,
@@ -203,6 +160,25 @@ import { TranslateModule } from '@ngx-translate/core';
       
       .portfolio__projects {
         gap: 1rem;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .portfolio_line-left {
+        width: 2% !important;
+      }
+      
+      .portfolio_line-right-container {
+        width: 2% !important;
+      }
+      
+      .portfolio__shadow-purple,
+      .portfolio__shadow-green {
+        max-width: 10%;
+      }
+      
+      .portfolio__projects {
+        gap: 1.5rem;
       }
     }
     
