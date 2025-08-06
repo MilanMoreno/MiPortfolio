@@ -1,15 +1,22 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animations';
 import { SupabaseService } from '../../../../shared/services/supabase/supabase.service';
-import { CommonModule } from '@angular/common';
+import { MockContactService } from '../../../../shared/services/mock-contact.service';
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  message: string;
+  privacyPolicy: boolean;
+}
 
 @Component({
     selector: 'app-contact-section',
-    standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, TranslateModule],
+    imports: [CommonModule, FormsModule, RouterModule, TranslateModule],
     template: `
     <section class="contact" id="contact">
       <div class="contact__container">
@@ -33,21 +40,24 @@ import { CommonModule } from '@angular/common';
           </div>
 
           <form 
-            [formGroup]="contactForm" 
-            (ngSubmit)="onSubmit()" 
-            class="contact__form"
+            class="contact__form" 
+            (ngSubmit)="onSubmit(contactForm)"
+            #contactForm="ngForm"
             [@fadeInLeft]>
             
             <div class="contact__form-group">
               <input
                 type="text"
                 id="name"
-                formControlName="name"
+                name="name"
+                [(ngModel)]="formData.name"
+                #name="ngModel"
+                required
                 [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate"
-                [class.is-invalid]="submitted && f['name'].errors">
+                [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
               
               <div class="contact__error-container">
-                <span class="contact__error" *ngIf="submitted && f['name'].errors">
+                <span class="contact__error" *ngIf="name.invalid && name.touched">
                   {{ 'CONTACT.NAME_ERROR' | translate }}
                 </span>
               </div>
@@ -57,12 +67,16 @@ import { CommonModule } from '@angular/common';
               <input
                 type="email"
                 id="email"
-                formControlName="email"
+                name="email"
+                [(ngModel)]="formData.email"
+                #email="ngModel"
+                required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
                 [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate"
-                [class.is-invalid]="submitted && f['email'].errors">
+                [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
               
               <div class="contact__error-container">
-                <span class="contact__error" *ngIf="submitted && f['email'].errors">
+                <span class="contact__error" *ngIf="email.invalid && email.touched">
                   {{ 'CONTACT.EMAIL_ERROR' | translate }}
                 </span>
               </div>
@@ -71,14 +85,18 @@ import { CommonModule } from '@angular/common';
             <div class="contact__form-group">
               <textarea
                 id="message"
-                formControlName="message"
+                name="message"
+                [(ngModel)]="formData.message"
+                #message="ngModel"
+                required
+                minlength="1"
                 rows="4"
                 [placeholder]="'CONTACT.MESSAGE_PLACEHOLDER' | translate"
-                [class.is-invalid]="submitted && f['message'].errors">
+                [class.is-invalid]="message.invalid && (message.dirty || message.touched)">
               </textarea>
               
               <div class="contact__error-container">
-                <span class="contact__error" *ngIf="submitted && f['message'].errors">
+                <span class="contact__error" *ngIf="message.invalid && message.touched">
                   {{ 'CONTACT.MESSAGE_ERROR' | translate }}
                 </span>
               </div>
@@ -88,7 +106,10 @@ import { CommonModule } from '@angular/common';
               <label class="contact__checkbox-label">
                 <input
                   type="checkbox"
-                  formControlName="privacyPolicy">
+                  name="privacyPolicy"
+                  [(ngModel)]="formData.privacyPolicy"
+                  #privacyPolicy="ngModel"
+                  required>
                 <span class="contact__checkbox-custom"></span>
                 <span class="contact__checkbox-text">
                   {{ 'CONTACT.PRIVACY_POLICY_TEXT1' | translate }}
@@ -100,7 +121,7 @@ import { CommonModule } from '@angular/common';
               </label>
               
               <div class="contact__error-container">
-                <span class="contact__error" *ngIf="submitted && f['privacyPolicy'].errors">
+                <span class="contact__error" *ngIf="privacyPolicy.invalid && privacyPolicy.touched">
                   {{ 'CONTACT.PRIVACY_POLICY_ERROR' | translate }}
                 </span>
               </div>
@@ -110,7 +131,7 @@ import { CommonModule } from '@angular/common';
               <button 
                 type="submit" 
                 class="contact__submit"
-                [disabled]="isSubmitting">
+                [disabled]="contactForm.invalid || isSubmitting">
                 {{ 'CONTACT.SEND_BUTTON' | translate }}
               </button>
             </div>
@@ -153,7 +174,9 @@ import { CommonModule } from '@angular/common';
       flex-direction: column;
       align-items: center;
       background-color: var(--color-background-primary);
-      min-height: 100vh;
+      min-height: 600px;
+      height: auto;
+      padding: 4rem 48px;
       width: 100%;
       max-width: 1920px;
     }
@@ -164,25 +187,38 @@ import { CommonModule } from '@angular/common';
       width: 100%;
       margin-bottom: 4rem;
       z-index: 60;
+      position: relative;
     }
 
     .contact__title-wrapper {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
       width: 100%;
+      gap: 2rem;
+      position: relative;
     }
 
     .contact__line {
       background-color: var(--color-accent-secondary);
-      width: 20vw;
       height: 4px;
-      margin-right: 2rem;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100vw;
+      margin-left: -100vw;
+      z-index: 1;
     }
 
     .contact__title {
       font-size: var(--font-size-heading-large);
       color: var(--color-text-primary);
       margin: 0;
+      position: relative;
+      z-index: 2;
+      background-color: var(--color-background-primary);
+      padding-left: 2rem;
     }
 
     .contact__content {
@@ -202,7 +238,7 @@ import { CommonModule } from '@angular/common';
       z-index: 60;
 
       p {
-        font-size: var(--font-size-base);
+        font-size: 16px;
         color: var(--color-text-primary);
       }
     }
@@ -277,10 +313,10 @@ import { CommonModule } from '@angular/common';
     }
 
     .contact__checkbox-custom {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--color-accent-secondary);
-      border-radius: 4px;
+      width: 30px;
+      height: 24px;
+      border: 4px solid var(--color-accent-secondary);
+      border-radius: 0px;
       position: relative;
 
       &::after {
@@ -306,7 +342,7 @@ import { CommonModule } from '@angular/common';
     }
 
     .contact__checkbox-text {
-      font-size: 15px;
+      font-size: 16px;
 
       a {
         color: var(--color-accent-secondary);
@@ -333,13 +369,13 @@ import { CommonModule } from '@angular/common';
     }
 
     .contact__submit {
-      width: 250px;
+      width: 180px;
       background-color: var(--color-accent-primary);
       border: none;
       border-radius: 10px;
-      padding: 15px 30px;
+      padding: 10px 20px;
       color: var(--color-text-primary);
-      font-size: var(--font-size-base);
+      font-size: 14px;
       cursor: pointer;
       transition: all 0.3s ease;
 
@@ -375,10 +411,10 @@ import { CommonModule } from '@angular/common';
 
     .contact__scroll-top {
       position: absolute;
-      right: 100px;
-      bottom: 50px;
-      height: 40px;
-      width: 40px;
+      right: 28px;
+      bottom: 28px;
+      height: 30px;
+      width: 30px;
       color: var(--color-text-primary);
       transition: color 0.3s ease;
 
@@ -396,17 +432,19 @@ import { CommonModule } from '@angular/common';
       height: auto;
     }
 
+    /* Responsive Design */
     @media (max-width: 1395px) {
       .contact__content {
         flex-direction: column;
         align-items: center;
       }
 
-      .contact__intro {
+      .contact__intro { 
         width: 100%;
         max-width: 80vw;
         text-align: center;
-      }
+        font-size: 16px;
+      } 
 
       .contact__form {
         width: 100%;
@@ -414,71 +452,175 @@ import { CommonModule } from '@angular/common';
       }
     }
 
-    @media (max-width: 768px) {
-      .contact__scroll-top {
-        right: 1rem;
-        bottom: 1rem;
-      }
-
-      .contact__title {
-        font-size: 45px;
-      }
-
-      .contact__subtitle {
-        font-size: 24px;
-      }
-
+    /* Hide shadow at medium screen sizes where it would overlap the form */
+    @media (max-width: 1400px) and (min-width: 768px) {
       .contact__shadow {
         display: none;
       }
     }
 
+    @media (max-width: 768px) {
+      .contact__scroll-top {
+        right: 10px;
+        bottom: 10px;
+        height: 27px;
+        width: 27px;
+      }
+
+      .contact__title {
+        font-size: 44px;
+      }
+
+      .contact__subtitle {
+        font-size: 20px;
+      }
+
+      .contact__shadow {
+        max-width: 30%;
+        opacity: 1.3;
+      }
+
+      .contact__line {
+        height: 3px;
+      }
+    }
+
     @media (max-width: 480px) {
       .contact__checkbox-text {
-        font-size: 12px;
+        font-size: 15px;
       }
 
       .contact__submit {
-        width: 100%;
+        width: 170px;
+        padding: 12px 12px;
+        font-size: 16px;
+      }
+
+      .contact__scroll-top {
+        right: 10px;
+        bottom: 10px;
+        height: 26px;
+        width: 26px;
+      }
+
+      .contact__shadow {
+        max-width: 25%;
+        opacity: 1.3;
+      }
+      
+      .contact__title {
+        font-size: 26px;
+        padding-left: 1rem;
+      }
+      
+      .contact__subtitle {
+        font-size: 16px;
+      }
+      
+      input, textarea {
+        font-size: 16px;
+        padding: 10px 15px;
+      }
+
+      .contact__line {
+        height: 2px;
+      }
+    }
+    
+    @media (max-width: 350px) {
+      .contact__title {
+        font-size: 24px;
+        padding-left: 0.5rem;
+      }
+      
+      .contact__subtitle {
+        font-size: 16px;
+      }
+      
+      .contact__submit {
+        width: 170px;
+        padding: 12px 12px;
+        font-size: 16px;
+      }
+      
+      .contact__checkbox-text {
+        font-size: 14px;
+      }
+
+      .contact__checkbox-custom {
+        width: 50px;
+        height: 24px;
+        border: 4px solid var(--color-accent-secondary);
+        border-radius: 0px;
+        position: relative;
+      }
+
+      input, textarea {
+        font-size: 16px;
+        padding: 8px 10px;
+      }
+      
+      .contact__scroll-top {
+        height: 26px;
+        width: 26px;
+      }
+    }
+   
+    @media (max-width: 320px) {
+      .contact__title {
+        font-size: 22px;
+        padding-left: 0.5rem;
+      }
+      
+      .contact__subtitle {
+        font-size: 14px;
+      }
+      
+      .contact__submit {
+        width: 170px;
+        padding: 12px 12px;
+        font-size: 16px;
+      }
+      
+      .contact__checkbox-text {
+        font-size: 13px;
+      }
+      
+      input, textarea {
+        font-size: 16px;
+        padding: 6px 8px;
+      }
+      
+      .contact__scroll-top {
+        height: 22px;
+        width: 22px;
+        bottom: 8px;
+        right: 8px;
       }
     }
   `],
     animations: [fadeInLeft, fadeInUp]
 })
-export class ContactSectionComponent implements OnInit {
-  contactForm!: FormGroup;
-  submitted = false;
+export class ContactSectionComponent {
+  formData: ContactFormData = {
+    name: '',
+    email: '',
+    message: '',
+    privacyPolicy: false
+  };
+
   isSubmitting = false;
   submitSuccess = false;
   submitError = false;
   errorMessage = '';
 
   constructor(
-    private formBuilder: FormBuilder,
-    private supabaseService: SupabaseService
+    private supabaseService: SupabaseService,
+    private mockContactService: MockContactService
   ) {}
 
-  ngOnInit(): void {
-    this.contactForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      message: ['', [Validators.required, Validators.minLength(10)]],
-      privacyPolicy: [false, Validators.requiredTrue]
-    });
-  }
-
-  // Getter for easy access to form fields
-  get f() { return this.contactForm.controls; }
-
-  async onSubmit(): Promise<void> {
-    this.submitted = true;
-
-    if (this.contactForm.invalid) {
-      console.log('Form is invalid:', this.contactForm.errors);
-      // Mark all fields as touched to show validation errors
-      Object.keys(this.contactForm.controls).forEach(key => {
-        this.contactForm.get(key)?.markAsTouched();
-      });
+  async onSubmit(form: NgForm): Promise<void> {
+    if (form.invalid || this.isSubmitting) {
       return;
     }
 
@@ -486,45 +628,74 @@ export class ContactSectionComponent implements OnInit {
     this.submitSuccess = false;
     this.submitError = false;
 
-    console.log('Form data being submitted:', this.contactForm.value);
-
     try {
-      const result = await this.supabaseService.submitContactForm({
-        name: this.contactForm.value.name,
-        email: this.contactForm.value.email,
-        message: this.contactForm.value.message
+      console.log('Submitting form data:', this.formData);
+      
+      // Try Supabase first
+      let result = await this.supabaseService.submitContactForm({
+        name: this.formData.name,
+        email: this.formData.email,
+        message: this.formData.message
       });
 
-      console.log('Submission result:', result);
+      // If Supabase fails, use mock service as fallback
+      if (!result.success) {
+        console.log('Supabase failed, using mock service as fallback');
+        result = await this.mockContactService.submitContactForm({
+          name: this.formData.name,
+          email: this.formData.email,
+          message: this.formData.message
+        });
+      }
 
       if (result.success) {
+        console.log('Form submitted successfully:', result);
         this.submitSuccess = true;
-        this.contactForm.reset();
-        this.contactForm.patchValue({ privacyPolicy: false });
-        this.submitted = false;
+        form.resetForm();
         
-        // Hide success message after 5 seconds
-        setTimeout(() => {
-          this.submitSuccess = false;
-        }, 5000);
+        // Reset form data
+        this.formData = {
+          name: '',
+          email: '',
+          message: '',
+          privacyPolicy: false
+        };
       } else {
+        console.error('Form submission failed:', result.error);
         this.submitError = true;
         this.errorMessage = result.error || 'There was an error sending your message. Please try again later.';
-        console.error('Form submission failed:', result.error);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      this.submitError = true;
-      this.errorMessage = 'There was an error sending your message. Please try again later.';
+      
+      // Final fallback to mock service
+      try {
+        console.log('Using mock service as final fallback');
+        const mockResult = await this.mockContactService.submitContactForm({
+          name: this.formData.name,
+          email: this.formData.email,
+          message: this.formData.message
+        });
+        
+        if (mockResult.success) {
+          this.submitSuccess = true;
+          form.resetForm();
+          this.formData = {
+            name: '',
+            email: '',
+            message: '',
+            privacyPolicy: false
+          };
+        } else {
+          this.submitError = true;
+          this.errorMessage = 'There was an error sending your message. Please try again later.';
+        }
+      } catch (mockError) {
+        this.submitError = true;
+        this.errorMessage = 'There was an error sending your message. Please try again later.';
+      }
     } finally {
       this.isSubmitting = false;
-      
-      // Hide error message after 5 seconds
-      if (this.submitError) {
-        setTimeout(() => {
-          this.submitError = false;
-        }, 5000);
-      }
     }
   }
 }

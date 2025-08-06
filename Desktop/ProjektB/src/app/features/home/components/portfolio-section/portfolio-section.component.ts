@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectCardComponent } from '../../../../shared/project-card/project-card.component';
+import { ProjectCardComponent } from './project-card/project-card.component';
+
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -26,13 +27,13 @@ import { TranslateModule } from '@ngx-translate/core';
         <div class="portfolio__projects">
           <app-project-card
             *ngFor="let project of projects; let i = index"
-            [projectImage]="project.projectImage"
+            [image]="project.image"
             [titleKey]="project.titleKey"
             [stackKey]="project.stackKey"
             [descriptionKey]="project.descriptionKey"
             [demoUrl]="project.demoUrl"
             [repoUrl]="project.repoUrl"
-            [rowReverse]="i % 2 === 1">
+            [isReversed]="i % 2 === 1">
           </app-project-card>
         </div>
       </div>
@@ -212,7 +213,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class PortfolioSectionComponent {
   projects = [
     {
-      projectImage: 'assets/img/join-project.png',
+      image: 'assets/img/join-project.png',
       titleKey: 'PORTFOLIO.PROJECTS.0.HEADLINE',
       stackKey: 'PORTFOLIO.PROJECTS.0.TECH_STACK',
       descriptionKey: 'PORTFOLIO.PROJECTS.0.DESCRIPTION',
@@ -220,7 +221,7 @@ export class PortfolioSectionComponent {
       repoUrl: 'https://github.com/MilanMoreno/Join/'
     },
     {
-      projectImage: 'assets/img/Polloloco1.png',
+      image: 'assets/img/Polloloco1.png',
       titleKey: 'PORTFOLIO.PROJECTS.1.HEADLINE',
       stackKey: 'PORTFOLIO.PROJECTS.1.TECH_STACK',
       descriptionKey: 'PORTFOLIO.PROJECTS.1.DESCRIPTION',
@@ -228,7 +229,7 @@ export class PortfolioSectionComponent {
       repoUrl: 'https://github.com/MilanMoreno/PolloLoco'
     },
     {
-      projectImage: 'assets/img/quiz-app-project.png',
+      image: 'assets/img/quiz-app-project.png',
       titleKey: 'PORTFOLIO.PROJECTS.3.HEADLINE',
       stackKey: 'PORTFOLIO.PROJECTS.3.TECH_STACK',
       descriptionKey: 'PORTFOLIO.PROJECTS.3.DESCRIPTION',

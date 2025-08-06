@@ -11,7 +11,6 @@ interface Skill {
 
 @Component({
     selector: 'app-skills-section',
-    standalone: true,
     imports: [CommonModule, TranslateModule],
     template: `
     <section class="skills" id="skills">

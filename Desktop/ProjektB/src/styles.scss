@@ -1,3 +1,8 @@
+/* Import Tailwind CSS */
+@use 'tailwindcss/base' as *;
+@use 'tailwindcss/components' as *;
+@use 'tailwindcss/utilities' as *;
+
 :root {
   --color-background-primary: #141D2F;
   --color-accent-primary: #70E61C;
@@ -7,18 +12,41 @@
   --footer-height: 200px;
 
   --font-family-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
-  --font-size-base: 16px;
+  --font-size-base: 14px;
   --font-size-heading-large: 90px;
   --font-size-heading-medium: 32px;
   --font-size-heading-small: 24px;
 }
 
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+html {
+  cursor: none !important;
+}
+
+body {
+  cursor: none !important;
+}
+
+
+button, a, input, select, textarea, 
+[role="button"], [type="button"], [type="submit"],
+.btn, .button, .link {
+  cursor: none !important;
+}
+
+
+*:hover {
+  cursor: none !important;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-family-primary);
-  cursor: none;
+  cursor: none !important;
   user-select: none;
   -webkit-user-select: none;
   -webkit-user-drag: none;
@@ -27,6 +55,7 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--color-background-primary);
+  cursor: none !important;
 }
 
 body {
@@ -35,11 +64,25 @@ body {
   color: var(--color-text-primary);
   font-size: var(--font-size-base);
   line-height: 1.5;
+  cursor: none !important;
+  font-family: var(--font-family-primary);
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  cursor: none !important;
+}
+
+button, a, input, select, textarea, 
+[role="button"], [type="button"], [type="submit"],
+.btn, .button, .link {
+  cursor: none !important;
+}
+
+
+*:hover {
+  cursor: none !important;
 }
 
 .visually-hidden {
@@ -63,16 +106,111 @@ a {
   border-radius: 10px;
 }
 
+/* GLOBAL STYLES FOR ABOUT SHADOW - FIXED VERSION */
+
+/* Make sure the about section containers are positioned relative */
+.about {
+  position: relative;
+  overflow: visible !important;
+  overflow: visible;
+}
+/* 10 px früher stoppen, wenn zu #portfolio gescrollt wird */
+#portfolio {
+  scroll-margin-top: 10px;   /* = 10 px weniger nach unten */
+}
+
+.about__container {
+  position: relative;
+  overflow: visible !important;
+  overflow: visible;
+}
+
+.about__content {
+  position: relative;
+  overflow: visible !important;
+  overflow: visible;
+}
+
+/* About Shadow Positioning - Fixed for all screen sizes */
+.about__shadow {
+  position: absolute;
+  z-index: 0;
+  right: -50px !important;
+  top: 20% !important; 
+  opacity: 0.7 !important;
+  max-width: 50% !important;
+}
+
+/* Contact Shadow Positioning */
+.contact__shadow {
+  position: absolute !important;
+  z-index: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  opacity: 1 !important;
+  max-width: 40% !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 992px) {
+  .contact__shadow {
+    max-width: 30% !important;
+    opacity: 0.3 !important;
+    bottom: -50px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact__shadow {
+    max-width: 25% !important;
+    opacity: 1 !important;
+    bottom: -30px !important;
+  }
+}
+
+/* Success message animation */
+.contact__success-message {
+  animation: fadeOut 5s forwards !important;
+}
+
+@keyframes fadeOut {
+  0%, 80% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+/* Responsive positioning for about shadow */
+@media (max-width: 1290px) {
+  .about__shadow {
+    top: 20% !important;
+    max-width: 45% !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .about__shadow {
+    top: 20% !important;
+    max-width: 40%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about__shadow {
+    top: 20% !important;
+    max-width: 35%;
+  }
+}
+
 ::-webkit-scrollbar-thumb {
   background: var(--color-accent-secondary);
   border-radius: 10px;
 }
 
-/* Note: :hover on pseudo-elements like ::-webkit-scrollbar-thumb is not standard and might not work consistently.
-   Consider alternative approaches if hover styling is crucial. */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
+}
 
 .text-center { text-align: center; }
 .hidden { display: none !important; }
+.d-none { display: none !important; }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -90,74 +228,151 @@ a {
   to { transform: translateX(0); opacity: 1; }
 }
 
-/* Stil für die Trennlinien */
-.section-divider {
-  width: 100%;
-  height: 2px; /* oder die von dir verwendete Höhe */
-  background-color: var(--color-accent-secondary); /* Using existing accent color */
-  margin: 50px 0; /* Abstand oben und unten, ändere diesen nach Bedarf */
-  position: relative;
-  left: 0;
-  right: 0;
+/* Global section styles */
+section {
+  padding: 5rem 0;
 }
 
-/* Wenn du ein Container-Element mit max-width verwendest, stelle sicher, dass die Linie darüber hinausgeht */
-.section-container {
-  position: relative;
-  overflow: visible; /* Wichtig, damit die Linie nicht abgeschnitten wird */
+/* Global button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
 }
 
-.section-container .section-divider {
-  width: 100vw; /* Volle Breite des Viewports */
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%); /* Zentrieren */
+.btn-primary {
+  background-color: var(--color-accent-primary);
+  color: var(--color-text-primary);
 }
 
-/* Responsive Regeln für kleine Bildschirme bis 300px */
-@media (max-width: 320px) {
-  /* Allgemeine Anpassungen */
-  body {
-    font-size: 14px; /* Kleinere Schriftgröße für mobile Geräte */
-  }
+.btn-primary:hover {
+  background-color: var(--color-accent-secondary);
+  transform: scale(1.05);
+}
 
-  h1 {
-    font-size: 24px;
-  }
+.btn-secondary {
+  border: 2px solid var(--color-accent-primary);
+  color: var(--color-text-primary);
+  background-color: transparent;
+}
 
-  h2 {
-    font-size: 20px;
-  }
+.btn-secondary:hover {
+  background-color: var(--color-accent-primary);
+  transform: scale(1.05);
+}
 
-  /* Buttons richtig anzeigen */
-  .btn, button {
-    width: auto; /* Anstatt fester Breite */
-    min-width: 120px; /* Mindestbreite für die Lesbarkeit */
-    padding: 8px 12px;
-    font-size: 14px;
-    white-space: nowrap; /* Verhindert Umbrechen des Textes */
-    display: inline-block;
+/* Responsive typography */
+@media (max-width: 1200px) {
+  :root {
+    --font-size-heading-large: 70px;
+    --font-size-heading-medium: 28px;
+    --font-size-heading-small: 22px;
   }
+}
 
-  /* Spezielle Anpassungen für den Header */
-  header {
-    padding: 10px;
+@media (max-width: 992px) {
+  :root {
+    --font-size-heading-large: 48px;
+    --font-size-heading-medium: 24px;
+    --font-size-heading-small: 18px;
   }
+}
 
-  /* Navigation vertikal ausrichten, wenn nötig */
-  nav ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media (max-width: 768px) {
+  :root {
+    --font-size-heading-large: 40px;
+    --font-size-heading-medium: 20px;
+    --font-size-heading-small: 16px;
+    --font-size-base: 13px;
   }
-
-  nav ul li {
-    margin: 5px 0;
+  
+  section {
+    padding: 3rem 0;
   }
+}
 
-  /* Container-Padding reduzieren */
-  .container, section {
-    padding-left: 10px;
-    padding-right: 10px;
+@media (max-width: 480px) {
+  :root {
+    --font-size-heading-large: 32px;
+    --font-size-heading-medium: 18px;
+    --font-size-heading-small: 14px;
+    --font-size-base: 12px;
+  }
+  
+  section {
+    padding: 1rem 0;
+  }
+}
+
+/* Fix for vector shape to maintain position during zoom */
+.hero__vector-shape {
+  position: absolute !important;
+  bottom: -100px !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 300px !important;
+  z-index: 4 !important;
+  pointer-events: none !important;
+}
+
+.hero__vector-image {
+  width: 100% !important;
+  min-width: 1200px !important;
+  height: 100% !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  transform: translateY(60%) !important;
+}
+
+/* Ensure vector shape stays visible at all zoom levels */
+@media (min-width: 1200px) {
+  .hero__vector-image {
+    min-width: 1500px !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero__vector-image {
+    min-width: 1800px !important;
+  }
+}
+
+/* Mobile vector shape fixes */
+@media (max-width: 900px) {
+  .hero__mobile-vector {
+    position: absolute !important;
+    bottom: -50px !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 10 !important;
+  }
+  
+  .hero__mobile-vector-image {
+    width: 100% !important;
+    min-width: 800px !important;
+    height: auto !important;
+    transform: translateY(0) !important;
+  }
+}
+
+/* Extra small screens and zoom levels */
+@media (max-width: 350px), (max-zoom: 0.5) {
+  :root {
+    --font-size-heading-large: 28px;
+    --font-size-heading-medium: 16px;
+    --font-size-heading-small: 12px;
+    --font-size-base: 11px; 
+  }
+  
+  section {
+    padding: 0.5rem 0;
   }
 }

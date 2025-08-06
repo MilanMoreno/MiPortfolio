@@ -6,7 +6,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
 @Component({
     selector: 'app-about-section',
-    standalone: true,
     imports: [CommonModule, TranslateModule],
     template: `
     <section class="about" id="about">
@@ -68,8 +67,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       justify-content: center;
       width: 100%;
       background-color: var(--color-background-primary);
-      min-height: 100vh;
-      padding: 2rem 0;
+      min-height: 1000px;
+      height: auto;
+     padding: 4rem 0;
+      overflow: visible;
     }
 
     .about__container {
@@ -78,6 +79,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 100%;
       max-width: 1200px;
       padding: 0 2rem;
+      overflow: visible;
     }
 
     .about__content {
@@ -86,6 +88,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       align-items: center;
       gap: 4rem;
       width: 100%;
+     
+      overflow: visible;
     }
 
     .about__text {
@@ -94,7 +98,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .about__heading {
-      font-size: 48px;
+      font-size: 89px;
+       padding-top: 0px !important;
       color: var(--color-text-primary);
       margin-bottom: 2rem;
     }
@@ -150,21 +155,20 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .about__image-line {
       position: absolute;
-      right: -100%;
-      width: 100%;
+      right: -99999px;
+      width: 99999px;
       height: 4px;
       background-color: var(--color-accent-primary);
       top: 50%;
       transform: translateY(-50%);
     }
-
+      
     .about__shadow {
       position: absolute;
       z-index: 0;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0.5;
+      right: -50px;
+      top: 20%;
+      opacity: 0.7;
       max-width: 50%;
       height: auto;
     }
@@ -174,8 +178,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         padding: 0 1rem;
       }
 
-      .about__heading {
-        font-size: 40px;
+      
+        
+    .about__heading {
+      font-size: 45px;
+       padding-top: 20px !important;
       }
     }
 
@@ -193,6 +200,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .about__image-wrapper {
         width: 250px;
+        display: none !important;
       }
 
       .about__image-container {
@@ -202,17 +210,18 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .about__image-line {
         display: none;
-      }
+      } 
     }
 
     @media (max-width: 480px) {
       .about__heading {
-        font-size: 32px;
+        font-size: 26px;
+        
       }
 
       .about__intro,
       .about__text-block {
-        font-size: 14px;
+        font-size: 14px; 
       }
 
       .about__image-wrapper {
