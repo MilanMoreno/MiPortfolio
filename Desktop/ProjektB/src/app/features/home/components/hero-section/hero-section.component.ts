@@ -563,6 +563,12 @@ width: 114% !important;
     }
 
     @media (max-width: 600px) {
+      .hero__content {
+        justify-content: flex-start;
+        padding-top: 25px;
+        gap: 0rem;
+      }
+
       .hero__name {
         font-size: 50px;
       }
@@ -576,7 +582,7 @@ width: 114% !important;
       }
 
       .hero__image {
-        height: 370px;
+        height: 380px; 
       }
 
       .hero__mobile-vector {
@@ -589,9 +595,29 @@ width: 114% !important;
       }
     }
 
+    /* Spezifischer Fix für 584x748 Auflösung */
+    @media (min-width: 580px) and (max-width: 590px) and (min-height: 740px) and (max-height: 750px) {
+      .hero__content {
+        padding-top: 30px;
+      }
+    }
+
+    /* Spezifischer Fix für 312x739px Auflösung */
+    @media (min-width: 310px) and (max-width: 320px) and (min-height: 735px) and (max-height: 745px) {
+      .hero__content {
+        padding-top: 80px;
+      }
+    }
+
     @media (max-width: 450px) {
+      .hero__content {
+        justify-content: flex-start;
+        padding-top: 60px;
+        gap: 0rem;
+      }
+
       .hero__name {
-        font-size: 45px;
+        font-size: 48px;
       }
 
       .hero__title {
@@ -599,23 +625,11 @@ width: 114% !important;
       }
 
       .hero__intro-text {
-        font-size: 24px;
+        font-size: 28px;
       }
 
       .hero__image {
         height: 300px;
-      }
-      
-      .hero__content {
-        flex-direction: column;
-        padding: 0px;
-        gap: 0rem;
-        margin-top: 0px;
-        flex: 1;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        z-index: 50;
       }
       
       .hero__mobile-vector {
@@ -661,11 +675,17 @@ width: 114% !important;
 
       .hero__title {
         font-size: 16px;
-      }
+        font-size: 20px;
 
       .hero__intro-text {
         font-size: 16px;
       }
+      .hero__content {
+        justify-content: flex-start;
+        padding-top: 40px;
+        gap: 0rem;
+      }
+
 
       .hero__image {
         height: 250px;
@@ -687,9 +707,16 @@ width: 114% !important;
         max-width: none;
         height: 70px;
         bottom: -30px;
+      .hero__content {
+        justify-content: flex-start;
+        padding-top: 60px;
+        gap: 0rem;
+      }
+
         left: -95%;
         transform: translate(25%, 0) rotate(5deg);
       }
+    }
     }
   `],
     animations: [fadeInLeft, fadeInUp]

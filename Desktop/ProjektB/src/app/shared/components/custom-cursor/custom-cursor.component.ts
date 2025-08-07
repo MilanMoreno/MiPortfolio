@@ -41,10 +41,8 @@ export class CustomCursorComponent {
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
     this.ngZone.run(() => {
-      if (window.innerWidth > 1000) {
-        this.updateCursorPosition(event.clientX, event.clientY);
-        this.cursorStyles.display = 'block';
-      }
+      this.updateCursorPosition(event.clientX, event.clientY);
+      this.cursorStyles.display = 'block';
     });
   }
 
@@ -57,11 +55,7 @@ export class CustomCursorComponent {
 
   @HostListener('window:resize')
   onResize(): void {
-    this.ngZone.run(() => {
-      if (window.innerWidth <= 1000) {
-        this.cursorStyles.display = 'none';
-      }
-    });
+    // Cursor bleibt immer sichtbar, unabhängig von der Bildschirmgröße
   }
 
   private updateCursorPosition(x: number, y: number): void {

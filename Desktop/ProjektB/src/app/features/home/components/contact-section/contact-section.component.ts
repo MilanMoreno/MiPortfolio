@@ -71,12 +71,12 @@ interface ContactFormData {
                 [(ngModel)]="formData.email"
                 #email="ngModel"
                 required
-                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"
+                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\\.[a-zA-Z]{2,}"
                 [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate"
                 [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
               
               <div class="contact__error-container">
-                <span class="contact__error" *ngIf="email.invalid && email.touched">
+                <span class="contact__error" *ngIf="email.invalid && email.touched && email.dirty">
                   {{ 'CONTACT.EMAIL_ERROR' | translate }}
                 </span>
               </div>
