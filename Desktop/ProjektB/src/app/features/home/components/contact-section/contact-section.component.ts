@@ -71,7 +71,6 @@ interface ContactFormData {
                 [(ngModel)]="formData.email"
                 #email="ngModel"
                 required
-                pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\\.[a-zA-Z]{2,}"
                 [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate"
                 [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
               
@@ -548,11 +547,11 @@ interface ContactFormData {
       }
 
       .contact__checkbox-custom {
-        width: 50px;
-        height: 24px;
-        border: 4px solid var(--color-accent-secondary);
-        border-radius: 0px;
-        position: relative;
+      width: 60px;
+  height: 25px;
+  border: 3px solid var(--color-accent-secondary);
+  border-radius: 0px;
+  position: relative;
       }
 
       input, textarea {
