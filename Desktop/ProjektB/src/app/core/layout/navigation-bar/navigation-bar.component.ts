@@ -267,17 +267,24 @@ import { LanguageService } from '../../../shared/services/language/language.serv
         background-color: var(--color-accent-primary);
       }
     }
-
+     
     @media (max-width: 768px) {
       .nav__menu,
       .nav__language {
         display: none;
       }
-
+ 
       .nav__mobile-toggle {
         display: block;
       }
     }
+
+   @media (max-width: 350px) {
+.nav__logo-img {
+      height: 75%;
+      width: auto;
+    }}
+
   `]
 })
 export class NavigationBarComponent {

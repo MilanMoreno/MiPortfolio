@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animations';
@@ -53,11 +53,12 @@ interface ContactFormData {
                 [(ngModel)]="formData.name"
                 #name="ngModel"
                 required
+                minlength="2"
                 [placeholder]="'CONTACT.NAME_PLACEHOLDER' | translate"
-                [class.is-invalid]="name.invalid && (name.dirty || name.touched)">
+                [class.is-invalid]="shouldShowNameError(name)">
               
               <div class="contact__error-container">
-                <span class="contact__error" *ngIf="name.invalid && name.touched">
+                <span class="contact__error" *ngIf="shouldShowNameError(name)">
                   {{ 'CONTACT.NAME_ERROR' | translate }}
                 </span>
               </div>
@@ -71,13 +72,12 @@ interface ContactFormData {
                 [(ngModel)]="formData.email"
                 #email="ngModel"
                 required
-                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                 [placeholder]="'CONTACT.EMAIL_PLACEHOLDER' | translate"
-                [class.is-invalid]="email.invalid && (email.dirty || email.touched)">
+                [class.is-invalid]="shouldShowEmailError(email)">
               
               <div class="contact__error-container">
-                <span class="contact__error" *ngIf="email.invalid && email.touched && email.dirty">
-                  {{ 'CONTACT.EMAIL_ERROR' | translate }}
+                <span class="contact__error" *ngIf="shouldShowEmailError(email)">
+                  {{ getEmailErrorMessage(email) | translate }}
                 </span>
               </div>
             </div>
@@ -92,11 +92,11 @@ interface ContactFormData {
                 minlength="1"
                 rows="4"
                 [placeholder]="'CONTACT.MESSAGE_PLACEHOLDER' | translate"
-                [class.is-invalid]="message.invalid && (message.dirty || message.touched)">
+                [class.is-invalid]="shouldShowMessageError(message)">
               </textarea>
               
               <div class="contact__error-container">
-                <span class="contact__error" *ngIf="message.invalid && message.touched">
+                <span class="contact__error" *ngIf="shouldShowMessageError(message)">
                   {{ 'CONTACT.MESSAGE_ERROR' | translate }}
                 </span>
               </div>
@@ -121,7 +121,7 @@ interface ContactFormData {
               </label>
               
               <div class="contact__error-container">
-                <span class="contact__error" *ngIf="privacyPolicy.invalid && privacyPolicy.touched">
+                <span class="contact__error" *ngIf="shouldShowPrivacyError(privacyPolicy)">
                   {{ 'CONTACT.PRIVACY_POLICY_ERROR' | translate }}
                 </span>
               </div>
@@ -613,14 +613,86 @@ export class ContactSectionComponent {
   submitSuccess = false;
   submitError = false;
   errorMessage = '';
+  formSubmitted = false;
 
   constructor(
     private supabaseService: SupabaseService,
     private mockContactService: MockContactService
   ) {}
 
+  // Enhanced validation logic for template-driven forms
+  shouldShowNameError(nameControl: NgModel): boolean {
+    if (!nameControl.value && !nameControl.touched) {
+      return false;
+    }
+    
+    return (this.formSubmitted || (nameControl.touched ?? false)) && (nameControl.invalid ?? false);
+  }
+
+  shouldShowEmailError(emailControl: NgModel): boolean {
+    if (!emailControl.value && !emailControl.touched) {
+      return false;
+    }
+    
+    // Custom email validation logic
+    const emailValue = emailControl.value?.trim() || '';
+    
+    // Don't show error for very short inputs (less than 3 characters)
+    if (emailValue.length > 0 && emailValue.length < 3 && !emailControl.touched) {
+      return false;
+    }
+    
+    // Show error if form submitted or field touched and has reasonable content
+    return (this.formSubmitted || 
+            ((emailControl.touched ?? false) && emailValue.length > 0) ||
+            (emailValue.length > 3 && !this.isValidEmail(emailValue))) && 
+           ((emailControl.invalid ?? false) || !this.isValidEmail(emailValue));
+  }
+
+  shouldShowMessageError(messageControl: NgModel): boolean {
+    if (!messageControl.value && !messageControl.touched) {
+      return false;
+    }
+    
+    const messageValue = messageControl.value?.trim() || '';
+    
+    return (this.formSubmitted || 
+            ((messageControl.touched ?? false) && messageValue.length > 0)) && 
+           (!!messageControl.invalid || messageValue.length < 10);
+  }
+
+  shouldShowPrivacyError(privacyControl: NgModel): boolean {
+    return this.formSubmitted && !this.formData.privacyPolicy;
+  }
+
+  getEmailErrorMessage(emailControl: NgModel): string {
+    const emailValue = emailControl.value?.trim() || '';
+    
+    if (!emailValue) {
+      return 'CONTACT.EMAIL_ERROR';
+    }
+    
+    if (!this.isValidEmail(emailValue)) {
+      return 'CONTACT.EMAIL_FORMAT_ERROR';
+    }
+    
+    return 'CONTACT.EMAIL_ERROR';
+  }
+
+  private isValidEmail(email: string): boolean {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+  }
+
   async onSubmit(form: NgForm): Promise<void> {
-    if (form.invalid || this.isSubmitting) {
+    this.formSubmitted = true;
+    
+    // Custom validation for email
+    const emailValid = this.isValidEmail(this.formData.email?.trim() || '');
+    const messageValid = (this.formData.message?.trim() || '').length >= 10;
+    const nameValid = (this.formData.name?.trim() || '').length >= 2;
+    
+    if (!emailValid || !messageValid || !nameValid || !this.formData.privacyPolicy || this.isSubmitting) {
       return;
     }
 
@@ -652,6 +724,7 @@ export class ContactSectionComponent {
         console.log('Form submitted successfully:', result);
         this.submitSuccess = true;
         form.resetForm();
+        this.formSubmitted = false;
         
         // Reset form data
         this.formData = {
@@ -680,6 +753,7 @@ export class ContactSectionComponent {
         if (mockResult.success) {
           this.submitSuccess = true;
           form.resetForm();
+          this.formSubmitted = false;
           this.formData = {
             name: '',
             email: '',
