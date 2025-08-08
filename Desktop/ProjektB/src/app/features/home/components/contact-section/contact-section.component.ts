@@ -650,15 +650,11 @@ export class ContactSectionComponent {
   }
 
   shouldShowMessageError(messageControl: NgModel): boolean {
-    const messageValue = messageControl.value?.trim() || '';
-
-    if (!messageControl.value && !messageControl.touched) {
-      return false;
-    }
-    
-    return (this.formSubmitted || 
-            ((messageControl.touched ?? false) && messageValue.length > 0)) && 
-           (!!messageControl.invalid || messageValue.length < 1);
+    // Zeige Fehler wenn:
+    // 1. Das Formular wurde abgesendet UND das Feld ist ungültig, ODER
+    // 2. Das Feld wurde berührt (verlassen) UND ist ungültig
+    return (this.formSubmitted && (messageControl.invalid ?? false)) ||
+           ((messageControl.touched ?? false) && (messageControl.invalid ?? false));
   }
 
   shouldShowPrivacyError(privacyControl: NgModel): boolean {
@@ -687,12 +683,24 @@ export class ContactSectionComponent {
   async onSubmit(form: NgForm): Promise<void> {
     this.formSubmitted = true;
     
-    // Custom validation for email
+    // Mark all fields as touched to show validation errors
+    Object.keys(form.controls).forEach(key => {
+      form.controls[key].markAsTouched();
+    });
+    
+    // Check if form is valid
+    if (form.invalid) {
+      console.log('Form is invalid, not submitting');
+      return;
+    }
+    
+    // Additional custom validation
     const emailValid = this.isValidEmail(this.formData.email?.trim() || '');
-    const messageValid = (this.formData.message?.trim() || '').length >= 10;
+    const messageValid = (this.formData.message?.trim() || '').length >= 1;
     const nameValid = (this.formData.name?.trim() || '').length >= 2;
     
-    if (!emailValid || !messageValid || !nameValid || !this.formData.privacyPolicy || this.isSubmitting) {
+    if (!emailValid || !messageValid || !nameValid || !this.formData.privacyPolicy) {
+      console.log('Custom validation failed');
       return;
     }
 
@@ -723,16 +731,9 @@ export class ContactSectionComponent {
       if (result.success) {
         console.log('Form submitted successfully:', result);
         this.submitSuccess = true;
-        form.resetForm();
-        this.formSubmitted = false;
         
-        // Reset form data
-        this.formData = {
-          name: '',
-          email: '',
-          message: '',
-          privacyPolicy: false
-        };
+        // Reset form and data
+        this.resetForm(form);
       } else {
         console.error('Form submission failed:', result.error);
         this.submitError = true;
@@ -752,14 +753,7 @@ export class ContactSectionComponent {
         
         if (mockResult.success) {
           this.submitSuccess = true;
-          form.resetForm();
-          this.formSubmitted = false;
-          this.formData = {
-            name: '',
-            email: '',
-            message: '',
-            privacyPolicy: false
-          };
+          this.resetForm(form);
         } else {
           this.submitError = true;
           this.errorMessage = 'There was an error sending your message. Please try again later.';
@@ -771,5 +765,26 @@ export class ContactSectionComponent {
     } finally {
       this.isSubmitting = false;
     }
+  }
+
+  private resetForm(form: NgForm): void {
+    // Reset Angular form
+    form.resetForm();
+    
+    // Reset component data
+    this.formSubmitted! = false;
+    
+    // Reset form data
+    this.formData! = {
+      name: '',
+      email: '',
+      message: '',
+      privacyPolicy: false
+    };
+    
+    // Hide success message after delay
+    setTimeout(() => {
+      this.submitSuccess! = false;
+    }, 3000);
   }
 }
