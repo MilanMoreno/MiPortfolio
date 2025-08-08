@@ -444,6 +444,73 @@ import { CommonModule } from '@angular/common';
         width: 100%;
       }
     }
+
+    /* Autofill Styles Neutralization - Critical for Design Preservation */
+    /* Chrome, Edge, Safari - Neutralize autofill background and text colors */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active {
+      /* Force original background using box-shadow trick */
+      -webkit-box-shadow: 0 0 0 1000px rgba(20, 29, 47, 0.1) inset !important;
+      box-shadow: 0 0 0 1000px rgba(20, 29, 47, 0.1) inset !important;
+      /* Preserve original text color */
+      -webkit-text-fill-color: var(--color-text-primary) !important;
+      /* Maintain original border */
+      border: 1px solid #9747FF !important;
+      /* Delay background color change to prevent autofill yellow */
+      -webkit-transition: background-color 5000s ease-in-out 0s !important;
+      transition: background-color 5000s ease-in-out 0s !important;
+      /* Preserve original font properties */
+      font-size: 17px !important;
+      font-family: 'Poppins', sans-serif !important;
+      color: white !important;
+    }
+
+    /* Firefox autofill neutralization (Firefox 117+) */
+    input:autofill,
+    textarea:autofill {
+      background-color: rgba(20, 29, 47, 0.1) !important;
+      color: white !important;
+      border: 1px solid #9747FF !important;
+      filter: none !important;
+    }
+
+    /* Ensure consistent box-sizing for all form elements */
+    input,
+    textarea {
+      box-sizing: border-box !important;
+      /* Prevent layout shifts from autofill */
+      min-height: auto !important;
+    }
+
+    /* Preserve hover and focus states even with autofill */
+    input:-webkit-autofill:hover,
+    textarea:-webkit-autofill:hover {
+      -webkit-box-shadow: 0 0 0 1000px rgba(20, 29, 47, 0.1) inset !important;
+      box-shadow: 0 0 0 1000px rgba(20, 29, 47, 0.1) inset !important;
+      border-color: #70E61C !important;
+    }
+
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px rgba(20, 29, 47, 0.1) inset !important;
+      box-shadow: 0 0 0 1000px rgba(20, 29, 47, 0.1) inset !important;
+      border-color: #70E61C !important;
+      outline: none !important;
+    }
+
+    /* Preserve invalid state styling with autofill */
+    input:-webkit-autofill.is-invalid,
+    textarea:-webkit-autofill.is-invalid {
+      -webkit-box-shadow: 0 0 0 1000px rgba(20, 29, 47, 0.1) inset !important;
+      box-shadow: 0 0 0 1000px rgba(20, 29, 47, 0.1) inset !important;
+      border-color: red !important;
+    }
   `],
     animations: [fadeInLeft, fadeInUp]
 })
@@ -532,10 +599,10 @@ export class ContactSectionComponent implements OnInit {
     
     // Show error only if:
     // 1. Form was submitted, OR
-    // 2. Field was touched and has been blurred (lost focus), OR
+    // 2. Field was touched and is invalid, OR
     // 3. Field has significant content (more than 3 characters) and is invalid
     return (this.submitted || 
-            (emailControl.touched && !emailControl.focused) ||
+            (emailControl.touched && emailControl.invalid) ||
             (emailControl.value && emailControl.value.length > 3)) && 
            emailControl.invalid;
   }
@@ -548,9 +615,9 @@ export class ContactSectionComponent implements OnInit {
       return false;
     }
     
-    // Show error only after field loses focus or form is submitted
+    // Show error only after field is touched or form is submitted
     return (this.submitted || 
-            (messageControl.touched && !messageControl.focused)) && 
+            messageControl.touched) && 
            messageControl.invalid;
   }
 

@@ -393,3 +393,55 @@ section {
     padding: 0.5rem 0;
   }
 }
+
+/* Global Autofill Styles Neutralization - Applied to ALL inputs across the application */
+/* This ensures consistent design preservation regardless of browser autofill behavior */
+
+/* Chrome, Edge, Safari - Neutralize autofill background and text colors */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active {
+  /* Use a very long delay to prevent autofill background color changes */
+  -webkit-transition: background-color 5000s ease-in-out 0s !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  /* Preserve original text color */
+  -webkit-text-fill-color: var(--color-text-primary) !important;
+  /* Force transparent background or match design */
+  -webkit-box-shadow: 0 0 0 1000px var(--color-background-primary) inset !important;
+  box-shadow: 0 0 0 1000px var(--color-background-primary) inset !important;
+  background-color: var(--color-background-primary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Firefox autofill neutralization (Firefox 117+) */
+input:autofill,
+textarea:autofill,
+select:autofill {
+  background-color: var(--color-background-primary) !important;
+  color: var(--color-text-primary) !important;
+  filter: none !important;
+}
+
+/* Ensure all form elements maintain consistent box-sizing */
+input,
+textarea,
+select {
+  box-sizing: border-box !important;
+}
+
+/* Prevent autofill from affecting custom styled elements */
+input[type="checkbox"]:-webkit-autofill,
+input[type="radio"]:-webkit-autofill {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}

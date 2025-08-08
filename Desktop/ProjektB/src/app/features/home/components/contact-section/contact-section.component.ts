@@ -650,15 +650,15 @@ export class ContactSectionComponent {
   }
 
   shouldShowMessageError(messageControl: NgModel): boolean {
+    const messageValue = messageControl.value?.trim() || '';
+
     if (!messageControl.value && !messageControl.touched) {
       return false;
     }
     
-    const messageValue = messageControl.value?.trim() || '';
-    
     return (this.formSubmitted || 
             ((messageControl.touched ?? false) && messageValue.length > 0)) && 
-           (!!messageControl.invalid || messageValue.length < 10);
+           (!!messageControl.invalid || messageValue.length < 1);
   }
 
   shouldShowPrivacyError(privacyControl: NgModel): boolean {
