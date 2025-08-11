@@ -75,13 +75,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     styles: [`
     .hero {
       position: relative;
-      height: 800px;
+      height: 100vh; /* CHANGED FROM 800px TO 100vh */
       max-height: 1000px;
       background-color: #141D2F;
       display: flex;
       flex-direction: column;
       overflow: visible;
-      padding-top: var(--header-height);
+      padding-top: 4%;
       padding-bottom: 0;
       box-sizing: border-box;
     }
@@ -94,7 +94,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 100%;
       margin-right: 40px;
       padding: 20px 50px;
-      margin-top: calc(-2 * var(--header-height));
+      margin-top: calc(-1 * var(--header-height));
       position: relative;
       z-index: 3;
       gap: 5rem;
@@ -132,17 +132,17 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       pointer-events: none;
     }
 
-    /* Desktop Vector Shape - RICHTIGE Richtung wie bei Dominik */
-    .hero__desktop-vector {
- position: absolute !important;
+ .hero__desktop-vector { 
+  position: absolute !important;
   left: -4% !important;
-  bottom: -2% !important;
-  width: 118% !important;
-  height: 483px !important;
+  bottom: 15% !important;
+  width: 115% !important;
+  top:50%;
+  height: 40% !important;
   pointer-events: none !important;
   z-index: 4 !important;
-  transform: rotate(-4deg) !important;
-    }
+  transform: rotate(-2deg) !important;
+}
 
     .hero__desktop-vector-image {
       width: 100% !important;
@@ -265,7 +265,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      height: 100px;
+      height: 10%;
       padding-bottom: 100px;
       z-index: 20;
       margin-top: auto;
@@ -345,7 +345,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
        
       }
       .hero{
-       height:750px;
+       height: 100vh; /* CHANGED FROM 750px TO 100vh */
        }
         
       .hero__footer {
@@ -353,7 +353,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
  
       .hero__image {
-        height: 500px;
+        height:450px;
         padding-top: 5px;
       }
 
@@ -363,9 +363,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 .hero__desktop-vector{
   
   width: 115% !important;
-  height: 420px !important;
+  height: 35% !important;
+ 
+  bottom:2%;
     }
-      .hero__title {
+      .hero__title { 
         font-size: 48px;
       }
     }
@@ -377,7 +379,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 .hero__desktop-vector{
 
 width: 114% !important;
-  height: 431px !important;
+  height: 35% !important;
+  top:420px;
+  bottom:5%;
     }
       .hero__title {
         font-size: 48px;
@@ -396,8 +400,10 @@ width: 114% !important;
       }
 .hero__desktop-vector{
   width: 115% !important;
-  height: 420px !important;
+        height: 30% !important;
+
  
+    
     }
   .hero__text-wrapper {
   margin-left:-132px;
@@ -409,7 +415,7 @@ width: 114% !important;
         font-size: 38px;
       }
     }
-
+ 
     @media (max-width: 900px) {
       /* Hide desktop vector shape */
       .hero__desktop-vector {
@@ -427,8 +433,8 @@ width: 114% !important;
       }
       
       .hero {
-        height: 100%;
-        min-height: 100%;
+        height: 100vh; /* CHANGED FROM 100% TO 100vh */
+        min-height: 100vh; /* CHANGED FROM 100% TO 100vh */
         padding-bottom: 0;
         position: relative;
         display: flex;
@@ -520,16 +526,18 @@ width: 114% !important;
 
       .hero__footer {
         position: relative;
-        bottom: auto;      
-        left: auto;
-        right: auto;
+        bottom: 1%;      
+        left: 5%;
+        right: 5%;
         padding: 0 0px;
-        height: 92px;
+        height: 5%;
         background-color: transparent;
         backdrop-filter: none;
         z-index: 10;
-        margin-top: auto;
+        top:10%;
+        margin-top: 5%;
         flex-shrink: 0;
+        margin-bottom: -10%;
       }
 
       .hero__email {
@@ -676,27 +684,27 @@ width: 114% !important;
       .hero__title {
         font-size: 16px;
         font-size: 20px;
+      }
 
       .hero__intro-text {
         font-size: 16px;
       }
+      
       .hero__content {
         justify-content: flex-start;
         padding-top: 40px;
         gap: 0rem;
       }
 
-
       .hero__image {
         height: 250px;
       }
       
-     
-  .hero__cta {
-    width: 120px;
-    height: 40px;
-    font-size: 14px;
-  }
+      .hero__cta {
+        width: 120px;
+        height: 40px;
+        font-size: 14px;
+      }
 
       .hero__content {
         padding: 10px;
@@ -707,16 +715,15 @@ width: 114% !important;
         max-width: none;
         height: 70px;
         bottom: -30px;
+        left: -95%;
+        transform: translate(25%, 0) rotate(5deg);
+      }
+      
       .hero__content {
         justify-content: flex-start;
         padding-top: 60px;
         gap: 0rem;
       }
-
-        left: -95%;
-        transform: translate(25%, 0) rotate(5deg);
-      }
-    }
     }
   `],
     animations: [fadeInLeft, fadeInUp]
