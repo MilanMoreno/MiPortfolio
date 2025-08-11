@@ -18,7 +18,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
         <div class="nav__menu">
           <ul class="nav__list">
             <li *ngFor="let item of menuItems">
-              <a [href]="item.href" class="nav__link">
+              <a (click)="scrollToSection(item.href)" class="nav__link">
                 {{ item.label | translate }} 
               </a>
             </li>
@@ -51,7 +51,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
         <div class="nav__mobile-content">
           <ul class="nav__mobile-list">
             <li *ngFor="let item of menuItems">
-              <a [href]="item.href" class="nav__mobile-link" (click)="closeMobileMenu()">
+              <a (click)="scrollToSection(item.href)" class="nav__mobile-link">
                 {{ item.label | translate }}
               </a>
             </li>
@@ -291,9 +291,9 @@ export class NavigationBarComponent {
   isMobileMenuOpen = false;
 
   menuItems = [
-    { href: '#about', label: 'HEADER.ABOUT_ME' },
-    { href: '#skills', label: 'HEADER.SKILLS' },
-    { href: '#portfolio', label: 'HEADER.PORTFOLIO' }
+    { href: 'about', label: 'HEADER.ABOUT_ME' },
+    { href: 'skills', label: 'HEADER.SKILLS' },
+    { href: 'portfolio', label: 'HEADER.PORTFOLIO' }
   ];
 
   languages = [
@@ -324,5 +324,16 @@ export class NavigationBarComponent {
 
   closeMobileMenu(): void {
     this.isMobileMenuOpen = false;
+  }
+
+  scrollToSection(sectionId: string): void {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    this.closeMobileMenu();
   }
 }
