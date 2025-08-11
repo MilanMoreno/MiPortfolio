@@ -25,15 +25,18 @@ import { TranslateModule } from '@ngx-translate/core';
           <h3>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.TITLE' | translate }}</h3>
           <p>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.DESCRIPTION' | translate }}</p>
           <ul>
-            <li *ngFor="let item of 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.ITEMS' | translate | keyvalue">
-              {{ item.value }}
-            </li>
+            <li>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.ITEMS.0' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.ITEMS.1' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.ITEMS.2' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.ITEMS.3' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.ITEMS.4' | translate }}</li>
           </ul>
           <p>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.PURPOSE' | translate }}</p>
           <ul>
-            <li *ngFor="let item of 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.PURPOSE_ITEMS' | translate | keyvalue">
-              {{ item.value }}
-            </li>
+            <li>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.PURPOSE_ITEMS.0' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.PURPOSE_ITEMS.1' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.PURPOSE_ITEMS.2' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.PURPOSE_ITEMS.3' | translate }}</li>
           </ul>
           <p>{{ 'PRIVACY_POLICY.DATA_COLLECTION.VISIT.LEGAL_BASIS' | translate }}</p>
 
@@ -47,9 +50,10 @@ import { TranslateModule } from '@ngx-translate/core';
           <h2>{{ 'PRIVACY_POLICY.DATA_TRANSFER.TITLE' | translate }}</h2>
           <p>{{ 'PRIVACY_POLICY.DATA_TRANSFER.DESCRIPTION' | translate }}</p>
           <ul>
-            <li *ngFor="let item of 'PRIVACY_POLICY.DATA_TRANSFER.ITEMS' | translate | keyvalue">
-              {{ item.value }}
-            </li>
+            <li>{{ 'PRIVACY_POLICY.DATA_TRANSFER.ITEMS.0' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_TRANSFER.ITEMS.1' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_TRANSFER.ITEMS.2' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.DATA_TRANSFER.ITEMS.3' | translate }}</li>
           </ul>
         </section>
 
@@ -57,9 +61,13 @@ import { TranslateModule } from '@ngx-translate/core';
           <h2>{{ 'PRIVACY_POLICY.RIGHTS.TITLE' | translate }}</h2>
           <p>{{ 'PRIVACY_POLICY.RIGHTS.DESCRIPTION' | translate }}</p>
           <ul>
-            <li *ngFor="let item of 'PRIVACY_POLICY.RIGHTS.ITEMS' | translate | keyvalue">
-              {{ item.value }}
-            </li>
+            <li>{{ 'PRIVACY_POLICY.RIGHTS.ITEMS.0' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.RIGHTS.ITEMS.1' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.RIGHTS.ITEMS.2' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.RIGHTS.ITEMS.3' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.RIGHTS.ITEMS.4' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.RIGHTS.ITEMS.5' | translate }}</li>
+            <li>{{ 'PRIVACY_POLICY.RIGHTS.ITEMS.6' | translate }}</li>
           </ul>
         </section>
 
@@ -92,6 +100,13 @@ import { TranslateModule } from '@ngx-translate/core';
     }
 
     .legal__container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 1rem;
+      padding-top: 100px;
       width: 100%;
       max-width: 800px;
       color: var(--color-text-primary);
@@ -100,6 +115,7 @@ import { TranslateModule } from '@ngx-translate/core';
     .legal__title {
       font-size: var(--font-size-heading-large);
       margin-bottom: 2rem;
+      margin-top: 40px;
     }
 
     .legal__section {

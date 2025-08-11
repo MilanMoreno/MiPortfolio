@@ -116,46 +116,25 @@ button, a, input, select, textarea,
 }
 /* 10 px früher stoppen, wenn zu #portfolio gescrollt wird */
 #portfolio {
-  scroll-margin-top: calc(var(--header-height) + 30px);
+  scroll-margin-top: 10px;   /* = 10 px weniger nach unten */
 }
 
 /* Fix für Portfolio Section - Header Höhe berücksichtigen */
 section#portfolio,
 .portfolio {
-  scroll-margin-top: calc(var(--header-height) + 30px);
+  scroll-margin-top: calc(var(--header-height) + 20px);
 }
 
 /* Fix für Skills Section - Header Höhe berücksichtigen */
 section#skills,
 .skills {
-  scroll-margin-top: calc(var(--header-height) + 30px);
+  scroll-margin-top: calc(var(--header-height) + 20px);
 }
 
 /* Fix für About Section - Header Höhe berücksichtigen */
 section#about,
 .about {
-  scroll-margin-top: calc(var(--header-height) + 30px);
-}
-
-/* Fix für Contact Section - Header Höhe berücksichtigen */
-section#contact,
-.contact {
-  scroll-margin-top: calc(var(--header-height) + 30px);
-}
-
-/* Fix für Hero Section - Header Höhe berücksichtigen */
-section#hero,
-.hero {
-  scroll-margin-top: calc(var(--header-height) + 30px);
-}
-
-/* Zusätzliche Fixes für alle möglichen ID-Selektoren */
-#about-section,
-#skills-section,
-#portfolio-section,
-#contact-section,
-#hero-section {
-  scroll-margin-top: calc(var(--header-height) + 30px);
+  scroll-margin-top: calc(var(--header-height) + 20px);
 }
 .about__container {
   position: relative;

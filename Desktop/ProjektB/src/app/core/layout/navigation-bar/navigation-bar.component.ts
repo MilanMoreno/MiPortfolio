@@ -151,6 +151,28 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       }
     }
 
+    .nav__lang-btn {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: rgba(112, 230, 28, 0.1);
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+    }
+
     .nav__mobile-toggle {
       display: none;
       width: 30px;
@@ -265,6 +287,39 @@ import { LanguageService } from '../../../shared/services/language/language.serv
 
       &:hover {
         background-color: var(--color-accent-primary);
+      }
+    }
+
+    .nav__mobile-lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: 2px solid var(--color-accent-primary);
+      padding: 12px 16px;
+      border-radius: 8px;
+      color: var(--color-text-primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 120px;
+      justify-content: center;
+
+      &:hover {
+        background-color: var(--color-accent-primary);
+        transform: scale(1.02);
+      }
+
+      img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      span {
+        font-size: 16px;
+        font-weight: 500;
+        pointer-events: none;
       }
     }
      

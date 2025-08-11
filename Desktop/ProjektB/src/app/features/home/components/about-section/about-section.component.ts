@@ -197,11 +197,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         flex-direction: column;
         align-items: center;
       }
-     
-    .about__heading {
-      font-size: 45px;
-       padding-top: 80px !important;
-      }
+
       .about__image-wrapper {
         width: 250px;
         display: none !important;
