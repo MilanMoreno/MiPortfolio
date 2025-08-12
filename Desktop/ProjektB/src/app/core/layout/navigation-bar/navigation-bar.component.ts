@@ -83,15 +83,17 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       z-index: 100;
     }
 
-    .nav__container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-      padding: 0 2rem;
-      max-width: 1920px;
-      margin: 0 auto;
-    }
+  .nav__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: none;                 /* Deckel weg */
+  margin: 0;                       /* nicht zentrieren */
+  padding: 0 clamp(16px, 5vw, 72px); /* Seitenabstand variabel */
+}
+
 
     .nav__logo {
       height: 80px;

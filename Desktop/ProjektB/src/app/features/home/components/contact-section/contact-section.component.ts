@@ -185,7 +185,7 @@ interface ContactFormData {
       display: flex;
       align-items: center;
       width: 100%;
-      margin-bottom: 7rem;
+      margin-bottom: 8rem;
       z-index: 60;
       position: relative;
     }

@@ -58,14 +58,15 @@ import { Router } from '@angular/router';
     }
 
     .footer__container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  width: 100%;
+  max-width: none;           /* Deckel weg */
+  margin: 0;                 /* zentrieren unnötig */
+  padding: 0 clamp(1.5rem, 4vw, 4rem); /* Seiteneinrückung */
+}
     .footer__left {
       display: flex;
       flex-direction: column;
@@ -96,6 +97,7 @@ import { Router } from '@angular/router';
       min-height: 24px;
       line-height: 1.5;
       cursor: pointer;
+      margin: 0 15px;
 
       &:hover {
         opacity: 1;
