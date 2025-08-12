@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../../shared/services/language/language.service';
 
 @Component({
     selector: 'app-navigation-bar',
+    standalone: true,
     imports: [CommonModule, RouterModule, TranslateModule],
     template: `
     <nav class="nav">
@@ -18,7 +19,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
         <div class="nav__menu">
           <ul class="nav__list">
             <li *ngFor="let item of menuItems">
-              <a (click)="scrollToSection(item.href)" class="nav__link">
+              <a (click)="navigateToSection(item.href)" class="nav__link">
                 {{ item.label | translate }} 
               </a>
             </li>
@@ -51,7 +52,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
         <div class="nav__mobile-content">
           <ul class="nav__mobile-list">
             <li *ngFor="let item of menuItems">
-              <a (click)="scrollToSection(item.href)" class="nav__mobile-link">
+              <a (click)="navigateToSection(item.href)" class="nav__mobile-link">
                 {{ item.label | translate }}
               </a>
             </li>
@@ -361,7 +362,8 @@ export class NavigationBarComponent {
 
   constructor(
     private translateService: TranslateService,
-    private languageService: LanguageService // Inject LanguageService
+    private languageService: LanguageService,
+    private router: Router
   ) {
     // Add languages - this is okay here or could be moved to app init
     translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
@@ -381,12 +383,30 @@ export class NavigationBarComponent {
     this.isMobileMenuOpen = false;
   }
 
-  scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+  navigateToSection(sectionId: string): void {
+    // Check if we're on the home page
+    if (this.router.url === '/') {
+      // We're on home page, scroll directly to section without page refresh
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    } else {
+      // We're on a different page, navigate to home using Angular Router then scroll
+      this.router.navigate(['/']).then(() => {
+        // Wait a bit for the component to load, then scroll
+        setTimeout(() => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            element.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }, 100);
       });
     }
     this.closeMobileMenu();

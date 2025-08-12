@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-imprint-page',
@@ -80,4 +81,13 @@ import { TranslateModule } from '@ngx-translate/core';
     }
   `]
 })
-export class ImprintPageComponent {}
+export class ImprintPageComponent {
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    // Scroll to top when component loads
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }, 0);
+  }
+}

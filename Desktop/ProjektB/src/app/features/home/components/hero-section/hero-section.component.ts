@@ -102,7 +102,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .hero__left-container {
       position: relative;
-      width: auto;
+      width: auto; 
       display: flex;
       justify-content: center;
       align-items: center;
@@ -114,6 +114,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     .hero__image {
       height: 550px;
       object-fit: contain;
+      padding-top:30px;
       position: relative;
       z-index: 3;
     }

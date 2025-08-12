@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animations';
 import { SupabaseService } from '../../../../shared/services/supabase/supabase.service';
@@ -113,7 +113,7 @@ interface ContactFormData {
                 <span class="contact__checkbox-custom"></span>
                 <span class="contact__checkbox-text">
                   {{ 'CONTACT.PRIVACY_POLICY_TEXT1' | translate }}
-                  <a routerLink="/legal/privacy">
+                  <a (click)="navigateToPrivacy()">
                     {{ 'CONTACT.PRIVACY_POLICY_TEXT2' | translate }}
                   </a>
                   {{ 'CONTACT.PRIVACY_POLICY_TEXT3' | translate }}
@@ -346,9 +346,16 @@ interface ContactFormData {
 
       a {
         color: var(--color-accent-secondary);
+          padding: 4px 8px;
+          border-radius: 4px;
+          display: inline-block;
+          min-height: 20px;
+          line-height: 1.4;
         margin: 0 5px;
+        cursor: pointer;
 
         &:hover {
+            background-color: rgba(112, 230, 28, 0.1);
           color: var(--color-accent-primary);
         }
       }
@@ -617,7 +624,8 @@ export class ContactSectionComponent {
 
   constructor(
     private supabaseService: SupabaseService,
-    private mockContactService: MockContactService
+    private mockContactService: MockContactService,
+    private router: Router
   ) {}
 
   // Enhanced validation logic for template-driven forms
@@ -683,6 +691,8 @@ export class ContactSectionComponent {
   async onSubmit(form: NgForm): Promise<void> {
     this.formSubmitted = true;
     
+    console.log('🚀 Contact form submission started');
+    
     // Mark all fields as touched to show validation errors
     Object.keys(form.controls).forEach(key => {
       form.controls[key].markAsTouched();
@@ -690,7 +700,7 @@ export class ContactSectionComponent {
     
     // Check if form is valid
     if (form.invalid) {
-      console.log('Form is invalid, not submitting');
+      console.warn('⚠️ Form validation failed - form is invalid');
       return;
     }
     
@@ -700,7 +710,12 @@ export class ContactSectionComponent {
     const nameValid = (this.formData.name?.trim() || '').length >= 2;
     
     if (!emailValid || !messageValid || !nameValid || !this.formData.privacyPolicy) {
-      console.log('Custom validation failed');
+      console.warn('⚠️ Custom validation failed:', {
+        emailValid,
+        messageValid,
+        nameValid,
+        privacyPolicyAccepted: this.formData.privacyPolicy
+      });
       return;
     }
 
@@ -709,8 +724,7 @@ export class ContactSectionComponent {
     this.submitError = false;
 
     try {
-      console.log('Submitting form data:', this.formData);
-      
+      console.log('📤 Attempting to submit to Supabase database...');
       // Try Supabase first
       let result = await this.supabaseService.submitContactForm({
         name: this.formData.name,
@@ -720,7 +734,7 @@ export class ContactSectionComponent {
 
       // If Supabase fails, use mock service as fallback
       if (!result.success) {
-        console.log('Supabase failed, using mock service as fallback');
+        console.warn('⚠️ Supabase failed, trying mock service as fallback...');
         result = await this.mockContactService.submitContactForm({
           name: this.formData.name,
           email: this.formData.email,
@@ -729,22 +743,21 @@ export class ContactSectionComponent {
       }
 
       if (result.success) {
-        console.log('Form submitted successfully:', result);
+        console.log('✅ Contact form submitted successfully!', result.data);
         this.submitSuccess = true;
         
         // Reset form and data
         this.resetForm(form);
       } else {
-        console.error('Form submission failed:', result.error);
+        console.error('❌ Contact form submission failed:', result.error);
         this.submitError = true;
         this.errorMessage = result.error || 'There was an error sending your message. Please try again later.';
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
-      
+      console.error('❌ Unexpected error during submission:', error);
       // Final fallback to mock service
       try {
-        console.log('Using mock service as final fallback');
+        console.log('🔄 Trying mock service as final fallback...');
         const mockResult = await this.mockContactService.submitContactForm({
           name: this.formData.name,
           email: this.formData.email,
@@ -752,21 +765,32 @@ export class ContactSectionComponent {
         });
         
         if (mockResult.success) {
+          console.log('✅ Mock service submission successful!', mockResult.data);
           this.submitSuccess = true;
           this.resetForm(form);
         } else {
+          console.error('❌ Mock service also failed:', mockResult.error);
           this.submitError = true;
           this.errorMessage = 'There was an error sending your message. Please try again later.';
         }
       } catch (mockError) {
+        console.error('❌ All submission methods failed:', mockError);
         this.submitError = true;
         this.errorMessage = 'There was an error sending your message. Please try again later.';
       }
     } finally {
       this.isSubmitting = false;
+      console.log('🏁 Contact form submission process completed');
     }
   }
 
+  navigateToPrivacy() {
+    this.router.navigate(['/legal/privacy']).then(() => {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }, 0);
+    });
+  }
   private resetForm(form: NgForm): void {
     // Reset Angular form
     form.resetForm();

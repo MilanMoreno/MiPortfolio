@@ -182,7 +182,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         
     .about__heading {
       font-size: 45px;
-       padding-top: 20px !important;
+       padding-top: 80px !important;
       }
     }
 
