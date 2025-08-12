@@ -137,7 +137,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
   position: absolute !important;
   left: -4% !important;
   bottom: 15% !important;
-  width: 115% !important;
+  width: 120% !important;
   top:50%;
   height: 40% !important;
   pointer-events: none !important;
@@ -380,9 +380,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 .hero__desktop-vector{
 
 width: 114% !important;
-  height: 35% !important;
-  top:420px;
-  bottom:5%;
+  height: 34% !important;
+  top: 54%;
+  bottom:10%;
     }
       .hero__title {
         font-size: 48px;
@@ -400,7 +400,7 @@ width: 114% !important;
         font-size: 60px;
       }
 .hero__desktop-vector{
-  width: 115% !important;
+  width: 120% !important;
         height: 30% !important;
 
  
@@ -531,11 +531,11 @@ width: 114% !important;
         left: 5%;
         right: 5%;
         padding: 0 0px;
-        height: 5%;
+        height: 15%;
         background-color: transparent;
         backdrop-filter: none;
         z-index: 10;
-        top:10%;
+        top:1%;
         margin-top: 5%;
         flex-shrink: 0;
         margin-bottom: -10%;
@@ -607,21 +607,22 @@ width: 114% !important;
     /* Spezifischer Fix für 584x748 Auflösung */
     @media (min-width: 580px) and (max-width: 590px) and (min-height: 740px) and (max-height: 750px) {
       .hero__content {
-        padding-top: 30px;
+        padding-top: 30%;
       }
     }
 
     /* Spezifischer Fix für 312x739px Auflösung */
     @media (min-width: 310px) and (max-width: 320px) and (min-height: 735px) and (max-height: 745px) {
       .hero__content {
-        padding-top: 80px;
+        padding-top: 30%;
+        padding-bottom:30%;
       }
     }
 
     @media (max-width: 450px) {
       .hero__content {
         justify-content: flex-start;
-        padding-top: 60px;
+        padding-top: 30%;
         gap: 0rem;
       }
 

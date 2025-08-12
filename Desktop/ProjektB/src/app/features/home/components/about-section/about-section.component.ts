@@ -165,13 +165,27 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       
     .about__shadow {
       position: absolute;
-      z-index: 0;
+      z-index: 0; 
       right: -50px;
       top: 20%;
       opacity: 0.7;
       max-width: 50%;
       height: auto;
+    } 
+
+ 
+@media (min-width: 700px) and (max-width: 1500px) {
+    .about__shadow {
+display:none;
+    }}
+@media (max-width: 669px) {
+  .about__shadow {
+    display: block; /* oder flex/inline-block, je nachdem was es vorher war */
     }
+      .about__shadow {
+top:50%;
+  }
+}
 
     @media (max-width: 1024px) {
       .about__container {
@@ -182,7 +196,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         
     .about__heading {
       font-size: 45px;
-       padding-top: 80px !important;
+       padding-top: 10% !important;
       }
     }
 

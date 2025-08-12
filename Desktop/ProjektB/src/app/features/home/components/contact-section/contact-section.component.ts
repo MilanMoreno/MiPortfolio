@@ -185,7 +185,7 @@ interface ContactFormData {
       display: flex;
       align-items: center;
       width: 100%;
-      margin-bottom: 4rem;
+      margin-bottom: 7rem;
       z-index: 60;
       position: relative;
     }
@@ -436,12 +436,13 @@ interface ContactFormData {
       bottom: 0;
       z-index: 1;
       max-width: 50%;
-      height: auto;
+      padding-top:30px;
+      height: auto; 
     }
 
     /* Responsive Design */
     @media (max-width: 1395px) {
-      .contact__content {
+      .contact__content { 
         flex-direction: column;
         align-items: center;
       }
