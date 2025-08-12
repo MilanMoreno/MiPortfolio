@@ -116,25 +116,25 @@ button, a, input, select, textarea,
 }
 /* 10 px früher stoppen, wenn zu #portfolio gescrollt wird */
 #portfolio {
-  scroll-margin-top: 10px;   /* = 10 px weniger nach unten */
+  scroll-margin-top: 120px;   /* = weiter nach oben für bessere Sichtbarkeit */
 }
 
 /* Fix für Portfolio Section - Header Höhe berücksichtigen */
 section#portfolio,
 .portfolio {
-  scroll-margin-top: calc(var(--header-height) + 20px);
+  scroll-margin-top: calc(var(--header-height) + 120px);
 }
 
 /* Fix für Skills Section - Header Höhe berücksichtigen */
 section#skills,
 .skills {
-  scroll-margin-top: calc(var(--header-height) + 20px);
+  scroll-margin-top: calc(var(--header-height) + 120px);
 }
 
 /* Fix für About Section - Header Höhe berücksichtigen */
 section#about,
 .about {
-  scroll-margin-top: calc(var(--header-height) + 20px);
+  scroll-margin-top: calc(var(--header-height) + 120px);
 }
 .about__container {
   position: relative;

@@ -389,10 +389,18 @@ export class NavigationBarComponent {
       // We're on home page, scroll directly to section without page refresh
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
+        // Special handling for skills section to scroll higher
+        if (sectionId === 'skills') {
+          const elementRect = element.getBoundingClientRect();
+          const absoluteElementTop = elementRect.top + window.pageYOffset;
+          const middle = absoluteElementTop - 200; // Extra offset for skills
+          window.scrollTo({ top: middle, behavior: 'smooth' });
+        } else {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
       }
     } else {
       // We're on a different page, navigate to home using Angular Router then scroll
@@ -401,10 +409,18 @@ export class NavigationBarComponent {
         setTimeout(() => {
           const element = document.getElementById(sectionId);
           if (element) {
-            element.scrollIntoView({ 
-              behavior: 'smooth',
-              block: 'start'
-            });
+            // Special handling for skills section to scroll higher
+            if (sectionId === 'skills') {
+              const elementRect = element.getBoundingClientRect();
+              const absoluteElementTop = elementRect.top + window.pageYOffset;
+              const middle = absoluteElementTop - 200; // Extra offset for skills
+              window.scrollTo({ top: middle, behavior: 'smooth' });
+            } else {
+              element.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
           }
         }, 100);
       });
