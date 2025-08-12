@@ -389,42 +389,144 @@ export class NavigationBarComponent {
     // Check if we're on the home page
     if (this.router.url === '/') {
       // We're on home page, scroll directly to section without page refresh
-      const element = document.getElementById(sectionId);
-      if (element) {
-        // Special handling for skills section to scroll higher
-        if (sectionId === 'skills') {
-          const elementRect = element.getBoundingClientRect();
-          const absoluteElementTop = elementRect.top + window.pageYOffset;
-          const middle = absoluteElementTop - 200; // Extra offset for skills
-          window.scrollTo({ top: middle, behavior: 'smooth' });
-        } else {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-          });
+      let element = document.getElementById(sectionId);
+      
+      // Fallback: if element not found by ID, try to find by selector
+      if (!element) {
+        if (sectionId === 'about') {
+          // Try multiple selectors to find the about section
+          element = document.querySelector('app-about-section') as HTMLElement ||
+                   document.querySelector('#about-section') as HTMLElement ||
+                   document.querySelector('.about') as HTMLElement ||
+                   document.querySelector('app-about') as HTMLElement;
+        } else if (sectionId === 'skills') {
+          element = document.querySelector('app-skills-section') as HTMLElement ||
+                   document.querySelector('#skills-section') as HTMLElement ||
+                   document.querySelector('.skills') as HTMLElement ||
+                   document.querySelector('app-skills') as HTMLElement;
+        } else if (sectionId === 'portfolio') {
+          element = document.querySelector('app-portfolio-section') as HTMLElement ||
+                   document.querySelector('#portfolio-section') as HTMLElement ||
+                   document.querySelector('.portfolio') as HTMLElement ||
+                   document.querySelector('app-portfolio') as HTMLElement;
+        } else if (sectionId === 'contact') {
+          element = document.querySelector('app-contact-section') as HTMLElement ||
+                   document.querySelector('#contact-section') as HTMLElement ||
+                   document.querySelector('.contact') as HTMLElement ||
+                   document.querySelector('app-contact') as HTMLElement;
         }
+      }
+      
+      if (element) {
+        console.log('Found element for section:', sectionId, element);
+        
+        // Get element position
+        const elementRect = element.getBoundingClientRect();
+        const absoluteElementTop = elementRect.top + window.pageYOffset;
+        
+        // Calculate responsive offset based on screen size
+        let offset = 120; // Base offset
+        
+        if (sectionId === 'about') {
+          // About section needs special offset to show the title properly
+          if (window.innerWidth >= 2560) {
+            offset = 200;
+          } else if (window.innerWidth >= 1920) {
+            offset = 180;
+          } else if (window.innerWidth >= 1440) {
+            offset = 160;
+          } else if (window.innerWidth >= 1200) {
+            offset = 140;
+          } else if (window.innerWidth >= 992) {
+            offset = 120;
+          } else if (window.innerWidth >= 768) {
+            offset = 100;
+          } else {
+            offset = 80;
+          }
+        } else if (sectionId === 'skills') {
+          // Skills section offset
+          if (window.innerWidth >= 1920) {
+            offset = 150;
+          } else if (window.innerWidth >= 1200) {
+            offset = 130;
+          } else {
+            offset = 110;
+          }
+        }
+        
+        const targetPosition = absoluteElementTop - offset;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
       }
     } else {
       // We're on a different page, navigate to home using Angular Router then scroll
       this.router.navigate(['/']).then(() => {
         // Wait a bit for the component to load, then scroll
         setTimeout(() => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            // Special handling for skills section to scroll higher
-            if (sectionId === 'skills') {
-              const elementRect = element.getBoundingClientRect();
-              const absoluteElementTop = elementRect.top + window.pageYOffset;
-              const middle = absoluteElementTop - 200; // Extra offset for skills
-              window.scrollTo({ top: middle, behavior: 'smooth' });
-            } else {
-              element.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-              });
+          let element = document.getElementById(sectionId);
+          
+          // Fallback: if element not found by ID, try to find by selector
+          if (!element) {
+            if (sectionId === 'about') {
+              element = document.querySelector('app-about-section') as HTMLElement ||
+                       document.querySelector('#about-section') as HTMLElement ||
+                       document.querySelector('.about') as HTMLElement ||
+                       document.querySelector('app-about') as HTMLElement;
+            } else if (sectionId === 'skills') {
+              element = document.querySelector('app-skills-section') as HTMLElement ||
+                       document.querySelector('#skills-section') as HTMLElement ||
+                       document.querySelector('.skills') as HTMLElement ||
+                       document.querySelector('app-skills') as HTMLElement;
+            } else if (sectionId === 'portfolio') {
+              element = document.querySelector('app-portfolio-section') as HTMLElement ||
+                       document.querySelector('#portfolio-section') as HTMLElement ||
+                       document.querySelector('.portfolio') as HTMLElement ||
+                       document.querySelector('app-portfolio') as HTMLElement;
+            } else if (sectionId === 'contact') {
+              element = document.querySelector('app-contact-section') as HTMLElement ||
+                       document.querySelector('#contact-section') as HTMLElement ||
+                       document.querySelector('.contact') as HTMLElement ||
+                       document.querySelector('app-contact') as HTMLElement;
             }
           }
-        }, 100);
+          
+          if (element) {
+            console.log('Found element after navigation for section:', sectionId, element);
+            
+            const elementRect = element.getBoundingClientRect();
+            const absoluteElementTop = elementRect.top + window.pageYOffset;
+            let offset = 120;
+            
+            if (sectionId === 'about') {
+              if (window.innerWidth >= 2560) {
+                offset = 200;
+              } else if (window.innerWidth >= 1920) {
+                offset = 180;
+              } else if (window.innerWidth >= 1440) {
+                offset = 160;
+              } else if (window.innerWidth >= 1200) {
+                offset = 140;
+              } else if (window.innerWidth >= 992) {
+                offset = 120;
+              } else if (window.innerWidth >= 768) {
+                offset = 100;
+              } else {
+                offset = 80;
+              }
+            } else if (sectionId === 'skills') {
+              if (window.innerWidth >= 1920) {
+                offset = 150;
+              } else if (window.innerWidth >= 1200) {
+                offset = 130;
+              } else {
+                offset = 110;
+              }
+            }
+            
+            const targetPosition = absoluteElementTop - offset;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          }
+        }, 300);
       });
     }
     this.closeMobileMenu();
