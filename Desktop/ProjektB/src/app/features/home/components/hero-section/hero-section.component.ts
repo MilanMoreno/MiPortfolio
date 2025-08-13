@@ -107,18 +107,20 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       justify-content: center;
       align-items: center;
       z-index: 2;
-      margin-top: 60px;
+      margin-top: 25px;
       flex-shrink: 0;
     }
 
     .hero__image {
-      height: 550px;
+margin-top:40px;
+      height:450px; 
+      height: 50%;
       object-fit: contain;
-      padding-top:30px;
+      padding-top:50px;
       position: relative;
       z-index: 3;
     }
-
+ 
     .hero__image-shadow {
       position: absolute;
       left: 50%;
@@ -133,15 +135,16 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       pointer-events: none;
     }
 
- .hero__desktop-vector { 
+ 
+.hero__desktop-vector {
   position: absolute !important;
   left: -4% !important;
-  bottom: 15% !important;
-  width: 120% !important;
-  top:50%;
-  height: 40% !important;
+  bottom: 10% !important;   
+  width: 132% !important;
+  top: 54%; 
+  height: 45% !important;
   pointer-events: none !important;
-  z-index: 4 !important;
+  z-index: 5 !important;
   transform: rotate(-2deg) !important;
 }
 
@@ -152,7 +155,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       opacity: 1 !important;
       transform: perspective(1000px) rotateX(-15deg) !important;
       border-radius: 300px 300px 0 0 / 150px 150px 0 0 !important;
-    }
+    } 
 
     /* Mobile Vector Shape - original positioning from your code */
     .hero__mobile-vector {
@@ -244,7 +247,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       align-items: center;
       justify-content: center;
       width: 165px;
-      height: 58px;
+      height: 50px;
       border-radius: 10px;
       background-color: var(--color-accent-primary);
       color: white;
@@ -355,18 +358,30 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
  
       .hero__image {
         height:450px;
-        padding-top: 5px;
-      }
+         
+      object-fit: contain;
+      padding-top:30px;
+      position: relative;
+      z-index: 3;
+    }
+      
 
       .hero__name {
         font-size: 90px;
       }
 .hero__desktop-vector{
   
-  width: 115% !important;
-  height: 35% !important;
- 
-  bottom:2%;
+
+  position: absolute !important;
+  left: -4% !important;
+  bottom: 10% !important;   
+  width: 132% !important;
+  top: 54%; 
+  height: 45% !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+  transform: rotate(-2deg) !important;
+
     }
       .hero__title { 
         font-size: 48px;
@@ -379,11 +394,18 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 .hero__desktop-vector{
 
-width: 114% !important;
-  height: 34% !important;
-  top: 54%;
-  bottom:10%;
-    }
+
+  position: absolute !important;
+  left: -4% !important;
+  bottom: 10% !important;   
+  width: 132% !important;
+  top: 54%; 
+  height: 45% !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+  transform: rotate(-2deg) !important;
+}
+    
       .hero__title {
         font-size: 48px;
       }
@@ -400,10 +422,17 @@ width: 114% !important;
         font-size: 60px;
       }
 .hero__desktop-vector{
-  width: 120% !important;
-        height: 30% !important;
+  
+  position: absolute !important;
+  left: -4% !important;
+  bottom: 10% !important;   
+  width: 132% !important;
+  top: 54%; 
+  height: 45% !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+  transform: rotate(-2deg) !important;
 
- 
     
     }
   .hero__text-wrapper {
@@ -513,8 +542,14 @@ width: 114% !important;
 
       .hero__image {
         height: 360px;
-        width: auto;
+      
         max-width: 100%;
+         
+      object-fit: contain;
+      padding-top:30px;
+      position: relative;
+      z-index: 3;
+    
       }
 
       .hero__image-shadow {
@@ -531,7 +566,7 @@ width: 114% !important;
         left: 5%;
         right: 5%;
         padding: 0 0px;
-        height: 15%;
+        height: 18%;
         background-color: transparent;
         backdrop-filter: none;
         z-index: 10;
@@ -556,7 +591,15 @@ width: 114% !important;
 
       .hero__image {
         height: 380px; 
-      }
+
+
+       
+      object-fit: contain;
+      padding-top:30px;
+      position: relative;
+      z-index: 3;
+    }
+      
 
       .hero__name {
         font-size: 48px;
@@ -592,6 +635,12 @@ width: 114% !important;
 
       .hero__image {
         height: 380px; 
+     
+      object-fit: contain;
+      padding-top:30px;
+      position: relative;
+      z-index: 3;
+    
       }
 
       .hero__mobile-vector {
@@ -607,7 +656,7 @@ width: 114% !important;
     /* Spezifischer Fix für 584x748 Auflösung */
     @media (min-width: 580px) and (max-width: 590px) and (min-height: 740px) and (max-height: 750px) {
       .hero__content {
-        padding-top: 30%;
+        padding-top:11%;
       }
     }
 
@@ -622,7 +671,7 @@ width: 114% !important;
     @media (max-width: 450px) {
       .hero__content {
         justify-content: flex-start;
-        padding-top: 30%;
+        padding-top: 15%;
         gap: 0rem;
       }
 
@@ -640,7 +689,13 @@ width: 114% !important;
 
       .hero__image {
         height: 300px;
-      }
+        
+      object-fit: contain;
+      padding-top:30px;
+      position: relative;
+      z-index: 3;
+    }
+      
       
       .hero__mobile-vector {
         width: 171%;
@@ -666,8 +721,13 @@ width: 114% !important;
       }
 
       .hero__image {
-        height: 300px;
-      }
+        
+      object-fit: contain;
+      padding-top:30px;
+      position: relative;
+      z-index: 3;
+    }
+      
 
       .hero__line {
         width: 50px !important;
@@ -700,6 +760,11 @@ width: 114% !important;
 
       .hero__image {
         height: 250px;
+      object-fit: contain;
+      padding-top:30px;
+      position: relative;
+      z-index: 3;
+    
       }
       
       .hero__cta {
