@@ -34,6 +34,8 @@ import { Router, ActivatedRoute } from '@angular/router';
       padding: 2rem;
       min-height: calc(100vh - var(--header-height) - var(--footer-height));
       background-color: var(--color-background-primary);
+      /* Ensure the legal page takes up the remaining space properly */
+      flex: 1;
     }
 
    .legal__container {

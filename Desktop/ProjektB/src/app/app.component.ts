@@ -35,10 +35,18 @@ import { CustomCursorComponent } from './shared/components/custom-cursor/custom-
       height: 100%;
       overflow: hidden;
       background-color: var(--color-background-primary);
+      /* Ensure proper flex layout for consistent footer positioning */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     .main-content {
       min-height: calc(100vh - var(--header-height) - var(--footer-height));
+      /* Allow main content to grow and push footer to bottom */
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
   `]
 })

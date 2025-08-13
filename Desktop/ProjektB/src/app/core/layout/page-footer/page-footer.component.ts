@@ -55,6 +55,9 @@ import { Router } from '@angular/router';
       background-color: var(--color-background-primary);
       padding: 2rem 0;
       border-top: 2px solid #70E61C;
+      /* Ensure consistent footer height across all pages */
+      min-height: var(--footer-height);
+      max-height: var(--footer-height);
     }
 
     .footer__container {
