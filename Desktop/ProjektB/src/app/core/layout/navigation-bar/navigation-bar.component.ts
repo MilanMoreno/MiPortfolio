@@ -11,7 +11,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
     template: `
     <nav class="nav">
       <div class="nav__container">
-        <a class="nav__logo" href="#top">
+        <a class="nav__logo" (click)="navigateToHome()">
           <img src="assets/img/logo.png" alt="Logo" class="nav__logo-img">
         </a>
 
@@ -370,6 +370,16 @@ export class NavigationBarComponent {
     // Add languages - this is okay here or could be moved to app init
     translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
     // Removed setDefaultLang - AppComponent handles initialization
+  }
+
+  navigateToHome(): void {
+    this.router.navigate(['/']).then(() => {
+      // Scroll to top smoothly when navigating to home
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 0);
+    });
+    this.closeMobileMenu();
   }
 
   switchLanguage(lang: string): void {
