@@ -108,12 +108,18 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       align-items: center;
       z-index: 2;
       margin-top: 25px;
-      flex-shrink: 0;
+      flex-shrink: 0; 
     }
+
+
+    img, video {
+  max-width: 90%;
+  height: auto;
+}
 
     .hero__image {
 margin-top:40px;
-      height:450px; 
+      height:90%; 
       height: 50%;
       object-fit: contain;
       padding-top:50px;
