@@ -15,36 +15,38 @@ import { LanguageService } from '../../../shared/services/language/language.serv
           <img src="assets/img/logo.png" alt="Logo" class="nav__logo-img">
         </a>
 
-        <!-- Desktop Menu -->
-        <div class="nav__menu">
-          <ul class="nav__list">
-            <li *ngFor="let item of menuItems">
-              <a (click)="navigateToSection(item.href)" class="nav__link">
-                {{ item.label | translate }} 
-              </a>
-            </li>
-          </ul>
-        </div>
+        <div class="nav__right-section">
+          <!-- Desktop Menu -->
+          <div class="nav__menu">
+            <ul class="nav__list">
+              <li *ngFor="let item of menuItems">
+                <a (click)="navigateToSection(item.href)" class="nav__link">
+                  {{ item.label | translate }} 
+                </a>
+              </li>
+            </ul>
+          </div>
 
-        <!-- Desktop Language Selector -->
-        <div class="nav__language">
+          <!-- Desktop Language Selector -->
+          <div class="nav__language">
+            <button 
+              class="nav__lang-btn" 
+              *ngFor="let lang of languages"
+              (click)="switchLanguage(lang.code)">
+              <img [src]="lang.flag" [alt]="lang.name">
+            </button>
+          </div>
+
+          <!-- Mobile Menu Toggle -->
           <button 
-            class="nav__lang-btn" 
-            *ngFor="let lang of languages"
-            (click)="switchLanguage(lang.code)">
-            <img [src]="lang.flag" [alt]="lang.name">
+            class="nav__mobile-toggle" 
+            [class.nav__mobile-toggle--active]="isMobileMenuOpen"
+            (click)="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
           </button>
         </div>
-
-        <!-- Mobile Menu Toggle -->
-        <button 
-          class="nav__mobile-toggle" 
-          [class.nav__mobile-toggle--active]="isMobileMenuOpen"
-          (click)="toggleMobileMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
       </div>
 
       <!-- Mobile Menu -->
@@ -86,7 +88,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
   .nav__container {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   width: 100%;
   max-width: none;                 /* Deckel weg */
@@ -96,6 +98,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
 
 
     .nav__logo {
+      flex-shrink: 0;
       height: 80px;
       display: flex;
       align-items: center;
@@ -104,6 +107,12 @@ import { LanguageService } from '../../../shared/services/language/language.serv
     .nav__logo-img {
       height: 100%;
       width: auto;
+    }
+
+    .nav__right-section {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
     }
 
     .nav__list {
