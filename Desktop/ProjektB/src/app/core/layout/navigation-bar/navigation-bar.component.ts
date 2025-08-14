@@ -86,7 +86,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
   .nav__container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   width: 100%;
   max-width: none;                 /* Deckel weg */
