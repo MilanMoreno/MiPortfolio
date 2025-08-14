@@ -70,6 +70,15 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
   <div class="hero__notification" [class.hero__notification--visible]="(clipboardService.copyStatus$ | async)">
     {{ 'HERO.EMAIL_COPIED' | translate }}
   </div>
+
+    <!-- Turn Device Message for iPad Landscape -->
+    <div class="hero__turn-device">
+      <div class="hero__turn-device-content">
+        <div class="hero__turn-device-icon">📱</div>
+        <h3>TURN YOUR DEVICE</h3>
+        <p>For the best experience, please rotate your device to portrait mode</p>
+      </div>
+    </div>
 </section>
   `,
     styles: [`
@@ -145,9 +154,9 @@ margin-top:40px;
 .hero__desktop-vector {
   position: absolute !important;
   left: -4% !important;
-  bottom: 10% !important;   
+     bottom: 10% !important;   
   width: 132% !important;
-  top: 54%; 
+     top: 50%; 
   height: 45% !important;
   pointer-events: none !important;
   z-index: 5 !important;
@@ -349,6 +358,82 @@ margin-top:40px;
       bottom: 2rem;
     }
 
+    /* Turn Device Message - Only for iPad Landscape */
+    .hero__turn-device {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(20, 29, 47, 0.95);
+      z-index: 9999;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero__turn-device-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero__turn-device-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: rotateDevice 2s infinite ease-in-out;
+    }
+
+    .hero__turn-device h3 {
+      font-size: 2.5rem;
+      color: var(--color-accent-primary);
+      margin: 0 0 1rem 0;
+      font-weight: 700;
+    }
+
+    .hero__turn-device p {
+      font-size: 1.25rem;
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+
+    @keyframes rotateDevice {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-15deg); }
+      75% { transform: rotate(15deg); }
+    }
+
+    /* Show Turn Device Message only for iPad Landscape */
+    @media (min-width: 1070px) and (max-width: 1090px) and (min-height: 980px) and (max-height: 1000px) and (orientation: landscape) {
+      .hero__turn-device {
+        display: block;
+      }
+    }
+
+    /* Show for iPad landscape orientation - broader range */
+    @media (min-width: 1060px) and (max-width: 1100px) and (min-height: 970px) and (max-height: 1010px) and (orientation: landscape) {
+      .hero__turn-device {
+        display: block;
+      }
+    }
+
+    /* Additional iPad landscape detection */
+    @media (min-width: 1024px) and (max-width: 1366px) and (min-height: 768px) and (max-height: 1024px) and (orientation: landscape) {
+      .hero__turn-device {
+        display: block;
+      }
+    }
+
+   /* iPad specific footer positioning */
+   @media (min-width: 990px) and (max-width: 1080px) and (min-height: 990px) and (max-height: 1080px) {
+     .hero__footer {
+       padding-bottom: 150px;
+       margin-bottom: -50px;
+     }
+   }
     @media (max-width: 1300px) {
       .hero__content {
         padding-right: 20px;
@@ -376,18 +461,15 @@ margin-top:40px;
         font-size: 90px;
       }
 .hero__desktop-vector{
-  
-
-  position: absolute !important;
-  left: -4% !important;
-  bottom: 10% !important;   
-  width: 132% !important;
-  top: 54%; 
-  height: 45% !important;
-  pointer-events: none !important;
-  z-index: 5 !important;
-  transform: rotate(-2deg) !important;
-
+        position: absolute !important;
+        left: -4% !important;
+       bottom: 15% !important;   
+        width: 132% !important;
+       top: 45%; 
+        height: 45% !important;
+        pointer-events: none !important;
+        z-index: 5 !important;
+        transform: rotate(-2deg) !important;
     }
       .hero__title { 
         font-size: 48px;
@@ -399,18 +481,16 @@ margin-top:40px;
         font-size: 70px;
       }
 .hero__desktop-vector{
-
-
-  position: absolute !important;
-  left: -4% !important;
-  bottom: 10% !important;   
-  width: 132% !important;
-  top: 54%; 
-  height: 45% !important;
-  pointer-events: none !important;
-  z-index: 5 !important;
-  transform: rotate(-2deg) !important;
-}
+        position: absolute !important;
+        left: -4% !important;
+       bottom: 15% !important;   
+        width: 132% !important;
+       top: 45%; 
+        height: 45% !important;
+        pointer-events: none !important;
+        z-index: 5 !important;
+        transform: rotate(-2deg) !important;
+      }
     
       .hero__title {
         font-size: 48px;
@@ -428,18 +508,15 @@ margin-top:40px;
         font-size: 60px;
       }
 .hero__desktop-vector{
-  
-  position: absolute !important;
-  left: -4% !important;
-  bottom: 10% !important;   
-  width: 132% !important;
-  top: 54%; 
-  height: 45% !important;
-  pointer-events: none !important;
-  z-index: 5 !important;
-  transform: rotate(-2deg) !important;
-
-    
+        position: absolute !important;
+        left: -4% !important;
+       bottom: 15% !important;   
+        width: 132% !important;
+       top: 45%; 
+        height: 45% !important;
+        pointer-events: none !important;
+        z-index: 5 !important;
+        transform: rotate(-2deg) !important;
     }
   .hero__text-wrapper {
   margin-left:-132px;
@@ -674,6 +751,7 @@ margin-top:40px;
       }
     }
 
+    /* Spezifischer Fix für iPad 990x1080 - Vector Shape höher positionieren */
     @media (max-width: 450px) {
       .hero__content {
         justify-content: flex-start;
