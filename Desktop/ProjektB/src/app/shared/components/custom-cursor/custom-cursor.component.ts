@@ -21,6 +21,15 @@ import { CommonModule } from '@angular/common';
       z-index: 9999;
       pointer-events: none;
       transition: opacity 0.2s ease;
+      /* Verstecke Custom Cursor in Firefox */
+      display: block;
+    }
+
+    /* Firefox-spezifisch: Custom Cursor verstecken */
+    @-moz-document url-prefix() {
+      .cursor {
+        display: none !important;
+      }
     }
 
     .cursor__pointer {
@@ -41,21 +50,36 @@ export class CustomCursorComponent {
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
     this.ngZone.run(() => {
-      this.updateCursorPosition(event.clientX, event.clientY);
-      this.cursorStyles.display = 'block';
+      // Nur für Nicht-Firefox Browser
+      if (!this.isFirefox()) {
+        this.updateCursorPosition(event.clientX, event.clientY);
+        this.cursorStyles.display = 'block';
+      } else {
+        this.cursorStyles.display = 'none';
+      }
     });
   }
 
   @HostListener('document:mouseleave')
   onMouseLeave(): void {
     this.ngZone.run(() => {
-      this.cursorStyles.display = 'none';
+      if (!this.isFirefox()) {
+        this.cursorStyles.display = 'none';
+      }
     });
   }
 
   @HostListener('window:resize')
   onResize(): void {
-    // Cursor bleibt immer sichtbar, unabhängig von der Bildschirmgröße
+    // Cursor nur für Nicht-Firefox Browser
+    if (this.isFirefox()) {
+      this.cursorStyles.display = 'none';
+    }
+  }
+
+  private isFirefox(): boolean {
+    return typeof window !== 'undefined' && 
+           navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
   }
 
   private updateCursorPosition(x: number, y: number): void {

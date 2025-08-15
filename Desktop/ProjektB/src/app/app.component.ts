@@ -7,6 +7,7 @@ import { LanguageService } from './shared/services/language/language.service';
 import { NavigationBarComponent } from './core/layout/navigation-bar/navigation-bar.component';
 import { PageFooterComponent } from './core/layout/page-footer/page-footer.component';
 import { CustomCursorComponent } from './shared/components/custom-cursor/custom-cursor.component';
+import { TurnDeviceMessageComponent } from './shared/components/turn-device-message/turn-device-message.component';
 
 @Component({
     selector: 'app-root',
@@ -16,7 +17,8 @@ import { CustomCursorComponent } from './shared/components/custom-cursor/custom-
         TranslateModule,
         NavigationBarComponent,
         PageFooterComponent,
-        CustomCursorComponent
+        CustomCursorComponent,
+        TurnDeviceMessageComponent
     ],
     template: `
     <div class="app-container">
@@ -26,6 +28,7 @@ import { CustomCursorComponent } from './shared/components/custom-cursor/custom-
       </main>
       <app-page-footer></app-page-footer>
       <app-custom-cursor></app-custom-cursor>
+      <app-turn-device-message></app-turn-device-message>
     </div>
   `,
     styles: [`
