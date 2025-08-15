@@ -335,7 +335,7 @@ import { LanguageService } from '../../../shared/services/language/language.serv
       }
     }
      
-    @media (max-width: 923px) {
+    @media (max-width: 910px) {
       .nav__menu,
       .nav__language {
         display: none;

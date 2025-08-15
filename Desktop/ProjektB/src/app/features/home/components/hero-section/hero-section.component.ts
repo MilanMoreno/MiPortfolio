@@ -154,9 +154,9 @@ margin-top:40px;
 .hero__desktop-vector {
   position: absolute !important;
   left: -4% !important;
-     bottom: 5% !important;   
+     bottom: 10% !important;   
   width: 132% !important;
-     top: 55%; 
+     top: 50%; 
   height: 45% !important;
   pointer-events: none !important;
   z-index: 5 !important;
@@ -427,30 +427,13 @@ margin-top:40px;
       }
     }
 
-   /* Samsung Galaxy S20 Ultra and similar landscape phones */
-   @media (min-width: 900px) and (max-width: 920px) and (min-height: 400px) and (max-height: 420px) and (orientation: landscape) {
-     .hero__turn-device {
-       display: block;
-     }
-   }
    /* iPad specific footer positioning */
-   @media (min-width: 990px) and (max-width: 1080px) and (min-height: 990px) and (max-height: 1080px), 
-         (min-width: 1080px) and (max-width: 1090px) and (min-height: 990px) and (max-height: 1000px) {
+   @media (min-width: 990px) and (max-width: 1080px) and (min-height: 990px) and (max-height: 1080px) {
      .hero__footer {
        padding-bottom: 150px;
        margin-bottom: -50px;
      }
    }
-
-    /* iPad Mini specific footer positioning - make footer more visible */
-    @media (min-width: 760px) and (max-width: 780px) and (min-height: 1020px) and (max-height: 1030px) {
-      .hero__footer {
-        padding-bottom: 80px;
-        margin-bottom: -20px;
-        bottom: 5%;
-        position: relative;
-      }
-    }
     @media (max-width: 1300px) {
       .hero__content {
         padding-right: 20px;
@@ -480,9 +463,9 @@ margin-top:40px;
 .hero__desktop-vector{
         position: absolute !important;
         left: -4% !important;
-       bottom: 10% !important;   
+       bottom: 15% !important;   
         width: 132% !important;
-       top: 50%; 
+       top: 45%; 
         height: 45% !important;
         pointer-events: none !important;
         z-index: 5 !important;
@@ -500,9 +483,9 @@ margin-top:40px;
 .hero__desktop-vector{
         position: absolute !important;
         left: -4% !important;
-       bottom: 10% !important;   
+       bottom: 15% !important;   
         width: 132% !important;
-       top: 50%; 
+       top: 45%; 
         height: 45% !important;
         pointer-events: none !important;
         z-index: 5 !important;
@@ -527,9 +510,9 @@ margin-top:40px;
 .hero__desktop-vector{
         position: absolute !important;
         left: -4% !important;
-       bottom: 10% !important;   
+       bottom: 15% !important;   
         width: 132% !important;
-       top: 50%; 
+       top: 45%; 
         height: 45% !important;
         pointer-events: none !important;
         z-index: 5 !important;
@@ -670,7 +653,7 @@ margin-top:40px;
         background-color: transparent;
         backdrop-filter: none;
         z-index: 10;
-        top:1%;
+        top:-1%;
         margin-top: 5%;
         flex-shrink: 0;
         margin-bottom: -10%;
