@@ -449,19 +449,19 @@ export class NavigationBarComponent {
         if (sectionId === 'about') {
           // About section needs special offset to show the title properly
           if (window.innerWidth >= 2560) {
-            offset = 200;
+            offset = -50;
           } else if (window.innerWidth >= 1920) {
-            offset = 180;
+            offset = -30;
           } else if (window.innerWidth >= 1440) {
-            offset = 160;
+            offset = -10;
           } else if (window.innerWidth >= 1200) {
-            offset = 140;
+            offset = 10;
           } else if (window.innerWidth >= 992) {
-            offset = 120;
+            offset = 30;
           } else if (window.innerWidth >= 768) {
-            offset = 100;
+            offset = -20;
           } else {
-            offset = 80;
+            offset = -50;
           }
         } else if (sectionId === 'skills') {
           // Skills section offset
@@ -518,19 +518,19 @@ export class NavigationBarComponent {
             
             if (sectionId === 'about') {
               if (window.innerWidth >= 2560) {
-                offset = 200;
+                offset = -50;
               } else if (window.innerWidth >= 1920) {
-                offset = 180;
+                offset = -30;
               } else if (window.innerWidth >= 1440) {
-                offset = 160;
+                offset = -10;
               } else if (window.innerWidth >= 1200) {
-                offset = 140;
+                offset = 10;
               } else if (window.innerWidth >= 992) {
-                offset = 120;
+                offset = 30;
               } else if (window.innerWidth >= 768) {
-                offset = 100;
+                offset = -20;
               } else {
-                offset = 80;
+                offset = -50;
               }
             } else if (sectionId === 'skills') {
               if (window.innerWidth >= 1920) {
