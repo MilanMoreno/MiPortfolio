@@ -196,7 +196,7 @@ top:50%;
         
     .about__heading {
       font-size: 45px;
-       padding-top: 50% !important;
+       padding-top:55% !important;
       }
     }
 
