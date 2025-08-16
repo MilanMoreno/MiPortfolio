@@ -93,6 +93,27 @@ import { TranslateModule } from '@ngx-translate/core';
         display: flex !important;
       }
     }
+
+    /* iPhone 14 Pro Max landscape detection - 932x430 */
+    @media screen and (width: 932px) and (height: 430px) and (orientation: landscape) {
+      .turn-device-overlay {
+        display: flex !important;
+      }
+    }
+
+    /* Additional iPhone 14 Pro Max variants with slight dimension differences */
+    @media screen and (min-width: 930px) and (max-width: 935px) and (min-height: 428px) and (max-height: 432px) and (orientation: landscape) {
+      .turn-device-overlay {
+        display: flex !important;
+      }
+    }
+
+    /* Device-specific iPhone 14 Pro Max detection */
+    @media screen and (device-width: 932px) and (device-height: 430px) and (orientation: landscape) {
+      .turn-device-overlay {
+        display: flex !important;
+      }
+    }
   `]
 })
 export class TurnDeviceMessageComponent {}
