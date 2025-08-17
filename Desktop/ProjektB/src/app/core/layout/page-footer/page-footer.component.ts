@@ -61,15 +61,27 @@ import { Router } from '@angular/router';
     }
 
     .footer__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      padding: 0 var(--content-padding-desktop);
+      box-sizing: border-box;
+    }
 
-  width: 100%;
-  max-width: none;           /* Deckel weg */
-  margin: 0;                 /* zentrieren unnötig */
-  padding: 0 clamp(1.5rem, 4vw, 4rem); /* Seiteneinrückung */
-}
+    @media (max-width: 1024px) {
+      .footer__container {
+        padding: 0 var(--content-padding-tablet);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer__container {
+        padding: 0 var(--content-padding-mobile);
+      }
+    }
     .footer__left {
       display: flex;
       flex-direction: column;

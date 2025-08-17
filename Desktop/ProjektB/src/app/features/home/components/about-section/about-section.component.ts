@@ -77,9 +77,23 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       display: flex;
       justify-content: center;
       width: 100%;
-      max-width: 1200px;
-      padding: 0 2rem;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      padding: 0 var(--content-padding-desktop);
+      box-sizing: border-box;
       overflow: visible;
+    }
+
+    @media (max-width: 1024px) {
+      .about__container {
+        padding: 0 var(--content-padding-tablet);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about__container {
+        padding: 0 var(--content-padding-mobile);
+      }
     }
 
     .about__content {

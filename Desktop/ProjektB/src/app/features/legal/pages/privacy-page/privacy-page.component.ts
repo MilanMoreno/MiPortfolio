@@ -108,11 +108,24 @@ import { Router, ActivatedRoute } from '@angular/router';
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
-      padding: 1rem;
-      padding-top: 100px;
+      padding: 100px var(--content-padding-desktop) 1rem;
       width: 100%;
-      max-width: 800px;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
       color: var(--color-text-primary);
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 1024px) {
+      .legal__container {
+        padding: 100px var(--content-padding-tablet) 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .legal__container {
+        padding: 100px var(--content-padding-mobile) 1rem;
+      }
     }
 
     .legal__title {

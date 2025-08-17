@@ -176,9 +176,23 @@ interface ContactFormData {
       background-color: var(--color-background-primary);
       min-height: 600px;
       height: auto;
-      padding: 4rem 48px;
+      padding: 4rem var(--content-padding-desktop);
       width: 100%;
-      max-width: 1920px;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 1024px) {
+      .contact__container {
+        padding: 4rem var(--content-padding-tablet);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact__container {
+        padding: 4rem var(--content-padding-mobile);
+      }
     }
 
     .contact__header {

@@ -86,15 +86,27 @@ import { LanguageService } from '../../../shared/services/language/language.serv
     }
 
   .nav__container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      padding: 0 var(--content-padding-desktop);
+      box-sizing: border-box;
+    }
 
-  width: 100%;
-  max-width: none;                 /* Deckel weg */
-  margin: 0;                       /* nicht zentrieren */
-  padding: 0 clamp(16px, 5vw, 72px); /* Seitenabstand variabel */
-}
+    @media (max-width: 1024px) {
+      .nav__container {
+        padding: 0 var(--content-padding-tablet);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav__container {
+        padding: 0 var(--content-padding-mobile);
+      }
+    }
 
 
     .nav__logo {

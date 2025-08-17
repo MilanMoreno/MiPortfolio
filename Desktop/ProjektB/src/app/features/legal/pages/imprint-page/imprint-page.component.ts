@@ -39,17 +39,30 @@ import { Router, ActivatedRoute } from '@angular/router';
     }
 
    .legal__container {
-  position: relative; /* oder ganz weglassen, falls nicht gebraucht */
-  display: flex;
-  flex-direction: column; /* wichtig! */
-  align-items: flex-start; /* oder center */
-  justify-content: flex-start;
-  padding: 1rem;
-  padding-top:100px;
-  width: 100%;
-  max-width: 800px;
-  color: var(--color-text-primary);
-}
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 100px var(--content-padding-desktop) 1rem;
+      width: 100%;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      color: var(--color-text-primary);
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 1024px) {
+      .legal__container {
+        padding: 100px var(--content-padding-tablet) 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .legal__container {
+        padding: 100px var(--content-padding-mobile) 1rem;
+      }
+    }
 
 .legal__title {
   font-size: var(--font-size-heading-large);

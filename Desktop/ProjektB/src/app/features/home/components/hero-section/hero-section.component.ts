@@ -93,12 +93,26 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       align-items: center;
       flex: 1;
       width: 100%;
-      margin-right: 40px;
-      padding: 20px 50px;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      padding: 0 var(--content-padding-desktop);
+      box-sizing: border-box;
       margin-top: calc(-1 * var(--header-height));
       position: relative;
       z-index: 3;
       gap: 5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .hero__content {
+        padding: 0 var(--content-padding-tablet);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero__content {
+        padding: 0 var(--content-padding-mobile);
+      }
     }
 
     .hero__left-container {

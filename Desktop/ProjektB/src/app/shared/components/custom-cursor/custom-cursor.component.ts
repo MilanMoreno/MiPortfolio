@@ -21,8 +21,15 @@ import { CommonModule } from '@angular/common';
       z-index: 9999;
       pointer-events: none;
       transition: opacity 0.2s ease;
-      /* Verstecke Custom Cursor in Firefox */
-      display: block;
+      /* Hide custom cursor on mobile devices and Firefox */
+      display: none;
+    }
+
+    /* Only show cursor on desktop devices (1024px and above) */
+    @media (min-width: 1024px) and (pointer: fine) {
+      .cursor {
+        display: block;
+      }
     }
 
     /* Firefox-spezifisch: Custom Cursor verstecken */
@@ -50,8 +57,8 @@ export class CustomCursorComponent {
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
     this.ngZone.run(() => {
-      // Nur für Nicht-Firefox Browser
-      if (!this.isFirefox()) {
+      // Nur für Desktop-Geräte mit Maus und Nicht-Firefox Browser
+      if (!this.isFirefox() && this.isDesktopDevice()) {
         this.updateCursorPosition(event.clientX, event.clientY);
         this.cursorStyles.display = 'block';
       } else {
@@ -63,7 +70,7 @@ export class CustomCursorComponent {
   @HostListener('document:mouseleave')
   onMouseLeave(): void {
     this.ngZone.run(() => {
-      if (!this.isFirefox()) {
+      if (!this.isFirefox() && this.isDesktopDevice()) {
         this.cursorStyles.display = 'none';
       }
     });
@@ -71,8 +78,8 @@ export class CustomCursorComponent {
 
   @HostListener('window:resize')
   onResize(): void {
-    // Cursor nur für Nicht-Firefox Browser
-    if (this.isFirefox()) {
+    // Cursor nur für Desktop-Geräte und Nicht-Firefox Browser
+    if (this.isFirefox() || !this.isDesktopDevice()) {
       this.cursorStyles.display = 'none';
     }
   }
@@ -80,6 +87,21 @@ export class CustomCursorComponent {
   private isFirefox(): boolean {
     return typeof window !== 'undefined' && 
            navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+  }
+
+  private isDesktopDevice(): boolean {
+    if (typeof window === 'undefined') return false;
+    
+    // Check screen width (1024px and above for desktop)
+    const isLargeScreen = window.innerWidth >= 1024;
+    
+    // Check if device has fine pointer (mouse) capability
+    const hasFinePonter = window.matchMedia('(pointer: fine)').matches;
+    
+    // Check if device is not touch-primary
+    const isNotTouchPrimary = !window.matchMedia('(pointer: coarse)').matches;
+    
+    return isLargeScreen && (hasFinePonter || isNotTouchPrimary);
   }
 
   private updateCursorPosition(x: number, y: number): void {

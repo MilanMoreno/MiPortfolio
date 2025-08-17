@@ -10,6 +10,12 @@
   --color-text-primary: #FFFFFF;
   --header-height: 109px;
   --footer-height: 200px;
+  
+  /* Consistent layout variables */
+  --max-content-width: 1440px;
+  --content-padding-desktop: 4rem;
+  --content-padding-tablet: 2rem;
+  --content-padding-mobile: 1rem;
 
   --font-family-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
   --font-size-base: 14px;
@@ -84,6 +90,27 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+/* Global content container for consistent alignment */
+.content-container-global {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding-desktop);
+  box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+  .content-container-global {
+    padding: 0 var(--content-padding-tablet);
+  }
+}
+
+@media (max-width: 768px) {
+  .content-container-global {
+    padding: 0 var(--content-padding-mobile);
+  }
 }
 
 .visually-hidden {
