@@ -455,36 +455,8 @@ export class NavigationBarComponent {
         const elementRect = element.getBoundingClientRect();
         const absoluteElementTop = elementRect.top + window.pageYOffset;
         
-        // Calculate responsive offset based on screen size
-        let offset = 120; // Base offset
-        
-        if (sectionId === 'about') {
-          // About section needs special offset to show the title properly
-          if (window.innerWidth >= 2560) {
-            offset = -50;
-          } else if (window.innerWidth >= 1920) {
-            offset = -30;
-          } else if (window.innerWidth >= 1440) {
-            offset = -10;
-          } else if (window.innerWidth >= 1200) {
-            offset = 10;
-          } else if (window.innerWidth >= 992) {
-            offset = 30;
-          } else if (window.innerWidth >= 768) {
-            offset = -20;
-          } else {
-            offset = -50;
-          }
-        } else if (sectionId === 'skills') {
-          // Skills section offset
-          if (window.innerWidth >= 1920) {
-            offset = 150;
-          } else if (window.innerWidth >= 1200) {
-            offset = 130;
-          } else {
-            offset = 110;
-          }
-        }
+        // Calculate responsive offset based on screen size and device type
+        let offset = this.calculateScrollOffset(sectionId);
         
         const targetPosition = absoluteElementTop - offset;
         window.scrollTo({ top: targetPosition, behavior: 'smooth' });
@@ -526,33 +498,7 @@ export class NavigationBarComponent {
             
             const elementRect = element.getBoundingClientRect();
             const absoluteElementTop = elementRect.top + window.pageYOffset;
-            let offset = 120;
-            
-            if (sectionId === 'about') {
-              if (window.innerWidth >= 2560) {
-                offset = -50;
-              } else if (window.innerWidth >= 1920) {
-                offset = -30;
-              } else if (window.innerWidth >= 1440) {
-                offset = -10;
-              } else if (window.innerWidth >= 1200) {
-                offset = 10;
-              } else if (window.innerWidth >= 992) {
-                offset = 30;
-              } else if (window.innerWidth >= 768) {
-                offset = -20;
-              } else {
-                offset = -50;
-              }
-            } else if (sectionId === 'skills') {
-              if (window.innerWidth >= 1920) {
-                offset = 150;
-              } else if (window.innerWidth >= 1200) {
-                offset = 130;
-              } else {
-                offset = 110;
-              }
-            }
+            let offset = this.calculateScrollOffset(sectionId);
             
             const targetPosition = absoluteElementTop - offset;
             window.scrollTo({ top: targetPosition, behavior: 'smooth' });
@@ -561,5 +507,159 @@ export class NavigationBarComponent {
       });
     }
     this.closeMobileMenu();
+  }
+
+  private calculateScrollOffset(sectionId: string): number {
+    const headerHeight = 109; // var(--header-height)
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const isLandscape = screenWidth > screenHeight;
+    
+    if (sectionId === 'about') {
+      // About section - responsive offset calculation with landscape optimization
+      
+      // LANDSCAPE DEVICES - Special handling for horizontal orientation
+      if (isLandscape && screenHeight <= 500) {
+        // Samsung Galaxy Note 883x412 (Landscape)
+        if (screenWidth >= 880 && screenWidth <= 890 && screenHeight >= 410 && screenHeight <= 415) {
+          return headerHeight + 200; // Extra offset for Galaxy Note landscape
+        }
+        // iPhone 12/13/14 896x414 (Landscape)
+        else if (screenWidth >= 890 && screenWidth <= 900 && screenHeight >= 410 && screenHeight <= 420) {
+          return headerHeight + 180;
+        }
+        // iPhone 14 Pro Max 932x430 (Landscape)
+        else if (screenWidth >= 930 && screenWidth <= 935 && screenHeight >= 425 && screenHeight <= 435) {
+          return headerHeight + 190;
+        }
+        // iPhone SE 667x375 (Landscape)
+        else if (screenWidth >= 665 && screenWidth <= 670 && screenHeight >= 370 && screenHeight <= 380) {
+          return headerHeight + 160;
+        }
+        // iPad Mini 1024x768 (Landscape)
+        else if (screenWidth >= 1020 && screenWidth <= 1030 && screenHeight >= 765 && screenHeight <= 775) {
+          return headerHeight + 220;
+        }
+        // iPad 1180x820 (Landscape)
+        else if (screenWidth >= 1175 && screenWidth <= 1185 && screenHeight >= 815 && screenHeight <= 825) {
+          return headerHeight + 240;
+        }
+        // iPad Pro 1366x1024 (Landscape)
+        else if (screenWidth >= 1360 && screenWidth <= 1370 && screenHeight >= 1020 && screenHeight <= 1030) {
+          return headerHeight + 260;
+        }
+        // Generic small landscape devices
+        else if (screenHeight <= 450) {
+          return headerHeight + 170;
+        }
+        // Generic medium landscape devices
+        else {
+          return headerHeight + 150;
+        }
+      }
+      
+      // Desktop (large screens)
+      else if (screenWidth >= 1920) {
+        return headerHeight + 50;
+      } else if (screenWidth >= 1440) {
+        return headerHeight + 30;
+      } else if (screenWidth >= 1200) {
+        return headerHeight + 20;
+      } else if (screenWidth >= 992) {
+        return headerHeight + 10;
+      }
+      
+      // Tablet range
+      else if (screenWidth >= 768) {
+        return headerHeight + 40; // Portrait tablets
+      }
+      
+      // Mobile devices - specific device handling
+      else {
+        // iPhone 12/13/14 Pro Max (428x926 portrait)
+        if (screenWidth <= 428 && screenHeight >= 900) {
+          return headerHeight + 60;
+        }
+        // iPhone 12/13/14 (390x844 portrait)
+        else if (screenWidth <= 390 && screenHeight >= 800) {
+          return headerHeight + 50;
+        }
+        // iPhone SE (375x667 portrait)
+        else if (screenWidth <= 375 && screenHeight >= 650) {
+          return headerHeight + 40;
+        }
+        // Samsung Galaxy S20/S21 (360x800 portrait)
+        else if (screenWidth <= 360 && screenHeight >= 750) {
+          return headerHeight + 45;
+        }
+        // Samsung Galaxy Note (412x883 portrait)
+        else if (screenWidth <= 412 && screenHeight >= 850) {
+          return headerHeight + 55;
+        }
+        // iPad Mini (768x1024 portrait)
+        else if (screenWidth <= 768 && screenHeight >= 1000) {
+          return headerHeight + 70;
+        }
+        // iPad (820x1180 portrait)
+        else if (screenWidth <= 820 && screenHeight >= 1100) {
+          return headerHeight + 80;
+        }
+        // iPad Pro (1024x1366 portrait)
+        else if (screenWidth <= 1024 && screenHeight >= 1300) {
+          return headerHeight + 90;
+        }
+        // Default mobile
+        else {
+          return headerHeight + 30;
+        }
+      }
+    }
+    
+    else if (sectionId === 'skills') {
+      // Skills section offset with landscape optimization
+      if (isLandscape && screenHeight <= 500) {
+        return headerHeight + 200; // Extra offset for landscape skills
+      }
+      if (screenWidth >= 1920) {
+        return headerHeight + 150;
+      } else if (screenWidth >= 1200) {
+        return headerHeight + 130;
+      } else if (screenWidth >= 768) {
+        return headerHeight + 100;
+      } else {
+        return headerHeight + 80;
+      }
+    }
+    
+    else if (sectionId === 'portfolio') {
+      // Portfolio section offset with landscape optimization
+      if (isLandscape && screenHeight <= 500) {
+        return headerHeight + 180; // Extra offset for landscape portfolio
+      }
+      if (screenWidth >= 1200) {
+        return headerHeight + 100;
+      } else if (screenWidth >= 768) {
+        return headerHeight + 80;
+      } else {
+        return headerHeight + 60;
+      }
+    }
+    
+    else if (sectionId === 'contact') {
+      // Contact section offset with landscape optimization
+      if (isLandscape && screenHeight <= 500) {
+        return headerHeight + 160; // Extra offset for landscape contact
+      }
+      if (screenWidth >= 1200) {
+        return headerHeight + 120;
+      } else if (screenWidth >= 768) {
+        return headerHeight + 100;
+      } else {
+        return headerHeight + 80;
+      }
+    }
+    
+    // Default fallback
+    return headerHeight + 50;
   }
 }
