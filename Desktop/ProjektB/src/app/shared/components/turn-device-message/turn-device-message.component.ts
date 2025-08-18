@@ -162,6 +162,23 @@ import { TranslateModule } from '@ngx-translate/core';
     margin-bottom: 2rem;
   }
 }
+/* ===== 720 x 540 (Landscape) – Turn Device Overlay ===== */
+@media screen and (width: 720px) and (height: 540px) and (orientation: landscape) {
+  .turn-device-overlay { display: flex !important; }
+}
+
+/* Toleranzbereich */
+@media screen
+  and (min-width: 718px) and (max-width: 722px)
+  and (min-height: 538px) and (max-height: 542px)
+  and (orientation: landscape) {
+  .turn-device-overlay { display: flex !important; }
+}
+
+/* Device-spezifisch */
+@media screen and (device-width: 720px) and (device-height: 540px) and (orientation: landscape) {
+  .turn-device-overlay { display: flex !important; }
+}
 
 
 
