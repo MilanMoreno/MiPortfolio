@@ -76,7 +76,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     styles: [`
     .hero {
       position: relative;
-      height: 100vh; /* CHANGED FROM 800px TO 100vh */
+      height: 100vh;
       max-height: 1000px;
       background-color: #141D2F;
       display: flex;
@@ -85,6 +85,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       padding-top: 4%;
       padding-bottom: 0;
       box-sizing: border-box;
+      
+      /* KEIN MARGIN-BOTTOM MEHR! */
+      /* Die Spacer-Wall-Komponente regelt jetzt den Abstand zur About-Section */
     }
 
     .hero__content {
@@ -126,14 +129,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       flex-shrink: 0; 
     }
 
-
     img, video {
-  max-width: 90%;
-  height: auto;
-}
+      max-width: 90%;
+      height: auto;
+    }
 
     .hero__image {
-margin-top:40px;
+      margin-top:40px;
       height:90%; 
       height: 50%;
       object-fit: contain;
@@ -156,18 +158,17 @@ margin-top:40px;
       pointer-events: none;
     }
 
- 
-.hero__desktop-vector {
-  position: absolute !important;
-  left: -4% !important;
-     bottom: 10% !important;   
-  width: 132% !important;
-     top: 50%; 
-  height: 45% !important;
-  pointer-events: none !important;
-  z-index: 5 !important;
-  transform: rotate(-2deg) !important;
-}
+    .hero__desktop-vector {
+      position: absolute !important;
+      left: -4% !important;
+      bottom: 10% !important;   
+      width: 132% !important;
+      top: 50%; 
+      height: 45% !important;
+      pointer-events: none !important;
+      z-index: 5 !important;
+      transform: rotate(-2deg) !important;
+    }
 
     .hero__desktop-vector-image {
       width: 100% !important;
@@ -364,21 +365,22 @@ margin-top:40px;
       bottom: 2rem;
     }
 
-   /* iPad specific footer positioning */
-   @media (min-width: 990px) and (max-width: 1080px) and (min-height: 990px) and (max-height: 1080px) {
-     .hero__footer {
-       padding-bottom: 150px;
-       margin-bottom: -50px;
-     }
-   }
+    /* iPad specific footer positioning */
+    @media (min-width: 990px) and (max-width: 1080px) and (min-height: 990px) and (max-height: 1080px) {
+      .hero__footer {
+        padding-bottom: 150px;
+        margin-bottom: -50px;
+      }
+    }
+
     @media (max-width: 1300px) {
       .hero__content {
         padding-right: 20px;
-       
       }
+      
       .hero{
-       height: 100vh; /* CHANGED FROM 750px TO 100vh */
-       }
+        height: 100vh;
+      }
         
       .hero__footer {
         padding: 0 50px;
@@ -386,28 +388,28 @@ margin-top:40px;
  
       .hero__image {
         height:450px;
-         
-      object-fit: contain;
-      padding-top:30px;
-      position: relative;
-      z-index: 3;
-    }
-      
+        object-fit: contain;
+        padding-top:30px;
+        position: relative;
+        z-index: 3;
+      }
 
       .hero__name {
         font-size: 90px;
       }
-.hero__desktop-vector{
+
+      .hero__desktop-vector{
         position: absolute !important;
         left: -4% !important;
-       bottom: 15% !important;   
+        bottom: 15% !important;   
         width: 132% !important;
-       top: 45%; 
+        top: 45%; 
         height: 45% !important;
         pointer-events: none !important;
         z-index: 5 !important;
         transform: rotate(-2deg) !important;
-    }
+      }
+
       .hero__title { 
         font-size: 48px;
       }
@@ -417,12 +419,13 @@ margin-top:40px;
       .hero__name {
         font-size: 70px;
       }
-.hero__desktop-vector{
+
+      .hero__desktop-vector{
         position: absolute !important;
         left: -4% !important;
-       bottom: 15% !important;   
+        bottom: 15% !important;   
         width: 132% !important;
-       top: 45%; 
+        top: 45%; 
         height: 45% !important;
         pointer-events: none !important;
         z-index: 5 !important;
@@ -432,9 +435,11 @@ margin-top:40px;
       .hero__title {
         font-size: 48px;
       }
-        .hero__intro-text {
-      font-size: 45px;
+
+      .hero__intro-text {
+        font-size: 45px;
       }
+
       .hero__title {
         font-size: 43px;
       }
@@ -444,23 +449,27 @@ margin-top:40px;
       .hero__name {
         font-size: 60px;
       }
-.hero__desktop-vector{
+
+      .hero__desktop-vector{
         position: absolute !important;
         left: -4% !important;
-       bottom: 15% !important;   
+        bottom: 15% !important;   
         width: 132% !important;
-       top: 45%; 
+        top: 45%; 
         height: 45% !important;
         pointer-events: none !important;
         z-index: 5 !important;
         transform: rotate(-2deg) !important;
-    }
-  .hero__text-wrapper {
-  margin-left:-132px;
-  }
+      }
+
+      .hero__text-wrapper {
+        margin-left:-132px;
+      }
+
       .hero__title {
         font-size: 48px;
       }
+
       .hero__title {
         font-size: 38px;
       }
@@ -478,13 +487,13 @@ margin-top:40px;
         position: absolute !important;
         bottom: -50px !important;
         left: -130px !important;
-     width: 50% !important;
+        width: 50% !important;
         z-index: 10 !important;
       }
       
       .hero {
-        height: 100vh; /* CHANGED FROM 100% TO 100vh */
-        min-height: 100vh; /* CHANGED FROM 100% TO 100vh */
+        height: 100vh;
+        min-height: 100vh;
         padding-bottom: 0;
         position: relative;
         display: flex;
@@ -562,19 +571,16 @@ margin-top:40px;
 
       .hero__image {
         height: 360px;
-      
         max-width: 100%;
-         
-      object-fit: contain;
-      padding-top:30px;
-      position: relative;
-      z-index: 3;
-    
+        object-fit: contain;
+        padding-top:30px;
+        position: relative;
+        z-index: 3;
       }
 
       .hero__image-shadow {
         left: 50%;
-      top: 56%;
+        top: 56%;
         transform: translate(-50%, -50%);
         width: 100%;
         height: 100%;
@@ -605,21 +611,17 @@ margin-top:40px;
     @media (max-width: 900px) and (min-width: 601px) {
       .hero__content {
         justify-content: flex-start;
-      padding-top: 25px;
+        padding-top: 25px;
         gap: 0rem;
       }
 
       .hero__image {
         height: 380px; 
-
-
-       
-      object-fit: contain;
-      padding-top:30px;
-      position: relative;
-      z-index: 3;
-    }
-      
+        object-fit: contain;
+        padding-top:30px;
+        position: relative;
+        z-index: 3;
+      }
 
       .hero__name {
         font-size: 48px;
@@ -655,12 +657,10 @@ margin-top:40px;
 
       .hero__image {
         height: 380px; 
-     
-      object-fit: contain;
-      padding-top:30px;
-      position: relative;
-      z-index: 3;
-    
+        object-fit: contain;
+        padding-top:30px;
+        position: relative;
+        z-index: 3;
       }
 
       .hero__mobile-vector {
@@ -710,13 +710,11 @@ margin-top:40px;
 
       .hero__image {
         height: 300px;
-        
-      object-fit: contain;
-      padding-top:30px;
-      position: relative;
-      z-index: 3;
-    }
-      
+        object-fit: contain;
+        padding-top:30px;
+        position: relative;
+        z-index: 3;
+      }
       
       .hero__mobile-vector {
         width: 171%;
@@ -742,13 +740,11 @@ margin-top:40px;
       }
 
       .hero__image {
-        
-      object-fit: contain;
-      padding-top:30px;
-      position: relative;
-      z-index: 3;
-    }
-      
+        object-fit: contain;
+        padding-top:30px;
+        position: relative;
+        z-index: 3;
+      }
 
       .hero__line {
         width: 50px !important;
@@ -781,11 +777,10 @@ margin-top:40px;
 
       .hero__image {
         height: 250px;
-      object-fit: contain;
-      padding-top:30px;
-      position: relative;
-      z-index: 3;
-    
+        object-fit: contain;
+        padding-top:30px;
+        position: relative;
+        z-index: 3;
       }
       
       .hero__cta {

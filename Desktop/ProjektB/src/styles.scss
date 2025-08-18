@@ -278,6 +278,48 @@ section {
   padding: 5rem 0;
 }
 
+/* CRITICAL FIX: ORIENTIERUNGS-ABHÄNGIGER ABSTAND ZWISCHEN HERO UND ABOUT */
+/* Diese Regel MUSS NACH den normalen section-Regeln stehen */
+
+/* Alle Querformat-Geräte: Großer Abstand nach Hero Section */
+@media (orientation: landscape) and (max-height: 500px) {
+  section.hero {
+    margin-bottom: 300px !important;
+  }
+}
+
+/* Spezifische Querformat-Geräte - EXTRA GROßE ABSTÄNDE */
+@media (max-width: 760px) and (max-height: 360px) and (orientation: landscape) {
+  section.hero {
+    margin-bottom: 350px !important;
+  }
+}
+
+@media (max-width: 883px) and (max-height: 412px) and (orientation: landscape) {
+  section.hero {
+    margin-bottom: 300px !important;
+  }
+}
+
+/* Hochformat: Kleinere Abstände */
+@media (orientation: portrait) {
+  section.hero {
+    margin-bottom: 150px !important;
+  }
+}
+
+@media (max-width: 360px) and (min-height: 760px) and (orientation: portrait) {
+  section.hero {
+    margin-bottom: 120px !important;
+  }
+}
+
+@media (max-width: 412px) and (min-height: 883px) and (orientation: portrait) {
+  section.hero {
+    margin-bottom: 100px !important;
+  }
+}
+
 /* Global button styles */
 .btn {
   display: inline-flex;

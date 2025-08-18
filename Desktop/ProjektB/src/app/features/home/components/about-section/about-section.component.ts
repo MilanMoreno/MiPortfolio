@@ -8,6 +8,10 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     selector: 'app-about-section',
     imports: [CommonModule, TranslateModule],
     template: `
+    <!-- SPACER WAND zwischen Hero und About -->
+
+    <div class="section-spacer"></div>
+    
     <section class="about" id="about">
       <div class="about__container">
         <div class="about__content">
@@ -61,6 +65,68 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     </section>
   `,
     styles: [`
+    /* SPACER WAND - Fester Abstand zwischen Hero und About für alle Orientierungen */
+    .section-spacer {
+      width: 100%;
+      background-color: var(--color-background-primary);
+    
+      height: 10px;
+    }
+
+    /* Spacer für verschiedene Geräte und Orientierungen */
+    @media (max-width: 1024px) {
+      .section-spacer {
+        height: 10px;
+      }
+    }
+
+    /* Galaxy Note 412x883 (Hochformat) */
+    @media (max-width: 412px) and (max-height: 883px) and (orientation: portrait) {
+      .section-spacer {
+        height: 0px; /* Kleiner Abstand für Hochformat */
+      }
+    }
+
+    /* Galaxy Note 883x412 (Querformat) */
+    @media (max-width: 883px) and (max-height: 412px) and (orientation: landscape) {
+      .section-spacer {
+        height: 0px; /* Noch kleiner für Querformat */
+    }
+      
+    } 
+
+    /* Galaxy S10 360x760 (Hochformat) */
+    @media (max-width: 360px) and (max-height: 760px) and (orientation: portrait) {
+      .section-spacer {
+        height: 0px;
+      }
+    }
+
+    /* Galaxy S10 760x360 (Querformat) */
+    @media (max-width: 760px) and (max-height: 360px) and (orientation: landscape) {
+      .section-spacer {
+        height:150px;
+      }
+    } 
+ /* Galaxy S20+ 384x854 (Portrait) */
+@media (max-width: 384px) and (max-height: 854px) and (orientation: portrait) {
+  .hero__footer {
+    position: relative;
+    bottom: 2%;
+    left: 5%;
+    right: 5%;
+    padding: 3px 0px;
+    height: 18%;
+    background-color: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    z-index: 10;
+    top: 5%;
+    margin-top: 5%;
+    flex-shrink: 0;
+    margin-bottom: -10%;
+  }
+}
     .about {
       position: relative;
       display: flex;
@@ -69,7 +135,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       background-color: var(--color-background-primary);
       min-height: 1000px;
       height: auto;
-     padding: 4rem 0;
+      padding: 0rem 0;
       overflow: visible;
     }
 
@@ -102,7 +168,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       align-items: center;
       gap: 4rem;
       width: 100%;
-     
       overflow: visible;
     }
 
@@ -113,7 +178,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .about__heading {
       font-size: 89px;
-       padding-top: 0px !important;
+      padding-top: 0px !important; /* Kein padding-top mehr nötig! */
       color: var(--color-text-primary);
       margin-bottom: 2rem;
     }
@@ -187,30 +252,27 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       height: auto;
     } 
 
- 
-@media (min-width: 700px) and (max-width: 1500px) {
-    .about__shadow {
-display:none;
-    }}
-@media (max-width: 669px) {
-  .about__shadow {
-    display: block; /* oder flex/inline-block, je nachdem was es vorher war */
-    }
+    @media (min-width: 700px) and (max-width: 1500px) {
       .about__shadow {
-top:50%;
-  }
-}
+        display: none;
+      }
+    }
+
+    @media (max-width: 669px) {
+      .about__shadow {
+        display: block;
+        top: 50%;
+      }
+    }
 
     @media (max-width: 1024px) {
       .about__container {
         padding: 0 1rem;
       }
 
-      
-        
-    .about__heading {
-      font-size: 45px;
-       padding-top:55% !important;
+      .about__heading {
+        font-size: 45px;
+        /* KEIN padding-top mehr! Spacer regelt alles */
       }
     }
 
@@ -244,7 +306,6 @@ top:50%;
     @media (max-width: 480px) {
       .about__heading {
         font-size: 26px;
-        
       }
 
       .about__intro,
