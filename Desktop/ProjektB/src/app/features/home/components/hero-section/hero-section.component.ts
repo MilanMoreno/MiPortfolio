@@ -78,8 +78,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     styles: [`
     .hero {
       position: relative;
-      height: 100vh;
-      max-height: 1000px;
+      height: 100vh !important;
       background-color: #141D2F;
       display: flex;
       flex-direction: column;
@@ -166,8 +165,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       left: -4% !important;
       bottom: 10% !important;   
       width: 132% !important;
-      top: 50%; 
-      height: 45% !important;
+      top: 40%; 
+      height: 40% !important;
       pointer-events: none !important;
       z-index: 5 !important;
       transform: rotate(-2deg) !important;
@@ -537,8 +536,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
       
       .hero {
-        height: 100vh;
-        min-height: 100vh;
+        height: 100vh !important;
         padding-bottom: 0;
         position: relative;
         display: flex;
@@ -669,8 +667,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     /* Spezielle Anpassung für Bereich 601px bis 900px */
     @media (max-width: 900px) and (min-width: 601px) {
       .hero__content {
-        justify-content: flex-start;
-        padding-top: 25px;
+        justify-content: center;
+        padding-top: 0;
         gap: 0rem;
       }
 
@@ -697,8 +695,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     @media (max-width: 600px) {
       .hero__content {
-        justify-content: flex-start;
-        padding-top: 25px;
+        justify-content: center;
+        padding-top: 0;
         gap: 0rem;
       }
 
@@ -750,8 +748,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     /* Spezifischer Fix für iPad 990x1080 - Vector Shape höher positionieren */
     @media (max-width: 450px) {
       .hero__content {
-        justify-content: flex-start;
-        padding-top: 15%;
+        justify-content: center;
+        padding-top: 0;
         gap: 0rem;
       }
 
@@ -831,8 +829,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
       
       .hero__content {
-        justify-content: flex-start;
-        padding-top: 40px;
+        justify-content: center;
+        padding-top: 0;
         gap: 0rem;
       }
 
@@ -864,8 +862,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
       
       .hero__content {
-        justify-content: flex-start;
-        padding-top: 60px;
+        justify-content: center;
+        padding-top: 0;
         gap: 0rem;
       }
       
