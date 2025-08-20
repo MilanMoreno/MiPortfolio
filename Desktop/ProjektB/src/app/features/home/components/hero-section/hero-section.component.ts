@@ -111,7 +111,9 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     @media (max-width: 1024px) {
       .hero__content {
         padding: 0 var(--content-padding-tablet);
+
       }
+       
     }
 
     @media (max-width: 768px) {
@@ -120,7 +122,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
     }
 
-    .hero__left-container {
+    .hero__left-container { 
       position: relative;
       width: auto; 
       display: flex;
@@ -162,19 +164,19 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .hero__desktop-vector {
       position: absolute !important;
-      left: -4% !important;
-      bottom: 10% !important;   
-      width: 132% !important;
-      top: 40%; 
-      height: 40% !important;
+      left: -5% !important;
+      bottom: 1% !important;   
+      width: 175% !important;
+      top: 36%; 
+      height: 57% !important;
       pointer-events: none !important;
       z-index: 5 !important;
-      transform: rotate(-2deg) !important;
+      transform: rotate(-3deg) !important;
     }
 
     .hero__desktop-vector-image {
-      width: 100% !important;
-      height: 100% !important;
+      width: 90% !important;
+      height: 90% !important;
       object-fit: fill !important;
       opacity: 1 !important;
       transform: perspective(1000px) rotateX(-15deg) !important;
@@ -441,40 +443,100 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__name {
         font-size: 90px;
       }
+ .hero__desktop-vector {
+      position: absolute !important;
+      left: -1% !important;
+      bottom: 10% !important;   
+      width: 132% !important;
+      top: 45%; 
+      height: 99% !important;
+      pointer-events: none !important;
+      z-index: 5 !important;
+      transform: rotate(-2deg) !important;
+    }
 
-      .hero__desktop-vector{
-        position: absolute !important;
-        left: -4% !important;
-        bottom: 15% !important;   
-        width: 132% !important;
-        top: 45%; 
-        height: 45% !important;
-        pointer-events: none !important;
-        z-index: 5 !important;
-        transform: rotate(-2deg) !important;
-      }
 
       .hero__title { 
         font-size: 48px;
       }
     }
 
+
+    @media (max-width: 1800px) {
+      
+      
+      .hero{
+        height: 100vh;
+      }
+      
+      .hero__image {
+        height:450px;
+        object-fit: contain;
+        padding-top:30px;
+        position: relative;
+        z-index: 3;
+      }
+
+    
+ .hero__desktop-vector {
+      position: absolute !important;
+      left: -1% !important;
+      bottom: 10% !important;   
+      width: 132% !important;
+      top: 41%; 
+      height: 75% !important;
+      pointer-events: none !important;
+      z-index: 5 !important;
+      transform: rotate(-2deg) !important;
+    }
+    }
+
+
+        @media (max-width: 2400px) {
+      
+      
+      .hero{
+        height: 100vh;
+      }
+      
+      .hero__image {
+        height:450px;
+        object-fit: contain;
+        padding-top:30px;
+        position: relative;
+        z-index: 3;
+      }
+
+    
+ .hero__desktop-vector {
+      position: absolute !important;
+      left: -1% !important;
+      bottom: 10% !important;   
+      width: 132% !important;
+      top: 43%; 
+      height: 58% !important;
+      pointer-events: none !important;
+      z-index: 5 !important;
+      transform: rotate(-2deg) !important;
+    }
+    }
     @media (max-width: 1200px) {
       .hero__name {
         font-size: 70px;
       }
 
-      .hero__desktop-vector{
-        position: absolute !important;
-        left: -4% !important;
-        bottom: 15% !important;   
-        width: 132% !important;
-        top: 45%; 
-        height: 45% !important;
-        pointer-events: none !important;
-        z-index: 5 !important;
-        transform: rotate(-2deg) !important;
-      }
+      .hero__desktop-vector { 
+      position: absolute !important;
+      left: -4% !important;
+      bottom: 1% !important;   
+      width: 132% !important;
+      top: 45%; 
+      height: 75% !important;
+      pointer-events: none !important;
+      z-index: 5 !important;
+      transform: rotate(-2deg) !important;
+    } 
+
     
       .hero__title {
         font-size: 48px;
@@ -499,8 +561,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         left: -4% !important;
         bottom: 15% !important;   
         width: 132% !important;
-        top: 45%; 
-        height: 45% !important;
+        top: 50%; 
+        height: 70% !important;
         pointer-events: none !important;
         z-index: 5 !important;
         transform: rotate(-2deg) !important;
