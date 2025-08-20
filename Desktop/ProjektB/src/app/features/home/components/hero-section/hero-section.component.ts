@@ -294,8 +294,11 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       justify-content: flex-start;
       align-items: center;
       width: 100%;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      padding: 0 calc(var(--content-padding-desktop) - 6rem);
+      box-sizing: border-box;
       height: 10%;
-      padding: 0 0px;
       z-index: 20;
       margin-top: auto;
       position: relative;
@@ -303,23 +306,18 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       overflow: visible !important;
     }
 
-    .hero__line-container {
-      position: relative;
-      width: 5%; 
-  } 
-      margin-right: 0px;
-      overflow: visible !important;
+    @media (max-width: 1024px) {
+      .hero__footer {
+        padding: 0 calc(var(--content-padding-tablet) - 3rem);
+      }
     }
 
-    .hero__line {
-      height: 4px;
-      background-color: var(--color-accent-secondary);
-      width: 100%;
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      z-index: 10;
+    @media (max-width: 768px) {
+      .hero__footer {
+        padding: 0 calc(var(--content-padding-mobile) - 1.5rem);
+      }
     }
+
 
     .hero__social {
       display: flex;
@@ -328,6 +326,19 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       position: relative;
       z-index: 10;
       flex-shrink: 0;
+      
+      /* Linie DIREKT bei Social Links - geht unendlich nach links */
+      &::before {
+        content: '';
+        position: absolute;
+        left: -99999px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 99999px;
+        height: 4px;
+        background-color: var(--color-accent-secondary);
+        z-index: 1;
+      }
     }
 
     .hero__social-link {
@@ -339,7 +350,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     }
 
     .hero__email {
-      margin-left: 20px;
+      margin-left: 1rem;
       font-size: 23px;
       color: var(--color-text-primary);
       cursor: pointer;
@@ -359,86 +370,24 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       position: absolute;
       right: 100px;
       bottom: 0;
-      visibility: visible;
+      display: none !important; /* Versteckt standardmäßig */
     }
 
     .hero__scroll:hover {
       color: var(--color-accent-primary);
     }
 
-    /* Zoom-adaptive layout - Hide scroll text and adjust line when zoomed out */
-    @media screen and (max-resolution: 95dpi), 
-           screen and (max-zoom: 0.8),
-           screen and (transform-3d) and (max-width: 1800px) {
+    /* Versteckt bei allem unter 100% Zoom */
+    @media (max-width: 1919px) {
       .hero__scroll {
-        visibility: hidden;
-      }
-      
-      .hero__line-container {
-        width: 300px;
-      }
-      
-      .hero__footer {
-        padding: 0 0px;
-      }
-    }
-    
-    /* Further zoom out - extend line more and move social links */
-    @media screen and (max-resolution: 75dpi),
-           screen and (max-zoom: 0.6),
-           screen and (transform-3d) and (max-width: 1400px) {
-      .hero__line-container {
-        width: 500px;
-      }
-      
-      .hero__footer {
-        padding: 0 0px;
-      }
-    }
-    
-    /* Very zoomed out - maximum line extension */
-    @media screen and (max-resolution: 60dpi),
-           screen and (max-zoom: 0.4),
-           screen and (transform-3d) and (max-width: 1000px) {
-      .hero__line-container {
-        width: 1200px;
-      }
-      
-      .hero__footer {
-        padding: 0 0px;
-        justify-content: flex-start;
-      }
-      
-      .hero__social {
-        margin-left: 1%;
-      }
-    }
-    
-    /* Extra low zoom levels - 30% and below */
-    @media screen and (max-resolution: 40dpi),
-           screen and (max-zoom: 0.3) {
-      .hero__line-container {
-        width: 1500px;
-      }
-      
-      .hero__footer {
-        padding: 0 0px;
-        justify-content: flex-start;
-      }
-      
-      .hero__social {
-        margin-left: 150px;
+        display: none !important;
       }
     }
 
-    /* Hide scroll text on smaller screens */
-    @media (max-width: 1100px) {
+    /* Sichtbar nur bei 100% Zoom und höher (1920px+) */
+    @media (min-width: 1920px) {
       .hero__scroll {
-        visibility: hidden;
-      }
-      
-      .hero__line-container {
-        width: 300px;
+        display: block !important;
       }
     }
 
@@ -469,7 +418,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     @media (max-width: 1300px) {
       .hero__content {
-        padding-right: 0px;
+        padding-right: 20px;
       }
       
       .hero{
@@ -477,7 +426,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
         
       .hero__footer {
-        padding: 0 0px;
+        padding: 0 50px;
       }
  
       .hero__image {
@@ -685,7 +634,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         bottom: 1%;      
         left: 0;
         right: 0;
-        padding: 0 0px;
+        padding: 0 20px;
         height: 18%;
         background-color: transparent;
         backdrop-filter: none;
@@ -707,7 +656,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .hero__line-container {
         width: 50px !important;
-        margin-right: 0px !important;
+        margin-right: 10px !important;
       }
 
       .hero__social {
@@ -855,13 +804,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__line {
-        width: 1%px !important;
+        width: 50px !important;
         right: 0 !important;
-        margin-right: 0px !important;
+        margin-right: 10px !important;
       }
       
       .hero__line-container {
-        width: 1% !important;
+        width: 50px !important;
       }
     }
 
@@ -923,8 +872,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
       
       .hero__line-container {
-        width: 1%px !important;
-        margin-right: 0px !important;
+        width: 30px !important;
+        margin-right: 5px !important;
       }
 
       .hero__social {
