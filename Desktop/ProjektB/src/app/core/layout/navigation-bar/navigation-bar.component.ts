@@ -377,7 +377,7 @@ export class NavigationBarComponent {
 
   languages = [
     { code: 'fr', name: 'Français', flag: 'assets/img/france.png' },
-    { code: 'tr', name: 'Türkçe', flag: 'assets/img/turkey.png' },
+    { code: 'tr', name: 'Türkçe',  flag: 'assets/img/turkey.png' },
     { code: 'de', name: 'Deutsch', flag: 'assets/img/de.png' },
     { code: 'en', name: 'English', flag: 'assets/img/en.png' },
     { code: 'es', name: 'Español', flag: 'assets/img/sp.png' }
@@ -388,23 +388,18 @@ export class NavigationBarComponent {
     private languageService: LanguageService,
     private router: Router
   ) {
-    // Add languages - this is okay here or could be moved to app init
-    translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
-    // Removed setDefaultLang - AppComponent handles initialization
+    this.translateService.addLangs(['fr', 'tr', 'en', 'es', 'de']);
   }
 
   navigateToHome(): void {
     this.router.navigate(['/']).then(() => {
-      // Scroll to top smoothly when navigating to home
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 0);
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 0);
     });
     this.closeMobileMenu();
   }
 
   switchLanguage(lang: string): void {
-    this.languageService.setLanguage(lang); // Use LanguageService to set and save
+    this.languageService.setLanguage(lang);
     this.closeMobileMenu();
   }
 
@@ -416,250 +411,63 @@ export class NavigationBarComponent {
     this.isMobileMenuOpen = false;
   }
 
+  /** 1) Neu: Scrollt immer exakt auf die Überschrift (Heading) der Section */
   navigateToSection(sectionId: string): void {
-    // Check if we're on the home page
+    const doScroll = () => {
+      const el = this.getScrollTarget(sectionId);
+      if (!el) return;
+
+      // 2× rAF: messen nach Orientation-/Layout-Änderung
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const offset = this.getStickyOffset();
+          const y = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        });
+      });
+    };
+
     if (this.router.url === '/') {
-      // We're on home page, scroll directly to section without page refresh
-      let element = document.getElementById(sectionId);
-      
-      // Fallback: if element not found by ID, try to find by selector
-      if (!element) {
-        if (sectionId === 'about') {
-          // Try multiple selectors to find the about section
-          element = document.querySelector('app-about-section') as HTMLElement ||
-                   document.querySelector('#about-section') as HTMLElement ||
-                   document.querySelector('.about') as HTMLElement ||
-                   document.querySelector('app-about') as HTMLElement;
-        } else if (sectionId === 'skills') {
-          element = document.querySelector('app-skills-section') as HTMLElement ||
-                   document.querySelector('#skills-section') as HTMLElement ||
-                   document.querySelector('.skills') as HTMLElement ||
-                   document.querySelector('app-skills') as HTMLElement;
-        } else if (sectionId === 'portfolio') {
-          element = document.querySelector('app-portfolio-section') as HTMLElement ||
-                   document.querySelector('#portfolio-section') as HTMLElement ||
-                   document.querySelector('.portfolio') as HTMLElement ||
-                   document.querySelector('app-portfolio') as HTMLElement;
-        } else if (sectionId === 'contact') {
-          element = document.querySelector('app-contact-section') as HTMLElement ||
-                   document.querySelector('#contact-section') as HTMLElement ||
-                   document.querySelector('.contact') as HTMLElement ||
-                   document.querySelector('app-contact') as HTMLElement;
-        }
-      }
-      
-      if (element) {
-        console.log('Found element for section:', sectionId, element);
-        
-        // Get element position
-        const elementRect = element.getBoundingClientRect();
-        const absoluteElementTop = elementRect.top + window.pageYOffset;
-        
-        // Calculate responsive offset based on screen size and device type
-        let offset = this.calculateScrollOffset(sectionId);
-        
-        const targetPosition = absoluteElementTop - offset;
-        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-      }
+      this.closeMobileMenu();
+      doScroll();
     } else {
-      // We're on a different page, navigate to home using Angular Router then scroll
       this.router.navigate(['/']).then(() => {
-        // Wait a bit for the component to load, then scroll
-        setTimeout(() => {
-          let element = document.getElementById(sectionId);
-          
-          // Fallback: if element not found by ID, try to find by selector
-          if (!element) {
-            if (sectionId === 'about') {
-              element = document.querySelector('app-about-section') as HTMLElement ||
-                       document.querySelector('#about-section') as HTMLElement ||
-                       document.querySelector('.about') as HTMLElement ||
-                       document.querySelector('app-about') as HTMLElement;
-            } else if (sectionId === 'skills') {
-              element = document.querySelector('app-skills-section') as HTMLElement ||
-                       document.querySelector('#skills-section') as HTMLElement ||
-                       document.querySelector('.skills') as HTMLElement ||
-                       document.querySelector('app-skills') as HTMLElement;
-            } else if (sectionId === 'portfolio') {
-              element = document.querySelector('app-portfolio-section') as HTMLElement ||
-                       document.querySelector('#portfolio-section') as HTMLElement ||
-                       document.querySelector('.portfolio') as HTMLElement ||
-                       document.querySelector('app-portfolio') as HTMLElement;
-            } else if (sectionId === 'contact') {
-              element = document.querySelector('app-contact-section') as HTMLElement ||
-                       document.querySelector('#contact-section') as HTMLElement ||
-                       document.querySelector('.contact') as HTMLElement ||
-                       document.querySelector('app-contact') as HTMLElement;
-            }
-          }
-          
-          if (element) {
-            console.log('Found element after navigation for section:', sectionId, element);
-            
-            const elementRect = element.getBoundingClientRect();
-            const absoluteElementTop = elementRect.top + window.pageYOffset;
-            let offset = this.calculateScrollOffset(sectionId);
-            
-            const targetPosition = absoluteElementTop - offset;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-          }
-        }, 300);
+        this.closeMobileMenu();
+        setTimeout(doScroll, 50); // lässt Home+About rendern
       });
     }
-    this.closeMobileMenu();
   }
 
-  private calculateScrollOffset(sectionId: string): number {
-    const headerHeight = 109; // var(--header-height)
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    const isLandscape = screenWidth > screenHeight;
-    
+  /** 2) Neu: Ziel-Element priorisiert die Überschrift innerhalb der Section */
+  private getScrollTarget(sectionId: string): HTMLElement | null {
     if (sectionId === 'about') {
-      // About section - responsive offset calculation with landscape optimization
-      
-      // LANDSCAPE DEVICES - Special handling for horizontal orientation
-      if (isLandscape && screenHeight <= 500) {
-        // Samsung Galaxy Note 883x412 (Landscape)
-        if (screenWidth >= 880 && screenWidth <= 890 && screenHeight >= 410 && screenHeight <= 415) {
-          return headerHeight + 200; // Extra offset for Galaxy Note landscape
-        }
-        // iPhone 12/13/14 896x414 (Landscape)
-        else if (screenWidth >= 890 && screenWidth <= 900 && screenHeight >= 410 && screenHeight <= 420) {
-          return headerHeight + 180;
-        }
-        // iPhone 14 Pro Max 932x430 (Landscape)
-        else if (screenWidth >= 930 && screenWidth <= 935 && screenHeight >= 425 && screenHeight <= 435) {
-          return headerHeight + 190;
-        }
-        // iPhone SE 667x375 (Landscape)
-        else if (screenWidth >= 665 && screenWidth <= 670 && screenHeight >= 370 && screenHeight <= 380) {
-          return headerHeight + 160;
-        }
-        // iPad Mini 1024x768 (Landscape)
-        else if (screenWidth >= 1020 && screenWidth <= 1030 && screenHeight >= 765 && screenHeight <= 775) {
-          return headerHeight + 220;
-        }
-        // iPad 1180x820 (Landscape)
-        else if (screenWidth >= 1175 && screenWidth <= 1185 && screenHeight >= 815 && screenHeight <= 825) {
-          return headerHeight + 240;
-        }
-        // iPad Pro 1366x1024 (Landscape)
-        else if (screenWidth >= 1360 && screenWidth <= 1370 && screenHeight >= 1020 && screenHeight <= 1030) {
-          return headerHeight + 260;
-        }
-        // Generic small landscape devices
-        else if (screenHeight <= 450) {
-          return headerHeight + 170;
-        }
-        // Generic medium landscape devices
-        else {
-          return headerHeight + 150;
-        }
-      }
-      
-      // Desktop (large screens)
-      else if (screenWidth >= 1920) {
-        return headerHeight + 50;
-      } else if (screenWidth >= 1440) {
-        return headerHeight + 30;
-      } else if (screenWidth >= 1200) {
-        return headerHeight + 20;
-      } else if (screenWidth >= 992) {
-        return headerHeight + 10;
-      }
-      
-      // Tablet range
-      else if (screenWidth >= 768) {
-        return headerHeight + 40; // Portrait tablets
-      }
-      
-      // Mobile devices - specific device handling
-      else {
-        // iPhone 12/13/14 Pro Max (428x926 portrait)
-        if (screenWidth <= 428 && screenHeight >= 900) {
-          return headerHeight + 60;
-        }
-        // iPhone 12/13/14 (390x844 portrait)
-        else if (screenWidth <= 390 && screenHeight >= 800) {
-          return headerHeight + 50;
-        }
-        // iPhone SE (375x667 portrait)
-        else if (screenWidth <= 375 && screenHeight >= 650) {
-          return headerHeight + 40;
-        }
-        // Samsung Galaxy S20/S21 (360x800 portrait)
-        else if (screenWidth <= 360 && screenHeight >= 750) {
-          return headerHeight + 45;
-        }
-        // Samsung Galaxy Note (412x883 portrait)
-        else if (screenWidth <= 412 && screenHeight >= 850) {
-          return headerHeight + 55;
-        }
-        // iPad Mini (768x1024 portrait)
-        else if (screenWidth <= 768 && screenHeight >= 1000) {
-          return headerHeight + 70;
-        }
-        // iPad (820x1180 portrait)
-        else if (screenWidth <= 820 && screenHeight >= 1100) {
-          return headerHeight + 80;
-        }
-        // iPad Pro (1024x1366 portrait)
-        else if (screenWidth <= 1024 && screenHeight >= 1300) {
-          return headerHeight + 90;
-        }
-        // Default mobile
-        else {
-          return headerHeight + 30;
-        }
-      }
+      return (document.querySelector('#about .about__heading') as HTMLElement)
+          || document.getElementById('about');
     }
-    
-    else if (sectionId === 'skills') {
-      // Skills section offset with landscape optimization
-      if (isLandscape && screenHeight <= 500) {
-        return headerHeight + 200; // Extra offset for landscape skills
-      }
-      if (screenWidth >= 1920) {
-        return headerHeight + 150;
-      } else if (screenWidth >= 1200) {
-        return headerHeight + 130;
-      } else if (screenWidth >= 768) {
-        return headerHeight + 100;
-      } else {
-        return headerHeight + 80;
-      }
+    if (sectionId === 'skills') {
+      return (document.querySelector('#skills .skills__heading') as HTMLElement)
+          || document.getElementById('skills');
     }
-    
-    else if (sectionId === 'portfolio') {
-      // Portfolio section offset with landscape optimization
-      if (isLandscape && screenHeight <= 500) {
-        return headerHeight + 180; // Extra offset for landscape portfolio
-      }
-      if (screenWidth >= 1200) {
-        return headerHeight + 100;
-      } else if (screenWidth >= 768) {
-        return headerHeight + 80;
-      } else {
-        return headerHeight + 60;
-      }
+    if (sectionId === 'portfolio') {
+      return (document.querySelector('#portfolio .portfolio__heading') as HTMLElement)
+          || document.getElementById('portfolio');
     }
-    
-    else if (sectionId === 'contact') {
-      // Contact section offset with landscape optimization
-      if (isLandscape && screenHeight <= 500) {
-        return headerHeight + 160; // Extra offset for landscape contact
-      }
-      if (screenWidth >= 1200) {
-        return headerHeight + 120;
-      } else if (screenWidth >= 768) {
-        return headerHeight + 100;
-      } else {
-        return headerHeight + 80;
-      }
+    if (sectionId === 'contact') {
+      return (document.querySelector('#contact .contact__heading') as HTMLElement)
+          || document.getElementById('contact');
     }
-    
-    // Default fallback
-    return headerHeight + 50;
+    return document.getElementById(sectionId);
+  }
+
+  /** 3) Neu: Offset wird live aus Header + Spacer gemessen (pixelgenau) */
+  private getStickyOffset(): number {
+    const header = document.querySelector('.nav') as HTMLElement;
+    const spacer = document.querySelector('.section-spacer') as HTMLElement;
+    const headerH = header ? header.getBoundingClientRect().height : 0;
+    const spacerH = spacer ? parseFloat(getComputedStyle(spacer).height || '0') : 0;
+
+    // optional nutzbar per CSS: scroll-margin-top: var(--scroll-offset)
+    document.documentElement.style.setProperty('--scroll-offset', `${headerH + spacerH}px`);
+    return headerH + spacerH;
   }
 }

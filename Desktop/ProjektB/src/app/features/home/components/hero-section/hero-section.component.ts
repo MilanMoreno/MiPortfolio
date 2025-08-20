@@ -81,7 +81,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       background-color: #141D2F;
       display: flex;
       flex-direction: column;
-      overflow: visible;
+      overflow: visible !important;
       padding-top: 4%;
       padding-bottom: 0;
       box-sizing: border-box;
@@ -104,6 +104,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       position: relative;
       z-index: 3;
       gap: 5rem;
+      overflow: visible !important;
     }
 
     @media (max-width: 1024px) {
@@ -297,25 +298,36 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       margin-top: auto;
       position: relative;
       flex-shrink: 0;
+      overflow: visible !important;
     }
 
     .hero__line-container {
       position: relative;
       width: 100px;
+      overflow: visible !important;
     }
 
+    /* UNENDLICHE LINIE - GEFIXT */
     .hero__line {
       position: absolute;
-      right: 0;
-      width: 99999px;
+      width: 200vw !important;
       height: 4px;
       background-color: var(--color-accent-secondary);
+      left: -100vw !important;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
     }
 
     .hero__social {
       display: flex;
       align-items: center;
       gap: 20px;
+      background-color: var(--color-background-primary);
+      padding: 10px 20px;
+      border-radius: 50px;
+      position: relative;
+      z-index: 10;
     }
 
     .hero__social-link {
@@ -605,6 +617,13 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__email {
         display: none;
       }
+
+      /* Mobile Linie Anpassung */
+      .hero__line {
+        width: 100vw !important;
+        left: -50vw !important;
+        margin-left: 50%;
+      }
     }
 
     /* Spezielle Anpassung für Bereich 601px bis 900px */
@@ -748,6 +767,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .hero__line {
         width: 50px !important;
+        left: 0 !important;
+        margin-left: 0 !important;
       }
       
       .hero__line-container {
@@ -806,6 +827,16 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         justify-content: flex-start;
         padding-top: 60px;
         gap: 0rem;
+      }
+      
+      .hero__line {
+        width: 30px !important;
+        left: 0 !important;
+        margin-left: 0 !important;
+      }
+      
+      .hero__line-container {
+        width: 30px !important;
       }
     }
   `],

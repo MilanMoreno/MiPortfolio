@@ -8,8 +8,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     selector: 'app-about-section',
     imports: [CommonModule, TranslateModule],
     template: `
-    <!-- SPACER WAND zwischen Hero und About -->
-
+    <!-- RESPONSIVE SPACER WAND zwischen Hero und About -->
     <div class="section-spacer"></div>
     
     <section class="about" id="about">
@@ -65,68 +64,153 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
     </section>
   `,
     styles: [`
-    /* SPACER WAND - Fester Abstand zwischen Hero und About für alle Orientierungen */
+    /* RESPONSIVE SPACER WAND - Perfekt synchronisiert mit Navigation */
     .section-spacer {
       width: 100%;
       background-color: var(--color-background-primary);
+      /* Desktop: Standard Abstand */
+      height: 20px;
+    }
+
+    /* ===== PORTRAIT (HOCHFORMAT) SPACER-HÖHEN ===== */
     
-      height: 10px;
-    }
-
-    /* Spacer für verschiedene Geräte und Orientierungen */
-    @media (max-width: 1024px) {
-      .section-spacer {
-        height: 10px;
-      }
-    }
-
-    /* Galaxy Note 412x883 (Hochformat) */
-    @media (max-width: 412px) and (max-height: 883px) and (orientation: portrait) {
-      .section-spacer {
-        height: 0px; /* Kleiner Abstand für Hochformat */
-      }
-    }
-
-    /* Galaxy Note 883x412 (Querformat) */
-    @media (max-width: 883px) and (max-height: 412px) and (orientation: landscape) {
-      .section-spacer {
-        height: 0px; /* Noch kleiner für Querformat */
-    }
-      
-    } 
-
-    /* Galaxy S10 360x760 (Hochformat) */
-    @media (max-width: 360px) and (max-height: 760px) and (orientation: portrait) {
+    /* iPhone 11 Pro 414x896 (Portrait) */
+    @media (max-width: 420px) and (min-height: 890px) and (orientation: portrait) {
       .section-spacer {
         height: 0px;
       }
     }
 
-    /* Galaxy S10 760x360 (Querformat) */
-    @media (max-width: 760px) and (max-height: 360px) and (orientation: landscape) {
+    /* Galaxy Note 412x883 (Portrait) */
+    @media (max-width: 415px) and (min-height: 880px) and (orientation: portrait) {
       .section-spacer {
-        height:150px;
+        height: 0px;
       }
-    } 
- /* Galaxy S20+ 384x854 (Portrait) */
-@media (max-width: 384px) and (max-height: 854px) and (orientation: portrait) {
-  .hero__footer {
-    position: relative;
-    bottom: 2%;
-    left: 5%;
-    right: 5%;
-    padding: 3px 0px;
-    height: 18%;
-    background-color: transparent;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-    z-index: 10;
-    top: 5%;
-    margin-top: 5%;
-    flex-shrink: 0;
-    margin-bottom: -10%;
-  }
-}
+    }
+
+    /* Galaxy S10 360x760 (Portrait) */
+    @media (max-width: 365px) and (min-height: 755px) and (orientation: portrait) {
+      .section-spacer {
+        height: 0px;
+      }
+    }
+
+    /* iPhone SE 375x667 (Portrait) */
+    @media (max-width: 380px) and (min-height: 660px) and (orientation: portrait) {
+      .section-spacer {
+        height: 0px;
+      }
+    }
+
+    /* iPad Mini 768x1024 (Portrait) */
+    @media (max-width: 770px) and (min-height: 1000px) and (orientation: portrait) {
+      .section-spacer {
+        height: 10px;
+      }
+    }
+
+    /* iPad 820x1180 (Portrait) */
+    @media (max-width: 825px) and (min-height: 1100px) and (orientation: portrait) {
+      .section-spacer {
+        height: 10px;
+      }
+    }
+
+    /* iPad Pro 1024x1366 (Portrait) */
+    @media (max-width: 1030px) and (min-height: 1300px) and (orientation: portrait) {
+      .section-spacer {
+        height: 15px;
+      }
+    }
+
+    /* ===== LANDSCAPE (QUERFORMAT) SPACER-HÖHEN ===== */
+    
+    /* iPhone 11 Pro 896x414 (Landscape) */
+    @media (max-width: 900px) and (max-height: 420px) and (orientation: landscape) {
+      .section-spacer {
+        height: 0px;
+      }
+    }
+
+    /* Galaxy Note 883x412 (Landscape) */
+    @media (max-width: 890px) and (max-height: 415px) and (orientation: landscape) {
+      .section-spacer {
+        height: 0px;
+      }
+    }
+
+    /* Galaxy S10 760x360 (Landscape) - WICHTIG: GROSSER SPACER! */
+    @media (max-width: 765px) and (max-height: 365px) and (orientation: landscape) {
+      .section-spacer {
+        height: 150px;
+      }
+    }
+
+    /* iPhone SE 667x375 (Landscape) */
+    @media (max-width: 670px) and (max-height: 380px) and (orientation: landscape) {
+      .section-spacer {
+        height: 80px;
+      }
+    }
+
+    /* iPad Mini 1024x768 (Landscape) */
+    @media (max-width: 1030px) and (max-height: 775px) and (orientation: landscape) {
+      .section-spacer {
+        height: 30px;
+      }
+    }
+
+    /* iPad 1180x820 (Landscape) */
+    @media (max-width: 1185px) and (max-height: 825px) and (orientation: landscape) {
+      .section-spacer {
+        height: 40px;
+      }
+    }
+
+    /* iPad Pro 1366x1024 (Landscape) */
+    @media (max-width: 1370px) and (max-height: 1030px) and (orientation: landscape) {
+      .section-spacer {
+        height: 50px;
+      }
+    }
+
+    /* ===== FALLBACK REGELN ===== */
+    
+    /* Allgemeine kleine Geräte Portrait */
+    @media (max-width: 480px) and (orientation: portrait) {
+      .section-spacer {
+        height: 0px;
+      }
+    }
+
+    /* Allgemeine kleine Geräte Landscape */
+    @media (max-height: 450px) and (orientation: landscape) {
+      .section-spacer {
+        height: 100px;
+      }
+    }
+
+    /* Tablet Portrait */
+    @media (min-width: 481px) and (max-width: 1024px) and (orientation: portrait) {
+      .section-spacer {
+        height: 10px;
+      }
+    }
+
+    /* Tablet Landscape */
+    @media (min-width: 481px) and (orientation: landscape) and (max-height: 768px) {
+      .section-spacer {
+        height: 30px;
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 1025px) {
+      .section-spacer {
+        height: 20px;
+      }
+    }
+
     .about {
       position: relative;
       display: flex;
@@ -178,7 +262,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
     .about__heading {
       font-size: 89px;
-      padding-top: 0px !important; /* Kein padding-top mehr nötig! */
+      padding-top: 0px !important;
       color: var(--color-text-primary);
       margin-bottom: 2rem;
     }
@@ -272,7 +356,6 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .about__heading {
         font-size: 45px;
-        /* KEIN padding-top mehr! Spacer regelt alles */
       }
     }
 
@@ -322,6 +405,18 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         height: 200px;
       }
     }
+
+
+    /* ===== Responsive – 609x390 (Landscape) ===== */
+@media (max-width: 610px) and (max-height: 395px) and (orientation: landscape) {
+  .about__heading {
+    font-size: 49px;
+    padding-top: 75px !important;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+  }
+}
+
   `],
     animations: [fadeInLeft, fadeInUp]
 })
