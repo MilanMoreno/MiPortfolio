@@ -62,10 +62,12 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       <span class="hero__email">milan.moreno&#64;gmail.com</span>
     </div>
 
-    <a href="#about" class="hero__scroll">
-      {{ 'HERO.SCROLLDOWN' | translate }}
-    </a>
   </div>
+
+  <!-- Scroll down element outside footer, between sections -->
+  <a href="#about" class="hero__scroll">
+    {{ 'HERO.SCROLLDOWN' | translate }}
+  </a>
 
   <div class="hero__notification" [class.hero__notification--visible]="(clipboardService.copyStatus$ | async)">
     {{ 'HERO.EMAIL_COPIED' | translate }}
@@ -365,29 +367,29 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       color: var(--color-text-primary);
       font-size: 16px;
       transition: color 0.3s ease;
-      width: 200px;
-      text-align: center;
       position: absolute;
-      right: 100px;
-      bottom: 0;
-      display: none !important; /* Versteckt standardmäßig */
+      right: 0;
+      bottom: 50px;
+      width: 200px;
+      display: block;
+      z-index: 100;
     }
 
     .hero__scroll:hover {
       color: var(--color-accent-primary);
     }
 
-    /* Versteckt bei allem unter 100% Zoom */
-    @media (max-width: 1919px) {
+    /* Hide scroll text when zoomed out below 100% */
+    @media screen and (max-resolution: 95dpi) {
       .hero__scroll {
-        display: none !important;
+        display: none;
       }
     }
 
-    /* Sichtbar nur bei 100% Zoom und höher (1920px+) */
-    @media (min-width: 1920px) {
+    /* Hide on smaller screens */
+    @media (max-width: 1100px) {
       .hero__scroll {
-        display: block !important;
+        display: none;
       }
     }
 
