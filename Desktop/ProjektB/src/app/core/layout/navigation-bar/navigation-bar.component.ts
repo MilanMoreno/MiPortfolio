@@ -414,60 +414,107 @@ export class NavigationBarComponent {
   /** 1) Neu: Scrollt immer exakt auf die Überschrift (Heading) der Section */
   navigateToSection(sectionId: string): void {
     const doScroll = () => {
-      const el = this.getScrollTarget(sectionId);
-      if (!el) return;
+      // Warte bis Layout stabil ist
+      setTimeout(() => {
+        const el = this.getScrollTarget(sectionId);
+        if (!el) return;
 
-      // 2× rAF: messen nach Orientation-/Layout-Änderung
-      requestAnimationFrame(() => {
+        // 3× rAF für maximale Stabilität nach Orientation-/Layout-Änderung
         requestAnimationFrame(() => {
-          const offset = this.getStickyOffset();
-          const y = el.getBoundingClientRect().top + window.scrollY - offset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              const offset = this.getStickyOffset();
+              const elementRect = el.getBoundingClientRect();
+              const scrollY = window.scrollY;
+              
+              // Berechne exakte Position mit zusätzlichem Puffer für Überschrift
+              const targetY = elementRect.top + scrollY - offset - 20;
+              
+              console.log('Scroll Debug:', {
+                sectionId,
+                elementRect: elementRect.top,
+                scrollY,
+                offset,
+                targetY,
+                finalPosition: Math.max(0, targetY)
+              });
+              
+              window.scrollTo({ 
+                top: Math.max(0, targetY), 
+                behavior: 'smooth' 
+              });
+            });
+          });
         });
-      });
+      }, 100);
     };
 
     if (this.router.url === '/') {
       this.closeMobileMenu();
-      doScroll();
+      // Zusätzliche Verzögerung für Mobile Menu Animation
+      setTimeout(doScroll, this.isMobileMenuOpen ? 300 : 0);
     } else {
       this.router.navigate(['/']).then(() => {
         this.closeMobileMenu();
-        setTimeout(doScroll, 50); // lässt Home+About rendern
+        setTimeout(doScroll, 200); // Mehr Zeit für Home+About rendern
       });
     }
   }
 
   /** 2) Neu: Ziel-Element priorisiert die Überschrift innerhalb der Section */
   private getScrollTarget(sectionId: string): HTMLElement | null {
+    // Versuche zuerst die spezifische Überschrift zu finden
     if (sectionId === 'about') {
-      return (document.querySelector('#about .about__heading') as HTMLElement)
-          || document.getElementById('about');
+      const heading = document.querySelector('#about .about__heading') as HTMLElement;
+      const section = document.getElementById('about');
+      
+      // Priorisiere die Überschrift, aber fallback zur Section
+      return heading || section;
     }
+    
     if (sectionId === 'skills') {
-      return (document.querySelector('#skills .skills__heading') as HTMLElement)
-          || document.getElementById('skills');
+      const heading = document.querySelector('#skills .skills__title') as HTMLElement;
+      const section = document.getElementById('skills');
+      
+      return heading || section;
     }
+    
     if (sectionId === 'portfolio') {
-      return (document.querySelector('#portfolio .portfolio__heading') as HTMLElement)
-          || document.getElementById('portfolio');
+      const heading = document.querySelector('#portfolio .portfolio__title') as HTMLElement;
+      const section = document.getElementById('portfolio');
+      
+      return heading || section;
     }
+    
     if (sectionId === 'contact') {
-      return (document.querySelector('#contact .contact__heading') as HTMLElement)
-          || document.getElementById('contact');
+      const heading = document.querySelector('#contact .contact__title') as HTMLElement;
+      const section = document.getElementById('contact');
+      
+      return heading || section;
     }
+    
     return document.getElementById(sectionId);
   }
 
-  /** 3) Neu: Offset wird live aus Header + Spacer gemessen (pixelgenau) */
+  /** 3) Verbessert: Offset wird live aus Header + Spacer gemessen (pixelgenau) */
   private getStickyOffset(): number {
     const header = document.querySelector('.nav') as HTMLElement;
     const spacer = document.querySelector('.section-spacer') as HTMLElement;
-    const headerH = header ? header.getBoundingClientRect().height : 0;
+    
+    // Messe Header-Höhe live
+    const headerH = header ? header.getBoundingClientRect().height : 109;
+    
+    // Messe Spacer-Höhe live (wichtig für responsive Anpassungen)
     const spacerH = spacer ? parseFloat(getComputedStyle(spacer).height || '0') : 0;
+    
+    // Zusätzlicher Puffer für bessere Sichtbarkeit der Überschrift
+    const visualPadding = 30;
+    
+    const totalOffset = headerH + spacerH + visualPadding;
 
-    // optional nutzbar per CSS: scroll-margin-top: var(--scroll-offset)
-    document.documentElement.style.setProperty('--scroll-offset', `${headerH + spacerH}px`);
-    return headerH + spacerH;
+    // CSS Variable für optionale Nutzung
+    document.documentElement.style.setProperty('--scroll-offset', `${totalOffset}px`);
+    
+    return totalOffset;
   }
 }
