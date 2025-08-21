@@ -722,7 +722,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
 
       .hero__social {
-        margin-left: 0 !important;
+        margin-left: 10px !important;
       }
     }
 
@@ -867,8 +867,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
 
       .hero__line {
         width: 50px !important;
-        right: 0 !important;
-        margin-right: 10px !important;
+        right: 0px !important;
+        margin-right: 0px !important;
       }
       
       .hero__line-container {
@@ -935,11 +935,641 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       
       .hero__line-container {
         width: 30px !important;
-        margin-right: 5px !important;
+        margin-right: 10px !important;
       }
 
       .hero__social {
-        margin-left: 0 !important;
+        margin-left: 10px !important;
+      }
+    }
+
+    /* FIX FÜR HOHE BILDSCHIRME - Vector Shape höher positionieren */
+    /* Für hohe Bildschirme ab 1200px Höhe */
+    @media (min-width: 901px) and (min-height: 1200px) {
+      .hero__desktop-vector {
+        position: absolute !important;
+        left: -5% !important;
+        bottom: 1% !important;   
+        width: 175% !important;
+        top: 31% !important;  /* Höher positioniert - war 36% */
+        height: 70% !important;  /* Höhere Höhe für bessere Abdeckung */
+        pointer-events: none !important;
+        z-index: 5 !important;
+        transform: rotate(-3deg) !important;
+      }
+    }
+
+    /* Für sehr hohe Bildschirme über 1500px Höhe */
+    @media (min-width: 901px) and (min-height: 1500px) {
+      .hero__desktop-vector {
+        top: 36% !important;  /* Noch höher für sehr große Bildschirme */
+        height: 55% !important;
+      }
+    }
+
+    /* Für ultra-hohe Bildschirme über 2000px Höhe */
+    @media (min-width: 901px) and (min-height: 2000px) {
+      .hero__desktop-vector {
+        top: 36% !important;  /* Maximal hoch für ultra-große Bildschirme */
+        height: 50% !important;
+      }
+    }
+
+    /* Für extrem hohe Bildschirme über 3000px Höhe */
+    @media (min-width: 901px) and (min-height: 3000px) {
+      .hero__desktop-vector {
+        top: 35% !important;  /* Höchste Position für extreme Bildschirme */
+        height: 55% !important;
+      }
+    }
+
+    /* FIX FÜR DAS HERO-BILD BEI HOHEN BILDSCHIRMEN */
+    /* Zusätzliche Media Queries für das Hero-Bild bei hohen Y-Achsen */
+
+    /* Für Bildschirme zwischen 1500px und 2000px Höhe */
+    @media (min-width: 901px) and (min-height: 1500px) and (max-height: 1999px) {
+      .hero__image {
+        height: 520px !important; /* Größeres Bild */
+        padding-top: 20px !important;
+        margin-top: 20px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 40px !important;
+      }
+      
+      .hero__content {
+        gap: 4rem !important; /* Weniger Gap zwischen Bild und Text */
+      }
+    }
+
+    /* Für Bildschirme zwischen 2000px und 2500px Höhe */
+    @media (min-width: 901px) and (min-height: 2000px) and (max-height: 2499px) {
+      .hero__image {
+        height: 580px !important; /* Noch größeres Bild */
+        padding-top: 15px !important;
+        margin-top: 30px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 60px !important;
+      }
+      
+      .hero__content {
+        gap: 3.5rem !important;
+      }
+    }
+
+    /* Für Bildschirme zwischen 2500px und 3000px Höhe */
+    @media (min-width: 901px) and (min-height: 2500px) and (max-height: 2999px) {
+      .hero__image {
+        height: 650px !important; /* Maximale Bildgröße */
+        padding-top: 10px !important;
+        margin-top: 40px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 80px !important;
+      }
+      
+      .hero__content {
+        gap: 3rem !important;
+      }
+      
+      .hero__image-shadow {
+        top: 52% !important; /* Schatten anpassen */
+      }
+    }
+
+    /* Für sehr hohe Bildschirme über 3000px */
+    @media (min-width: 901px) and (min-height: 3000px) {
+      .hero__image {
+        height: 720px !important; /* Extra große Bildgröße */
+        padding-top: 5px !important;
+        margin-top: 50px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 100px !important;
+      }
+      
+      .hero__content {
+        gap: 2.5rem !important;
+      }
+      
+      .hero__image-shadow {
+        top: 50% !important;
+      }
+    }
+
+    /* Alternative Lösung: Content besser verteilen */
+    @media (min-width: 901px) and (min-height: 1800px) {
+      .hero__content {
+        justify-content: space-between !important;
+        align-items: stretch !important;
+        padding-top: 2% !important;
+        padding-bottom: 2% !important;
+      }
+    }
+
+    /* Spezifischer Fix für kleinere hohe Bildschirme */
+    /* X-Achse um 1178px und Y-Achse um 1100px */
+    @media (min-width: 1100px) and (max-width: 1250px) and (min-height: 1050px) and (max-height: 1150px) {
+      .hero__image {
+        height: 480px !important;
+        margin-top: 60px !important;
+        padding-top: 20px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 80px !important;
+      }
+      
+      .hero__content {
+        gap: 3.5rem !important;
+        padding-top: 3% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 38% !important;
+        height: 68% !important;
+        left: -3% !important;
+      }
+    }
+
+    /* MEDIA QUERIES FÜR Y-ACHSE ~600-700px (kleinere Höhen) */
+    /* Für X-Achse 900px-1000px mit Y-Achse 600px-700px */
+    @media (min-width: 900px) and (max-width: 1000px) and (min-height: 600px) and (max-height: 700px) {
+      .hero__image {
+        height: 320px !important;
+        margin-top: 20px !important;
+        padding-top: 35px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 40px !important;
+      }
+      
+      .hero__content {
+        gap: 5rem !important;
+        padding-top: 5% !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 48% !important;
+        height: 55% !important;
+        left: -4.5% !important;
+        transform: rotate(-1deg) !important;
+      }
+    }
+
+    /* MEDIA QUERIES FÜR Y-ACHSE ~1000-1100px (mittlere Breite, höhere Höhe) */
+    /* Für X-Achse 900px-1000px mit Y-Achse 1000px-1100px */
+    @media (min-width: 900px) and (max-width: 1000px) and (min-height: 1000px) and (max-height: 1100px) {
+      .hero__image {
+        height: 450px !important;
+        margin-top: 55px !important;
+        padding-top: 20px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 75px !important;
+      }
+      
+      .hero__content {
+        gap: 3.8rem !important;
+        padding-top: 3% !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 41% !important;
+        height: 65% !important;
+        left: -4.2% !important;
+        transform: rotate(-2deg) !important;
+      }
+    }
+
+    /* MEDIA QUERIES FÜR Y-ACHSE ~700-1000px (mittlere Auflösungen) */
+    /* Für X-Achse 900px-1200px mit Y-Achse 700px-1000px */
+    @media (min-width: 901px) and (max-width: 1200px) and (min-height: 700px) and (max-height: 1000px) {
+      .hero__image {
+        height: 420px !important;
+        margin-top: 40px !important;
+        padding-top: 25px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 65px !important;
+      }
+      
+      .hero__content {
+        gap: 4.2rem !important;
+        padding-top: 3.5% !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 43% !important;
+        height: 62% !important;
+        left: -3.5% !important;
+        transform: rotate(-2deg) !important;
+      }
+    }
+
+    /* MEDIA QUERIES FÜR Y-ACHSE ~924px */
+    /* Spezifisch für 1030x924px */
+    @media (min-width: 1027px) and (max-width: 1033px) and (min-height: 920px) and (max-height: 928px) {
+      .hero__image {
+        height: 420px !important;
+        margin-top: 45px !important;
+        padding-top: 25px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 65px !important;
+      }
+      
+      .hero__content {
+        gap: 4.2rem !important;
+        padding-top: 3.5% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 42% !important;
+        height: 62% !important;
+        left: -3.5% !important;
+      }
+    }
+
+    /* MEDIA QUERIES FÜR Y-ACHSE ~1106px */
+    /* Spezifisch für 945x1106px */
+    @media (min-width: 942px) and (max-width: 948px) and (min-height: 1103px) and (max-height: 1110px) {
+      .hero__image {
+        height: 485px !important;
+        margin-top: 63px !important;
+        padding-top: 18px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 83px !important;
+      }
+      
+      .hero__content {
+        gap: 3.4rem !important;
+        padding-top: 2.6% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 39.8% !important;
+        height: 68.5% !important;
+        left: -3.9% !important;
+      }
+    }
+
+    /* Spezifisch für 900-979px x 1106px */
+    @media (min-width: 900px) and (max-width: 979px) and (min-height: 1103px) and (max-height: 1110px) {
+      .hero__image {
+        height: 480px !important;
+        margin-top: 62px !important;
+        padding-top: 19px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 82px !important;
+      }
+      
+      .hero__content {
+        gap: 3.5rem !important;
+        padding-top: 2.7% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 40% !important;
+        height: 68% !important;
+        left: -4.1% !important;
+      }
+    }
+
+    /* Spezifisch für 1000-1094px x 1106px (FEHLENDE LÜCKE) */
+    @media (min-width: 1000px) and (max-width: 1094px) and (min-height: 1103px) and (max-height: 1110px) {
+      .hero__image {
+        height: 488px !important;
+        margin-top: 65px !important;
+        padding-top: 17px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 85px !important;
+      }
+      
+      .hero__content {
+        gap: 3.3rem !important;
+        padding-top: 2.5% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 39.5% !important;
+        height: 68.8% !important;
+        left: -3.2% !important;
+      }
+    }
+
+    /* Spezifisch für 1098x1106px */
+    @media (min-width: 1095px) and (max-width: 1101px) and (min-height: 1103px) and (max-height: 1110px) {
+      .hero__image {
+        height: 490px !important;
+        margin-top: 66px !important;
+        padding-top: 16px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 86px !important;
+      }
+      
+      .hero__content {
+        gap: 3.2rem !important;
+        padding-top: 2.4% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 39.2% !important;
+        height: 69% !important;
+        left: -2.8% !important;
+      }
+    }
+
+    /* MEDIA QUERIES FÜR Y-ACHSE ~2950px */
+    /* Spezifisch für ~1980x2950px - erweitert und verbessert */
+    @media (min-width: 1970px) and (max-width: 2010px) and (min-height: 2930px) and (max-height: 2970px) {
+      .hero__image {
+        height: 950px !important;
+        margin-top: 120px !important;
+        padding-top: 0px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 180px !important;
+      }
+      
+      .hero__content {
+        gap: 1.8rem !important;
+        padding-top: 0.5% !important;
+        padding-bottom: 0.5% !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 28% !important;
+        height: 62% !important;
+        left: -0.5% !important;
+      }
+      
+      .hero__image-shadow {
+        top: 48% !important;
+      }
+    }
+
+    /* MEDIA QUERIES FÜR Y-ACHSE ~1094px */
+    @media (min-width: 925px) and (max-width: 935px) and (min-height: 1090px) and (max-height: 1100px) {
+      .hero__image {
+        height: 460px !important;
+        margin-top: 60px !important;
+        padding-top: 20px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 80px !important;
+      }
+      
+      .hero__content {
+        gap: 3.3rem !important;
+        padding-top: 2.8% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 40% !important;
+        height: 67% !important;
+        left: -4% !important;
+      }
+    }
+
+    /* Spezifisch für 951x1094px */
+    @media (min-width: 948px) and (max-width: 955px) and (min-height: 1090px) and (max-height: 1100px) {
+      .hero__image {
+        height: 465px !important;
+        margin-top: 62px !important;
+        padding-top: 19px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 82px !important;
+      }
+      
+      .hero__content {
+        gap: 3.25rem !important;
+        padding-top: 2.7% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 39.5% !important;
+        height: 68% !important;
+        left: -3.8% !important;
+      }
+    }
+
+    /* Spezifisch für 992x1094px */
+    @media (min-width: 990px) and (max-width: 1000px) and (min-height: 1090px) and (max-height: 1100px) {
+      .hero__image {
+        height: 470px !important;
+        margin-top: 65px !important;
+        padding-top: 18px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 85px !important;
+      }
+      
+      .hero__content {
+        gap: 3.2rem !important;
+        padding-top: 2.5% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 39% !important;
+        height: 69% !important;
+        left: -3.5% !important;
+      }
+    }
+
+    /* Spezifisch für 1011x1094px */
+    @media (min-width: 1008px) and (max-width: 1015px) and (min-height: 1090px) and (max-height: 1100px) {
+      .hero__image {
+        height: 475px !important;
+        margin-top: 67px !important;
+        padding-top: 17px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 87px !important;
+      }
+      
+      .hero__content {
+        gap: 3.1rem !important;
+        padding-top: 2.3% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 38.5% !important;
+        height: 70% !important;
+        left: -3.2% !important;
+      }
+    }
+
+    /* Spezifisch für 1070x1094px */
+    @media (min-width: 1067px) and (max-width: 1074px) and (min-height: 1090px) and (max-height: 1100px) {
+      .hero__image {
+        height: 477px !important;
+        margin-top: 68px !important;
+        padding-top: 16px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 88px !important;
+      }
+      
+      .hero__content {
+        gap: 3.05rem !important;
+        padding-top: 2.2% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 38.2% !important;
+        height: 70.3% !important;
+        left: -3.1% !important;
+      }
+    }
+
+    /* Spezifisch für 1088x1094px */
+    @media (min-width: 1085px) and (max-width: 1092px) and (min-height: 1090px) and (max-height: 1100px) {
+      .hero__image {
+        height: 478px !important;
+        margin-top: 68px !important;
+        padding-top: 16px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 88px !important;
+      }
+      
+      .hero__content {
+        gap: 3.0rem !important;
+        padding-top: 2.2% !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 38% !important;
+        height: 70.5% !important;
+        left: -3% !important;
+      }
+    }
+
+    /* Erweiterte Abdeckung für ähnliche Auflösungen um 992px */
+    @media (min-width: 980px) and (max-width: 1010px) and (min-height: 1000px) and (max-height: 1150px) {
+      .hero__image {
+        height: 465px !important;
+        margin-top: 55px !important;
+        padding-top: 22px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 75px !important;
+      }
+      
+      .hero__content {
+        gap: 3.8rem !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 40% !important;
+        height: 66% !important;
+        left: -3% !important;
+      }
+    }
+
+    /* Erweiterte Abdeckung für ähnliche Auflösungen um 1300px */
+    @media (min-width: 1300px) and (max-width: 1450px) and (min-height: 1000px) and (max-height: 1200px) {
+      .hero__image {
+        height: 480px !important;
+        margin-top: 60px !important;
+        padding-top: 20px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 80px !important;
+      }
+      
+      .hero__content {
+        gap: 3.5rem !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 38% !important;
+        height: 68% !important;
+        left: -2% !important;
+      }
+    }
+
+    /* Für kleinere hohe Bildschirme */
+    @media (min-width: 1100px) and (max-width: 1299px) and (min-height: 1000px) and (max-height: 1200px) {
+      .hero__image {
+        height: 460px !important;
+        margin-top: 50px !important;
+        padding-top: 25px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 70px !important;
+      }
+      
+      .hero__content {
+        gap: 4rem !important;
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 40% !important;
+        height: 65% !important;
+        left: -2% !important;
+      }
+    }
+
+    /* Spezifischer Fix für die größeren Pixel-Bereiche */
+    /* X-Achse=1990 Pixel und Y-Achse zwischen 1868-2953 Pixel */
+    @media (min-width: 1980px) and (max-width: 2000px) and (min-height: 1868px) and (max-height: 2953px) {
+      .hero__image {
+        height: 600px !important;
+        margin-top: 50px !important;
+        padding-top: 10px !important;
+      }
+      
+      .hero__left-container {
+        margin-top: 70px !important;
+      }
+      
+      .hero__desktop-vector {
+        top: 33% !important;
+        height: 65% !important;
       }
     }
   `],
