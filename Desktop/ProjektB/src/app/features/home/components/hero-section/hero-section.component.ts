@@ -299,7 +299,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       width: 100%;
       max-width: var(--max-content-width);
       margin: 0 auto;
-      padding: 0 calc(var(--content-padding-desktop) - 6rem);
+      padding: 0 60px;
       box-sizing: border-box;
       height: 10%;
       z-index: 20;
@@ -429,7 +429,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
         
       .hero__footer {
-        padding: 0 50px;
+      padding: 0 50px;
       }
  
       .hero__image {
@@ -500,7 +500,7 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       }
       
       .hero__image {
-        height:450px;
+        height:500px;
         object-fit: contain;
         padding-top:30px;
         position: relative;
@@ -694,8 +694,8 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
       .hero__footer {
         position: relative;
         bottom: 1%;      
-        left: 0;
-        right: 0;
+        left: 10px;
+        right: 10px;
         padding: 0 20px;
         height: 18%;
         background-color: transparent;
@@ -1572,6 +1572,92 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         height: 65% !important;
       }
     }
+
+    /* FÜGE DIESE MEDIA QUERY IN DEINEN STYLES HINZU */
+/* Spezifischer Fix für iPad Pro 1024x1366 */
+@media (min-width: 1020px) and (max-width: 1030px) and (min-height: 1360px) and (max-height: 1370px) {
+  .hero__image {
+    height: 500px !important;
+    margin-top: 100px !important;  /* Bild nach unten verschieben */
+    padding-top: 40px !important;
+  }
+  
+  .hero__left-container {
+    margin-top: 120px !important;  /* Container nach unten */
+  }
+  
+  .hero__content {
+    gap: 3rem !important;
+    padding-top: 8% !important;  /* Content mehr nach unten */
+    justify-content: center !important;
+  }
+  
+  .hero__desktop-vector {
+    top: 46% !important;  /* Vector Shape höher positionieren */
+    height: 60% !important;
+    left: -2% !important;
+    width: 140% !important;
+  }
+  
+  .hero__image-shadow {
+    top: 54% !important;
+  }
+}
+
+/* Erweiterte Abdeckung für iPad Pro Bereich */
+@media (min-width: 1000px) and (max-width: 1050px) and (min-height: 1300px) and (max-height: 1400px) {
+  .hero__image {
+    height: 490px !important;
+    margin-top: 90px !important;
+    padding-top: 35px !important;
+  }
+  
+  .hero__left-container {
+    margin-top: 110px !important;
+  }
+  
+  .hero__content {
+    gap: 3.2rem !important;
+    padding-top: 6% !important;
+  }
+  
+  .hero__desktop-vector {
+    top: 45% !important;
+    height: 62% !important;
+    left: -2.5% !important;
+  }
+}
+
+/* Alternative für leicht andere iPad Pro Auflösungen */
+@media (min-width: 1024px) and (max-width: 1024px) and (min-height: 1366px) and (max-height: 1366px) {
+  .hero__image {
+    height: 495px !important;
+    margin-top: 95px !important;
+    padding-top: 38px !important;
+  }
+  
+  .hero__left-container {
+    margin-top: 115px !important;
+  }
+  
+  .hero__content {
+    gap: 3.1rem !important;
+    padding-top: 7% !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  .hero__desktop-vector {
+    top: 45.5% !important;
+    height: 61% !important;
+    left: -2.3% !important;
+    width: 138% !important;
+  }
+  
+  .hero__image-shadow {
+    top: 53% !important;
+  }
+}
   `],
     animations: [fadeInLeft, fadeInUp]
 })

@@ -405,7 +405,19 @@ import { fadeInLeft, fadeInUp } from '../../../../shared/animations/fade.animati
         height: 200px;
       }
     }
-
+/* ===== Spezifische Regel für 609x390 (Landscape) ===== */
+@media (max-width: 610px) and (max-height: 395px) and (orientation: landscape) {
+  .section-spacer {
+    height: 150px !important;
+  }
+  
+  .about__heading {
+    font-size: 49px;
+    padding-top: 0px !important; /* Zurück auf 0, da Spacer das regelt */
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+  }
+}
 
     /* ===== Responsive – 609x390 (Landscape) ===== */
 @media (max-width: 610px) and (max-height: 395px) and (orientation: landscape) {
